@@ -69,6 +69,7 @@ $heading-line-height : 1.2 !default;
 *::before,
 *::after {
     box-sizing: border-box;
+
 }
 
 html,
@@ -126,4 +127,19 @@ $scrollbar-thumb-hover: darken($scollbar-hover, 10%);
 
 .app-route {
     margin: 20px;
+}
+
+.app-page-title {
+    font-size: 2.7rem;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    &:focus {
+        outline: none;
+    }
 }

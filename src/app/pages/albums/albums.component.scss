@@ -1,0 +1,26 @@
+.album {
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+
+    .album-title {
+        color: white;
+        font-size: 1.1rem;
+    }
+
+    img {
+        border-radius: 10px;
+    }
+
+    .album-artist {
+        color: white;
+        opacity: 0.5;
+    }
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        cursor: pointer;
+    }
+
+}

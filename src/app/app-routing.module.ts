@@ -7,6 +7,7 @@ import { AlbumComponent } from "./pages/album/album.component";
 import { ArtistsComponent } from "./pages/artists/artists.component";
 import { ArtistComponent } from "./pages/artist/artist.component";
 import { SearchComponent } from "./pages/search/search.component";
+import { SettingsComponent } from "./pages/settings/settings.component";
 
 const routes: Routes = [
 
@@ -20,6 +21,8 @@ const routes: Routes = [
 	{ path: "artists/:id", component: ArtistComponent },
 
 	{ path: "search", component: SearchComponent },
+	{ path: "settings", component: SettingsComponent },
+
 	{ path: "queue", component: QueueComponent },
 ];
 

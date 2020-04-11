@@ -18,6 +18,7 @@ import { AlbumComponent } from "./pages/album/album.component";
 import { ArtistComponent } from "./pages/artist/artist.component";
 import { QueueComponent } from "./pages/queue/queue.component";
 import { FormatSecondsPipe } from './pipes/format-seconds.pipe';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 @NgModule({
 	declarations: [
@@ -34,6 +35,7 @@ import { FormatSecondsPipe } from './pipes/format-seconds.pipe';
 		ArtistComponent,
 		QueueComponent,
 		FormatSecondsPipe,
+		SettingsComponent,
 	],
 
 	imports: [
