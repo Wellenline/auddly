@@ -11,6 +11,12 @@ import { InfiniteScrollComponent } from "./components/infinite-scroll/infinite-s
 import { TrackListComponent } from "./components/track-list/track-list.component";
 import { TracksComponent } from "./pages/tracks/tracks.component";
 import { HttpService } from "./services/http.service";
+import { ArtistsComponent } from "./pages/artists/artists.component";
+import { AlbumsComponent } from "./pages/albums/albums.component";
+import { SearchComponent } from "./pages/search/search.component";
+import { AlbumComponent } from "./pages/album/album.component";
+import { ArtistComponent } from "./pages/artist/artist.component";
+import { QueueComponent } from './pages/queue/queue.component';
 
 @NgModule({
 	declarations: [
@@ -20,6 +26,12 @@ import { HttpService } from "./services/http.service";
 		InfiniteScrollComponent,
 		TrackListComponent,
 		TracksComponent,
+		ArtistsComponent,
+		AlbumsComponent,
+		SearchComponent,
+		AlbumComponent,
+		ArtistComponent,
+		QueueComponent,
 	],
 
 	imports: [
