@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { CommonModule } from "@angular/common";
 
@@ -16,7 +16,8 @@ import { AlbumsComponent } from "./pages/albums/albums.component";
 import { SearchComponent } from "./pages/search/search.component";
 import { AlbumComponent } from "./pages/album/album.component";
 import { ArtistComponent } from "./pages/artist/artist.component";
-import { QueueComponent } from './pages/queue/queue.component';
+import { QueueComponent } from "./pages/queue/queue.component";
+import { FormatSecondsPipe } from './pipes/format-seconds.pipe';
 
 @NgModule({
 	declarations: [
@@ -32,6 +33,7 @@ import { QueueComponent } from './pages/queue/queue.component';
 		AlbumComponent,
 		ArtistComponent,
 		QueueComponent,
+		FormatSecondsPipe,
 	],
 
 	imports: [
@@ -40,6 +42,7 @@ import { QueueComponent } from './pages/queue/queue.component';
 		CommonModule,
 		AppRoutingModule,
 	],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [HttpService],
 	bootstrap: [AppComponent],
 })

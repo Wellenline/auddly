@@ -1,1 +1,21 @@
-<p>track-list works!</p>
+<div class="track" (click)="onPlay(track)">
+	<div class="grid">
+		<div class="width-auto@md">
+			<img class="picture" [src]="track.album.picture" />
+		</div>
+		<div class="width-expand@md flex flex-middle">
+			<div>
+				<div class="title">
+					{{track.name}}
+				</div>
+				<div class="artist">
+					{{track.artist}}
+				</div>
+			</div>
+		</div>
+		<div class="width-auto@md flex flex-middle">
+			{{track.duration | formatSeconds}}
+		</div>
+
+	</div>
+</div>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
+import { ITrack } from "src/app/services/player.service";
 
 @Component({
 	selector: "app-track-list",
@@ -6,10 +7,13 @@ import { Component, OnInit } from "@angular/core";
 	styleUrls: ["./track-list.component.scss"],
 })
 export class TrackListComponent implements OnInit {
-
+	@Input() public track: ITrack = {};
 	constructor() { }
 
 	public ngOnInit(): void {
 	}
 
+	public onPlay(track: ITrack) {
+
+	}
 }

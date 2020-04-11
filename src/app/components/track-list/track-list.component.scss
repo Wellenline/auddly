@@ -1,0 +1,27 @@
+.track {
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    color: white;
+
+    .picture {
+        width: 50px;
+        border-radius: 10px;
+    }
+
+    .title {
+        color: white;
+    }
+
+    .artist {
+        color: rgba($color: #fff, $alpha: 0.4)
+    }
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        cursor: pointer;
+    }
+
+
+}

@@ -1,3 +1,5 @@
-<p>tracks works!</p>
-
-<pre>{{ tracks | json }}</pre>
+<section class="app-route">
+	<infinite-scroll (scrolled)="onScroll()">
+		<app-track-list [track]="track" *ngFor="let track of tracks"></app-track-list>
+	</infinite-scroll>
+</section>
