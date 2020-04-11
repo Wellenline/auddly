@@ -1,5 +1,5 @@
 <header>
-	<div class="album-header" [style.backgroundImage]="'url(' + album.artist.picture + ')'"></div>
+	<div class="album-header" [style.backgroundImage]="'url(' + album?.artist?.picture + ')'"></div>
 	<div class="album-overlay"></div>
 
 	<div class="album-meta">
@@ -12,7 +12,7 @@
 				</div>
 				<div class="width-expand@md flex flex-middle">
 					<div>
-						<div routerLink="/artists/{{album.artist._id}}" class="album-artist">{{ album.artist.name }}
+						<div routerLink="/artists/{{album?.artist?._id}}" class="album-artist">{{ album?.artist?.name }}
 						</div>
 						<div class="album-title">{{ album.name }}</div>
 						<div class="album-artist">{{ tracks.length }} Songs</div>
@@ -31,10 +31,6 @@
 	</div>
 </header>
 
-<section class="app-route ">
+<section class="app-route">
 	<app-track-list [track]="track" *ngFor="let track of tracks"></app-track-list>
-
 </section>
-
-<pre>{{ album | json }}</pre>
-<pre>{{ tracks | json }}</pre>

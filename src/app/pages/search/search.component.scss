@@ -1,0 +1,32 @@
+.search-input {
+    height: 80px;
+
+    font-size: 1.5rem;
+
+    &::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    padding: .8rem 1rem;
+    background-color: #0a0a0a;
+    border: 0;
+    transition: color .3s ease-out,
+    background-color .3s ease-out,
+    box-shadow .2s ease-out;
+    color: rgba(255, 255, 255, 0.5);
+    width: 100%;
+    border-radius: 5px;
+
+    &:hover,
+    &:focus {
+        outline: none;
+
+        background-color: #fff;
+        color: #495057;
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+
+        &::placeholder {
+            color: #ddd;
+        }
+    }
+}

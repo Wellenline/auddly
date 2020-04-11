@@ -17,8 +17,9 @@ import { SearchComponent } from "./pages/search/search.component";
 import { AlbumComponent } from "./pages/album/album.component";
 import { ArtistComponent } from "./pages/artist/artist.component";
 import { QueueComponent } from "./pages/queue/queue.component";
-import { FormatSecondsPipe } from './pipes/format-seconds.pipe';
-import { SettingsComponent } from './pages/settings/settings.component';
+import { FormatSecondsPipe } from "./pipes/format-seconds.pipe";
+import { SettingsComponent } from "./pages/settings/settings.component";
+import { PlayerService } from "./services/player.service";
 
 @NgModule({
 	declarations: [
@@ -45,7 +46,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
 		AppRoutingModule,
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
-	providers: [HttpService],
+	providers: [HttpService, PlayerService],
 	bootstrap: [AppComponent],
 })
 export class AppModule { }

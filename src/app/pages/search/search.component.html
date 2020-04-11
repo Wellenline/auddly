@@ -1,1 +1,8 @@
-<p>search works!</p>
+<section class="app-route">
+	<div class="app-page-title">Search</div>
+	<input (keyup)="onSearch($event)" autocomplete="off" class="search-input" type="text"
+		placeholder="Search Music, Albums, Tracks" />
+
+	<pre>{{ results | json }}</pre>
+
+</section>
