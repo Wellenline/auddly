@@ -23,6 +23,8 @@ import { SettingsComponent } from "./pages/settings/settings.component";
 import { PlayerService } from "./services/player.service";
 import { AlbumListComponent } from "./components/album-list/album-list.component";
 import { ArtistListComponent } from "./components/artist-list/artist-list.component";
+import { SetupComponent } from "./pages/setup/setup.component";
+import { DiscoverComponent } from "./pages/discover/discover.component";
 
 @NgModule({
 	declarations: [
@@ -42,6 +44,8 @@ import { ArtistListComponent } from "./components/artist-list/artist-list.compon
 		SettingsComponent,
 		AlbumListComponent,
 		ArtistListComponent,
+		SetupComponent,
+		DiscoverComponent,
 	],
 
 	imports: [
@@ -52,7 +56,7 @@ import { ArtistListComponent } from "./components/artist-list/artist-list.compon
 		CommonModule,
 		AppRoutingModule,
 	],
-	// schemas: [CUSTOM_ELEMENTS_SCHEMA],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [HttpService, PlayerService],
 	bootstrap: [AppComponent],
 })

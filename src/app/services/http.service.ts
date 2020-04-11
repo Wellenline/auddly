@@ -8,9 +8,32 @@ import { throwError } from "rxjs";
 	providedIn: "root",
 })
 export class HttpService {
-	public API_ENDPOINT = "http://localhost:5003"; // environment.api;
-	public ACCESS_TOKEN: string;
+	public API_ENDPOINT = localStorage.getItem("api"); // environment.api;
+	public API_KEY = localStorage.getItem("key");
 	constructor(private http: HttpClient) { }
+
+	public isConnected() {
+		return this.API_ENDPOINT;
+	}
+
+	public connect(data: { server?: string, key?: string }) {
+
+		if (data.server) {
+			this.API_ENDPOINT = data.server;
+			localStorage.setItem("api", this.API_ENDPOINT);
+		}
+
+		if (data.key) {
+			this.API_KEY = data.key;
+			localStorage.setItem("key", this.API_KEY);
+		}
+	}
+
+	public disconnect() {
+		this.API_ENDPOINT = undefined;
+		this.API_KEY = undefined;
+		localStorage.clear();
+	}
 
 	public get(path: any, skipBase?: boolean) {
 		return this.http.get(skipBase ? path : `${this.API_ENDPOINT}${path}`, { headers: this.headers() }).pipe(
@@ -45,6 +68,10 @@ export class HttpService {
 
 	private headers() {
 		const headers = {};
+		if (this.API_KEY) {
+			headers["x-api-key"] = this.API_KEY;
+		}
+
 		return headers;
 	}
 	private handleError(error: HttpErrorResponse) {

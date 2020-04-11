@@ -8,22 +8,29 @@ import { ArtistsComponent } from "./pages/artists/artists.component";
 import { ArtistComponent } from "./pages/artist/artist.component";
 import { SearchComponent } from "./pages/search/search.component";
 import { SettingsComponent } from "./pages/settings/settings.component";
+import { SetupComponent } from "./pages/setup/setup.component";
+import { AuthGuard } from "./guards/auth.guard";
 
 const routes: Routes = [
 
-	{ path: "", redirectTo: "", pathMatch: "full" },
-	{ path: "tracks", component: TracksComponent },
+	{ path: "", redirectTo: "discover", pathMatch: "full" },
+	{ path: "discover", component: TracksComponent, canActivate: [AuthGuard] },
 
-	{ path: "albums", component: AlbumsComponent },
-	{ path: "albums/:id", component: AlbumComponent },
+	{ path: "tracks", component: TracksComponent, canActivate: [AuthGuard] },
 
-	{ path: "artists", component: ArtistsComponent },
-	{ path: "artists/:id", component: ArtistComponent },
+	{ path: "albums", component: AlbumsComponent, canActivate: [AuthGuard] },
+	{ path: "albums/:id", component: AlbumComponent, canActivate: [AuthGuard] },
 
-	{ path: "search", component: SearchComponent },
-	{ path: "settings", component: SettingsComponent },
+	{ path: "artists", component: ArtistsComponent, canActivate: [AuthGuard] },
+	{ path: "artists/:id", component: ArtistComponent, canActivate: [AuthGuard] },
 
-	{ path: "queue", component: QueueComponent },
+	{ path: "search", component: SearchComponent, canActivate: [AuthGuard] },
+	{ path: "settings", component: SettingsComponent, canActivate: [AuthGuard] },
+
+	{ path: "queue", component: QueueComponent, canActivate: [AuthGuard] },
+
+	{ path: "setup", component: SetupComponent },
+
 ];
 
 @NgModule({
