@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { debounce } from "src/app/utils";
 import { HttpService } from "src/app/services/http.service";
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
 	selector: "app-search",

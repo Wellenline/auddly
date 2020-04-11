@@ -1,4 +1,37 @@
-<header>
+<section>
+	<div class="album-header" [style.backgroundImage]="'url(' + album?.artist?.picture + ')'"></div>
+	<div class="album-overlay"></div>
+
+	<section class="app-route">
+		<div class="album-meta">
+			<div class="grid">
+				<div class="width-auto@md flex flex-middle">
+					<img class="album-picture" [src]="album.picture" />
+
+				</div>
+
+				<div class="width-expand@md flex flex-middle">
+					<div>
+
+						<div routerLink="/artists/{{album?.artist?._id}}" class="album-artist">{{ album?.artist?.name }}
+						</div>
+						<div class="album-title">{{ album.name }}</div>
+						<div class="text-white">{{ tracks.length }} Songs</div>
+					</div>
+				</div>
+				<div class="width-auto@md flex flex-middle">
+					<button (click)="onPlayAlbum()" class="button default play-all"><i class="feather feather-play"></i>
+						Play Album</button>
+
+				</div>
+			</div>
+		</div>
+
+		<app-track-list [track]="track" *ngFor="let track of tracks"></app-track-list>
+	</section>
+</section>
+
+<!--header>
 	<div class="album-header" [style.backgroundImage]="'url(' + album?.artist?.picture + ')'"></div>
 	<div class="album-overlay"></div>
 
@@ -33,4 +66,4 @@
 
 <section class="app-route">
 	<app-track-list [track]="track" *ngFor="let track of tracks"></app-track-list>
-</section>
+</section-->

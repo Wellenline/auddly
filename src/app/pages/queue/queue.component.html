@@ -1,4 +1,18 @@
 <section class="app-route">
-	<div class="app-page-title">Queue</div>
+	<div class="grid">
+		<div class="width-expand@md flex flex-middle">
+			<div class="app-page-title">Queue</div>
+
+		</div>
+		<div class="width-auto@md flex flex-middle">
+			<button (click)="onClear()" class="button action default flex flex-middle"> Clear Queue
+			</button>
+		</div>
+		<div class="width-auto@md flex flex-middle">
+			<button (click)="onClose()" class="button action close default flex flex-middle">
+				<i class="feather feather-x"></i>
+			</button>
+		</div>
+	</div>
 	<app-track-list [track]="track" *ngFor="let track of tracks"></app-track-list>
 </section>
