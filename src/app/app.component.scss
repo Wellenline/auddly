@@ -1,17 +1,19 @@
+$background-shade: #0a0a0a;
+$border-radius: 10px;
+
 .app {
     display: flex;
     flex-direction: row;
     height: 100vh;
     width: 100vw;
-    background-color: green;
 
     .app-sidebar {
-        background-color: blue;
+        background-color: $background-shade;
+        border-radius: $border-radius;
         margin: 20px;
     }
 
     .app-content {
-        background-color: yellow;
         display: flex;
         flex-direction: column;
         height: 100vh;
@@ -27,7 +29,9 @@
 
         .app-player {
             margin: 20px;
-            background: red;
+            background: $background-shade;
+            border-radius: $border-radius;
+
         }
     }
 }
