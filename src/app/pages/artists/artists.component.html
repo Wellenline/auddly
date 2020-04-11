@@ -1,1 +1,11 @@
-<p>artists works!</p>
+<section class="app-route">
+	<div class="app-page-title">Artists</div>
+	<infinite-scroll (scrolled)="onScroll()">
+		<div class="grid">
+			<div class="width-2@lg width-4@md width-6@sm" *ngFor="let artist of artists">
+				<app-artist-list [artist]="artist"></app-artist-list>
+
+			</div>
+		</div>
+	</infinite-scroll>
+</section>

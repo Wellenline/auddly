@@ -1,7 +1,7 @@
 .track {
     padding: 15px;
     margin-bottom: 15px;
-    border-radius: 10px;
+    border-radius: 5px;
     color: white;
 
     &.playing {
@@ -10,7 +10,7 @@
 
     .picture {
         width: 50px;
-        border-radius: 10px;
+        border-radius: 5px;
     }
 
     .title {
@@ -22,7 +22,7 @@
     }
 
     &:hover {
-        background: rgba(255, 255, 255, 0.2);
+        background: #0a0a0a;
         color: white;
         cursor: pointer;
     }

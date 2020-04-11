@@ -1,0 +1,17 @@
+<div routerLink="/albums/{{ album._id }}" class="album">
+
+	<div class="grid">
+		<div class="width-auto@md">
+			<img style="width: 100px;" src="{{ album.picture }}" />
+
+		</div>
+
+		<div class="width-auto@md flex flex-middle">
+			<div>
+				<div class="album-title">{{ album.name }}</div>
+				<div class="album-artist">{{ album.artist?.name }}</div>
+			</div>
+
+		</div>
+	</div>
+</div>

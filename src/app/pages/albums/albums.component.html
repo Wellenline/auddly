@@ -3,7 +3,8 @@
 	<infinite-scroll (scrolled)="onScroll()">
 		<div class="grid">
 			<div class="width-3@lg width-4@md width-6@sm" *ngFor="let album of albums">
-				<div routerLink="/albums/{{ album._id }}" class="album">
+				<app-album-list [album]="album"></app-album-list>
+				<!--div routerLink="/albums/{{ album._id }}" class="album">
 
 					<div class="grid">
 						<div class="width-auto@md">
@@ -19,7 +20,7 @@
 
 						</div>
 					</div>
-				</div>
+				</div-->
 			</div>
 		</div>
 	</infinite-scroll>

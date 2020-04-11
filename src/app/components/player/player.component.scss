@@ -4,7 +4,7 @@
     .slider {
 
         width: 100%;
-        background: white;
+        background: #131313;
         height: 5px;
         border-radius: 5px;
 
@@ -26,7 +26,10 @@
 
     .app-playlist-queue {
         padding: 10px;
+        width: 340px;
         border-radius: 5px;
+
+        background: #131313;
 
         &:focus {
             outline: none;
@@ -36,5 +39,16 @@
             background: #4CAF50;
             cursor: pointer;
         }
+
+        .max-200 {
+            max-width: 200px;
+            width: 200px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
     }
+
+
 }

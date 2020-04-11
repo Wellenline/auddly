@@ -1,8 +1,39 @@
 <section class="app-route">
 	<div class="app-page-title">Search</div>
-	<input (keyup)="onSearch($event)" autocomplete="off" class="search-input" type="text"
+	<input (keyup)="onSearch($event)" [(ngModel)]="search" autocomplete="off" class="search-input" type="text"
 		placeholder="Search Music, Albums, Tracks" />
 
-	<pre>{{ results | json }}</pre>
+
+	<ng-container *ngIf="result.artists.length > 0">
+
+		<h2>Artists</h2>
+		<div class="grid">
+			<div class="width-3@lg width-4@md width-6@sm" *ngFor="let artist of result.artists">
+				<app-artist-list [artist]="artist"></app-artist-list>
+			</div>
+		</div>
+	</ng-container>
+
+	<ng-container *ngIf="result.albums.length > 0">
+
+		<h2>Albums</h2>
+		<div class="grid">
+			<div class="width-3@lg width-4@md width-6@sm" *ngFor="let album of result.albums">
+				<app-album-list [album]="album"></app-album-list>
+			</div>
+		</div>
+	</ng-container>
+
+	<ng-container *ngIf="result.tracks.length > 0">
+
+
+		<h2>Tracks</h2>
+		<div class="grid">
+			<div class="width-3@lg width-4@md width-6@sm" *ngFor="let track of result.tracks">
+				<app-track-list [track]="track"></app-track-list>
+			</div>
+		</div>
+
+	</ng-container>
 
 </section>
