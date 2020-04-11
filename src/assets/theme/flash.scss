@@ -1,0 +1,47 @@
+@mixin flash-generator($background, $color: "white") {
+    width: 100%;
+    padding: 15px;
+    border-radius: $border-radius;
+    color: $color;
+    background-color: $background;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+        color: $color;
+        margin: 0;
+    }
+
+}
+
+.flash {
+    @include flash-generator($default, $text-dark);
+
+    &.primary {
+        @include flash-generator($primary, $text-light);
+    }
+
+    &.success {
+        @include flash-generator($success, $text-light);
+    }
+
+    &.danger {
+        @include flash-generator($danger, $text-light);
+    }
+
+    &.warning {
+        @include flash-generator($warning, $text-light);
+    }
+
+    &.info {
+        @include flash-generator($info, $text-light);
+    }
+
+    &.invert {
+        @include flash-generator($invert, $text-light);
+    }
+}

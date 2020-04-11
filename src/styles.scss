@@ -1,1 +1,124 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+$background: #000;
+$default: #000;
+$primary: #4657fd;
+$info: #11abfe;
+$success: #00d090;
+$warning: #f1c90b;
+$danger: #e74b3c;
+$invert: #2f2e35;
+
+$highlight: #ffeea8;
+
+$border-color: #dfe1e6;
+$body-text-color: #292855;
+$font-family: "Open Sans",
+sans-serif;
+$border-radius: 3px;
+
+
+$text-dark: #363636 !default;
+$text-light: #ffffff !default;
+
+
+
+$form-placeholder: #949494 !default;
+$input-height: 60px;
+$input-text: #2b2d2f !default;
+
+$text-lead-color: $text-dark;
+$text-lead-size: 1.17em;
+
+$text-meta-color: #7e7e7e;
+$text-meta-size: 0.94rem;
+
+$columns: 12;
+
+$tablet: 768px;
+$phone: 640px;
+$desktop: 1024px;
+
+// Mobile heading font size
+$h1-mobile : 1.75rem !default;
+$h2-mobile : 1.5rem !default;
+$h3-mobile : 1.25rem !default;
+$h4-mobile : 1.1rem !default;
+$h5-mobile : 1rem !default;
+
+// Heading font size
+$h1 : 2.25rem !default;
+$h2 : 2rem !default;
+$h3 : 1.75rem !default;
+$h4 : 1.5rem !default;
+$h5 : 1.25rem !default;
+
+// Headings
+$heading-font-color : #404040 !default;
+$heading-font-weight : 600 !default;
+$heading-font-family : -apple-system,
+BlinkMacSystemFont,
+Helvetica Neue,
+Helvetica,
+Arial,
+sans-serif !default;
+$heading-line-height : 1.2 !default;
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    font-family: $font-family;
+    color: $body-text-color;
+    // background: rgb(244, 246, 248);
+    background: $background;
+
+}
+
+$scollbar-hover: #dddddd !default;
+$animation-duration: 0.2s !default;
+
+$scrollbar-thumb: darken($scollbar-hover, 3%);
+$scrollbar-thumb-hover: darken($scollbar-hover, 10%);
+
+::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: $default;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $scrollbar-thumb;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: $scrollbar-thumb-hover;
+}
+
+@import "./assets/theme/utils.scss";
+@import "./assets/theme/button.scss";
+@import "./assets/theme/switch.scss";
+@import "./assets/theme/form.scss";
+@import "./assets/theme/table.scss";
+@import "./assets/theme/flash.scss";
+
+@import "./assets/theme/panel.scss";
+
+@import "./assets/theme/text.scss";
+@import "./assets/theme/tooltip.scss";
+@import "./assets/theme/tabs.scss";
+@import "./assets/theme/modal.scss";
+@import "./assets/theme/grid.scss";
+@import "./assets/theme/navbar.scss";
+@import "./assets/theme/base.scss";

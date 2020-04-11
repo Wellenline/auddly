@@ -1,0 +1,203 @@
+@mixin input-generator($background, $border-color, $height, $focus-color) {
+    height: $height;
+    line-height: $height;
+    font-family: $font-family;
+    font-size: 14px;
+    padding: 0 15px;
+    border: 1px solid darken($border-color, 5);
+    // color: #7e7e7e;
+    border-radius: $border-radius;
+    outline: none;
+    transition: border-color .1s,
+        box-shadow .1s;
+    font-weight: 300;
+    box-sizing: border-box;
+    background: $background;
+    appearance: none;
+    width: 100%;
+    color: $input-text;
+
+    &:focus,
+    &:active {
+
+        box-shadow: $focus-color 0px 0px 0px 1px;
+        background: rgb(255, 255, 255);
+        border-width: 1px;
+        border-style: solid;
+        border-color: $focus-color;
+        border-image: initial;
+    }
+
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: .4;
+    }
+}
+
+::placeholder {
+    color: $form-placeholder;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.checkbox {
+    margin-top: 4px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    width: 0;
+    height: 0;
+    margin: 17px -1px;
+    padding: 0;
+    border: 0;
+    opacity: 0;
+    visibility: hidden;
+    margin-bottom: 20px;
+}
+
+.checkbox+label {
+    vertical-align: middle;
+    display: inline-block;
+    width: 50%;
+}
+
+.checkbox+label:before {
+    content: "\A";
+    color: #999999;
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    background: transparent;
+    border: 1px solid #d9d9d9;
+    width: 19px;
+    height: 19px;
+    margin: -2px 8px 0 0;
+}
+
+.checkbox:checked+label:before {
+    content: "✓";
+}
+
+.input-group {
+    display: flex;
+
+    input {
+
+        &:focus,
+        &:active {
+            border-width: 1px;
+            border-style: solid;
+            border-color: darken(#c2c2c2, 10);
+            outline: none;
+
+            button {
+                box-shadow: rgb(76, 154, 255) 0px 0px 0px 1px;
+                background: rgb(255, 255, 255);
+                border-width: 1px;
+                border-style: solid;
+                border-color: rgb(76, 154, 255);
+                border-image: initial;
+            }
+        }
+
+        &.right {
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+            border-left: none;
+        }
+
+        &.left {
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+            border-right: none;
+        }
+    }
+
+    button {
+        background: white;
+        height: $input-height;
+        line-height: 0px;
+        transform: none !important;
+        border: 1px solid#c2c2c2;
+        font-size: 14px;
+        padding: 0 15px;
+        font-weight: 300;
+        box-shadow: none !important;
+
+        &:hover {
+            background: #eee;
+        }
+
+        &.left {
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+            border-right: none;
+        }
+
+        &.right {
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+            border-left: none;
+        }
+    }
+
+
+}
+
+.input {
+    @include input-generator(#fff, $border-color, $input-height, "#4c9aff"); // #fff, $border-color
+
+    &.invalid {
+        @include input-generator(#fff, $danger, $input-height, $danger); // #fff, $border-color
+    }
+
+    &.success {
+        @include input-generator(#fff, $success, $input-height, $success); // #fff, $border-color
+    }
+
+    &.warning {
+        @include input-generator(#fff, $warning, $input-height, $warning); // #fff, $border-color
+    }
+}
+
+.select {
+    @include input-generator(#fff, $border-color, $input-height, $primary);
+    // padding-right: 20px;
+
+    // border: 0 !important;
+    // background-color: lightblue;
+    /* needed */
+
+    appearance: none;
+    /* SVG background image */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Ctitle%3Edown-arrow%3C%2Ftitle%3E%3Cg%20fill%3D%22%23000000%22%3E%3Cpath%20d%3D%22M10.293%2C3.293%2C6%2C7.586%2C1.707%2C3.293A1%2C1%2C0%2C0%2C0%2C.293%2C4.707l5%2C5a1%2C1%2C0%2C0%2C0%2C1.414%2C0l5-5a1%2C1%2C0%2C1%2C0-1.414-1.414Z%22%20fill%3D%22%23000000%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    background-size: .6em;
+    background-position: calc(100% - 1.3em) center;
+    background-repeat: no-repeat;
+
+}
+
+.textarea {
+    @include input-generator(#fff, $border-color, auto, $primary);
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+.fieldset {
+    border: 1px solid lighten($border-color, 10);
+    border-radius: $border-radius;
+    padding: 20px;
+    margin-bottom: 20px;
+
+}
