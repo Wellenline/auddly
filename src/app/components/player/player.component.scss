@@ -1,0 +1,40 @@
+.app-player-controls {
+    padding: 20px;
+
+    .slider {
+
+        width: 100%;
+        background: white;
+        height: 5px;
+        border-radius: 5px;
+
+        .range {
+            width: 0;
+            background: #4CAF50;
+            height: 5px;
+            border-radius: 5px;
+        }
+    }
+
+    .controls-button {
+        background: #0a0a0a;
+    }
+
+    .playback-button {
+        background: #4CAF50;
+    }
+
+    .app-playlist-queue {
+        padding: 10px;
+        border-radius: 5px;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:hover {
+            background: #4CAF50;
+            cursor: pointer;
+        }
+    }
+}

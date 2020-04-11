@@ -120,6 +120,14 @@ export class PlayerService {
 		}
 	}
 
+	/**
+	 * Seek audio to specific position
+	 * @param time number
+	 */
+	public onSeek(time: number) {
+		this.audio.currentTime = time * this.audio.duration;
+	}
+
 	private onProgress() {
 		this.$progress.next((this.audio.currentTime / this.audio.duration) * 100);
 	}
