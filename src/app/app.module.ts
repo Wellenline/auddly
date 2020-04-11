@@ -2,7 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { CommonModule } from "@angular/common";
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -21,8 +21,8 @@ import { QueueComponent } from "./pages/queue/queue.component";
 import { FormatSecondsPipe } from "./pipes/format-seconds.pipe";
 import { SettingsComponent } from "./pages/settings/settings.component";
 import { PlayerService } from "./services/player.service";
-import { AlbumListComponent } from './components/album-list/album-list.component';
-import { ArtistListComponent } from './components/artist-list/artist-list.component';
+import { AlbumListComponent } from "./components/album-list/album-list.component";
+import { ArtistListComponent } from "./components/artist-list/artist-list.component";
 
 @NgModule({
 	declarations: [
@@ -52,7 +52,7 @@ import { ArtistListComponent } from './components/artist-list/artist-list.compon
 		CommonModule,
 		AppRoutingModule,
 	],
-	schemas: [CUSTOM_ELEMENTS_SCHEMA],
+	// schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [HttpService, PlayerService],
 	bootstrap: [AppComponent],
 })

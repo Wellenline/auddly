@@ -1,1 +1,35 @@
-<p>artist works!</p>
+<section class="app-route">
+	<div class="artist-meta">
+		<div class="grid">
+			<div class="width-auto@md flex flex-middle">
+				<img class="artist-picture" [src]="artist.picture" />
+
+			</div>
+
+			<div class="width-expand@md">
+				<div class="app-page-title">{{ artist.name }}</div>
+
+			</div>
+		</div>
+	</div>
+
+	<ng-container *ngIf="tracks.length > 0">
+
+		<h2>Albums</h2>
+		<div class="grid">
+			<div class="width-3@lg width-4@md width-6@sm" *ngFor="let album of albums">
+				<app-album-list [album]="album"></app-album-list>
+			</div>
+		</div>
+	</ng-container>
+
+	<ng-container *ngIf="tracks.length > 0">
+		<h2>Popular Tracks</h2>
+		<div class="grid">
+			<div class="width-4@lg width-4@md width-6@sm" *ngFor="let track of tracks">
+				<app-track-list [track]="track"></app-track-list>
+			</div>
+		</div>
+
+	</ng-container>
+</section>

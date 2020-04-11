@@ -13,6 +13,7 @@ export class ArtistsComponent implements OnInit {
 		skip: 0,
 		limit: 50,
 	};
+	public loading = true;
 	constructor(private httpService: HttpService) { }
 
 	public onScroll() {
@@ -28,9 +29,11 @@ export class ArtistsComponent implements OnInit {
 	}
 
 	public fetchArtists() {
+		this.loading = true;
 		this.httpService.get(`/artists?skip=${this.pagination.skip}&limit=${this.pagination.limit}`).subscribe((response: any) => {
 			this.artists = this.artists.concat(response.artists);
 			this.pagination.total = response.total;
+			this.loading = false;
 		});
 	}
 

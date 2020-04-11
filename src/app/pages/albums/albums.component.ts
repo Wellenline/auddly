@@ -13,6 +13,7 @@ export class AlbumsComponent implements OnInit {
 		skip: 0,
 		limit: 50,
 	};
+	public loading = true;
 	constructor(private httpService: HttpService) { }
 
 	public ngOnInit() {
@@ -22,20 +23,19 @@ export class AlbumsComponent implements OnInit {
 	}
 
 	public onScroll() {
-		console.log("Scroll more", this.pagination.total, this.albums.length);
 		if (this.albums.length !== this.pagination.total) {
 			this.pagination.skip += this.pagination.limit;
-
-			console.log("paging update", this.pagination);
 			this.fetchAlbums();
 		}
 
 	}
 
 	private fetchAlbums() {
+		this.loading = true;
 		this.httpService.get(`/albums?skip=${this.pagination.skip}&limit=${this.pagination.limit}`).subscribe((response: any) => {
 			this.albums = this.albums.concat(response.albums);
 			this.pagination.total = response.total;
+			this.loading = false;
 		}, (err) => {
 			console.log(err);
 		});

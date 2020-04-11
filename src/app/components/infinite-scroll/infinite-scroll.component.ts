@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, OnDestroy } from "@angular/core";
 
 @Component({
-	selector: "app-infinite-scroll",
+	selector: "infinite-scroll",
 	template: `<ng-content></ng-content><div #anchor></div>`,
 	styleUrls: ["./infinite-scroll.component.scss"],
 })
@@ -24,7 +24,10 @@ export class InfiniteScrollComponent implements OnInit, OnDestroy {
 			...this.options,
 		};
 
-		this.observer = new IntersectionObserver(([entry]) => entry.isIntersecting && this.scrolled.emit(), options);
+		this.observer = new IntersectionObserver(([entry]) => {
+			// console.log(entry);
+			return entry.isIntersecting && this.scrolled.emit();
+		}, options);
 		this.observer.observe(this.anchor.nativeElement);
 	}
 

@@ -11,8 +11,9 @@ export class TracksComponent implements OnInit {
 	public pagination = {
 		total: 0,
 		skip: 0,
-		limit: 100,
+		limit: 50,
 	};
+	public loading = true;
 	constructor(private httpService: HttpService) { }
 
 	public ngOnInit(): void {
@@ -29,9 +30,11 @@ export class TracksComponent implements OnInit {
 	}
 
 	private fetchTracks() {
+		this.loading = true;
 		this.httpService.get(`/tracks?skip=${this.pagination.skip}&limit=${this.pagination.limit}`).subscribe((response: any) => {
 			this.tracks = this.tracks.concat(response.tracks);
 			this.pagination.total = response.total;
+			this.loading = false;
 		}, (err) => {
 			console.log(err);
 		});
