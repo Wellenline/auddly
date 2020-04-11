@@ -31,11 +31,10 @@ export class PlayerService {
 
 	public audio: HTMLAudioElement;
 
-	public shuffle = getBoolean("shuffle", false);
-	public repeat = getBoolean("repeat", false);
-	public loop = getBoolean("loop", false);
+	public shuffle = false;
+	public repeat = false;
+	public loop = false;
 
-	private _index: number;
 	constructor(private httpService: HttpService) {
 		this.audio = new Audio();
 		this.audio.addEventListener("timeupdate", this.onProgress.bind(this));
@@ -46,7 +45,7 @@ export class PlayerService {
 	 * Return current track index in the playlist
 	 */
 	public get index() {
-		return this._index || Math.abs(this.$queue.getValue().indexOf(this.$track.getValue()));
+		return Math.abs(this.$queue.getValue().findIndex((t) => t._id === this.$track.getValue()._id));
 	}
 
 	/**
@@ -60,14 +59,16 @@ export class PlayerService {
 	 * Check if track is last in queue
 	 */
 	public get isLast() {
-		return this.$queue.getValue().indexOf(this.$track.getValue()) === (this.$queue.getValue().length - 1);
+		return this.index === this.$queue.getValue().length;
 	}
 
 	/**
 	 * Play next track
 	 */
 	public onNext() {
+		console.log(this.index);
 		const index = this.shuffle ? this.randomIndex : (this.index + 1);
+		console.log(index);
 		if (this.$queue.getValue()[index]) {
 			this.onPlay(this.$queue.getValue()[index]);
 		}
