@@ -27,6 +27,15 @@ export class ArtistComponent implements OnInit {
 	public getArtist(id: string) {
 		this.httpService.get(`/artists/${id}`).subscribe((response: any) => {
 			this.artist = response;
+			this.getArtistMetadata();
+		});
+	}
+
+	public getArtistMetadata() {
+		// tslint:disable-next-line:max-line-length
+		this.httpService.get(`http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${this.artist.name}&api_key=57ee3318536b23ee81d6b27e36997cde&format=json`, true).subscribe((response: any) => {
+			this.artist.bio = response.artist.bio.summary;
+			this.artist.tags = response.artist.tags.tag;
 		});
 	}
 

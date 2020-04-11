@@ -12,8 +12,8 @@ export class HttpService {
 	public ACCESS_TOKEN: string;
 	constructor(private http: HttpClient) { }
 
-	public get(path: any) {
-		return this.http.get(`${this.API_ENDPOINT}${path}`, { headers: this.headers() }).pipe(
+	public get(path: any, skipBase?: boolean) {
+		return this.http.get(skipBase ? path : `${this.API_ENDPOINT}${path}`, { headers: this.headers() }).pipe(
 			catchError(this.handleError), map((res) => res),
 		);
 	}
