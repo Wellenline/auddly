@@ -1,1 +1,40 @@
-<p>album works!</p>
+<header>
+	<div class="album-header" [style.backgroundImage]="'url(' + album.artist.picture + ')'"></div>
+	<div class="album-overlay"></div>
+
+	<div class="album-meta">
+		<div class="details">
+
+			<div class="grid">
+				<div class="width-auto@md">
+					<img [src]="album.picture" />
+
+				</div>
+				<div class="width-expand@md flex flex-middle">
+					<div>
+						<div routerLink="/artists/{{album.artist._id}}" class="album-artist">{{ album.artist.name }}
+						</div>
+						<div class="album-title">{{ album.name }}</div>
+						<div class="album-artist">{{ tracks.length }} Songs</div>
+
+					</div>
+				</div>
+
+				<div class="width-auto@md flex flex-middle">
+					<button (click)="onPlayAlbum()" class="button default play-all"><i class="feather feather-play"></i>
+						Play Album</button>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+</header>
+
+<section class="app-route ">
+	<app-track-list [track]="track" *ngFor="let track of tracks"></app-track-list>
+
+</section>
+
+<pre>{{ album | json }}</pre>
+<pre>{{ tracks | json }}</pre>

@@ -1,0 +1,63 @@
+header {
+    position: relative;
+    height: 400px;
+    margin: 20px 20px 40px 20px;
+
+
+    .album-header {
+        // filter: blur(20px);
+        height: 400px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 10px;
+    }
+
+    .album-overlay {
+        background-color: rgba($color: #000000, $alpha: 0.9);
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 10px;
+
+        width: 100%;
+        height: 400px;
+    }
+
+    .album-meta {
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+
+        .details {
+            margin: 40px;
+        }
+
+        .album-title {
+            color: white;
+            font-size: 1.9rem;
+
+        }
+
+        .album-artist {
+            color: white;
+            opacity: 0.5;
+
+            &:hover {
+                color: white;
+                opacity: 1;
+                cursor: pointer;
+            }
+        }
+
+        img {
+            width: 250px;
+            border-radius: 10px;
+        }
+
+        .play-all {
+            background-color: white;
+            color: black;
+        }
+    }
+}
