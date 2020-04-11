@@ -1,0 +1,62 @@
+nav {
+    .app-logo {
+        text-align: center;
+        padding: 20px 15px;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        list-style: none;
+
+        li {
+            a {
+                color: white;
+                display: block;
+                text-decoration: none;
+                margin: 0 10px 10px 10px;
+                border-radius: 10px;
+                width: 60px;
+
+
+                &.active {
+                    background: rgba(255, 255, 255, 0.1);
+                }
+
+                &:hover {
+                    background: rgba(255, 255, 255, 0.1);
+
+                    .title {
+                        display: inline-block;
+                    }
+
+                    span {
+                        background: darken($color: #242526, $amount: 6);
+                    }
+                }
+
+                i {
+                    font-size: 1.4rem;
+                    height: 32px;
+                    width: 32px;
+                    text-align: center;
+                    line-height: 60px;
+                    color: white !important;
+                }
+
+                .title {
+                    display: none;
+                    background: white;
+                    z-index: 99999;
+                    padding: 10px;
+                    border-radius: 5px;
+                    color: black;
+                    margin-left: 40px;
+                    position: absolute;
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}
