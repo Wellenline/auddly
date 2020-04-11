@@ -1,0 +1,29 @@
+.app {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
+    background-color: green;
+
+    .app-sidebar {
+        background-color: blue;
+    }
+
+    .app-content {
+        background-color: yellow;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+
+
+        .app-router {
+            flex-grow: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .app-player {}
+    }
+}
