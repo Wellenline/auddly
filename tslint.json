@@ -4,6 +4,7 @@
 	],
 	"rules": {
 		"jsdoc-format": false,
+		"member-access": false,
 		"ordered-imports": false,
 		"no-unused-expression": true,
 		"no-duplicate-variable": true,
