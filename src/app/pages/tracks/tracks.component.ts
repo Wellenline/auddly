@@ -21,6 +21,7 @@ export class TracksComponent implements OnInit {
 	}
 
 	public onScroll() {
+		console.log("finished scrolling, load more");
 		if (this.tracks.length !== this.pagination.total) {
 			this.pagination.skip += this.pagination.limit;
 			this.fetchTracks();

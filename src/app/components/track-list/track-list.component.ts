@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { ITrack } from "src/app/services/player.service";
+import { ITrack, PlayerService } from "src/app/services/player.service";
 
 @Component({
 	selector: "app-track-list",
@@ -8,12 +8,9 @@ import { ITrack } from "src/app/services/player.service";
 })
 export class TrackListComponent implements OnInit {
 	@Input() public track: ITrack = {};
-	constructor() { }
+	constructor(public playerService: PlayerService) { }
 
 	public ngOnInit(): void {
 	}
 
-	public onPlay(track: ITrack) {
-
-	}
 }

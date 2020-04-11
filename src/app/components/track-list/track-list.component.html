@@ -1,4 +1,5 @@
-<div class="track" (click)="onPlay(track)">
+<div class="track {{ playerService.$track.getValue()._id === track._id ? 'playing' : '' }}"
+	(click)="playerService.onPlay(track)">
 	<div class="grid">
 		<div class="width-auto@md">
 			<img class="picture" [src]="track.album.picture" />
