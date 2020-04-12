@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { PlayerService, ITrack } from "src/app/services/player.service";
 import { HttpService } from "src/app/services/http.service";
 
@@ -42,8 +42,13 @@ export class PlayerComponent implements OnInit {
 
 	}
 
+	public onFullscreen(event) {
+		this.isFullscreen = true;
+		document.body.requestFullscreen();
+		// this.visualizer.nativeElement.requestFullscreen();
+	}
 	public onCloseFullscreen() {
-		console.log("closing fullscreen")
+		document.exitFullscreen();
 		this.isFullscreen = false;
 	}
 }

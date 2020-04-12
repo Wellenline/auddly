@@ -75,14 +75,16 @@
 
 
 		<div class="width-auto@md flex flex-middle">
-			<button (click)="isFullscreen = true" class="button default controls-button">
+			<button (click)="onFullscreen($event)" class="button default controls-button">
 				<i class="feather feather-maximize-2"></i>
 
 			</button>
 		</div>
-		<app-audio-visualizer [hidden]="!isFullscreen" (close)="onCloseFullscreen()" *ngIf="track._id">
-		</app-audio-visualizer>
+
 
 
 	</div>
 </section>
+
+<app-audio-visualizer [hidden]="!isFullscreen" (close)="onCloseFullscreen()" *ngIf="track._id">
+</app-audio-visualizer>

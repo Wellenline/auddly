@@ -4,5 +4,77 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.92);
+    text-align: center;
+
+    canvas {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        opacity: 0.7;
+    }
+
+    .track-artist {
+        font-size: 1.6rem;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.6);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-bottom: 15px;
+    }
+
+    .track-title {
+        color: white;
+        font-size: 2.6rem;
+        font-weight: 600;
+
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .album-picture {
+        width: 400px;
+        height: 400px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+}
+
+.container {
+    margin-top: 5%;
+}
+
+.app-player-controls {
+    padding: 20px;
+
+    .slider {
+
+        width: 100%;
+        background: #131313;
+        height: 5px;
+        border-radius: 5px;
+
+        .range {
+            width: 0;
+            background: #4CAF50;
+            height: 5px;
+            border-radius: 5px;
+        }
+    }
+
+    .controls-button {
+        background: #0a0a0a;
+        margin: 20px;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        font-size: 1.5rem;
+
+        &.highlight {
+            color: #ff0057;
+        }
+
+        &.playback {
+            background: #4CAF50;
+        }
+    }
+
 }
