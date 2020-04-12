@@ -9,12 +9,16 @@ import { ArtistComponent } from "./pages/artist/artist.component";
 import { SearchComponent } from "./pages/search/search.component";
 import { SettingsComponent } from "./pages/settings/settings.component";
 import { SetupComponent } from "./pages/setup/setup.component";
+import { DiscoverComponent } from "./pages/discover/discover.component";
+
 import { AuthGuard } from "./guards/auth.guard";
+import { PlaylistComponent } from "./pages/playlist/playlist.component";
+import { FavouritesComponent } from "./pages/favourites/favourites.component";
 
 const routes: Routes = [
 
 	{ path: "", redirectTo: "discover", pathMatch: "full" },
-	{ path: "discover", component: TracksComponent, canActivate: [AuthGuard] },
+	{ path: "discover", component: DiscoverComponent, canActivate: [AuthGuard] },
 
 	{ path: "tracks", component: TracksComponent, canActivate: [AuthGuard] },
 
@@ -26,6 +30,8 @@ const routes: Routes = [
 
 	{ path: "search", component: SearchComponent, canActivate: [AuthGuard] },
 	{ path: "settings", component: SettingsComponent, canActivate: [AuthGuard] },
+	{ path: "playlists/:id", component: PlaylistComponent, canActivate: [AuthGuard] },
+	{ path: "favourites", component: FavouritesComponent, canActivate: [AuthGuard] },
 
 	{ path: "queue", component: QueueComponent, canActivate: [AuthGuard] },
 

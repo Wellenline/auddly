@@ -1,0 +1,14 @@
+<div routerLink="{{playlist._id === 'FAVOURITES' ? '/favourites' : '/playlists/' + playlist._id}}" class="playlist">
+
+	<div class="grid">
+		<ng-container *ngFor="let picture of playlist.pictures; let i = index">
+
+			<div *ngIf="i < 4">
+				<img width="100" [src]="picture" />
+			</div>
+		</ng-container>
+
+	</div>
+	<div class="playlist-name">{{ playlist.name }}</div>
+
+</div>

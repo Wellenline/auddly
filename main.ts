@@ -49,6 +49,8 @@ function createWindow(): BrowserWindow {
 		win = null;
 	});
 
+	win.setTitle("Waveline Player");
+
 	return win;
 }
 

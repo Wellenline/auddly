@@ -1,0 +1,30 @@
+.playlist {
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+
+    .grid {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-gap: 10px;
+        color: #444;
+        margin: 0 auto;
+    }
+
+
+    .playlist-name {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1.4rem;
+        margin-top: 20px;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background: #0a0a0a;
+
+        .playlist-name {
+            color: rgba(255, 255, 255, 1)
+        }
+    }
+}

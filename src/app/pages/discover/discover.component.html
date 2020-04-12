@@ -1,1 +1,37 @@
-<p>discover works!</p>
+<section class="app-route">
+	<div class="app-page-title">Discover</div>
+
+	<h2>Playlists</h2>
+
+	<div class="grid">
+		<div class="width-auto@lg width-4@md width-6@sm" *ngFor="let playlist of playlists">
+			<app-playlist-list [playlist]="playlist"></app-playlist-list>
+
+		</div>
+	</div>
+
+
+	<h2>Artists</h2>
+	<div class="grid">
+		<div class="width-2@lg width-4@md width-6@sm" *ngFor="let artist of artists">
+			<app-artist-list [artist]="artist"></app-artist-list>
+
+		</div>
+	</div>
+
+	<h2>Albums</h2>
+	<div class="grid">
+		<div class="width-3@lg width-4@md width-6@sm" *ngFor="let album of albums">
+			<app-album-list [album]="album"></app-album-list>
+
+		</div>
+	</div>
+
+	<h2>Albums</h2>
+	<div class="grid">
+		<div class="width-4@lg width-4@md width-6@sm" *ngFor="let track of tracks">
+			<app-track-list [track]="track"></app-track-list>
+		</div>
+	</div>
+
+</section>
