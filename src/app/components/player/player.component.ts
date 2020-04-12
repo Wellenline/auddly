@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { PlayerService, ITrack } from "src/app/services/player.service";
+import { HttpService } from "src/app/services/http.service";
 
 @Component({
 	selector: "app-player",
@@ -11,7 +12,8 @@ export class PlayerComponent implements OnInit {
 	public playing = false;
 	public currentTime = 0;
 	public track: ITrack;
-	constructor(public playerService: PlayerService) { }
+	public isFullscreen = false;
+	constructor(public playerService: PlayerService, private httpService: HttpService) { }
 
 	public ngOnInit(): void {
 
@@ -31,5 +33,17 @@ export class PlayerComponent implements OnInit {
 
 	public onProgress(e) {
 		this.playerService.onSeek((e.pageX - e.srcElement.offsetLeft) / e.currentTarget.clientWidth);
+	}
+
+	public onLike() {
+		this.httpService.get(`/tracks/like/${this.track._id}`).subscribe((response) => {
+			this.track.favourited = !this.track.favourited;
+		});
+
+	}
+
+	public onCloseFullscreen() {
+		console.log("closing fullscreen")
+		this.isFullscreen = false;
 	}
 }

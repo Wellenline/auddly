@@ -18,6 +18,10 @@
 
     .controls-button {
         background: #0a0a0a;
+
+        &.highlight {
+            color: #ff0057;
+        }
     }
 
     .playback-button {

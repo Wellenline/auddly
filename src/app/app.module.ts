@@ -25,9 +25,10 @@ import { AlbumListComponent } from "./components/album-list/album-list.component
 import { ArtistListComponent } from "./components/artist-list/artist-list.component";
 import { SetupComponent } from "./pages/setup/setup.component";
 import { DiscoverComponent } from "./pages/discover/discover.component";
-import { PlaylistListComponent } from './components/playlist-list/playlist-list.component';
-import { PlaylistComponent } from './pages/playlist/playlist.component';
-import { FavouritesComponent } from './pages/favourites/favourites.component';
+import { PlaylistListComponent } from "./components/playlist-list/playlist-list.component";
+import { PlaylistComponent } from "./pages/playlist/playlist.component";
+import { FavouritesComponent } from "./pages/favourites/favourites.component";
+import { AudioVisualizerComponent } from "./components/audio-visualizer/audio-visualizer.component";
 
 @NgModule({
 	declarations: [
@@ -52,6 +53,7 @@ import { FavouritesComponent } from './pages/favourites/favourites.component';
 		PlaylistListComponent,
 		PlaylistComponent,
 		FavouritesComponent,
+		AudioVisualizerComponent,
 	],
 
 	imports: [

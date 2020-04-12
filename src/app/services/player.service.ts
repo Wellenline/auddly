@@ -39,6 +39,7 @@ export class PlayerService {
 		this.audio = new Audio();
 		this.audio.addEventListener("timeupdate", this.onProgress.bind(this));
 		this.audio.addEventListener("ended", this.onAudioEnded.bind(this));
+
 	}
 
 	/**
@@ -103,6 +104,8 @@ export class PlayerService {
 		this.$track.next(tracks[0]);
 
 		this.audio.src = tracks[0].source;
+		this.audio.crossOrigin = "anonymous";
+		this.audio.load();
 		this.audio.play();
 		this.$playing.next(true);
 
