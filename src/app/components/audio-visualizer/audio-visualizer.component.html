@@ -4,7 +4,7 @@
 			<lottie-player src="/assets/data.json" background="transparent" speed="1"
 				style="width: 100%; height: 300px;" loop autoplay>
 			</lottie-player>
-			<img class="album-picture" defaultImage="/assets/logo.png" [lazyLoad]="track?.album?.picture" />
+			<img class="album-picture" [src]="track?.album?.picture" />
 
 			<div class="track-artist">{{ track.artist }}</div>
 			<div class="track-title">{{ track.name }}</div>
