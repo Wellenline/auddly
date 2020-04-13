@@ -44,9 +44,9 @@ export class AudioVisualizerComponent implements OnInit {
 		let x = 0;
 
 		// tslint:disable-next-line:space-before-function-paren
-		(CanvasRenderingContext2D as any).prototype.roundRect = function (x, y, width, height, radius) {
-			const rectX = x;
-			const rectY = y;
+		(CanvasRenderingContext2D as any).prototype.roundRect = function (rx: any, ry: any, width: any, height: any, radius: any) {
+			const rectX = rx;
+			const rectY = ry;
 			const rectWidth = width;
 			const rectHeight = height;
 			const cornerRadius = radius;

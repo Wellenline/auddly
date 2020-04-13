@@ -1,4 +1,4 @@
 <div class="artist" routerLink="/artists/{{ artist._id }}">
-	<img [src]="artist.picture" />
+	<img defaultImage="/assets/logo.png" [lazyLoad]="artist.picture" />
 	<div class="artist-name">{{ artist.name }}</div>
 </div>

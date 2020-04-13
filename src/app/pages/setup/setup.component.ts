@@ -21,7 +21,7 @@ export class SetupComponent implements OnInit {
 
 	public onConnect() {
 		this.httpService.connect({
-			server: `https://${this.setup.server}`,
+			server: `http://${this.setup.server}`,
 			key: this.setup.key,
 		});
 

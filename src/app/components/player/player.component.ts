@@ -44,11 +44,10 @@ export class PlayerComponent implements OnInit {
 
 	public onFullscreen(event) {
 		this.isFullscreen = true;
-		document.body.requestFullscreen();
-		// this.visualizer.nativeElement.requestFullscreen();
+		// document.body.requestFullscreen();
 	}
 	public onCloseFullscreen() {
-		document.exitFullscreen();
+		// document.exitFullscreen();
 		this.isFullscreen = false;
 	}
 }
