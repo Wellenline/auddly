@@ -4,7 +4,7 @@
 		<ng-container *ngFor="let picture of playlist.pictures; let i = index">
 
 			<div *ngIf="i < 4">
-				<img defaultImage="/assets/logo.png" width="100" [lazyLoad]="picture" />
+				<img class="lazyload" width="100" [lazyLoad]="picture || '/assets/logo.png'" />
 
 			</div>
 		</ng-container>

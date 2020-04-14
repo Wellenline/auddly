@@ -11,6 +11,7 @@ export interface ITrack {
 	plays?: number;
 	artist?: any;
 	album?: any;
+	lossless?: boolean;
 	path?: string;
 	name?: string;
 	source?: string;
@@ -132,13 +133,17 @@ export class PlayerService {
 		this.audio.currentTime = time * this.audio.duration;
 	}
 
+	public onLike(id: string) {
+		return this.httpService.get(`/tracks/like/${id}`);
+	}
+
 	private onProgress() {
 		this.$progress.next((this.audio.currentTime / this.audio.duration) * 100);
 	}
 
 	private onAudioEnded(event) {
-		this.audio.pause();
 		this.audio.currentTime = 0;
+		this.$playing.next(false);
 		this.onNext();
 	}
 }

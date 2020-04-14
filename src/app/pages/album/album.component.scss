@@ -42,13 +42,21 @@ section {
             width: 250px;
             height: 250px;
             margin: 20px;
-            border-radius: 10;
+            border-radius: 10px;
         }
 
 
         .album-artist {
             color: white;
             opacity: 0.5;
+            margin-bottom: 10px;
+
+            .artist-picture {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
 
             &:hover {
                 color: white;
@@ -62,12 +70,15 @@ section {
             color: white;
             font-weight: 600;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-bottom: 10px;
 
         }
 
         .play-all {
-            background-color: white;
-            color: black;
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+            border-radius: 10px;
         }
     }
 

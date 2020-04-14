@@ -3,7 +3,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { LazyLoadImageModule } from "ng-lazyload-image";
+import { LazyLoadImageModule, scrollPreset } from "ng-lazyload-image";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -30,6 +30,7 @@ import { PlaylistListComponent } from "./components/playlist-list/playlist-list.
 import { PlaylistComponent } from "./pages/playlist/playlist.component";
 import { FavouritesComponent } from "./pages/favourites/favourites.component";
 import { AudioVisualizerComponent } from "./components/audio-visualizer/audio-visualizer.component";
+import { ToastComponent } from "./components/common/toast/toast.component";
 
 @NgModule({
 	declarations: [
@@ -55,6 +56,7 @@ import { AudioVisualizerComponent } from "./components/audio-visualizer/audio-vi
 		PlaylistComponent,
 		FavouritesComponent,
 		AudioVisualizerComponent,
+		ToastComponent,
 	],
 
 	imports: [

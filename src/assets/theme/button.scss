@@ -67,6 +67,10 @@
         @include button-generator($success, $text-light);
     }
 
+    &.transparent {
+        @include button-generator(transparent, $text-light);
+    }
+
     &.danger {
         @include button-generator($danger, $text-light);
     }

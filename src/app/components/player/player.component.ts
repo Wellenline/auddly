@@ -13,7 +13,7 @@ export class PlayerComponent implements OnInit {
 	public currentTime = 0;
 	public track: ITrack;
 	public isFullscreen = false;
-	constructor(public playerService: PlayerService, private httpService: HttpService) { }
+	constructor(public playerService: PlayerService) { }
 
 	public ngOnInit(): void {
 
@@ -36,7 +36,7 @@ export class PlayerComponent implements OnInit {
 	}
 
 	public onLike() {
-		this.httpService.get(`/tracks/like/${this.track._id}`).subscribe((response) => {
+		this.playerService.onLike(this.track._id).subscribe(() => {
 			this.track.favourited = !this.track.favourited;
 		});
 

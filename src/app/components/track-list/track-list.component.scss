@@ -5,7 +5,7 @@
     color: white;
 
     &.playing {
-        background-color: rgba(255, 255, 255, 0.1);
+        background: rgba(37, 39, 42, 0.18);
     }
 
     .picture {
@@ -22,10 +22,19 @@
     }
 
     &:hover {
-        background: #0a0a0a;
+        // background: #0a0a0a;
+        background: rgba(37, 39, 42, 0.18);
         color: white;
         cursor: pointer;
     }
 
+
+    .highlight {
+        color: #fff;
+    }
+
+    .shade {
+        color: #1f1f1f;
+    }
 
 }

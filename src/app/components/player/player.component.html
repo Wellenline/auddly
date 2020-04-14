@@ -4,7 +4,8 @@
 			<div routerLink="/queue" class="app-playlist-queue">
 				<div class="grid">
 					<div class="width-auto@md flex flex-middle">
-						<img style="width: 50px;" defaultImage="/assets/logo.png" [lazyLoad]="track?.album?.picture" />
+						<img class="lazyload" style="width: 50px;"
+							[lazyLoad]="track?.album?.picture || '/assets/logo.png'" />
 
 					</div>
 					<div class="width-expand@md flex flex-middle">
@@ -34,7 +35,7 @@
 		</div>
 
 		<div class="width-auto@md flex flex-middle">
-			<button (click)="playerService.onPlayback()" class="button default playback-button">
+			<button (click)="playerService.onPlayback()" class="button default controls-button playback">
 				<i class="feather {{ playing ? 'feather-pause' : 'feather-play' }}"></i>
 
 
@@ -68,7 +69,9 @@
 
 
 		<div class="width-auto@md flex flex-middle">
-			<button (click)="onLike()" class="button default controls-button {{ track.favourited ? 'highlight' : ''}}">
+			<button (click)="onLike()"
+				class="button default controls-button {{ track.favourited ? 'highlight' : ''}} tooltip"
+				[attr.data-tooltip]="!track.favourited ? 'Add to favourites' : 'Remove from favourites'">
 				<i class="feather feather-heart"></i>
 
 			</button>
@@ -76,7 +79,8 @@
 
 
 		<div class="width-auto@md flex flex-middle">
-			<button (click)="onFullscreen($event)" class="button default controls-button">
+			<button (click)="onFullscreen($event)" class="button default controls-button tooltip"
+				[attr.data-tooltip]="'Maximize'">
 				<i class="feather feather-maximize-2"></i>
 
 			</button>

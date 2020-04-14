@@ -13,7 +13,7 @@ export class AudioVisualizerComponent implements OnInit {
 	public progress = 0;
 	public playing = false;
 	public currentTime = 0;
-	constructor(public playerService: PlayerService, private httpService: HttpService) { }
+	constructor(public playerService: PlayerService) { }
 
 	ngOnInit(): void {
 		this.playerService.$track.subscribe((track) => {
@@ -101,7 +101,7 @@ export class AudioVisualizerComponent implements OnInit {
 	}
 
 	public onLike() {
-		this.httpService.get(`/tracks/like/${this.track._id}`).subscribe((response) => {
+		this.playerService.onLike(this.track._id).subscribe(() => {
 			this.track.favourited = !this.track.favourited;
 		});
 

@@ -50,11 +50,16 @@
         background: #131313;
         height: 5px;
         border-radius: 5px;
+        transition: height 0.15s ease-out;
+
+        &:hover {
+            height: 15px !important;
+        }
 
         .range {
             width: 0;
             background: #4CAF50;
-            height: 5px;
+            height: 100%;
             border-radius: 5px;
         }
     }
