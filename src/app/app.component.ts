@@ -14,7 +14,7 @@ export class AppComponent {
 		console.log(event.keyCode, event.ctrlKey, event.key);
 		// this.key = event.key;
 
-		switch (event.keyCode) {
+		/*switch (event.keyCode) {
 			case 32:
 				this.playerService.onPlayback();
 				break;
@@ -26,6 +26,6 @@ export class AppComponent {
 				break;
 			default:
 				break;
-		}
+		}*/
 	}
 }
