@@ -7,6 +7,12 @@
     background-color: rgba(0, 0, 0, 0.92);
     text-align: center;
 
+    .layout {
+        height: 100vh;
+        width: 100vw;
+        padding: 50px;
+    }
+
     canvas {
         position: absolute;
         bottom: 0;
@@ -30,11 +36,15 @@
     }
 
     .album-picture {
-        width: 400px;
-        height: 400px;
+        width: 100%;
+        height: 100%;
         border-radius: 10px;
         margin-bottom: 20px;
     }
+}
+
+.track-meta {
+    width: 100%;
 }
 
 .container {
@@ -42,7 +52,9 @@
 }
 
 .app-player-controls {
-    padding: 20px;
+    margin: 0 auto;
+    width: 100%;
+    height: 15px;
 
     .slider {
 
@@ -63,22 +75,21 @@
             border-radius: 5px;
         }
     }
+}
 
-    .controls-button {
-        background: #0a0a0a;
-        margin: 20px;
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        font-size: 1.5rem;
+.controls-button {
+    background: transparent;
+    margin: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    font-size: 1.5rem;
 
-        &.highlight {
-            color: #ff0057;
-        }
-
-        &.playback {
-            background: #4CAF50;
-        }
+    &.highlight {
+        color: #ff0057;
     }
 
+    &.playback {
+        background: transparent;
+    }
 }

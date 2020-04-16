@@ -9,6 +9,7 @@ import { Router } from "@angular/router";
 })
 export class SetupComponent implements OnInit {
 	public setup: { server?: string, key?: string } = {};
+	public protocol: string = "https";
 	public loading = false;
 	public error: string = "";
 	constructor(private httpService: HttpService, private router: Router) { }
@@ -21,7 +22,7 @@ export class SetupComponent implements OnInit {
 
 	public onConnect() {
 		this.httpService.connect({
-			server: `http://${this.setup.server}`,
+			server: `${this.protocol}://${this.setup.server}`,
 			key: this.setup.key,
 		});
 
@@ -35,7 +36,7 @@ export class SetupComponent implements OnInit {
 		}, (err) => {
 			this.httpService.disconnect();
 			console.log(err);
-			this.error = `Failed to connect to https://${this.setup.server}. ${err !== undefined ? err : ""}`;
+			this.error = `Failed to connect to ${this.protocol}://${this.setup.server}. ${err !== undefined ? err : ""}`;
 		});
 	}
 

@@ -1,0 +1,5 @@
+<button class="button transparent {{ track.favourited ? 'highlight' : '' }} tooltip"
+	[attr.data-tooltip]="!track.favourited ? 'Add to favourites' : 'Remove from favourites'" (click)="onLike($event)">
+	<i class="feather feather-heart"></i>
+
+</button>

@@ -5,6 +5,10 @@
     bottom: 0;
     right: 0;
     background-color: black;
+    z-index: 1;
+    overflow: auto;
+
+    padding: 40px;
 }
 
 .app-logo {
@@ -40,7 +44,7 @@
     }
 
     padding: .8rem 1rem;
-    background-color: #0a0a0a;
+    background-color: #09090b;
     border: 0;
     transition: color .3s ease-out,
     background-color .3s ease-out,

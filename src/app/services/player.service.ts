@@ -26,6 +26,7 @@ export class PlayerService {
 	public $track = new BehaviorSubject<ITrack>({});
 
 	public $progress = new BehaviorSubject<number>(0);
+	public $volume = new BehaviorSubject<number>(100);
 	public $remaining = new BehaviorSubject<number>(0);
 	public $duration = new BehaviorSubject<number>(0);
 	public $playing = new BehaviorSubject<boolean>(false);
@@ -61,7 +62,7 @@ export class PlayerService {
 	 * Check if track is last in queue
 	 */
 	public get isLast() {
-		return this.index === this.$queue.getValue().length;
+		return (this.index + 1) === this.$queue.getValue().length;
 	}
 
 	/**
@@ -70,7 +71,7 @@ export class PlayerService {
 	public onNext() {
 		console.log(this.index);
 		const index = this.shuffle ? this.randomIndex : (this.index + 1);
-		console.log(index);
+		console.log(index, this.isLast);
 		if (this.$queue.getValue()[index]) {
 			this.onPlay(this.$queue.getValue()[index]);
 		}
@@ -131,6 +132,15 @@ export class PlayerService {
 	 */
 	public onSeek(time: number) {
 		this.audio.currentTime = time * this.audio.duration;
+	}
+
+	/**
+	 * set audio player volume
+	 * TODO save this in localstorage
+	 * @param volume number
+	 */
+	public onVolume(volume: number) {
+		this.audio.volume = volume;
 	}
 
 	public onLike(id: string) {

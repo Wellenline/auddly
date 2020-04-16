@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, HostListener } from "@angular/core";
 import { PlayerService, ITrack } from "src/app/services/player.service";
 import { HttpService } from "src/app/services/http.service";
 
@@ -20,7 +20,20 @@ export class AudioVisualizerComponent implements OnInit {
 			this.track = track;
 		});
 
-		const context = new AudioContext();
+		this.playerService.$playing.subscribe((playing) => {
+			this.playing = playing;
+		});
+
+		this.playerService.$progress.subscribe((num) => {
+			this.progress = num;
+			this.currentTime = this.playerService.audio.currentTime;
+		});
+
+		this.playerService.$track.subscribe((track) => {
+			this.track = track;
+		});
+
+		/*const context = new AudioContext();
 		const src = context.createMediaElementSource(this.playerService.audio);
 		const analyser = context.createAnalyser();
 
@@ -40,8 +53,6 @@ export class AudioVisualizerComponent implements OnInit {
 		const HEIGHT = canvas.height;
 
 		const barWidth = (WIDTH / bufferLength) * 1.5;
-		let barHeight: number;
-		let x = 0;
 
 		// tslint:disable-next-line:space-before-function-paren
 		(CanvasRenderingContext2D as any).prototype.roundRect = function (rx: any, ry: any, width: any, height: any, radius: any) {
@@ -62,7 +73,7 @@ export class AudioVisualizerComponent implements OnInit {
 		const renderFrame = () => {
 			requestAnimationFrame(renderFrame);
 
-			x = 0;
+			let x = 0;
 
 			analyser.getByteFrequencyData(dataArray);
 
@@ -70,30 +81,18 @@ export class AudioVisualizerComponent implements OnInit {
 			ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
 			for (let i = 0; i < bufferLength; i++) {
-				barHeight = dataArray[i];
+				const barHeight = dataArray[i];
 
 				ctx.fillStyle = "#4CAF50";
 				ctx.strokeStyle = "#4CAF50";
 				ctx.roundRect(x, HEIGHT - barHeight, barWidth, barHeight, 10);
 
-				x += barWidth + 1;
+				x = x + barWidth + 1;
 			}
 		};
 
-		renderFrame();
+		renderFrame();*/
 
-		this.playerService.$playing.subscribe((playing) => {
-			this.playing = playing;
-		});
-
-		this.playerService.$progress.subscribe((num) => {
-			this.progress = num;
-			this.currentTime = this.playerService.audio.currentTime;
-		});
-
-		this.playerService.$track.subscribe((track) => {
-			this.track = track;
-		});
 	}
 
 	public onProgress(e) {
@@ -109,6 +108,11 @@ export class AudioVisualizerComponent implements OnInit {
 
 	public onClose() {
 		this.close.emit(false);
+	}
+
+	@HostListener("document:keydown.escape", ["$event"])
+	public onKeydownHandler(evt: KeyboardEvent) {
+		this.onClose();
 	}
 
 }

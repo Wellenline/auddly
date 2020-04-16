@@ -20,12 +20,7 @@
 		</div>
 
 		<div class="width-auto@md flex flex-middle">
-			<button class="button transparent tooltip"
-				[attr.data-tooltip]="!track.favourited ? 'Add to favourites' : 'Remove from favourites'"
-				(click)="onLike($event)">
-				<i class="feather feather-heart {{ track.favourited ? 'highlight' : 'shade' }}"></i>
-
-			</button>
+			<app-fav-button [track]="track"></app-fav-button>
 		</div>
 
 		<div class="width-auto@md flex flex-middle">

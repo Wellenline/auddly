@@ -1,5 +1,72 @@
 <div class="app-audio-visualizer">
-	<div class="container mx-auto">
+
+
+	<div class="layout flex flex-center flex-middle">
+		<div class="track-details">
+
+
+			<div class="grid">
+				<div class="width-6@md width-1@s flex flex-middle">
+					<div class="track-meta">
+						<lottie-player src="/assets/data.json" background="transparent" speed="1"
+							style="width: 100%; height: 300px;" loop autoplay>
+						</lottie-player>
+						<div class="track-artist">{{ track.artist }}</div>
+						<div class="track-title">{{ track.name }}</div>
+						<div class="controls">
+
+							<button (click)="playerService.onPrev()" class="button default controls-button">
+								<i class="feather feather-skip-back"></i>
+							</button>
+							<button (click)="playerService.onPlayback()"
+								class="button controls-button default playback">
+								<i class="feather {{ playing ? 'feather-pause' : 'feather-play' }}"></i>
+							</button>
+							<button (click)="playerService.onNext()" class="button default controls-button">
+								<i class="feather feather-skip-forward"></i>
+
+							</button>
+							<button (click)="onClose()" class="button default controls-button">
+								<i class="feather feather-maximize-2"></i>
+
+							</button>
+
+							<!--canvas id="canvas"></canvas-->
+						</div>
+					</div>
+				</div>
+
+				<div class="width-6@md width-12@s">
+					<img class="album-picture" [src]="track?.album?.picture" />
+					<div class="app-player-controls">
+						<div class="grid">
+							<div class="width-auto@md flex flex-middle">
+								<div class="text-white">
+									{{currentTime | formatSeconds}}
+								</div>
+							</div>
+
+							<div class="width-expand@md flex flex-middle">
+								<div (click)="onProgress($event)" class="slider">
+									<div [style.width]="progress + '%'" class="range"></div>
+								</div>
+							</div>
+
+							<div class="width-auto@md flex flex-middle">
+								<div class="text-white">
+									{{(track.duration || 0) | formatSeconds}}
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--div class="container mx-auto">
 		<div class="track-details">
 			<lottie-player src="/assets/data.json" background="transparent" speed="1"
 				style="width: 100%; height: 300px;" loop autoplay>
@@ -54,5 +121,5 @@
 			</div>
 		</div>
 	</div>
-	<canvas id="canvas"></canvas>
+	<canvas id="canvas"></canvas-->
 </div>

@@ -19,7 +19,12 @@
 		<div class="text-meta">Enter your Waveline music server API url</div>
 		<div class="grid collapse m-t-20">
 			<div class="width-auto@md">
-				<div class="protocol">https://</div>
+				<select class="protocol" [(ngModel)]="protocol">
+					<option value="http">http://</option>
+					<option value="https">https://</option>
+
+				</select>
+				<!--div class="protocol">https://</div-->
 			</div>
 			<div class="width-expand@md">
 				<input [(ngModel)]="setup.server" autocomplete="off" class="custom-input" type="text"

@@ -22,10 +22,17 @@
     }
 
     .controls-button {
-        background: #0a0a0a;
+        background: #09090b;
         height: 50px;
         width: 50px;
         border-radius: 50%;
+
+
+        &:hover {
+            background-color: rgba(60, 60, 60, 0.3) !important;
+        }
+
+
 
 
         &.highlight {
@@ -35,7 +42,19 @@
         &.playback {
             background: #4CAF50;
 
+            &:hover {
+                background-color: rgb(51, 138, 51) !important;
+            }
+
         }
+
+        &.enabled {
+            background: #4CAF50;
+        }
+    }
+
+    .volume-controls {
+        width: 200px;
     }
 
 
@@ -67,4 +86,8 @@
     }
 
 
+}
+
+.visualizer {
+    transition: opacity 0.3s, visibility 0.3s;
 }

@@ -31,6 +31,8 @@ import { PlaylistComponent } from "./pages/playlist/playlist.component";
 import { FavouritesComponent } from "./pages/favourites/favourites.component";
 import { AudioVisualizerComponent } from "./components/audio-visualizer/audio-visualizer.component";
 import { ToastComponent } from "./components/common/toast/toast.component";
+import { DialogComponent } from "./components/common/dialog/dialog.component";
+import { FavButtonComponent } from './components/fav-button/fav-button.component';
 
 @NgModule({
 	declarations: [
@@ -57,6 +59,8 @@ import { ToastComponent } from "./components/common/toast/toast.component";
 		FavouritesComponent,
 		AudioVisualizerComponent,
 		ToastComponent,
+		DialogComponent,
+		FavButtonComponent,
 	],
 
 	imports: [

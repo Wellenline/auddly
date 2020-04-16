@@ -9,6 +9,7 @@ import { HttpService } from "src/app/services/http.service";
 })
 export class PlayerComponent implements OnInit {
 	public progress = 0;
+	public volume = 100;
 	public playing = false;
 	public currentTime = 0;
 	public track: ITrack;
@@ -22,6 +23,7 @@ export class PlayerComponent implements OnInit {
 		});
 
 		this.playerService.$progress.subscribe((num) => {
+			console.log(num);
 			this.progress = num;
 			this.currentTime = this.playerService.audio.currentTime;
 		});
@@ -35,11 +37,12 @@ export class PlayerComponent implements OnInit {
 		this.playerService.onSeek((e.pageX - e.srcElement.offsetLeft) / e.currentTarget.clientWidth);
 	}
 
-	public onLike() {
-		this.playerService.onLike(this.track._id).subscribe(() => {
-			this.track.favourited = !this.track.favourited;
-		});
+	public onVolume(e) {
+		const volume = (e.pageX - e.srcElement.offsetLeft) / e.currentTarget.clientWidth;
+		console.log(volume);
 
+		this.volume = volume * 100;
+		this.playerService.onVolume(volume);
 	}
 
 	public onFullscreen(event) {

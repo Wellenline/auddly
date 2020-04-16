@@ -69,14 +69,69 @@
 
 
 		<div class="width-auto@md flex flex-middle">
-			<button (click)="onLike()"
-				class="button default controls-button {{ track.favourited ? 'highlight' : ''}} tooltip"
-				[attr.data-tooltip]="!track.favourited ? 'Add to favourites' : 'Remove from favourites'">
-				<i class="feather feather-heart"></i>
+			<div class="volume-controls">
+				<div class="grid collapse">
+					<div class="width-auto@md">
 
+						<ng-container *ngIf="volume === 0">
+							<button class="button default controls-button">
+								<i class="feather-volume-x"></i>
+							</button>
+						</ng-container>
+
+						<ng-container *ngIf="volume <= 20 && volume > 0">
+							<button class="button default controls-button">
+								<i class="feather-volume"></i>
+							</button>
+						</ng-container>
+
+						<ng-container *ngIf="volume < 50 && volume > 20">
+							<button class="button default controls-button">
+								<i class="feather-volume-1"></i>
+							</button>
+						</ng-container>
+
+						<ng-container *ngIf="volume >= 50">
+							<button class="button default controls-button">
+								<i class="feather-volume-2"></i>
+							</button>
+
+						</ng-container>
+					</div>
+					<div class="width-expand@md flex flex-middle">
+						<div (click)="onVolume($event)" class="slider">
+							<div [style.width]="volume + '%'" class="range"></div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+
+		</div>
+
+
+		<div class="width-auto@md flex flex-middle">
+			<app-fav-button [track]="track"></app-fav-button>
+
+		</div>
+
+		<div class="width-auto@md flex flex-middle">
+			<button (click)="playerService.shuffle = !playerService.shuffle"
+				class="button default {{ playerService.shuffle ? 'enabled' : ''}} controls-button tooltip"
+				[attr.data-tooltip]="'Shuffle'">
+				<i class="feather-shuffle"></i>
 			</button>
 		</div>
 
+		<div class="width-auto@md flex flex-middle">
+			<button (click)="playerService.repeat = !playerService.repeat"
+				class="button default {{ playerService.repeat ? 'enabled' : ''}} controls-button tooltip"
+				[attr.data-tooltip]="'Repeat'">
+				<i class="feather-repeat"></i>
+
+			</button>
+		</div>
 
 		<div class="width-auto@md flex flex-middle">
 			<button (click)="onFullscreen($event)" class="button default controls-button tooltip"
@@ -88,8 +143,11 @@
 
 
 
+
+
 	</div>
 </section>
 
-<app-audio-visualizer [hidden]="!isFullscreen" (close)="onCloseFullscreen()" *ngIf="track._id">
+<app-audio-visualizer class="visualizer" [style.opacity]="!isFullscreen ? '0' : '1'"
+	[style.visibility]="!isFullscreen ? 'hidden' : 'visible'" (close)="onCloseFullscreen()" *ngIf="track._id">
 </app-audio-visualizer>

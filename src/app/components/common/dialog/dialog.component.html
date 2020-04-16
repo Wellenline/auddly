@@ -1,0 +1,26 @@
+<div class="modal {{dialogService.visible ? 'is-visible' : ''}}">
+
+	<div class="modal-window small">
+		<div class="modal-title">{{ dialogService?.options?.title }}</div>
+		<div class="modal-message">{{ dialogService?.options?.message }}</div>
+		<div *ngIf="dialogService?.options?.type === 'prompt'" class="m-20">
+			<input autocomplete="off" class="input" [(ngModel)]="dialogService.options.value"
+				placeholder="{{dialogService?.options?.title}}" />
+		</div>
+		<div class="flex flex-right m-20">
+
+			<button *ngIf="dialogService?.options?.type === 'confirm' || dialogService?.options?.type === 'prompt'"
+				(click)="close(false)"
+				class="button default m-r-10">{{dialogService?.options?.cancelButtonText}}</button>
+
+
+			<button *ngIf="dialogService?.options?.type !== 'prompt'" (click)="close(true)"
+				class="button primary">{{dialogService?.options?.okButtonText}}</button>
+
+			<button [disabled]="!dialogService?.options?.value" *ngIf="dialogService?.options?.type === 'prompt'"
+				(click)="close(dialogService?.options?.value)"
+				class="button primary">{{dialogService?.options?.okButtonText}}</button>
+		</div>
+	</div>
+
+</div>

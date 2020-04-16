@@ -11,7 +11,7 @@ export class AppComponent {
 	constructor(private playerService: PlayerService) { }
 	@HostListener("document:keypress", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
-		console.log(event.keyCode);
+		console.log(event.keyCode, event.ctrlKey, event.key);
 		// this.key = event.key;
 
 		switch (event.keyCode) {

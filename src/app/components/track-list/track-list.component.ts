@@ -14,13 +14,4 @@ export class TrackListComponent implements OnInit {
 	public ngOnInit(): void {
 	}
 
-	public onLike(e) {
-		e.stopPropagation();
-		this.playerService.onLike(this.track._id).subscribe(() => {
-			this.track.favourited = !this.track.favourited;
-			this.toastService.show(`${this.track.name} ${this.track.favourited ? "added to favourites" : "removed from favourites"}`, {
-				timeout: 3000,
-			});
-		});
-	}
 }
