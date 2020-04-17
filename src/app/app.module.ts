@@ -33,6 +33,7 @@ import { AudioVisualizerComponent } from "./components/audio-visualizer/audio-vi
 import { ToastComponent } from "./components/common/toast/toast.component";
 import { DialogComponent } from "./components/common/dialog/dialog.component";
 import { FavButtonComponent } from "./components/fav-button/fav-button.component";
+import { SizePipe } from './pipes/size.pipe';
 
 @NgModule({
 	declarations: [
@@ -61,6 +62,7 @@ import { FavButtonComponent } from "./components/fav-button/fav-button.component
 		ToastComponent,
 		DialogComponent,
 		FavButtonComponent,
+		SizePipe,
 	],
 
 	imports: [

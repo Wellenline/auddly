@@ -2,6 +2,84 @@
 	<div class="app-page-title">Settings</div>
 
 
-	<button (click)="onSync()">Sync</button>
-	<pre>{{ server | json }}</pre>
+
+	<div class="grid">
+		<div class="width-8@md">
+
+			<section class="settings-item">
+				<div class="text-lead">Server</div>
+				<div class="text-white">{{httpService.API_ENDPOINT}}</div>
+			</section>
+
+			<section class="settings-item">
+				<div class="grid">
+					<div class="width-expand@md">
+						<div class="text-lead">Last Sync</div>
+						<div class="text-white">{{server.last_scan | date: 'medium'}}</div>
+					</div>
+
+					<div class="width-auto@md">
+						<button class="button action primary m-r-20" (click)="onSync()">Start new sync</button>
+						<button class="button  danger" (click)="onDisconnect()"><i class="feather-alert-circle"></i>
+							Disconnect from server</button>
+
+					</div>
+				</div>
+			</section>
+
+			<section class="settings-item">
+				<div class="text-lead">Duration</div>
+				<div class="text-white">{{server.seconds}}s</div>
+			</section>
+
+			<section class="settings-item">
+				<div class="text-lead">Tracks</div>
+				<div class="text-white">{{server.tracks}}</div>
+			</section>
+
+			<section class="settings-item">
+				<div class="text-lead">Albums</div>
+				<div class="text-white">{{server.albums}}</div>
+			</section>
+
+			<section class="settings-item">
+				<div class="text-lead">Artists</div>
+				<div class="text-white">{{server.artists}}</div>
+			</section>
+
+			<section class="settings-item">
+				<div class="text-lead">Music Mount</div>
+				<div class="text-white">{{server.mount}}</div>
+			</section>
+
+
+			<section class="settings-item">
+				<div class="text-lead">Size</div>
+				<div class="text-white">{{server.size | size}}</div>
+			</section>
+
+			<section class="settings-item m-t-20">
+
+				<div class="grid">
+					<div class="width-auto@md">
+						<canvas class="qr-code" #qr></canvas>
+					</div>
+
+					<div class="width-expand@md flex flex-middle">
+						<div>
+
+							<div class="text-lead">Connect Waveline app</div>
+							<div class="text-white">Use the QR code to connect your Waveline mobile App with this server
+							</div>
+							<a href="https://play.google.com/store/apps/details?id=com.waveline.app" target="_blank">
+								<img width="250" src="/assets/google-play-badge.png" /></a>
+
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+	</div>
+
 </section>

@@ -1,0 +1,20 @@
+.qr-code {
+    height: 400px;
+}
+
+
+.settings-item {
+    padding: 15px;
+    border-radius: 5px;
+
+    &:hover {
+        background: rgba(37, 39, 42, 0.18);
+        color: white;
+        cursor: pointer;
+    }
+
+    .text-white {
+        font-size: 1.4rem;
+        margin-top: 5px;
+    }
+}
