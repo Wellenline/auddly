@@ -23,7 +23,6 @@ export class PlayerComponent implements OnInit {
 		});
 
 		this.playerService.$progress.subscribe((num) => {
-			console.log(num);
 			this.progress = num;
 			this.currentTime = this.playerService.audio.currentTime;
 		});
