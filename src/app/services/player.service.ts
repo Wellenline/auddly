@@ -27,8 +27,6 @@ export class PlayerService {
 
 	public $progress = new BehaviorSubject<number>(0);
 	public $volume = new BehaviorSubject<number>(100);
-	public $remaining = new BehaviorSubject<number>(0);
-	public $duration = new BehaviorSubject<number>(0);
 	public $playing = new BehaviorSubject<boolean>(false);
 
 	public audio: HTMLAudioElement;
@@ -104,6 +102,7 @@ export class PlayerService {
 		this.$queue.next(this.$queue.getValue().concat(tracks.filter((track) => !this.$queue.getValue().map((t) => t._id).includes(track._id))));
 
 		this.$track.next(tracks[0]);
+		this.$progress.next(0);
 
 		this.audio.src = tracks[0].source;
 		this.audio.crossOrigin = "anonymous";
