@@ -43,11 +43,4 @@ export class SettingsComponent implements OnInit, AfterViewInit {
 		location.reload();
 	}
 
-	public onSync() {
-		this.httpService.get(`/system/sync`).subscribe((response: any) => {
-			this.server = response;
-		}, (err) => {
-			console.log(err);
-		});
-	}
 }
