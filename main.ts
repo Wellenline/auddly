@@ -17,10 +17,14 @@ function createWindow(): BrowserWindow {
 		y: 0,
 		width: size.width,
 		height: size.height,
+		minHeight: 900,
+		minWidth: 1200,
 		webPreferences: {
 			nodeIntegration: true,
 			allowRunningInsecureContent: (serve) ? true : false,
 		},
+		acceptFirstMouse: true,
+		titleBarStyle: "hidden",
 	});
 
 	if (serve) {
@@ -29,7 +33,6 @@ function createWindow(): BrowserWindow {
 		});
 		win.loadURL("http://localhost:4200");
 	} else {
-		console.log(path.join(__dirname, "dist/index.html"));
 		win.loadURL(url.format({
 			pathname: path.join(__dirname, "dist/index.html"),
 			protocol: "file:",

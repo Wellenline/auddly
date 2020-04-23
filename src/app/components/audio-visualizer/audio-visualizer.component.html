@@ -1,48 +1,12 @@
 <div class="app-audio-visualizer" [style.backgroundImage]="'url(' + track?.album?.picture + ')'">
 	<div class="layout">
 
+		<div class="container mx-auto" #trackDetails>
 
-		<div class="grid">
-			<div class="width-6@md width-12@sm flex flex-middle flex-center vh-full">
-				<div style="height: 50%; width: 50vw; position: relative;" #trackDetails>
-
-
-					<div class="app-name">Waveline</div>
-
-					<div class="album-name">{{ track.album.name }}</div>
-					<div class="track-name">{{ track.name }}</div>
-					<div class="artist-name">{{ track.artist }}</div>
-					<div class="controls">
-
-						<button (click)="playerService.onPrev()" class="button default controls-button">
-							<i class="feather feather-skip-back"></i>
-						</button>
-						<button (click)="playerService.onPlayback()" class="button controls-button default">
-							<i class="feather {{ playing ? 'feather-pause' : 'feather-play' }}"></i>
-						</button>
-						<button (click)="playerService.onNext()" class="button default controls-button">
-							<i class="feather feather-skip-forward"></i>
-
-						</button>
-						<button (click)="onClose()" class="button default controls-button">
-							<i class="feather feather-maximize-2"></i>
-
-						</button>
-
-					</div>
-					<canvas id="canvas"></canvas>
-
-				</div>
-			</div>
-
-
-			<div class="width-6@md width-12@sm flex flex-middle flex-center vh-full">
-
-
-				<img class="album-picture" [src]="track?.album?.picture" />
-
-			</div>
-
+			<img class="album-picture" [src]="track?.album?.picture" />
+			<div class="album-name">{{ track.album.name }}</div>
+			<div class="track-name">{{ track.name }}</div>
+			<div class="artist-name">{{ track.artist }}</div>
 
 			<div class="app-player-controls">
 				<div class="grid">
@@ -66,10 +30,28 @@
 
 				</div>
 			</div>
+			<div class="controls">
 
+				<button (click)="playerService.onPrev()" class="button default controls-button">
+					<i class="feather feather-skip-back"></i>
+				</button>
+				<button (click)="playerService.onPlayback()" class="button controls-button default">
+					<i class="feather {{ playing ? 'feather-pause' : 'feather-play' }}"></i>
+				</button>
+				<button (click)="playerService.onNext()" class="button default controls-button">
+					<i class="feather feather-skip-forward"></i>
+
+				</button>
+				<button (click)="onClose()" class="button default controls-button">
+					<i class="feather feather-maximize-2"></i>
+
+				</button>
+
+			</div>
+			<canvas id="canvas"></canvas>
 		</div>
-
 	</div>
+
 	<!--div class="layout flex flex-center flex-middle">
 		<div class="track-details">
 

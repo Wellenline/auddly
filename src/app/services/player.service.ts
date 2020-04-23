@@ -110,6 +110,12 @@ export class PlayerService {
 		this.audio.play();
 		this.$playing.next(true);
 
+		const notification = new Notification(this.$track.getValue().name, {
+			body: this.$track.getValue().artist,
+			icon: this.$track.getValue().album.picture,
+			silent: true,
+		});
+
 	}
 
 	/**

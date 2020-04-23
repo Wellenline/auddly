@@ -1,21 +1,46 @@
 {
-	"name": "waveline-web",
+	"name": "waveline",
 	"version": "0.0.1",
+	"author": "Wellenline OU",
+	"description": "Waveline - Self hosted music streaming player",
 	"main": "main.js",
 	"scripts": {
 		"ng": "ng",
 		"start": "ng serve",
 		"build": "ng build",
 		"build:prod": "ng build --configuration=production --aot --sourceMap=false",
+		"build:electron": "ng build --configuration=production --aot --sourceMap=false --base-href --base-href ./",
 		"test": "ng test",
 		"lint": "ng lint",
 		"e2e": "ng e2e",
 		"electron:serve-tsc": "tsc -p tsconfig-serve.json",
 		"electron:serve": "wait-on http-get://localhost:4200/ && npm run electron:serve-tsc && electron . --serve",
-		"electron:local": "npm run build:prod && electron .",
-		"electron:linux": "npm run build:prod && electron-builder build --linux",
-		"electron:windows": "npm run build:prod && electron-builder build --windows",
-		"electron:mac": "npm run build:prod && electron-builder build --mac"
+		"electron:local": "npm run build:electron && electron .",
+		"electron:linux": "npm run build:electron && electron-builder build --linux",
+		"electron:windows": "npm run build:electron && electron-builder build --windows",
+		"electron:mac": "npm run build:electron && electron-builder build --mac"
+	},
+	"build": {
+		"asar": true,
+		"appId": "app.waveline",
+		"productName": "Waveline",
+		"directories": {
+			"output": "release",
+			"buildResources": "electron/buildResources"
+		},
+		"files": [
+			"dist/**/*",
+			"node_modules/**/*",
+			"package.json",
+			"main.js"
+		],
+		"mac": {
+			"icon": "./icons/mac/icon.icns",
+			"category": "public.app-category.music"
+		},
+		"win": {
+			"icon": "./icons/png/256x256.png"
+		}
 	},
 	"private": true,
 	"dependencies": {
