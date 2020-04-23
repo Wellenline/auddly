@@ -14,6 +14,7 @@ export class PlayerComponent implements OnInit {
 	public currentTime = 0;
 	public track: ITrack;
 	public isFullscreen = false;
+	public volumeControls = false;
 	constructor(public playerService: PlayerService) { }
 
 	public ngOnInit(): void {

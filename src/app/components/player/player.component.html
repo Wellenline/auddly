@@ -56,9 +56,13 @@
 		</div>
 
 		<div class="width-expand@md flex flex-middle">
-			<div (click)="onProgress($event)" class="slider">
-				<div [style.width]="progress + '%'" class="range"></div>
+			<div class="progress-controls">
+
+				<div (click)="onProgress($event)" class="slider">
+					<div [style.width]="progress + '%'" class="range"></div>
+				</div>
 			</div>
+
 		</div>
 
 		<div class="width-auto@md flex flex-middle">
@@ -69,36 +73,24 @@
 
 
 		<div class="width-auto@md flex flex-middle">
-			<div class="volume-controls">
-				<div class="grid collapse">
-					<div class="width-auto@md">
+			<div class="grid ">
+				<div class="width-auto@md">
 
-						<ng-container *ngIf="volume === 0">
-							<button class="button default controls-button">
-								<i class="feather-volume-x"></i>
-							</button>
-						</ng-container>
 
-						<ng-container *ngIf="volume <= 20 && volume > 0">
-							<button class="button default controls-button">
-								<i class="feather-volume"></i>
-							</button>
-						</ng-container>
+					<button [attr.data-tooltip]="'Toggle volume controls'" (click)="volumeControls = !volumeControls"
+						class="button default controls-button ">
+						<i *ngIf="volume === 0" class="feather-volume-x"></i>
+						<i *ngIf="volume <= 20 && volume > 0" class="feather-volume"></i>
+						<i *ngIf="volume < 50 && volume > 20" class="feather-volume-1"></i>
+						<i *ngIf="volume >= 50" class="feather-volume-2"></i>
 
-						<ng-container *ngIf="volume < 50 && volume > 20">
-							<button class="button default controls-button">
-								<i class="feather-volume-1"></i>
-							</button>
-						</ng-container>
+					</button>
 
-						<ng-container *ngIf="volume >= 50">
-							<button class="button default controls-button">
-								<i class="feather-volume-2"></i>
-							</button>
 
-						</ng-container>
-					</div>
-					<div class="width-expand@md flex flex-middle">
+				</div>
+				<div *ngIf="volumeControls" class="width-expand@md flex flex-middle">
+					<div class="volume-controls">
+
 						<div (click)="onVolume($event)" class="slider">
 							<div [style.width]="volume + '%'" class="range"></div>
 						</div>

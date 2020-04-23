@@ -53,15 +53,23 @@
         }
     }
 
+    .progress-controls {
+        min-width: 100%;
+        width: 100%;
+    }
+
+
     .volume-controls {
-        width: 200px;
+        min-width: 170px;
+        max-width: 170px;
+
+        width: 100%;
     }
 
 
 
     .app-playlist-queue {
         padding: 10px;
-        width: 340px;
         border-radius: 5px;
 
         // background: #131313;
