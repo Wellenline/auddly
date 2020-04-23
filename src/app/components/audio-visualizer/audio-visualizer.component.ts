@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, HostListener } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, HostListener, ViewChild, ElementRef, ɵConsole } from "@angular/core";
 import { PlayerService, ITrack } from "src/app/services/player.service";
 import { HttpService } from "src/app/services/http.service";
 
@@ -13,6 +13,7 @@ export class AudioVisualizerComponent implements OnInit {
 	public progress = 0;
 	public playing = false;
 	public currentTime = 0;
+	@ViewChild("trackDetails") trackDetails: ElementRef;
 	constructor(public playerService: PlayerService) { }
 
 	ngOnInit(): void {
@@ -33,13 +34,17 @@ export class AudioVisualizerComponent implements OnInit {
 			this.track = track;
 		});
 
-		/*const context = new AudioContext();
+	}
+
+	ngAfterViewInit() {
+		const context = new AudioContext();
 		const src = context.createMediaElementSource(this.playerService.audio);
 		const analyser = context.createAnalyser();
 
 		const canvas: any = document.getElementById("canvas");
-		canvas.width = window.innerWidth;
-		canvas.height = 300;
+		console.log(this.trackDetails.nativeElement.clientWidth);
+		canvas.width = this.trackDetails.nativeElement.clientWidth; // (window.innerWidth / 4);
+		canvas.height = 200;
 
 		const ctx = canvas.getContext("2d");
 
@@ -52,7 +57,7 @@ export class AudioVisualizerComponent implements OnInit {
 		const WIDTH = canvas.width;
 		const HEIGHT = canvas.height;
 
-		const barWidth = (WIDTH / bufferLength) * 1.5;
+		const barWidth = (WIDTH / bufferLength) * 2.5;
 
 		// tslint:disable-next-line:space-before-function-paren
 		(CanvasRenderingContext2D as any).prototype.roundRect = function (rx: any, ry: any, width: any, height: any, radius: any) {
@@ -77,11 +82,14 @@ export class AudioVisualizerComponent implements OnInit {
 
 			analyser.getByteFrequencyData(dataArray);
 
-			ctx.fillStyle = "#000";
+			// ctx.fillStyle = "#000";
+			ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
 			ctx.fillRect(0, 0, WIDTH, HEIGHT);
 
+			ctx.clearRect(0, 0, WIDTH, WIDTH);
+
 			for (let i = 0; i < bufferLength; i++) {
-				const barHeight = dataArray[i];
+				const barHeight = dataArray[i] - 100;
 
 				ctx.fillStyle = "#4CAF50";
 				ctx.strokeStyle = "#4CAF50";
@@ -89,10 +97,11 @@ export class AudioVisualizerComponent implements OnInit {
 
 				x = x + barWidth + 1;
 			}
+
+
 		};
 
-		renderFrame();*/
-
+		renderFrame();
 	}
 
 	public onProgress(e) {

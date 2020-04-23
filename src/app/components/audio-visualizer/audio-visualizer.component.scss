@@ -4,43 +4,71 @@
     left: 0;
     bottom: 0;
     right: 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     background-color: rgba(0, 0, 0, 0.92);
     text-align: center;
+
 
     .layout {
         height: 100vh;
         width: 100vw;
-        padding: 50px;
+        padding-left: 20%;
+        padding-right: 20%;
+
+        background-color: rgba(0, 0, 0, 0.92);
+
+
+        .app-name {
+            color: white;
+            font-size: 2rem;
+            margin-top: 0px;
+            text-align: left;
+        }
+
+        .album-name {
+            color: white;
+            text-transform: uppercase;
+            font-size: 2.4rem;
+            text-align: left;
+            margin-top: 250px;
+            opacity: 0.5;
+        }
+
+        .track-name {
+            color: white;
+            font-size: 5rem;
+            text-align: left;
+            margin-top: 20px;
+
+            font-weight: bold;
+        }
+
+        .artist-name {
+            color: white;
+            text-align: left;
+            font-size: 1.7rem;
+            margin-top: 15px;
+
+            opacity: 0.5;
+        }
+
+        .vh-full {
+            height: 100vh;
+        }
+
+        .album-picture {
+            border-radius: 10px;
+            height: 50%;
+        }
     }
 
     canvas {
-        position: absolute;
         bottom: 0;
         left: 0;
     }
 
-    .track-artist {
-        font-size: 1.6rem;
-        font-weight: 400;
-        color: rgba(255, 255, 255, 0.6);
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin-bottom: 15px;
-    }
-
-    .track-title {
-        color: white;
-        font-size: 2.6rem;
-        font-weight: 600;
-
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    .album-picture {
-        width: 100%;
-        height: 100%;
-        border-radius: 10px;
-        margin-bottom: 20px;
-    }
 }
 
 .track-meta {
@@ -52,9 +80,10 @@
 }
 
 .app-player-controls {
-    margin: 0 auto;
+
     width: 100%;
     height: 15px;
+    margin-bottom: 20px;
 
     .slider {
 
