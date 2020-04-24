@@ -36,6 +36,7 @@ import { FavButtonComponent } from "./components/fav-button/fav-button.component
 import { SizePipe } from "./pipes/size.pipe";
 import { TrackOptionsComponent } from "./components/track-options/track-options.component";
 import { SliderComponent } from "./components/slider/slider.component";
+import { PlaylistFormComponent } from "./components/playlist-form/playlist-form.component";
 
 @NgModule({
 	declarations: [
@@ -67,6 +68,7 @@ import { SliderComponent } from "./components/slider/slider.component";
 		SizePipe,
 		TrackOptionsComponent,
 		SliderComponent,
+		PlaylistFormComponent,
 	],
 
 	imports: [

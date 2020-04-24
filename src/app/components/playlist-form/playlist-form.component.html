@@ -1,0 +1,42 @@
+<div class="app-playlist {{ playlistService.visible ? 'visible' : 'hidden' }}">
+	<div (click)="playlistService.visible = false" class="playlist-overlay"></div>
+	<div class="playlist-form {{ playlistService.visible ? 'visible' : 'hidden' }}">
+		<div class="playlists">
+			<div class="text-center app-page-title">Add To Playlist</div>
+
+
+			<div (click)="onCreate()" class="playlist new">
+				<div class="text-center">
+					<i class="feather-plus"></i> Create a new playlist
+				</div>
+			</div>
+
+
+			<ng-container *ngIf="playlists.length > 0">
+
+				<ng-container *ngFor="let playlist of playlists">
+					<div *ngIf="!playlist.readonly" (click)="onAddToPlaylist(playlist)" class="playlist">
+						<div class="grid">
+							<div class="width-expand@md flex flex-middle">
+								<div>
+									<div class="name">
+										{{ playlist.name }}
+									</div>
+									<div>
+										{{ playlist.tracks }} Tracks
+									</div>
+								</div>
+							</div>
+							<div class="width-auto@md flex flex-middle">
+								<div class="delete" (click)="onDelete($event, playlist)">
+									<i class="feather feather-trash"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</ng-container>
+			</ng-container>
+
+		</div>
+	</div>
+</div>

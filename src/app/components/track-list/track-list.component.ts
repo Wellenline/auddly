@@ -14,4 +14,10 @@ export class TrackListComponent implements OnInit {
 	public ngOnInit(): void {
 	}
 
+	public onPlay(e) {
+		e.preventDefault();
+		e.stopPropagation();
+		this.playerService.onPlay(this.track);
+	}
+
 }

@@ -1,5 +1,6 @@
 import { Component, HostListener } from "@angular/core";
 import { PlayerService } from "./services/player.service";
+import { PlaylistService } from "./services/playlist.service";
 
 @Component({
 	selector: "app-root",
@@ -8,7 +9,7 @@ import { PlayerService } from "./services/player.service";
 })
 export class AppComponent {
 	public title = "waveline-web-app";
-	constructor(private playerService: PlayerService) { }
+	constructor(private playerService: PlayerService, public playlistService: PlaylistService) { }
 	@HostListener("document:keypress", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
 		console.log(event.keyCode, event.ctrlKey, event.key);

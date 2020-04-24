@@ -1,0 +1,114 @@
+$background-shade: #09090b;
+$border-radius: 10px;
+
+.app-playlist {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.25s;
+
+    &.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &.hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .playlist-overlay {
+        background-color: rgba(93, 93, 93, 0.15);
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+
+    .playlist-form {
+        background-color: $background-shade;
+        border-radius: $border-radius;
+        margin: 20px;
+        width: 460px;
+        position: fixed;
+        height: calc(100% - 40px);
+        right: -460px;
+        top: 0;
+        bottom: 0;
+        overflow: auto;
+        opacity: 0;
+        transition: all 0.25s;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+
+
+        &.visible {
+            opacity: 1;
+            right: 0;
+        }
+
+        &.hidden {
+            opacity: 0;
+            right: -460px;
+        }
+
+        .playlists {
+            padding: 20px;
+            color: white;
+
+            .app-page-title {
+                margin-top: 40px;
+                margin-bottom: 40px;
+            }
+
+            .playlist {
+                padding: 30px;
+                background: #0e0e10;
+                margin-bottom: 20px;
+                border-radius: 10px;
+                color: white;
+                transition: all .4s ease-in-out;
+
+                .name {
+                    font-size: 1.2rem;
+
+                }
+
+                &.new {
+                    background: #4caf50;
+
+                }
+
+                &:hover {
+                    background: #4caf50;
+                    cursor: pointer;
+                }
+
+
+                .delete {
+                    background: transparent;
+                    padding: 15px;
+                    border-radius: 50%;
+                    width: 50px;
+                    height: 50px;
+                    text-align: center;
+                    color: white;
+                    font-size: 1.1rem;
+                    line-height: 0px;
+
+                    &:hover {
+                        cursor: pointer;
+                        background-color: rgba(60, 60, 60, 0.3);
+
+                    }
+                }
+            }
+
+        }
+
+    }
+}

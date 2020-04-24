@@ -2,7 +2,7 @@
 
 $background: #030304;
 $default: #030304;
-$primary: #4657fd;
+$primary: #4caf50;
 $info: #11abfe;
 $success: #00d090;
 $warning: #f1c90b;
@@ -124,6 +124,20 @@ $scrollbar-thumb-hover: darken($scollbar-hover, 10%);
 @import "./assets/theme/base.scss";
 @import "./assets/feather.css";
 
+:not(input):not(textarea),
+:not(input):not(textarea)::after,
+:not(input):not(textarea)::before {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+input,
+button,
+textarea,
+:focus {
+    outline: none; // You should add some other style for :focus to help UX/a11y
+}
+
 .app-route {
     margin: 20px;
 }
@@ -135,6 +149,7 @@ $scrollbar-thumb-hover: darken($scollbar-hover, 10%);
     margin-bottom: 20px;
     // margin-top: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -webkit-app-region: drag
 }
 
 * {

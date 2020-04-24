@@ -1,13 +1,19 @@
 .modal-window {
-    padding: 15px;
+    padding: 20px;
     margin-top: 150px;
 
     .modal-title {
-        margin: 20px;
+        margin: 10px auto;
         font-size: 1.4rem;
     }
 
     .modal-message {
-        margin: 20px;
+        margin: auto;
+
+    }
+
+    .default {
+        background-color: white;
+        color: black;
     }
 }

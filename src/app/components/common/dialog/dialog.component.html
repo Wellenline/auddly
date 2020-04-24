@@ -3,11 +3,11 @@
 	<div class="modal-window small">
 		<div class="modal-title">{{ dialogService?.options?.title }}</div>
 		<div class="modal-message">{{ dialogService?.options?.message }}</div>
-		<div *ngIf="dialogService?.options?.type === 'prompt'" class="m-20">
+		<div *ngIf="dialogService?.options?.type === 'prompt'" class="m-t-20">
 			<input autocomplete="off" class="input" [(ngModel)]="dialogService.options.value"
 				placeholder="{{dialogService?.options?.title}}" />
 		</div>
-		<div class="flex flex-right m-20">
+		<div class="flex flex-right m-t-20">
 
 			<button *ngIf="dialogService?.options?.type === 'confirm' || dialogService?.options?.type === 'prompt'"
 				(click)="close(false)"

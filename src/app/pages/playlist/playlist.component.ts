@@ -14,6 +14,11 @@ export class PlaylistComponent implements OnInit {
 	public playlist: { _id?: string, name?: string, tracks: ITrack[] } = {
 		tracks: [],
 	};
+
+	public trackCache = [];
+
+	public state = 0;
+
 	constructor(
 		private router: Router,
 		private httpService: HttpService,
@@ -71,6 +76,37 @@ export class PlaylistComponent implements OnInit {
 		});
 	}
 
+	public onRemove(track) {
+		const index = this.playlist.tracks.findIndex((t) => t._id === track._id);
+
+		if (index > -1) {
+			this.playlist.tracks.splice(index, 1);
+		}
+	}
+
+	public onUpdate() {
+		this.trackCache = [...this.playlist.tracks];
+		this.state = 1;
+	}
+
+	public onCancel() {
+		this.playlist.tracks = this.trackCache;
+		this.state = 0;
+	}
+
+	public onSave() {
+		this.httpService.put(`/playlists/${this.playlist._id}`, {
+			name: this.playlist.name,
+			tracks: this.playlist.tracks.map((track) => track._id),
+		}).subscribe((response) => {
+			this.toastService.show("Playlist updated!", {
+				timeout: 3000,
+			});
+
+			this.state = 0;
+		});
+	}
+
 	public onPlayAll() {
 		this.playerService.onPlay(...this.playlist.tracks);
 	}
@@ -78,6 +114,8 @@ export class PlaylistComponent implements OnInit {
 	public fetchPlaylist(id: string) {
 		this.httpService.get(`/playlists/${id}`).subscribe((response: any) => {
 			this.playlist = response;
+
+			this.trackCache = this.playlist.tracks;
 		});
 	}
 

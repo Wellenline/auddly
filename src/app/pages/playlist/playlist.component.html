@@ -1,25 +1,55 @@
 <section class="app-route">
-	<div class="grid">
+	<div class="grid m-b-20">
 		<div class="width-expand@md">
+
 			<div>
-				<div class="app-page-title">{{playlist.name}}</div>
+				<input *ngIf="state === 1" type="text" class="input" [(ngModel)]="playlist.name" />
+
+				<div *ngIf="state === 0" class="app-page-title">{{playlist.name}}</div>
 			</div>
 
 		</div>
-		<div class="width-auto@md">
+		<div *ngIf="state === 0" class="width-auto@md flex flex-middle">
 			<button (click)="onPlayAll()" class="button action close action-outline flex flex-middle"> Play All
 			</button>
 		</div>
-		<div class="width-auto@md ">
-			<button (click)="onEdit()" class="button action action-outline flex flex-middle"> Edit Playlist
+		<div *ngIf="state === 0" class="width-auto@md flex flex-middle">
+			<button (click)="onUpdate()" class="button action action-outline flex flex-middle"> Edit Playlist
 			</button>
 		</div>
 
-		<div class="width-auto@md ">
+		<div *ngIf="state === 0" class="width-auto@md flex flex-middle">
 			<button (click)="onDelete()" class="button action close action-outline flex flex-middle">
 				Delete Playlist
 			</button>
+
+
+		</div>
+
+
+		<div *ngIf="state === 1" class="width-auto@md flex flex-middle">
+			<button (click)="onSave()" class="button primary action-outline flex flex-middle"> Save Playlist
+			</button>
+		</div>
+
+		<div *ngIf="state === 1" class="width-auto@md flex flex-middle">
+			<button (click)="onCancel()" class="button action action-outline flex flex-middle"> Cancel
+			</button>
 		</div>
 	</div>
-	<app-track-list [track]="track" *ngFor="let track of playlist.tracks"></app-track-list>
+	<ng-container *ngFor="let track of playlist.tracks">
+		<div class="tracks">
+
+
+
+			<div *ngIf="state === 1" class="actions flex flex-middle">
+				<div class="delete" (click)="onRemove(track)"><i class="feather feather-trash"></i></div>
+			</div>
+			<div class="track">
+				<app-track-list [track]="track"></app-track-list>
+
+			</div>
+		</div>
+	</ng-container>
+
 </section>

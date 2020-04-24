@@ -1,10 +1,9 @@
-<div class="track {{ playerService.$track.getValue()._id === track._id ? 'playing' : '' }}"
-	(click)="playerService.onPlay(track)">
+<div class="track {{ playerService.$track.getValue()._id === track._id ? 'playing' : '' }}">
 	<div class="grid">
 		<div class="width-auto@md">
 			<img class="lazyload picture" [lazyLoad]="track.album.picture || '/assets/logo.png'" />
 		</div>
-		<div class="width-expand@md flex flex-middle">
+		<div (click)="onPlay($event)" class="width-expand@md flex flex-middle">
 			<div>
 				<div class="title">
 					{{track.name}}
@@ -24,7 +23,6 @@
 		</div>
 		<div class="width-auto@md flex flex-middle">
 			<app-track-options [track]="track"></app-track-options>
-
 		</div>
 
 
