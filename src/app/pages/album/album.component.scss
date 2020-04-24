@@ -4,6 +4,7 @@ section {
     // width: calc(100vw - 40px);
     margin: 20px;
     overflow: hidden;
+    min-height: calc(100% - 40px);
 
     .app-route {
         overflow-y: auto;

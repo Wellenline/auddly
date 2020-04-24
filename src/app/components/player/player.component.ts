@@ -34,15 +34,17 @@ export class PlayerComponent implements OnInit {
 	}
 
 	public onProgress(e) {
-		this.playerService.onSeek((e.pageX - e.srcElement.offsetLeft) / e.currentTarget.clientWidth);
+		this.playerService.onSeek(e);
 	}
 
 	public onVolume(e) {
-		const volume = (e.pageX - e.srcElement.offsetLeft) / e.currentTarget.clientWidth;
-		console.log(volume);
+		const volume = 1 - e;
+
+		if (volume >= 0 && volume <= 1) {
+			this.playerService.onVolume(volume);
+		}
 
 		this.volume = volume * 100;
-		this.playerService.onVolume(volume);
 	}
 
 	public onFullscreen(event) {

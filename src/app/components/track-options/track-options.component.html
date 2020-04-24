@@ -1,0 +1,10 @@
+<div class="dropup">
+	<button class="button default controls-button"><i class="feather-more-vertical"></i> </button>
+	<div class="dropup-content">
+		<a href="#">Add to playlist</a>
+		<a routerLink="/artists/{{track?.album?.artist?._id}}">More from artist</a>
+		<a routerLink="/albums/{{track?.album?._id}}">Go to album</a>
+		<a href="{{ track.source }}" download="{{track.name}}.mp3">Download</a>
+
+	</div>
+</div>

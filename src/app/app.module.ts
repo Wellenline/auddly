@@ -33,7 +33,9 @@ import { AudioVisualizerComponent } from "./components/audio-visualizer/audio-vi
 import { ToastComponent } from "./components/common/toast/toast.component";
 import { DialogComponent } from "./components/common/dialog/dialog.component";
 import { FavButtonComponent } from "./components/fav-button/fav-button.component";
-import { SizePipe } from './pipes/size.pipe';
+import { SizePipe } from "./pipes/size.pipe";
+import { TrackOptionsComponent } from "./components/track-options/track-options.component";
+import { SliderComponent } from "./components/slider/slider.component";
 
 @NgModule({
 	declarations: [
@@ -63,6 +65,8 @@ import { SizePipe } from './pipes/size.pipe';
 		DialogComponent,
 		FavButtonComponent,
 		SizePipe,
+		TrackOptionsComponent,
+		SliderComponent,
 	],
 
 	imports: [

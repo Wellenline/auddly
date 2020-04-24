@@ -157,6 +157,16 @@ $scrollbar-thumb-hover: darken($scollbar-hover, 10%);
     opacity: 1;
 }
 
+.action-outline {
+    background-color: transparent !important;
+    color: white !important;
+    border: 1px solid white !important;
+    border-radius: 50px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    text-transform: uppercase;
+}
+
 /**
  * Tooltip Styles
  */

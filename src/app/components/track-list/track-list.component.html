@@ -22,6 +22,12 @@
 		<div class="width-auto@md flex flex-middle">
 			<app-fav-button [track]="track"></app-fav-button>
 		</div>
+		<div class="width-auto@md flex flex-middle">
+			<app-track-options [track]="track"></app-track-options>
+
+		</div>
+
+
 
 		<div class="width-auto@md flex flex-middle">
 			{{track.duration | formatSeconds}}

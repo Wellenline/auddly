@@ -1,0 +1,52 @@
+.slider {
+
+    width: 100%;
+    background: #131313;
+    height: 5px;
+    border-radius: 5px;
+    transition: height 0.15s ease-out;
+    position: relative;
+
+    &.vertical {
+
+        margin: 0 auto;
+        width: 5px;
+        background: #131313;
+        height: 200px;
+        border-radius: 5px;
+        transition: width 0.15s ease-out;
+        // transform: rotate(180deg);
+
+        .range {
+            height: 0;
+            max-height: 200px;
+            background: #4CAF50;
+            width: 100%;
+            border-radius: 5px;
+            bottom: 0;
+            position: absolute;
+        }
+
+        &:hover {
+            width: 15px !important;
+            height: 200px !important;
+        }
+    }
+
+    &:not(.vertical) {
+        &:hover {
+            height: 15px;
+        }
+
+        .range {
+            width: 0;
+            background: #4CAF50;
+            height: 100%;
+            border-radius: 5px;
+        }
+    }
+
+
+
+
+}
