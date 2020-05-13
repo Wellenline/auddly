@@ -2,6 +2,7 @@
 	<button class="button default controls-button"><i class="feather-more-vertical"></i> </button>
 	<div class="dropup-content">
 		<a (click)="onPlaylist()">Add to playlist</a>
+		<a *ngIf="options.queue" (click)="onQueue()">Add to queue</a>
 
 		<a routerLink="/artists/{{track?.album?.artist?._id}}">More from artist</a>
 		<a routerLink="/albums/{{track?.album?._id}}">Go to album</a>

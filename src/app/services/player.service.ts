@@ -87,6 +87,14 @@ export class PlayerService {
 	}
 
 	/**
+	 * Add tracks to queue
+	 * @param tracks tracks
+	 */
+	public queue(tracks: ITrack[]) {
+		this.$queue.next(this.$queue.getValue().concat(tracks.filter((track) => !this.$queue.getValue().map((t) => t._id).includes(track._id))));
+	}
+
+	/**
 	 * Play track
 	 */
 	public onPlay(...tracks: ITrack[]) {
@@ -99,7 +107,7 @@ export class PlayerService {
 		});
 
 		// super ugly oneliner
-		this.$queue.next(this.$queue.getValue().concat(tracks.filter((track) => !this.$queue.getValue().map((t) => t._id).includes(track._id))));
+		this.queue(tracks);
 
 		this.$track.next(tracks[0]);
 		this.$progress.next(0);
@@ -156,7 +164,7 @@ export class PlayerService {
 		this.$progress.next((this.audio.currentTime / this.audio.duration) * 100);
 	}
 
-	private onAudioEnded(event) {
+	private onAudioEnded() {
 		this.audio.currentTime = 0;
 		this.$playing.next(false);
 		this.onNext();
