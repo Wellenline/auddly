@@ -16,9 +16,9 @@ export class FavButtonComponent implements OnInit {
 
 	onLike(e) {
 		e.stopPropagation();
-		this.playerService.onLike(this.track._id).subscribe(() => {
-			this.track.favourited = !this.track.favourited;
-			this.toastService.show(`${this.track.name} ${this.track.favourited ? "added to favourites" : "removed from favourites"}`, {
+		this.playerService.onLike(this.track.id).subscribe(() => {
+			this.track.liked = !this.track.liked;
+			this.toastService.show(`${this.track.name} ${this.track.liked ? "added to favourites" : "removed from favourites"}`, {
 				timeout: 3000,
 			});
 		});

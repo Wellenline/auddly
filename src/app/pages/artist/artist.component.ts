@@ -27,7 +27,7 @@ export class ArtistComponent implements OnInit {
 	public getArtist(id: string) {
 		this.httpService.get(`/artists/${id}`).subscribe((response: any) => {
 			this.artist = response;
-			this.getArtistMetadata();
+			// this.getArtistMetadata();
 		});
 	}
 
@@ -40,13 +40,13 @@ export class ArtistComponent implements OnInit {
 	}
 
 	public getAlbums(id: string) {
-		this.httpService.get(`/albums/artists/${id}`).subscribe((response: any) => {
-			this.albums = response;
+		this.httpService.get(`/albums?artist=${id}`).subscribe((response: any) => {
+			this.albums = response.albums;
 		});
 	}
 
 	public getPopular(id: string) {
-		this.httpService.get(`/tracks/popular?artist=${id}`).subscribe((response: any) => {
+		this.httpService.get(`/tracks?popular=true&artist=${id}`).subscribe((response: any) => {
 			this.tracks = response.tracks;
 		});
 	}

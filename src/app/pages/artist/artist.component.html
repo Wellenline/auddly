@@ -10,7 +10,11 @@
 				<div class="app-page-title">{{ artist.name }}</div>
 				<div class="artist-bio" [innerHTML]="artist.bio"></div>
 				<ul class="tags">
-					<li *ngFor="let tag of artist.tags">{{ tag.name }}</li>
+					<li *ngFor="let tag of artist.tags">{{ tag }}</li>
+				</ul>
+				<div class="text-meta">Similar Artists</div>
+				<ul class="tags">
+					<li *ngFor="let similar of artist.similar">{{ similar }}</li>
 				</ul>
 			</div>
 		</div>

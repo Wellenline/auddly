@@ -11,7 +11,7 @@ import { ToastService } from "src/app/services/toast.service";
 	styleUrls: ["./playlist.component.scss"],
 })
 export class PlaylistComponent implements OnInit {
-	public playlist: { _id?: string, name?: string, tracks: ITrack[] } = {
+	public playlist: { id?: string, name?: string, tracks: ITrack[] } = {
 		tracks: [],
 	};
 
@@ -43,7 +43,7 @@ export class PlaylistComponent implements OnInit {
 			okButtonText: "Save",
 			closed: (value) => {
 				if (value) {
-					this.httpService.put(`/playlists/${this.playlist._id}`, {
+					this.httpService.put(`/playlists/${this.playlist.id}`, {
 						name: value,
 					}).subscribe((response) => {
 						this.playlist.name = value;
@@ -65,7 +65,7 @@ export class PlaylistComponent implements OnInit {
 			cancelButtonText: "Cancel",
 			closed: (value) => {
 				if (value) {
-					this.httpService.delete(`/playlists/${this.playlist._id}`).subscribe((response) => {
+					this.httpService.delete(`/playlists/${this.playlist.id}`).subscribe((response) => {
 						this.toastService.show("Playlist deleted", {
 							timeout: 3000,
 						});
@@ -77,27 +77,28 @@ export class PlaylistComponent implements OnInit {
 	}
 
 	public onRemove(track) {
-		const index = this.playlist.tracks.findIndex((t) => t._id === track._id);
 
-		if (index > -1) {
-			this.playlist.tracks.splice(index, 1);
-		}
+
+		this.httpService.delete(`/playlists/${this.playlist.id}/${track.id}`).subscribe((response: any) => {
+			const index = this.playlist.tracks.findIndex((t) => t.id === track.id);
+
+			if (index > -1) {
+				this.playlist.tracks.splice(index, 1);
+			}
+		});
 	}
 
 	public onUpdate() {
-		this.trackCache = [...this.playlist.tracks];
 		this.state = 1;
 	}
 
 	public onCancel() {
-		this.playlist.tracks = this.trackCache;
 		this.state = 0;
 	}
 
 	public onSave() {
-		this.httpService.put(`/playlists/${this.playlist._id}`, {
+		this.httpService.put(`/playlists/${this.playlist.id}`, {
 			name: this.playlist.name,
-			tracks: this.playlist.tracks.map((track) => track._id),
 		}).subscribe((response) => {
 			this.toastService.show("Playlist updated!", {
 				timeout: 3000,
@@ -114,8 +115,11 @@ export class PlaylistComponent implements OnInit {
 	public fetchPlaylist(id: string) {
 		this.httpService.get(`/playlists/${id}`).subscribe((response: any) => {
 			this.playlist = response;
+			this.httpService.get(`/tracks?playlist=${id}`).subscribe((res: any) => {
+				this.playlist.tracks = res.tracks;
 
-			this.trackCache = this.playlist.tracks;
+
+			});
 		});
 	}
 

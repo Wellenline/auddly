@@ -27,7 +27,7 @@ export class SetupComponent implements OnInit {
 		});
 
 		this.httpService.get(`/system/info`).subscribe((response: any) => {
-			if (response._id) {
+			if (response.id) {
 				return this.router.navigate(["/"]);
 			}
 

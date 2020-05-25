@@ -109,8 +109,8 @@ export class AudioVisualizerComponent implements OnInit {
 	}
 
 	public onLike() {
-		this.playerService.onLike(this.track._id).subscribe(() => {
-			this.track.favourited = !this.track.favourited;
+		this.playerService.onLike(this.track.id).subscribe(() => {
+			this.track.liked = !this.track.liked;
 		});
 
 	}

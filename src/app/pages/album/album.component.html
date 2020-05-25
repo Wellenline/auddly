@@ -13,7 +13,7 @@
 				<div class="width-expand@md flex flex-middle">
 					<div>
 
-						<div routerLink="/artists/{{album?.artist?._id}}" class="album-artist flex flex-middle">
+						<div routerLink="/artists/{{album?.artist?.id}}" class="album-artist flex flex-middle">
 							<img class="artist-picture lazyload"
 								[lazyLoad]="album?.artist?.picture || '/assets/logo.png'" />
 							{{ album?.artist?.name }}
@@ -47,7 +47,7 @@
 				</div>
 				<div class="width-expand@md flex flex-middle">
 					<div>
-						<div routerLink="/artists/{{album?.artist?._id}}" class="album-artist">{{ album?.artist?.name }}
+						<div routerLink="/artists/{{album?.artist?.id}}" class="album-artist">{{ album?.artist?.name }}
 						</div>
 						<div class="album-title">{{ album.name }}</div>
 						<div class="album-artist">{{ tracks.length }} Songs</div>

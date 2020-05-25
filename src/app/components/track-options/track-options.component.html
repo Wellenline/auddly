@@ -4,9 +4,9 @@
 		<a (click)="onPlaylist()">Add to playlist</a>
 		<a *ngIf="options.queue" (click)="onQueue()">Add to queue</a>
 
-		<a routerLink="/artists/{{track?.album?.artist?._id}}">More from artist</a>
-		<a routerLink="/albums/{{track?.album?._id}}">Go to album</a>
-		<a target="_blank" href="{{httpService.API_ENDPOINT}}/tracks/play/{{ track._id }}"
+		<a routerLink="/artists/{{track?.album?.artist?.id}}">More from artist</a>
+		<a routerLink="/albums/{{track?.album?.id}}">Go to album</a>
+		<a target="_blank" href="{{httpService.API_ENDPOINT}}/tracks/play/{{ track.id }}"
 			download="{{track.name}}.mp3">Download</a>
 
 	</div>

@@ -34,7 +34,7 @@ export class FavouritesComponent implements OnInit {
 
 	private fetchTracks() {
 		this.loading = true;
-		this.httpService.get(`/tracks?favourites=true&skip=${this.pagination.skip}&limit=${this.pagination.limit}`).subscribe((response: any) => {
+		this.httpService.get(`/tracks?liked=true&skip=${this.pagination.skip}&limit=${this.pagination.limit}`).subscribe((response: any) => {
 			this.tracks = this.tracks.concat(response.tracks);
 			this.pagination.total = response.total;
 			this.loading = false;

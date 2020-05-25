@@ -4,7 +4,7 @@ import { getBoolean } from "../utils";
 import { HttpService } from "./http.service";
 
 export interface ITrack {
-	_id?: string;
+	id?: string;
 	picture?: string;
 	duration?: number;
 	playing?: boolean;
@@ -15,7 +15,7 @@ export interface ITrack {
 	path?: string;
 	name?: string;
 	source?: string;
-	favourited?: boolean;
+	liked?: boolean;
 }
 
 @Injectable({
@@ -46,7 +46,7 @@ export class PlayerService {
 	 * Return current track index in the playlist
 	 */
 	public get index() {
-		return Math.abs(this.$queue.getValue().findIndex((t) => t._id === this.$track.getValue()._id));
+		return Math.abs(this.$queue.getValue().findIndex((t) => t.id === this.$track.getValue().id));
 	}
 
 	/**
@@ -91,7 +91,7 @@ export class PlayerService {
 	 * @param tracks tracks
 	 */
 	public queue(tracks: ITrack[]) {
-		this.$queue.next(this.$queue.getValue().concat(tracks.filter((track) => !this.$queue.getValue().map((t) => t._id).includes(track._id))));
+		this.$queue.next(this.$queue.getValue().concat(tracks.filter((track) => !this.$queue.getValue().map((t) => t.id).includes(track.id))));
 	}
 
 	/**
@@ -101,7 +101,7 @@ export class PlayerService {
 		tracks = tracks.map((track) => {
 			return {
 				...track, ...{
-					source: `${this.httpService.API_ENDPOINT}/tracks/play/${track._id}`,
+					source: `${this.httpService.API_ENDPOINT}/tracks/play/${track.id}`,
 				},
 			};
 		});

@@ -25,7 +25,7 @@ export class PlaylistFormComponent implements OnInit {
 
 	public getPlaylists() {
 		this.httpService.get(`/playlists`).subscribe((response: any) => {
-			this.playlists = response;
+			this.playlists = response.playlists;
 
 		});
 	}
@@ -41,7 +41,7 @@ export class PlaylistFormComponent implements OnInit {
 			cancelButtonText: "Cancel",
 			closed: (value) => {
 				if (value) {
-					this.httpService.delete(`/playlists/${playlist._id}`).subscribe((response) => {
+					this.httpService.delete(`/playlists/${playlist.id}`).subscribe((response) => {
 						this.toastService.show("Playlist deleted", {
 							timeout: 3000,
 						});
@@ -76,7 +76,9 @@ export class PlaylistFormComponent implements OnInit {
 
 	public onAddToPlaylist(playlist) {
 		if (this.track) {
-			this.httpService.get(`/playlists/${playlist._id}/${this.track._id}`).subscribe((response) => {
+			this.httpService.post(`/playlists/${playlist.id}`, {
+				track: this.track.id,
+			}).subscribe((response) => {
 				this.toastService.show(`${this.track.name} added to ${playlist.name}`, {
 					timeout: 3000,
 				});

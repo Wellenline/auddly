@@ -19,6 +19,8 @@ function createWindow(): BrowserWindow {
 		height: size.height,
 		minHeight: 900,
 		minWidth: 1200,
+		autoHideMenuBar: true,
+
 		webPreferences: {
 			nodeIntegration: true,
 			allowRunningInsecureContent: (serve) ? true : false,
@@ -53,6 +55,7 @@ function createWindow(): BrowserWindow {
 	});
 
 	win.setTitle("Waveline Player");
+	win.setMenuBarVisibility(false);
 
 	return win;
 }
