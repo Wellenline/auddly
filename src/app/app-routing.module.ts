@@ -9,16 +9,15 @@ import { ArtistComponent } from "./pages/artist/artist.component";
 import { SearchComponent } from "./pages/search/search.component";
 import { SettingsComponent } from "./pages/settings/settings.component";
 import { SetupComponent } from "./pages/setup/setup.component";
-import { DiscoverComponent } from "./pages/discover/discover.component";
-
 import { AuthGuard } from "./guards/auth.guard";
 import { PlaylistComponent } from "./pages/playlist/playlist.component";
 import { FavouritesComponent } from "./pages/favourites/favourites.component";
+import { PlaylistsComponent } from "./pages/playlists/playlists.component";
 
 const routes: Routes = [
 
-	{ path: "", redirectTo: "discover", pathMatch: "full" },
-	{ path: "discover", component: DiscoverComponent, canActivate: [AuthGuard] },
+	{ path: "", redirectTo: "search", pathMatch: "full" },
+	{ path: "playlists", component: PlaylistsComponent, canActivate: [AuthGuard] },
 
 	{ path: "tracks", component: TracksComponent, canActivate: [AuthGuard] },
 

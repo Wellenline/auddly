@@ -1,0 +1,16 @@
+<section class="app-route">
+	<div class="app-page-title">Playlists</div>
+
+	<div class="grid">
+		<div class="width-auto@lg width-4@md width-6@sm" *ngFor="let playlist of playlists">
+			<div routerLink="{{playlist.id === 'FAVOURITES' ? '/favourites' : '/playlists/' + playlist.id}}"
+				class="playlist">
+				<div class="playlist-name">{{ playlist.name }}</div>
+
+			</div>
+
+		</div>
+	</div>
+
+
+</section>

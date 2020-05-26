@@ -22,6 +22,10 @@ export class SearchComponent implements OnInit {
 			if (params.q) {
 				this.search = params.q;
 				this.getSearchResults(params.q);
+			} else {
+				this.fetchAlbums();
+				this.fetchArtists();
+				this.fetchTracks();
 			}
 
 		});
@@ -40,6 +44,24 @@ export class SearchComponent implements OnInit {
 
 		this.httpService.get(`/search?q=${search}`).subscribe((response: any) => {
 			this.result = response;
+		});
+	}
+
+	public fetchArtists() {
+		this.httpService.get(`/artists/random?total=12`).subscribe((response: any) => {
+			this.result.artists = response;
+		});
+	}
+
+	public fetchAlbums() {
+		this.httpService.get(`/albums/random?total=12`).subscribe((response: any) => {
+			this.result.albums = response;
+		});
+	}
+
+	public fetchTracks() {
+		this.httpService.get(`/tracks/random?total=12`).subscribe((response: any) => {
+			this.result.tracks = response;
 		});
 	}
 }

@@ -5,19 +5,6 @@
 	</div>
 
 	<ul>
-		<li>
-			<a [routerLinkActive]="['active']" routerLink="/discover">
-				<i class="feather-music"></i>
-				<div class="title">Discover</div>
-			</a>
-		</li>
-
-		<li>
-			<a [routerLinkActive]="['active']" routerLink="/tracks">
-				<i class="feather-list"></i>
-				<div class="title">Tracks</div>
-			</a>
-		</li>
 
 		<li>
 			<a [routerLinkActive]="['active']" routerLink="/artists">
@@ -33,13 +20,19 @@
 				<div class="title">Albums</div>
 			</a>
 		</li>
-
 		<li>
+			<a [routerLinkActive]="['active']" routerLink="/playlists">
+				<i class="feather-music"></i>
+				<div class="title">Playlists</div>
+			</a>
+		</li>
+
+		<!--li>
 			<a [routerLinkActive]="['active']" routerLink="/favourites">
 				<i class="feather-heart"></i>
 				<div class="title">Favourites</div>
 			</a>
-		</li>
+		</li-->
 
 		<li>
 			<a [routerLinkActive]="['active']" routerLink="/search">

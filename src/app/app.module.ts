@@ -25,8 +25,6 @@ import { PlayerService } from "./services/player.service";
 import { AlbumListComponent } from "./components/album-list/album-list.component";
 import { ArtistListComponent } from "./components/artist-list/artist-list.component";
 import { SetupComponent } from "./pages/setup/setup.component";
-import { DiscoverComponent } from "./pages/discover/discover.component";
-import { PlaylistListComponent } from "./components/playlist-list/playlist-list.component";
 import { PlaylistComponent } from "./pages/playlist/playlist.component";
 import { FavouritesComponent } from "./pages/favourites/favourites.component";
 import { AudioVisualizerComponent } from "./components/audio-visualizer/audio-visualizer.component";
@@ -37,6 +35,7 @@ import { SizePipe } from "./pipes/size.pipe";
 import { TrackOptionsComponent } from "./components/track-options/track-options.component";
 import { SliderComponent } from "./components/slider/slider.component";
 import { PlaylistFormComponent } from "./components/playlist-form/playlist-form.component";
+import { PlaylistsComponent } from "./pages/playlists/playlists.component";
 
 @NgModule({
 	declarations: [
@@ -57,8 +56,6 @@ import { PlaylistFormComponent } from "./components/playlist-form/playlist-form.
 		AlbumListComponent,
 		ArtistListComponent,
 		SetupComponent,
-		DiscoverComponent,
-		PlaylistListComponent,
 		PlaylistComponent,
 		FavouritesComponent,
 		AudioVisualizerComponent,
@@ -69,6 +66,7 @@ import { PlaylistFormComponent } from "./components/playlist-form/playlist-form.
 		TrackOptionsComponent,
 		SliderComponent,
 		PlaylistFormComponent,
+		PlaylistsComponent,
 	],
 
 	imports: [
