@@ -37,7 +37,7 @@ export class AudioVisualizerComponent implements OnInit {
 	}
 
 	ngAfterViewInit() {
-		const context = new AudioContext();
+		/*const context = new AudioContext();
 		const src = context.createMediaElementSource(this.playerService.audio);
 		const analyser = context.createAnalyser();
 
@@ -97,11 +97,9 @@ export class AudioVisualizerComponent implements OnInit {
 
 				x = x + barWidth + 1;
 			}
-
-
 		};
 
-		renderFrame();
+		renderFrame();*/
 	}
 
 	public onProgress(e) {

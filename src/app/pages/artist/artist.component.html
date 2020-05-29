@@ -14,7 +14,8 @@
 				</ul>
 				<div class="text-meta">Similar Artists</div>
 				<ul class="tags">
-					<li *ngFor="let similar of artist.similar">{{ similar }}</li>
+					<li *ngFor="let similar of artist.similar">
+						<a routerLink="/search" [queryParams]="{ q: similar }">{{ similar }}</a></li>
 				</ul>
 			</div>
 		</div>

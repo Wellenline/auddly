@@ -24,6 +24,15 @@
         color: white;
         padding: 10px;
 
+        a {
+            color: #555;
+            text-decoration: none;
+
+            &:hover {
+                color: #4caf50;
+            }
+        }
+
         &+li {
             margin-left: 10px;
         }

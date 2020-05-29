@@ -69,7 +69,7 @@ export class PlaylistComponent implements OnInit {
 						this.toastService.show("Playlist deleted", {
 							timeout: 3000,
 						});
-						this.router.navigate(["/discover"]);
+						this.router.navigate(["/search"]);
 					});
 				}
 			},
@@ -77,8 +77,6 @@ export class PlaylistComponent implements OnInit {
 	}
 
 	public onRemove(track) {
-
-
 		this.httpService.delete(`/playlists/${this.playlist.id}/${track.id}`).subscribe((response: any) => {
 			const index = this.playlist.tracks.findIndex((t) => t.id === track.id);
 
@@ -117,8 +115,6 @@ export class PlaylistComponent implements OnInit {
 			this.playlist = response;
 			this.httpService.get(`/tracks?playlist=${id}`).subscribe((res: any) => {
 				this.playlist.tracks = res.tracks;
-
-
 			});
 		});
 	}
