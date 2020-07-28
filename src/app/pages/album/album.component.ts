@@ -24,7 +24,7 @@ export class AlbumComponent implements OnInit {
 	}
 
 	public getTracks(id: string) {
-		this.httpService.get(`/tracks?album=${id}`).subscribe((response: any) => {
+		this.httpService.get(`/tracks?album=${id}&skip=0&limit=1500`).subscribe((response: any) => {
 			this.tracks = this.tracks.concat(response.tracks);
 		}, (err) => {
 			console.log("Failed to load tracks", err);
