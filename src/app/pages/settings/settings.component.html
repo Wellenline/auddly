@@ -57,6 +57,14 @@
 				<div class="text-white">{{server.size | size}}</div>
 			</section>
 
+			<section class="settings-item">
+				<div class="text-lead">Theme</div>
+				<div class="color-block" *ngFor="let color of colors" [style.background-color]="color"
+					(click)="setTheme(color)">
+					{{ color}}</div>
+			</section>
+
+
 			<section class="settings-item m-t-20">
 
 				<div class="grid">

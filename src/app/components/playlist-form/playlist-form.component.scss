@@ -79,12 +79,12 @@ $border-radius: 10px;
                 }
 
                 &.new {
-                    background: #4caf50;
+                    background: var(--accent-color);
 
                 }
 
                 &:hover {
-                    background: #4caf50;
+                    background: var(--accent-color);
                     cursor: pointer;
                 }
 

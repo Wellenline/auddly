@@ -96,7 +96,7 @@
 
         .range {
             width: 0;
-            background: #4CAF50;
+            background: var(--accent-color);
             height: 100%;
             border-radius: 5px;
         }

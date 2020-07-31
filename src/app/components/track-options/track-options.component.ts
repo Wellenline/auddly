@@ -15,8 +15,8 @@ export class TrackOptionsComponent implements OnInit {
 
 	public playlists = [];
 	public showModal = false;
-	// tslint:disable-next-line:max-line-length
-	constructor(private playlistService: PlaylistService, private toastService: ToastService, private playerService: PlayerService, public httpService: HttpService) { }
+	constructor(private playlistService: PlaylistService,
+		private toastService: ToastService, private playerService: PlayerService, public httpService: HttpService) { }
 
 	ngOnInit(): void {
 	}

@@ -15,7 +15,7 @@
 
         .range {
             width: 0;
-            background: #4CAF50;
+            background: var(--accent-color);
             height: 100%;
             border-radius: 5px;
         }
@@ -40,16 +40,16 @@
         }
 
         &.playback {
-            background: #4CAF50;
+            background: var(--accent-color);
 
             &:hover {
-                background-color: rgb(51, 138, 51) !important;
+                background: rgba(var(--accent-color), 0.4);
             }
 
         }
 
         &.enabled {
-            background: #4CAF50;
+            background: var(--accent-color);
         }
     }
 
@@ -72,7 +72,7 @@
         }
 
         &:hover {
-            background: #4CAF50;
+            background: var(--accent-color);
             cursor: pointer;
         }
 

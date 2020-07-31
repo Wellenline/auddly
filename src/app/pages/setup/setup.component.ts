@@ -12,6 +12,7 @@ export class SetupComponent implements OnInit {
 	public protocol: string = "https";
 	public loading = false;
 	public error: string = "";
+
 	constructor(private httpService: HttpService, private router: Router) { }
 
 	ngOnInit(): void {

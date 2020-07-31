@@ -2,10 +2,18 @@
     height: 400px;
 }
 
-
 .settings-item {
     padding: 15px;
     border-radius: 5px;
+
+    .color-block {
+        display: inline-block;
+        padding: 10px;
+        margin-top: 10px;
+        margin-right: 10px;
+        border-radius: 5px;
+        color: white;
+    }
 
     &:hover {
         background: rgba(37, 39, 42, 0.18);

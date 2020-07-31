@@ -7,8 +7,7 @@
 
 			</div>
 		</div>
-		<div class="flash primary" *ngIf="loading">
-			Loading artists...
-		</div>
+		<app-indicator [loading]="loading" message="Loading artists"></app-indicator>
+
 	</infinite-scroll>
 </section>

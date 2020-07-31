@@ -21,7 +21,7 @@ nav {
 
 
                 &.active {
-                    background: #4caf50;
+                    background: var(--accent-color);
                 }
 
                 &:hover {

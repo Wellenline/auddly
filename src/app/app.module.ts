@@ -36,6 +36,7 @@ import { TrackOptionsComponent } from "./components/track-options/track-options.
 import { SliderComponent } from "./components/slider/slider.component";
 import { PlaylistFormComponent } from "./components/playlist-form/playlist-form.component";
 import { PlaylistsComponent } from "./pages/playlists/playlists.component";
+import { IndicatorComponent } from './components/common/indicator/indicator.component';
 
 @NgModule({
 	declarations: [
@@ -67,6 +68,7 @@ import { PlaylistsComponent } from "./pages/playlists/playlists.component";
 		SliderComponent,
 		PlaylistFormComponent,
 		PlaylistsComponent,
+		IndicatorComponent,
 	],
 
 	imports: [

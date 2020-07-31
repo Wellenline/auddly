@@ -5,7 +5,12 @@
 	</div>
 
 	<ul>
-
+		<li>
+			<a [routerLinkActive]="['active']" routerLink="/search">
+				<i class="feather-search"></i>
+				<div class="title">Search</div>
+			</a>
+		</li>
 		<li>
 			<a [routerLinkActive]="['active']" routerLink="/artists">
 				<i class="feather-users"></i>
@@ -16,8 +21,8 @@
 
 		<li>
 			<a [routerLinkActive]="['active']" routerLink="/albums">
-				<i class="feather-disc"></i>
-				<div class="title">Albums</div>
+				<i class="feather-folder"></i>
+				<div class="title">Library</div>
 			</a>
 		</li>
 		<li>
@@ -34,12 +39,7 @@
 			</a>
 		</li-->
 
-		<li>
-			<a [routerLinkActive]="['active']" routerLink="/search">
-				<i class="feather-search"></i>
-				<div class="title">Search</div>
-			</a>
-		</li>
+
 
 
 		<li>
