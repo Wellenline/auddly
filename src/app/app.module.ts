@@ -37,6 +37,8 @@ import { SliderComponent } from "./components/slider/slider.component";
 import { PlaylistFormComponent } from "./components/playlist-form/playlist-form.component";
 import { PlaylistsComponent } from "./pages/playlists/playlists.component";
 import { IndicatorComponent } from './components/common/indicator/indicator.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
 	declarations: [
@@ -79,6 +81,7 @@ import { IndicatorComponent } from './components/common/indicator/indicator.comp
 		CommonModule,
 		LazyLoadImageModule,
 		AppRoutingModule,
+		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [HttpService, PlayerService],

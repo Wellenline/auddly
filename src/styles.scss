@@ -72,7 +72,13 @@ $heading-line-height : 1.2 !default;
 *::before,
 *::after {
     box-sizing: border-box;
-
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 html,
@@ -279,4 +285,11 @@ textarea,
 .tooltip-top:hover:after {
     // transform: translateY(-12px);
     transform: translateY(-12px) translateX(-50%);
+}
+
+@media all and (max-width: 1000px) {
+    section {
+        margin: 0 !important;
+        padding: 15px;
+    }
 }

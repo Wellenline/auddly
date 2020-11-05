@@ -1,6 +1,6 @@
 $base-gutter: 2em;
-$bp-small: 440px;
-$bp-medium: 480px;
+$bp-small: 599px;
+$bp-medium: 800px;
 $bp-large: 1160px;
 $bp-xlarge: 1440px;
 $columns: 12;
@@ -40,6 +40,12 @@ $columns: 12;
             box-sizing: border-box;
             padding-left: $base-gutter/2;
             padding-right: $base-gutter/2;
+        }
+    }
+
+    &.equal {
+        >* {
+            flex: 1;
         }
     }
 

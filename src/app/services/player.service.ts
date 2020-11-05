@@ -40,6 +40,11 @@ export class PlayerService {
 		this.audio.addEventListener("timeupdate", this.onProgress.bind(this));
 		this.audio.addEventListener("ended", this.onAudioEnded.bind(this));
 
+		(navigator as any).mediaSession.setActionHandler("play", this.onPlayback.bind(this));
+		(navigator as any).mediaSession.setActionHandler("pause", this.onPlayback.bind(this));
+		(navigator as any).mediaSession.setActionHandler("previoustrack", this.onPrev.bind(this));
+		(navigator as any).mediaSession.setActionHandler("nexttrack", this.onNext.bind(this));
+
 	}
 
 	/**
@@ -117,6 +122,27 @@ export class PlayerService {
 		this.audio.load();
 		this.audio.play();
 		this.$playing.next(true);
+
+		if ("mediaSession" in navigator) {
+			// @ts-ignore
+			(navigator as any).mediaSession.metadata = new MediaMetadata({
+				title: tracks[0].name,
+				artist: tracks[0].artist,
+				album: tracks[0].album.name,
+				artwork: [
+					{ src: tracks[0].album.picture, sizes: '96x96', type: 'image/png' },
+					{ src: tracks[0].album.picture, sizes: '128x128', type: 'image/png' },
+					{ src: tracks[0].album.picture, sizes: '192x192', type: 'image/png' },
+					{ src: tracks[0].album.picture, sizes: '256x256', type: 'image/png' },
+					{ src: tracks[0].album.picture, sizes: '384x384', type: 'image/png' },
+					{ src: tracks[0].album.picture, sizes: '512x512', type: 'image/png' },
+					{ src: tracks[0].album.picture, sizes: "512x512", type: "image/png" },
+
+				]
+			});
+
+
+		}
 
 		const notification = new Notification(this.$track.getValue().name, {
 			body: this.$track.getValue().artist,

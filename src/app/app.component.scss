@@ -36,3 +36,19 @@ $border-radius: 10px;
         }
     }
 }
+
+@media all and (max-width: 1000px) {
+    .app {
+        flex-direction: column;
+
+        .app-sidebar {
+            display: block;
+            order: 2;
+            margin: 0;
+        }
+
+        .app-player {
+            display: none;
+        }
+    }
+}

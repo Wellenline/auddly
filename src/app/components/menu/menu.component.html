@@ -4,50 +4,45 @@
 
 	</div>
 
-	<ul>
-		<li>
+	<div class="menu">
+		<div class="menu-item">
+
 			<a [routerLinkActive]="['active']" routerLink="/search">
 				<i class="feather-search"></i>
 				<div class="title">Search</div>
 			</a>
-		</li>
-		<li>
+		</div>
+
+		<div class="menu-item">
+
 			<a [routerLinkActive]="['active']" routerLink="/artists">
 				<i class="feather-users"></i>
 				<div class="title">Artists</div>
 			</a>
-		</li>
+		</div>
 
 
-		<li>
+		<div class="menu-item">
+
 			<a [routerLinkActive]="['active']" routerLink="/albums">
 				<i class="feather-folder"></i>
 				<div class="title">Library</div>
 			</a>
-		</li>
-		<li>
+		</div>
+		<div class="menu-item">
+
 			<a [routerLinkActive]="['active']" routerLink="/playlists">
 				<i class="feather-music"></i>
 				<div class="title">Playlists</div>
 			</a>
-		</li>
+		</div>
+		<div class="menu-item">
 
-		<!--li>
-			<a [routerLinkActive]="['active']" routerLink="/favourites">
-				<i class="feather-heart"></i>
-				<div class="title">Favourites</div>
-			</a>
-		</li-->
-
-
-
-
-		<li>
 			<a [routerLinkActive]="['active']" routerLink="/settings">
 				<i class="feather-settings"></i>
 				<div class="title">Settings</div>
 			</a>
-		</li>
+		</div>
 
-	</ul>
+	</div>
 </nav>

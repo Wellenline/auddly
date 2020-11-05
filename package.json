@@ -52,6 +52,7 @@
 		"@angular/platform-browser": "~9.0.0",
 		"@angular/platform-browser-dynamic": "~9.0.0",
 		"@angular/router": "~9.0.0",
+		"@angular/service-worker": "~9.0.0",
 		"ng-lazyload-image": "^7.1.0",
 		"qrcode": "^1.4.4",
 		"rxjs": "~6.5.4",

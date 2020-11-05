@@ -23,7 +23,7 @@ export class SetupComponent implements OnInit {
 
 	public onConnect() {
 		this.httpService.connect({
-			server: `${this.protocol}://${this.setup.server}`,
+			server: `${this.setup.server}`,
 			key: this.setup.key,
 		});
 
@@ -37,7 +37,7 @@ export class SetupComponent implements OnInit {
 		}, (err) => {
 			this.httpService.disconnect();
 			console.log(err);
-			this.error = `Failed to connect to ${this.protocol}://${this.setup.server}. ${err !== undefined ? err : ""}`;
+			this.error = `Failed to connect to ${this.setup.server}. ${err !== undefined ? err : ""}`;
 		});
 	}
 
