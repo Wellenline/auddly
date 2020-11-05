@@ -1,5 +1,61 @@
 .app-player-controls {
     padding: 20px;
+    display: flex;
+    align-items: center;
+
+    .queue {
+        display: flex;
+        flex-grow: 1;
+        align-items: center;
+
+
+        .metadata {
+            display: flex;
+            flex-direction: column;
+            padding-left: 15px;
+            padding-right: 15px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+            width: 200px;
+            color: white;
+
+            .name {
+                font-size: 12px;
+                opacity: 0.7;
+            }
+        }
+
+        padding: 10px;
+        border-radius: 5px;
+
+        // background: #131313;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:hover {
+            background: var(--accent-color);
+            cursor: pointer;
+        }
+    }
+
+    .controls {
+        padding: 10px;
+    }
+
+
+    .progress-controls {
+        flex-grow: 1;
+        width: 100%;
+    }
+
+    .time {
+        padding: 10px;
+        color: white;
+    }
 
     .slider {
 
@@ -53,10 +109,7 @@
         }
     }
 
-    .progress-controls {
-        min-width: 100%;
-        width: 100%;
-    }
+
 
 
 
@@ -125,4 +178,9 @@
         visibility 0.2s ease-in-out,
         transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
 
+}
+
+
+@media all and (max-width: 1000px) {
+    .app-player-controls {}
 }

@@ -43,6 +43,16 @@
 				<div class="title">Settings</div>
 			</a>
 		</div>
+		<div class="menu-item">
 
+			<a [routerLinkActive]="['active']" routerLink="/queue">
+				<div class="image">
+					<img class="lazyload" [lazyLoad]="track?.album?.picture || '/assets/logo.png'" />
+
+				</div>
+
+				<div class="title">Queue</div>
+			</a>
+		</div>
 	</div>
 </nav>

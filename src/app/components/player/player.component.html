@@ -1,157 +1,109 @@
 <section class="app-player-controls">
-	<div class="grid">
-		<div class="width-auto@md">
-			<div routerLink="/queue" class="app-playlist-queue">
-				<div class="grid">
-					<div class="width-auto@md flex flex-middle">
-						<img class="lazyload" style="width: 50px;"
-							[lazyLoad]="track?.album?.picture || '/assets/logo.png'" />
 
-					</div>
-					<div class="width-expand@md flex flex-middle">
-						<div>
+	<div routerLink="/queue" class="queue">
+		<div class="image">
+			<img class="lazyload" style="width: 50px;" [lazyLoad]="track?.album?.picture || '/assets/logo.png'" />
 
-							<div class="text-white max-200">
-								{{track?.artist}}
-							</div>
-							<div class="text-white max-200">
-								{{track?.name}}
-							</div>
-						</div>
-					</div>
-					<div class="width-auto@md flex flex-middle">
-						<div>
-							<i class="text-white text-center feather feather-chevron-up"></i>
+		</div>
 
-						</div>
-					</div>
-				</div>
+		<div class="metadata">
+
+
+			<div class="artist">
+				{{track?.artist}}
+			</div>
+			<div class="name">
+				{{track?.name}}
 			</div>
 		</div>
-		<div class="width-auto@md flex flex-middle">
-			<app-track-options [options]="{queue: false}" [track]="track"></app-track-options>
-		</div>
+	</div>
 
 
-		<div class="width-auto@md flex flex-middle">
-			<button (click)="playerService.onPrev()" class="button default controls-button">
-				<i class="feather feather-skip-back"></i>
-			</button>
-		</div>
-
-		<div class="width-auto@md flex flex-middle">
-			<button (click)="playerService.onPlayback()" class="button default controls-button playback">
-				<i class="feather {{ playing ? 'feather-pause' : 'feather-play' }}"></i>
-
-
-			</button>
-		</div>
-
-		<div class="width-auto@md flex flex-middle">
-			<button (click)="playerService.onNext()" class="button default controls-button">
-				<i class="feather feather-skip-forward"></i>
-
-			</button>
-		</div>
-
-		<div class="width-auto@md flex flex-middle">
-			<div class="text-white">
-				{{currentTime | formatSeconds}}
-			</div>
-		</div>
-
-		<div class="width-expand@md flex flex-middle">
-			<div class="progress-controls">
-				<app-slider [value]="progress" (valueChange)="onProgress($event)"></app-slider>
-			</div>
-		</div>
-
-		<div class="width-auto@md flex flex-middle">
-			<div class="text-white">
-				{{(track.duration || 0) | formatSeconds}}
-			</div>
-		</div>
-
-
-		<div class="width-auto@md flex flex-middle">
-			<div class="volume-controls">
-				<button class="button default controls-button ">
-					<i *ngIf="volume === 0" class="feather-volume-x"></i>
-					<i *ngIf="volume <= 20 && volume > 0" class="feather-volume"></i>
-					<i *ngIf="volume < 50 && volume > 20" class="feather-volume-1"></i>
-					<i *ngIf="volume >= 50" class="feather-volume-2"></i>
-				</button>
-				<div class="volume-controls-content">
-					<app-slider [options]="{ vertical: true }" [value]="volume" (valueChange)="onVolume($event)">
-					</app-slider>
-				</div>
-			</div>
-
-			<!--div class="grid ">
-				<div class="width-auto@md">
-
-
-					<button [attr.data-tooltip]="'Toggle volume controls'" (click)="volumeControls = !volumeControls"
-						class="button default controls-button ">
-						<i *ngIf="volume === 0" class="feather-volume-x"></i>
-						<i *ngIf="volume <= 20 && volume > 0" class="feather-volume"></i>
-						<i *ngIf="volume < 50 && volume > 20" class="feather-volume-1"></i>
-						<i *ngIf="volume >= 50" class="feather-volume-2"></i>
-
-					</button>
-
-
-				</div>
-				<div *ngIf="volumeControls" class="width-expand@md flex flex-middle">
-					<div class="volume-controls">
-
-						<div (click)="onVolume($event)" class="slider">
-							<div [style.width]="volume + '%'" class="range"></div>
-						</div>
-					</div>
-				</div>
-
-
-			</div-->
-
-		</div>
-
-
-		<div class="width-auto@md flex flex-middle">
-			<app-fav-button [track]="track"></app-fav-button>
-
-		</div>
-
-		<!--div class="width-auto@md flex flex-middle">
-			<button (click)="playerService.shuffle = !playerService.shuffle"
-				class="button default {{ playerService.shuffle ? 'enabled' : ''}} controls-button tooltip"
-				[attr.data-tooltip]="'Shuffle'">
-				<i class="feather-shuffle"></i>
-			</button>
-		</div-->
-
-		<div class="width-auto@md flex flex-middle">
-			<button (click)="playerService.repeat = !playerService.repeat"
-				class="button default {{ playerService.repeat ? 'enabled' : ''}} controls-button tooltip"
-				[attr.data-tooltip]="'Repeat'">
-				<i class="feather-repeat"></i>
-
-			</button>
-		</div>
-
-		<div class="width-auto@md flex flex-middle">
-			<button (click)="onFullscreen($event)" class="button default controls-button tooltip"
-				[attr.data-tooltip]="'Maximize'">
-				<i class="feather feather-maximize-2"></i>
-
-			</button>
-		</div>
-
-
-
-
+	<div class="options">
+		<app-track-options [options]="{queue: false}" [track]="track"></app-track-options>
 
 	</div>
+
+	<div class="controls">
+		<button (click)="playerService.onPrev()" class="button default controls-button">
+			<i class="feather feather-skip-back"></i>
+		</button>
+	</div>
+
+	<div class="controls">
+		<button (click)="playerService.onPlayback()" class="button default controls-button playback">
+			<i class="feather {{ playing ? 'feather-pause' : 'feather-play' }}"></i>
+
+
+		</button>
+	</div>
+	<div class="controls">
+		<button (click)="playerService.onNext()" class="button default controls-button">
+			<i class="feather feather-skip-forward"></i>
+
+		</button>
+	</div>
+
+
+
+	<div class="time">
+		{{currentTime | formatSeconds}}
+	</div>
+
+
+	<div class="progress-controls">
+		<app-slider [value]="progress" (valueChange)="onProgress($event)"></app-slider>
+	</div>
+
+
+
+	<div class="time">
+		{{(track.duration || 0) | formatSeconds}}
+	</div>
+
+
+	<div class="controls">
+		<div class="volume-controls">
+			<button class="button default controls-button ">
+				<i *ngIf="volume === 0" class="feather-volume-x"></i>
+				<i *ngIf="volume <= 20 && volume > 0" class="feather-volume"></i>
+				<i *ngIf="volume < 50 && volume > 20" class="feather-volume-1"></i>
+				<i *ngIf="volume >= 50" class="feather-volume-2"></i>
+			</button>
+			<div class="volume-controls-content">
+				<app-slider [options]="{ vertical: true }" [value]="volume" (valueChange)="onVolume($event)">
+				</app-slider>
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="controls">
+		<app-fav-button [track]="track"></app-fav-button>
+
+	</div>
+
+
+
+	<div class="controls"> <button (click)="playerService.repeat = !playerService.repeat"
+			class="button default {{ playerService.repeat ? 'enabled' : ''}} controls-button tooltip"
+			[attr.data-tooltip]="'Repeat'">
+			<i class="feather-repeat"></i>
+
+		</button>
+	</div>
+
+	<div class="controls">
+		<button (click)="onFullscreen($event)" class="button default controls-button tooltip"
+			[attr.data-tooltip]="'Maximize'">
+			<i class="feather feather-maximize-2"></i>
+
+		</button>
+	</div>
+
+
+
 </section>
 
 <app-audio-visualizer class="visualizer" [style.opacity]="!isFullscreen ? '0' : '1'"

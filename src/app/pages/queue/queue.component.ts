@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { PlayerService } from "src/app/services/player.service";
+import { ITrack, PlayerService } from "src/app/services/player.service";
 import { Location } from '@angular/common';
 
 @Component({
@@ -9,11 +9,16 @@ import { Location } from '@angular/common';
 })
 export class QueueComponent implements OnInit {
 	public tracks = [];
+	public track: ITrack = {};
 	constructor(private playerService: PlayerService, private location: Location) { }
 
 	ngOnInit(): void {
 		this.playerService.$queue.subscribe((tracks) => {
 			this.tracks = tracks;
+		});
+
+		this.playerService.$track.subscribe((track) => {
+			this.track = track;
 		});
 	}
 

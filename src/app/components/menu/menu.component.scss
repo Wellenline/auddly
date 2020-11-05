@@ -44,6 +44,19 @@ nav {
                     color: white !important;
                 }
 
+                .image {
+                    height: 60px;
+                    line-height: 60px;
+
+                    img {
+                        height: 25px;
+                        width: 25px;
+                        text-align: center;
+                        border-radius: 50%;
+                        margin-top: 18px;
+                    }
+                }
+
                 .title {
                     display: none;
                     background: white;
@@ -73,7 +86,7 @@ nav {
 
             .menu-item {
                 // flex-grow: 1;
-                //// flex-basis: 0;
+                // flex-basis: 0;
                 margin: 0 auto;
 
                 a {
@@ -85,6 +98,22 @@ nav {
 
                         .title {
                             display: none;
+                        }
+                    }
+
+                    i {
+                        font-size: 1rem;
+                    }
+
+                    .image {
+                        height: 60px;
+
+                        img {
+                            height: 25px;
+                            width: 25px;
+                            text-align: center;
+                            border-radius: 50%;
+                            margin-top: 18px;
                         }
                     }
                 }

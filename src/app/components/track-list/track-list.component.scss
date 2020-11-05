@@ -65,15 +65,21 @@
 }
 
 @media all and (max-width: 1000px) {
-    .image {
-        img {
-            width: 15px;
+    .track {
+        font-size: 13px;
 
+        .image {
+            padding: 10px;
+
+            img {
+                width: 30px;
+
+            }
         }
-    }
 
-    .lossless,
-    .fav {
-        display: none;
+        .lossless,
+        .fav {
+            display: none;
+        }
     }
 }

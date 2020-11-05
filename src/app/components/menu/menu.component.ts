@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { ITrack, PlayerService } from "src/app/services/player.service";
 
 @Component({
 	selector: "app-menu",
@@ -6,10 +7,14 @@ import { Component, OnInit } from "@angular/core";
 	styleUrls: ["./menu.component.scss"],
 })
 export class MenuComponent implements OnInit {
-
-	constructor() { }
+	public track: ITrack = {};
+	constructor(private playerService: PlayerService) { }
 
 	public ngOnInit(): void {
+
+		this.playerService.$track.subscribe((track) => {
+			this.track = track;
+		});
 	}
 
 }
