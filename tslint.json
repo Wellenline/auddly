@@ -4,7 +4,10 @@
 	],
 	"rules": {
 		"jsdoc-format": false,
-		"member-access": false,
+    "member-access": false,
+    "deprecation": {
+      "severity": "warning"
+    },
 		"ordered-imports": false,
 		"no-unused-expression": true,
 		"no-duplicate-variable": true,
