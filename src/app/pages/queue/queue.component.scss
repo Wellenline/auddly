@@ -5,3 +5,163 @@
 .action {
     background-color: #09090b;
 }
+
+.app-route {
+    position: relative;
+    // height: 100vh;
+    // width: calc(100vw - 40px);
+    margin: 20px;
+    overflow: hidden;
+    min-height: calc(100% - 40px);
+}
+
+.album-header {
+    // filter: blur(20px);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    filter: blur(5px);
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    overflow: hidden;
+
+}
+
+.album-overlay {
+    background-color: rgba($color: #000000, $alpha: 0.9);
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+    overflow: hidden;
+
+    width: 100%;
+    height: 100%;
+}
+
+.oven {
+    overflow: auto;
+    height: 100%;
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+}
+
+.now-playing {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    .album-art {
+        margin-top: 20%;
+
+        img {
+            width: 250px;
+            height: 250px;
+            border-radius: 5px;
+        }
+    }
+
+    .track-metadata {
+        flex-grow: 1;
+        color: white;
+        text-align: center;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .track-title {
+            font-size: 1.8rem;
+        }
+
+        .track-artist {
+            font-size: 14px;
+            opacity: 0.6;
+        }
+    }
+
+    .seekbar {
+        padding: 20px;
+        height: 15px;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .time-controls {
+        display: flex;
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+        color: white;
+        font-size: 14px;
+
+        .time {
+            flex-grow: 1;
+            text-align: right;
+
+            &:first-of-type {
+                text-align: left;
+            }
+
+
+        }
+    }
+
+    .controls {
+        padding-bottom: 20px;
+        display: flex;
+
+        .control {
+            padding: 10px;
+
+            .controls-button {
+                background: #000000;
+                height: 50px;
+                width: 50px;
+                border-radius: 50%;
+
+
+                &:hover {
+                    background-color: rgba(60, 60, 60, 0.3) !important;
+                }
+
+
+
+
+                &.highlight {
+                    color: #ff0057;
+                }
+
+                &.playback {
+                    width: 60px;
+                    height: 60px;
+                    background-color: var(--accent-color);
+
+                    &:focus,
+                    &:hover {
+                        background-color: rgba(var(--accent-color), 0.4);
+                    }
+
+                }
+
+                &.enabled {
+                    background: var(--accent-color);
+                }
+            }
+
+        }
+    }
+}
+
+@media all and (max-width: 1000px) {
+    .app-route {
+        margin: 0px;
+        height: 100%;
+    }
+}

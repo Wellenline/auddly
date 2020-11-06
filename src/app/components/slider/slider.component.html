@@ -1,4 +1,5 @@
-<div (click)="onClick($event)" (mouseup)="onMouseUp($event)" (mousemove)="onMouseMove($event)"
+<div (click)="onClick($event)" (mouseup)="onMouseUp($event)" (touchstart)="onMouseDown($event)"
+	(touchmove)="onMouseMove($event)" (touchend)="onMouseUp($event)" (mousemove)="onMouseMove($event)"
 	(mousedown)="onMouseDown($event)" class="slider {{ options.vertical ? 'vertical' : '' }}">
 	<div [ngStyle]="options.vertical ? {'height': value + '%'} : {'width': value + '%'}" class="range"></div>
 </div>

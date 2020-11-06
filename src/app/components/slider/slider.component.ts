@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ElementRef, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, HostListener, ElementRef, Input, Output, EventEmitter, ViewChild } from "@angular/core";
 @Component({
 	selector: "app-slider",
 	templateUrl: "./slider.component.html",
@@ -12,7 +12,9 @@ export class SliderComponent implements OnInit {
 		vertical: false,
 	};
 
+	@Input() public waveform: string;
 	private isDragging = false;
+
 	constructor(private elementRef: ElementRef) { }
 
 	ngOnInit(): void {
@@ -44,7 +46,7 @@ export class SliderComponent implements OnInit {
 		console.log("stopped moving");
 		this.isDragging = false;
 	}
-
+	@HostListener("document:touchstart", ["$event"])
 	@HostListener("document:mousedown", ["$event"])
 	public onStopDragging(event): void {
 		if (!this.elementRef.nativeElement.contains(event.target)) {
@@ -53,10 +55,13 @@ export class SliderComponent implements OnInit {
 	}
 
 	private getPosition(e) {
-		const rect = e.currentTarget.getBoundingClientRect();
 
-		const position = this.options.vertical ? (e.pageY - rect.top) / rect.height :
-			(e.pageX - rect.left) / rect.width;
+		const rect = e.currentTarget.getBoundingClientRect();
+		const xCoordinate = e.type === "touchmove" ? e.touches[0].clientX - rect.left : e.pageX - rect.left;
+		const yCoordinate = e.type === "touchmove" ? e.touches[0].clientY - rect.top : e.pageY - rect.top;
+
+		const position = this.options.vertical ? yCoordinate / rect.height :
+			xCoordinate / rect.width;
 
 		return {
 			position,

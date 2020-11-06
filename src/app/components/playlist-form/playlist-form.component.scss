@@ -112,3 +112,24 @@ $border-radius: 10px;
 
     }
 }
+
+@media all and (max-width: 1000px) {
+    .app-playlist {
+        .playlist-form {
+            background-color: $background-shade;
+            border-radius: 0;
+            margin: 0px;
+            width: 100%;
+            position: fixed;
+            height: calc(100%);
+            right: 0;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            overflow: auto;
+            opacity: 0;
+            transition: all 0.25s;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        }
+    }
+}

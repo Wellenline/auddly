@@ -107,6 +107,7 @@ export class PlayerService {
 			return {
 				...track, ...{
 					source: `${this.httpService.API_ENDPOINT}/tracks/play/${track.id}`,
+					waveform: `${this.httpService.API_ENDPOINT}/tracks/waveform/${track.id}`,
 				},
 			};
 		});

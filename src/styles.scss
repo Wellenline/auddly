@@ -79,6 +79,12 @@ $heading-line-height : 1.2 !default;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
 }
 
 html,
@@ -89,6 +95,7 @@ body {
     // background: rgb(244, 246, 248);
     background: $background;
 
+
 }
 
 $scollbar-hover: #dddddd !default;
@@ -96,7 +103,7 @@ $animation-duration: 0.2s !default;
 
 $scrollbar-thumb: darken($scollbar-hover, 3%);
 $scrollbar-thumb-hover: darken($scollbar-hover, 10%);
-
+/*
 ::-webkit-scrollbar {
     height: 10px;
     width: 10px;
@@ -114,7 +121,7 @@ $scrollbar-thumb-hover: darken($scollbar-hover, 10%);
 
 ::-webkit-scrollbar-thumb:hover {
     background: $scrollbar-thumb-hover;
-}
+}*/
 
 @import "./assets/theme/utils.scss";
 @import "./assets/theme/button.scss";
@@ -287,10 +294,11 @@ textarea,
     transform: translateY(-12px) translateX(-50%);
 }
 
-
+/*
 @media all and (max-width: 1000px) {
     section {
         margin: 0 !important;
         padding: 15px;
     }
 }
+*/

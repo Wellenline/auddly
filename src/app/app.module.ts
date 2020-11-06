@@ -39,6 +39,7 @@ import { PlaylistsComponent } from "./pages/playlists/playlists.component";
 import { IndicatorComponent } from './components/common/indicator/indicator.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { HorizontalScrollComponent } from './components/horizontal-scroll/horizontal-scroll.component';
 
 @NgModule({
 	declarations: [
@@ -71,6 +72,7 @@ import { environment } from '../environments/environment';
 		PlaylistFormComponent,
 		PlaylistsComponent,
 		IndicatorComponent,
+		HorizontalScrollComponent,
 	],
 
 	imports: [

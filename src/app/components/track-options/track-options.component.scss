@@ -14,7 +14,7 @@
     position: relative;
     display: inline-block;
 
-    &:hover {
+    &:active {
         .dropup-content {
             // display: block;
             opacity: 1;
@@ -44,6 +44,11 @@
         visibility 0.2s ease-in-out,
         transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
 
+    &:hover {
+        opacity: 1;
+        visibility: visible;
+    }
+
     a {
         color: #fff;
         padding: 12px 16px;
@@ -62,7 +67,33 @@
         }
 
         &:hover {
-            background-color: var(--accent-color)
+            background-color: var(--accent-color);
+
         }
+    }
+}
+
+
+@media all and (max-width: 1000px) {
+    .dropup {
+        position: relative;
+        display: inline-block;
+
+        &:hover {
+            .dropup-content {
+                // display: block;
+                opacity: 1;
+                visibility: visible;
+
+
+
+            }
+        }
+
+        &:hover {
+            opacity: inherit;
+            visibility: inherit;
+        }
+
     }
 }
