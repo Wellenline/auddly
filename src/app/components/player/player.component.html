@@ -94,18 +94,8 @@
 		</button>
 	</div>
 
-	<div class="controls">
-		<button (click)="onFullscreen($event)" class="button default controls-button tooltip"
-			[attr.data-tooltip]="'Maximize'">
-			<i class="feather feather-maximize-2"></i>
 
-		</button>
-	</div>
 
 
 
 </section>
-
-<app-audio-visualizer class="visualizer" [style.opacity]="!isFullscreen ? '0' : '1'"
-	[style.visibility]="!isFullscreen ? 'hidden' : 'visible'" (close)="onCloseFullscreen()" *ngIf="track.id">
-</app-audio-visualizer>

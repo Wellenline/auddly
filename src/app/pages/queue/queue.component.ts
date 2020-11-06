@@ -42,7 +42,7 @@ export class QueueComponent implements OnInit {
 
 
 	public onClear() {
-		this.playerService.$queue.next([]);
+		this.playerService.clear();
 	}
 
 	public onClose() {

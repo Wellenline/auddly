@@ -18,6 +18,19 @@
         margin-top: 20px;
     }
 
+    &.sm {
+        img {
+            width: 60px;
+            height: 60px;
+
+        }
+
+        .artist-name {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    }
+
     &:hover {
         cursor: pointer;
         background: rgba(37, 39, 42, 0.18);

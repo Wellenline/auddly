@@ -73,6 +73,9 @@
 			</div>
 
 		</div>
+
+		<button (click)="onClear()" class="button action-outline default flex flex-middle"> Clear Queue
+		</button>
 		<app-track-list [track]="track" *ngFor="let track of tracks">
 		</app-track-list>
 

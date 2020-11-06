@@ -22,8 +22,8 @@ export interface ITrack {
 	providedIn: "root",
 })
 export class PlayerService {
-	public $queue = new BehaviorSubject<ITrack[]>([]);
-	public $track = new BehaviorSubject<ITrack>({});
+	public $queue = new BehaviorSubject<ITrack[]>(JSON.parse(localStorage.getItem("queue")) || []);
+	public $track = new BehaviorSubject<ITrack>(JSON.parse(localStorage.getItem("track")) || {});
 
 	public $progress = new BehaviorSubject<number>(0);
 	public $volume = new BehaviorSubject<number>(100);
@@ -45,6 +45,10 @@ export class PlayerService {
 		(navigator as any).mediaSession.setActionHandler("previoustrack", this.onPrev.bind(this));
 		(navigator as any).mediaSession.setActionHandler("nexttrack", this.onNext.bind(this));
 
+		if (this.$track.getValue().id) {
+			this.setupAudioPlayer(this.$track.getValue());
+
+		}
 	}
 
 	/**
@@ -96,7 +100,24 @@ export class PlayerService {
 	 * @param tracks tracks
 	 */
 	public queue(tracks: ITrack[]) {
-		this.$queue.next(this.$queue.getValue().concat(tracks.filter((track) => !this.$queue.getValue().map((t) => t.id).includes(track.id))));
+		const queue = this.$queue.getValue().concat(tracks.filter((track) => !this.$queue.getValue().map((t) => t.id).includes(track.id)));
+		localStorage.setItem("queue", JSON.stringify(queue));
+
+		this.$queue.next(queue);
+	}
+
+	/**
+	 * Clear localstorage
+	 */
+	public clear() {
+		localStorage.setItem("queue", JSON.stringify([]));
+		localStorage.setItem("track", JSON.stringify({}));
+		this.$queue.next([]);
+		this.$track.next({});
+		this.audio.src = undefined;
+		this.$playing.next(false);
+		this.$progress.next(0);
+
 	}
 
 	/**
@@ -107,18 +128,22 @@ export class PlayerService {
 			return {
 				...track, ...{
 					source: `${this.httpService.API_ENDPOINT}/tracks/play/${track.id}`,
-					waveform: `${this.httpService.API_ENDPOINT}/tracks/waveform/${track.id}`,
 				},
 			};
 		});
 
 		// super ugly oneliner
 		this.queue(tracks);
-
+		localStorage.setItem("track", JSON.stringify(tracks[0]));
 		this.$track.next(tracks[0]);
 		this.$progress.next(0);
+		this.$playing.next(true);
+		this.setupAudioPlayer(tracks[0]);
 
-		this.audio.src = tracks[0].source;
+	}
+
+	public setupAudioPlayer(track: ITrack) {
+		this.audio.src = track.source;
 		this.audio.crossOrigin = "anonymous";
 		this.audio.load();
 		this.audio.play();
@@ -127,29 +152,23 @@ export class PlayerService {
 		if ("mediaSession" in navigator) {
 			// @ts-ignore
 			(navigator as any).mediaSession.metadata = new MediaMetadata({
-				title: tracks[0].name,
-				artist: tracks[0].artist,
-				album: tracks[0].album.name,
+				title: track.name,
+				artist: track.artist,
+				album: track.album.name,
 				artwork: [
-					{ src: tracks[0].album.picture, sizes: "96x96", type: "image/png" },
-					{ src: tracks[0].album.picture, sizes: "128x128", type: "image/png" },
-					{ src: tracks[0].album.picture, sizes: "192x192", type: "image/png" },
-					{ src: tracks[0].album.picture, sizes: "256x256", type: "image/png" },
-					{ src: tracks[0].album.picture, sizes: "384x384", type: "image/png" },
-					{ src: tracks[0].album.picture, sizes: "512x512", type: "image/png" },
-					{ src: tracks[0].album.picture, sizes: "512x512", type: "image/png" },
+					{ src: track.album.picture, sizes: "96x96", type: "image/png" },
+					{ src: track.album.picture, sizes: "128x128", type: "image/png" },
+					{ src: track.album.picture, sizes: "192x192", type: "image/png" },
+					{ src: track.album.picture, sizes: "256x256", type: "image/png" },
+					{ src: track.album.picture, sizes: "384x384", type: "image/png" },
+					{ src: track.album.picture, sizes: "512x512", type: "image/png" },
+					{ src: track.album.picture, sizes: "512x512", type: "image/png" },
 
 				],
 			});
 
 
 		}
-
-		const notification = new Notification(this.$track.getValue().name, {
-			body: this.$track.getValue().artist,
-			icon: this.$track.getValue().album.picture,
-			silent: true,
-		});
 
 	}
 

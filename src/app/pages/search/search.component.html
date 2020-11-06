@@ -7,11 +7,14 @@
 	<ng-container *ngIf="result.artists.length > 0">
 
 		<h2>Artists</h2>
-		<div class="grid">
-			<div class="width-3@lg width-4@md width-6@sm" *ngFor="let artist of result.artists">
-				<app-artist-list [artist]="artist"></app-artist-list>
-			</div>
-		</div>
+
+		<app-horizontal-scroll>
+			<ng-container *ngFor="let artist of result.artists">
+				<app-artist-list [size]="'sm'" [artist]="artist"></app-artist-list>
+
+			</ng-container>
+		</app-horizontal-scroll>
+
 	</ng-container>
 
 	<ng-container *ngIf="result.albums.length > 0">

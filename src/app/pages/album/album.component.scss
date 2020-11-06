@@ -2,9 +2,9 @@ section {
     position: relative;
     // height: 100vh;
     // width: calc(100vw - 40px);
-    margin: 20px;
+    // margin: 20px;
     overflow: hidden;
-    min-height: calc(100% - 40px);
+    min-height: 100%;
 
     .app-route {
         overflow-y: auto;
@@ -39,6 +39,8 @@ section {
     .album-meta {
         padding-bottom: 40px;
 
+        display: flex;
+
         .album-picture {
             width: 250px;
             height: 250px;
@@ -46,11 +48,19 @@ section {
             border-radius: 10px;
         }
 
+        .details {
+            margin: 20px;
+
+        }
+
 
         .album-artist {
             color: white;
             opacity: 0.5;
             margin-bottom: 10px;
+            display: flex;
+            justify-content: start;
+            align-items: center;
 
             .artist-picture {
                 width: 40px;
@@ -84,4 +94,30 @@ section {
     }
 
 
+}
+
+@media all and (max-width: 1000px) {
+    section {
+        .album-meta {
+            flex-direction: column;
+            text-align: center;
+            justify-content: center;
+            padding-bottom: 20px;
+
+            .album-title {
+                font-size: 1.7rem;
+                color: white;
+                font-weight: 600;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                margin-bottom: 10px;
+
+            }
+
+            .album-artist {
+
+                justify-content: center;
+
+            }
+        }
+    }
 }

@@ -17,12 +17,16 @@
     margin: 20px 0;
     padding: 0;
 
-    li {
+    .tag {
         display: inline-block;
         border-radius: 5px;
         background-color: #09090b;
         color: white;
         padding: 10px;
+
+        &.inactive {
+            color: #333;
+        }
 
         a {
             color: #555;
@@ -33,8 +37,9 @@
             }
         }
 
-        &+li {
+        &+.tag {
             margin-left: 10px;
         }
     }
+
 }

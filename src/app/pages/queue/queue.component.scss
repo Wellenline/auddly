@@ -116,12 +116,14 @@
     .controls {
         padding-bottom: 20px;
         display: flex;
+        align-items: center;
 
         .control {
             padding: 10px;
 
+
             .controls-button {
-                background: #000000;
+                background-color: transparent;
                 height: 50px;
                 width: 50px;
                 border-radius: 50%;
@@ -141,11 +143,11 @@
                 &.playback {
                     width: 60px;
                     height: 60px;
-                    background-color: var(--accent-color);
+                    background-color: var(--accent-color) !important;
 
                     &:focus,
                     &:hover {
-                        background-color: rgba(var(--accent-color), 0.4);
+                        background-color: var(--accent-color) !important;
                     }
 
                 }
@@ -163,5 +165,10 @@
     .app-route {
         margin: 0px;
         height: 100%;
+
+        .album-header,
+        .album-overlay {
+            border-radius: 0;
+        }
     }
 }
