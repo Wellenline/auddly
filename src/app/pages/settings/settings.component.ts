@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
 import { HttpService } from "src/app/services/http.service";
-import * as qrcode from "qrcode";
 
 @Component({
 	selector: "app-settings",
@@ -19,15 +18,7 @@ export class SettingsComponent implements OnInit, AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		qrcode.toCanvas(this.qr.nativeElement, `${this.httpService.API_ENDPOINT}?key=${this.httpService.API_KEY}`, {
-			errorCorrectionLevel: "H",
-			margin: 1,
-			scale: 8,
-			color: {
-				dark: "#000",
-				light: "#fff",
-			},
-		});
+
 	}
 
 	public setTheme(color: string) {
