@@ -4,6 +4,8 @@
     color: white;
     display: flex;
     align-items: center;
+    margin-left: 15px;
+    margin-right: 15px;
 
     &.playing {
         background: rgba(37, 39, 42, 0.18);
@@ -23,6 +25,10 @@
     .details {
         padding: 10px;
         flex-grow: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
 
         .title {
             color: white;
@@ -67,6 +73,8 @@
 @media all and (max-width: 1000px) {
     .track {
         // font-size: 13px;
+        margin-left: 0px;
+        margin-right: 0px;
 
         .image {
             padding: 10px;
@@ -75,6 +83,19 @@
                 width: 30px;
 
             }
+        }
+
+        .details {
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+
+            .title {}
+
+            .artist {}
+
         }
 
         .lossless,

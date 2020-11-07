@@ -36,16 +36,29 @@
 
 	<ng-container *ngIf="albums.length > 0">
 
-		<h2>Albums</h2>
-		<div class="grid">
-			<div class="width-3@lg width-4@md width-6@sm" *ngFor="let album of albums">
-				<app-album-list [album]="album"></app-album-list>
+		<div class="section-title">Albums</div>
+		<div class="is-mobile">
+
+
+			<app-horizontal-scroll>
+				<ng-container *ngFor="let album of albums">
+					<app-album-list [album]="album"></app-album-list>
+				</ng-container>
+			</app-horizontal-scroll>
+		</div>
+		<div class="is-desktop">
+
+			<div class="grid">
+				<div class="width-3@lg width-4@md width-6@sm" *ngFor="let album of albums">
+					<app-album-list [album]="album"></app-album-list>
+				</div>
 			</div>
 		</div>
 	</ng-container>
 
 	<ng-container *ngIf="tracks.length > 0">
-		<h2>Popular Tracks</h2>
+		<div class="section-title">Popular Tracks</div>
+
 		<div class="grid">
 			<div class="width-4@lg width-4@md width-6@sm" *ngFor="let track of tracks">
 				<app-track-list [track]="track"></app-track-list>

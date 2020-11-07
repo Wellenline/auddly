@@ -1,12 +1,15 @@
 <section class="app-route">
 	<div class="app-page-title">Search</div>
-	<input (keyup)="onSearch($event)" [(ngModel)]="search" autocomplete="off" class="search-input" type="text"
-		placeholder="Search Music, Albums, Tracks" />
+	<div class="p-10">
 
+
+		<input (keyup)="onSearch($event)" [(ngModel)]="search" autocomplete="off" class="search-input" type="text"
+			placeholder="Search Music, Albums, Tracks" />
+	</div>
 
 	<ng-container *ngIf="result.artists.length > 0">
 
-		<h2>Artists</h2>
+		<div class="section-title">Artists</div>
 
 		<app-horizontal-scroll>
 			<ng-container *ngFor="let artist of result.artists">
@@ -19,10 +22,22 @@
 
 	<ng-container *ngIf="result.albums.length > 0">
 
-		<h2>Albums</h2>
-		<div class="grid">
-			<div class="width-3@lg width-4@md width-6@sm" *ngFor="let album of result.albums">
-				<app-album-list [album]="album"></app-album-list>
+		<div class="section-title">Albums</div>
+		<div class="is-mobile">
+
+
+			<app-horizontal-scroll>
+				<ng-container *ngFor="let album of result.albums">
+					<app-album-list [album]="album"></app-album-list>
+				</ng-container>
+			</app-horizontal-scroll>
+		</div>
+		<div class="is-desktop">
+
+			<div class="grid">
+				<div class="width-3@lg width-4@md width-6@sm" *ngFor="let album of result.albums">
+					<app-album-list [album]="album"></app-album-list>
+				</div>
 			</div>
 		</div>
 	</ng-container>
@@ -30,8 +45,8 @@
 	<ng-container *ngIf="result.tracks.length > 0">
 
 
-		<h2>Tracks</h2>
-		<div class="grid">
+		<div class="section-title">Tracks</div>
+		<div class="grid ">
 			<div class="width-3@lg width-4@md width-6@sm" *ngFor="let track of result.tracks">
 				<app-track-list [track]="track"></app-track-list>
 			</div>

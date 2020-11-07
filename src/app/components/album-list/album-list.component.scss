@@ -1,12 +1,23 @@
-.album {
+.album-item {
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 5px;
+    display: flex;
+    align-items: center;
+
+    .album-meta {
+        padding: 15px;
+    }
 
     .album-title {
         color: white;
-        font-size: 1.1rem;
+        font-size: 1rem;
+        max-width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
+
 
     img {
         border-radius: 10px;

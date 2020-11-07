@@ -1,18 +1,8 @@
-<div routerLink="/albums/{{ album.id }}" class="album">
-
-	<div class="grid">
-		<div class="width-auto@md">
-			<img class="lazyload" style="width: 100px; height: 100px;"
-				[lazyLoad]="album.picture || '/assets/logo.png'" />
-
-		</div>
-
-		<div class="width-auto@md flex flex-middle">
-			<div>
-				<div class="album-title">{{ album.name }}</div>
-				<div class="album-artist">{{ album.artist?.name }}</div>
-			</div>
-
-		</div>
+<div routerLink="/albums/{{ album.id }}" class="album-item">
+	<img class="lazyload" style="width: 100px; height: 100px;" [lazyLoad]="album.picture || '/assets/logo.png'" />
+	<div class="album-meta">
+		<div class="album-title">{{ album.name }}</div>
+		<div class="album-artist">{{ album.artist?.name }}</div>
 	</div>
+
 </div>

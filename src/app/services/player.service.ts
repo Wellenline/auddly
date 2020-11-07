@@ -46,7 +46,7 @@ export class PlayerService {
 		(navigator as any).mediaSession.setActionHandler("nexttrack", this.onNext.bind(this));
 
 		if (this.$track.getValue().id) {
-			this.setupAudioPlayer(this.$track.getValue());
+			this.setupAudioPlayer(this.$track.getValue(), false);
 
 		}
 	}
@@ -134,20 +134,24 @@ export class PlayerService {
 
 		// super ugly oneliner
 		this.queue(tracks);
+
 		localStorage.setItem("track", JSON.stringify(tracks[0]));
 		this.$track.next(tracks[0]);
 		this.$progress.next(0);
 		this.$playing.next(true);
 		this.setupAudioPlayer(tracks[0]);
 
+
 	}
 
-	public setupAudioPlayer(track: ITrack) {
+	public setupAudioPlayer(track: ITrack, autoPlay: boolean = true) {
 		this.audio.src = track.source;
 		this.audio.crossOrigin = "anonymous";
 		this.audio.load();
-		this.audio.play();
-		this.$playing.next(true);
+		if (autoPlay) {
+			this.audio.play();
+			this.$playing.next(true);
+		}
 
 		if ("mediaSession" in navigator) {
 			// @ts-ignore

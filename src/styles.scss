@@ -155,15 +155,13 @@ textarea,
     outline: none; // You should add some other style for :focus to help UX/a11y
 }
 
-.app-route {
-    margin: 20px;
-}
+
 
 .app-page-title {
     font-size: 1.5rem;
     color: white;
     font-weight: 600;
-    margin-bottom: 20px;
+    padding: 15px;
     // margin-top: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     -webkit-app-region: drag
@@ -294,11 +292,30 @@ textarea,
     transform: translateY(-12px) translateX(-50%);
 }
 
-/*
+.section-title {
+    padding: 15px;
+    color: white;
+    opacity: 0.3;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.is-mobile {
+    display: none;
+}
+
+.is-desktop {
+    display: initial;
+}
+
 @media all and (max-width: 1000px) {
-    section {
-        margin: 0 !important;
-        padding: 15px;
+    .is-mobile {
+        display: initial;
+    }
+
+    .is-desktop {
+        display: none;
     }
 }
-*/

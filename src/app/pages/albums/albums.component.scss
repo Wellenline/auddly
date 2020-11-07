@@ -1,4 +1,4 @@
-.album {
+/*.album {
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 5px;
@@ -23,4 +23,44 @@
         cursor: pointer;
     }
 
+}*/
+
+
+.albums {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+
+    .album {
+        flex-basis: 20%;
+        flex-grow: 1;
+        -ms-flex: auto;
+        position: relative;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+}
+
+@media(max-width: 1333px) {
+    .album {
+        flex-basis: 33.33%;
+    }
+}
+
+@media(max-width: 1073px) {
+    .album {
+        flex-basis: 33.33%;
+    }
+}
+
+@media(max-width: 815px) {
+    .album {
+        flex-basis: 50%;
+    }
+}
+
+@media(max-width: 555px) {
+    .album {
+        flex-basis: 100%;
+    }
 }

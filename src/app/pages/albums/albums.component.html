@@ -2,28 +2,14 @@
 	<div class="app-page-title">Albums</div>
 
 	<infinite-scroll (scrolled)="onScroll()">
-		<div class="grid">
-			<div class="width-3@lg width-4@md width-6@sm" *ngFor="let album of albums">
+		<div class="albums">
+			<div class="album" *ngFor="let album of albums">
 				<app-album-list [album]="album"></app-album-list>
-				<!--div routerLink="/albums/{{ album.id }}" class="album">
 
-					<div class="grid">
-						<div class="width-auto@md">
-							<img style="width: 100px;" src="{{ album.picture }}" />
-
-						</div>
-
-						<div class="width-auto@md flex flex-middle">
-							<div>
-								<div class="album-title">{{ album.name }}</div>
-								<div class="album-artist">{{ album.artist?.name }}</div>
-							</div>
-
-						</div>
-					</div>
-				</div-->
 			</div>
+
 		</div>
+
 		<app-indicator [loading]="loading" message="Loading albums"></app-indicator>
 	</infinite-scroll>
 
