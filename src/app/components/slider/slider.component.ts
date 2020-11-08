@@ -1,27 +1,52 @@
-import { Component, OnInit, HostListener, ElementRef, Input, Output, EventEmitter, ViewChild } from "@angular/core";
+import { Component, OnInit, HostListener, ElementRef, Input, Output, EventEmitter, ViewChild, ViewRef } from "@angular/core";
 @Component({
 	selector: "app-slider",
 	templateUrl: "./slider.component.html",
 	styleUrls: ["./slider.component.scss"],
 })
 export class SliderComponent implements OnInit {
-	@Input() value = 0;
+	@Input() public set value(val) {
+		this._value = val;
+
+		if (this.waveformElement && !this.isDragging) {
+			const maxScroll = this.waveformElement.nativeElement.scrollWidth - this.waveformElement.nativeElement.clientWidth;
+			this.waveformElement.nativeElement.scrollLeft = val * (maxScroll / 100);
+		}
+	};
+
+	public get value() {
+		return this._value;
+	};
 	@Output() valueChange = new EventEmitter();
 
 	@Input() options = {
 		vertical: false,
 	};
 
+	
 	@Input() public waveform: string;
-	private isDragging = false;
 
+	@ViewChild("wavefromElement") waveformElement: ElementRef;
+
+	public width = 1;
+
+	private isDragging = false;
+	private _value = 0;
 	constructor(private elementRef: ElementRef) { }
 
 	ngOnInit(): void {
 	}
 
+	ngAfterViewInit() {
+		
+		if (this.waveformElement ) {
+			this.waveformElement.nativeElement.addEventListener('scroll', (e) => this.width = e.target.scrollLeft, false);
+		}
+	}
+
 	public onMouseDown(e) {
-		e.preventDefault();
+		// e.preventDefault();
+		
 		this.isDragging = true;
 
 	}
@@ -42,10 +67,17 @@ export class SliderComponent implements OnInit {
 		this.valueChange.next(position.position);
 	}
 
-	public onMouseUp(e) {
-		console.log("stopped moving");
+	public onMouseUp(e) {		
 		this.isDragging = false;
+
+		const maxScroll = this.waveformElement.nativeElement.scrollWidth - this.waveformElement.nativeElement.clientWidth;
+		this.width = this.waveformElement.nativeElement.scrollLeft;
+		this.value =  (this.width  * 100) / maxScroll;
+		this.valueChange.next(this.width / maxScroll);
+
+
 	}
+
 	@HostListener("document:touchstart", ["$event"])
 	@HostListener("document:mousedown", ["$event"])
 	public onStopDragging(event): void {

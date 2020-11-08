@@ -52,30 +52,40 @@
 }
 
 .waveform {
+    width: 100vw;
+    position: relative;
+    overflow-x: auto;
+}
+
+.waveform {
     overflow: auto;
     width: 100%;
     height: 100%;
     position: relative;
-
+    height: 70px;
     .base {
-        height: 50px;
-        width: 100%;
-        object-fit: cover;
-        margin-right: 50%;
         margin-left: 50%;
-
+        margin-right: 50%;
+        object-fit: contain;
+        height: 50px;
+    
     }
 
     .overlay {
-        height: 50px;
-        width: 100%;
-        background-color: var(--accent-color);
-        margin-right: 50%;
         margin-left: 50%;
+        margin-right: 50%;
+        height: 50px;
         position: absolute;
         top: 0;
+        left: 0;
+        width: 1px;
+        object-fit: cover;
+        object-position: left;
+        filter: opacity(0.5) drop-shadow(0 0 0 var(--accent-color));
 
     }
+
+   
 
 
 }
