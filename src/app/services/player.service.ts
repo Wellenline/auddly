@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { StringProtocolResponse } from "electron";
 import { BehaviorSubject } from "rxjs";
 import { getBoolean } from "../utils";
 import { HttpService } from "./http.service";
@@ -16,6 +17,7 @@ export interface ITrack {
 	name?: string;
 	source?: string;
 	liked?: boolean;
+	waveform?: string;
 }
 
 @Injectable({
