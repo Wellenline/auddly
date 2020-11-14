@@ -20,24 +20,24 @@
     height: 100%;
     width: 100%;
     position: absolute;
-    filter: blur(5px);
 
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 10px;
     overflow: hidden;
+  
 
 }
 
 .album-overlay {
-    background-color: rgba($color: #000000, $alpha: 0.9);
     position: absolute;
     top: 0;
     left: 0;
     border-radius: 10px;
     overflow: hidden;
-
+    background-color: rgba(0,0,0,.9);
+    backdrop-filter: blur(10px);
     width: 100%;
     height: 100%;
 }

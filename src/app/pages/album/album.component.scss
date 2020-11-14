@@ -12,7 +12,7 @@ section {
 
     .album-header {
         // filter: blur(20px);
-        height: 100%;
+       /* height: 100%;
         width: 100%;
         position: absolute;
 
@@ -20,7 +20,20 @@ section {
         background-repeat: no-repeat;
         background-size: cover;
         border-radius: 10px;
+        overflow: hidden;*/
+
+        height: calc(100% - 155px);
+        width: 100%;
+        position: absolute;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 10px;
         overflow: hidden;
+        top: 0;
+        bottom: 0;
+        position: fixed;
+      
 
     }
 
@@ -31,7 +44,8 @@ section {
         left: 0;
         border-radius: 10px;
         overflow: hidden;
-
+        background-color: rgba(0,0,0,.8);
+        backdrop-filter: blur(10px);
         width: 100%;
         height: 100%;
     }
