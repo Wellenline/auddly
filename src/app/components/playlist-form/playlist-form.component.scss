@@ -10,6 +10,9 @@ $border-radius: 10px;
     visibility: hidden;
     opacity: 0;
     transition: all 0.25s;
+    z-index: 9999;
+    backdrop-filter: blur(10px);
+
 
     &.visible {
         opacity: 1;
@@ -23,6 +26,7 @@ $border-radius: 10px;
 
     .playlist-overlay {
         background-color: rgba(93, 93, 93, 0.15);
+        backdrop-filter: blur(10px);
         position: fixed;
         top: 0;
         left: 0;
