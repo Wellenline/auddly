@@ -1,7 +1,7 @@
 .slider {
 
     width: 100%;
-    background: #333;
+    background: rgb(255 255 255 / 10%);
     height: 5px;
     border-radius: 5px;
     transition: height 0.15s ease-out;
@@ -63,12 +63,13 @@
     height: 100%;
     position: relative;
     height: 70px;
+
     .base {
         margin-left: 50%;
         margin-right: 50%;
         object-fit: contain;
         height: 50px;
-    
+
     }
 
     .overlay {
@@ -85,7 +86,7 @@
 
     }
 
-   
+
 
 
 }

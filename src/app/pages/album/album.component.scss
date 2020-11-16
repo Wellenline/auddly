@@ -3,8 +3,9 @@ section {
     // height: 100vh;
     // width: calc(100vw - 40px);
     // margin: 20px;
-    overflow: hidden;
+    overflow: auto;
     min-height: 100%;
+    height: 100vh;
 
     .app-route {
         overflow-y: auto;
@@ -12,7 +13,7 @@ section {
 
     .album-header {
         // filter: blur(20px);
-       /* height: 100%;
+        /* height: 100%;
         width: 100%;
         position: absolute;
 
@@ -22,7 +23,7 @@ section {
         border-radius: 10px;
         overflow: hidden;*/
 
-        height: calc(100% - 155px);
+        height: 100%;
         width: 100%;
         position: absolute;
         background-position: center;
@@ -33,18 +34,17 @@ section {
         top: 0;
         bottom: 0;
         position: fixed;
-      
+
 
     }
 
     .album-overlay {
-        background-color: rgba($color: #000000, $alpha: 0.9);
         position: absolute;
         top: 0;
         left: 0;
         border-radius: 10px;
         overflow: hidden;
-        background-color: rgba(0,0,0,.8);
+        background-color: rgba(0, 0, 0, .8);
         backdrop-filter: blur(10px);
         width: 100%;
         height: 100%;

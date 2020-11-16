@@ -1,7 +1,7 @@
 $background-shade: #09090b;
 $border-radius: 10px;
 
-.app {
+/*.app {
     display: flex;
     flex-direction: row;
     height: 100vh;
@@ -35,11 +35,40 @@ $border-radius: 10px;
             border-radius: $border-radius;
         }
     }
+}*/
+
+.app {
+    display: flex;
+
+    .app-sidebar {
+        position: fixed;
+        z-index: 2;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+    }
+
+    .app-player {
+        position: fixed;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        border-radius: 0;
+        width: calc(100vw - 80px);
+        right: 0;
+    }
 }
 
 @media all and (max-width: 1000px) {
     .app {
-        flex-direction: column;
+
+        .app-sidebar {
+            display: block;
+            order: 2;
+            margin: 0;
+        }
+
+        /* flex-direction: column;
 
         .app-sidebar {
             display: block;
@@ -49,6 +78,6 @@ $border-radius: 10px;
 
         .app-player {
             display: none;
-        }
+        }*/
     }
 }

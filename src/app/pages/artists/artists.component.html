@@ -1,13 +1,16 @@
 <section class="app-route">
-	<div class="app-page-title">Artists</div>
-	<infinite-scroll (scrolled)="onScroll()">
-		<div class="grid">
-			<div class="width-2@lg width-4@md width-6@sm" *ngFor="let artist of artists">
-				<app-artist-list [artist]="artist"></app-artist-list>
+	<div class="inner-content">
 
+		<div class="app-page-title">Artists</div>
+		<infinite-scroll (scrolled)="onScroll()">
+			<div class="grid">
+				<div class="width-2@lg width-4@md width-6@sm" *ngFor="let artist of artists">
+					<app-artist-list [artist]="artist"></app-artist-list>
+
+				</div>
 			</div>
-		</div>
-		<app-indicator [loading]="loading" message="Loading artists"></app-indicator>
+			<app-indicator [loading]="loading" message="Loading artists"></app-indicator>
 
-	</infinite-scroll>
+		</infinite-scroll>
+	</div>
 </section>

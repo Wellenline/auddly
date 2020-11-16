@@ -249,7 +249,8 @@ textarea,
 [data-tooltip]:after {
     z-index: 1000;
     padding: 15px;
-    background-color: #18181b;
+    background-color: rgba(0, 0, 0, .8);
+    backdrop-filter: blur(10px);
     color: #fff;
     content: attr(data-tooltip);
     border-radius: 5px;
@@ -272,15 +273,17 @@ textarea,
     transform: translateY(-12px) translateX(-50%);
 }
 
+/*
 [data-tooltip]:before,
 .tooltip:before,
 .tooltip-top:before {
     margin-left: 0px;
     margin-bottom: -12px;
     border-top-color: #18181b;
+    
 }
 
-
+*/
 [data-tooltip]:hover:before,
 [data-tooltip]:hover:after,
 .tooltip:hover:before,
@@ -318,4 +321,17 @@ textarea,
     .is-desktop {
         display: none;
     }
+}
+
+.app-route {
+    height: 100vh;
+    width: 100vw;
+    overflow: auto;
+
+}
+
+.inner-content {
+    padding-left: 100px;
+    padding-bottom: 150px;
+    position: relative;
 }

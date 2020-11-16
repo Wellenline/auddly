@@ -12,6 +12,11 @@
     color: rgba(255, 255, 255, 0.5);
 }
 
+
+.app-page-title {
+    margin-left: -15px;
+}
+
 .tags {
     list-style: none;
     margin: 20px 0;
@@ -20,7 +25,8 @@
     .tag {
         display: inline-block;
         border-radius: 5px;
-        background-color: #09090b;
+        background-color: rgba(0, 0, 0, 50%);
+        backdrop-filter: blur(50px);
         color: white;
         padding: 10px;
 

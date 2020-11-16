@@ -168,9 +168,11 @@
     bottom: 55px;
     padding: 10px;
     right: 5px;
-    background-color: #0a0a0c;
+
     min-width: 40px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, .8);
+    backdrop-filter: blur(10px);
     z-index: 1;
     border-radius: 10px;
     transition:

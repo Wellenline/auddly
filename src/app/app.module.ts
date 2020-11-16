@@ -40,6 +40,7 @@ import { IndicatorComponent } from './components/common/indicator/indicator.comp
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HorizontalScrollComponent } from './components/horizontal-scroll/horizontal-scroll.component';
+import { BackgroundComponent } from './components/background/background.component';
 
 @NgModule({
 	declarations: [
@@ -73,6 +74,7 @@ import { HorizontalScrollComponent } from './components/horizontal-scroll/horizo
 		PlaylistsComponent,
 		IndicatorComponent,
 		HorizontalScrollComponent,
+		BackgroundComponent,
 	],
 
 	imports: [
