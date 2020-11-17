@@ -3,84 +3,81 @@
 
 	<div class="inner-content">
 
-		<div class="oven">
 
+		<div class="now-playing">
+			<div class="album-art">
+				<img class="lazyload" [lazyLoad]="track?.album?.picture || '/assets/logo.png'" />
+			</div>
 
-			<div class="now-playing">
-				<div class="album-art">
-					<img class="lazyload" [lazyLoad]="track?.album?.picture || '/assets/logo.png'" />
+			<div class="track-metadata">
+				<div class="track-title">
+					{{ track.name }}
 				</div>
 
-				<div class="track-metadata">
-					<div class="track-title">
-						{{ track.name }}
-					</div>
-
-					<div class="track-artist">
-						{{ track.artist }}
-					</div>
+				<div class="track-artist">
+					{{ track.artist }}
 				</div>
+			</div>
 
-				<div class="seekbar">
-					<div class="progress-controls">
-						<app-slider [value]="progress" (valueChange)="onProgress($event)">
-						</app-slider>
-					</div>
-
-				</div>
-
-				<div class="time-controls">
-					<div class="time">
-						{{currentTime | formatSeconds}}
-					</div>
-
-					<div class="time">
-						{{(track.duration || 0) | formatSeconds}}
-					</div>
-				</div>
-
-				<div class="controls">
-					<div class="control">
-						<app-fav-button [track]="track"></app-fav-button>
-
-
-					</div>
-
-					<div class="control">
-						<button (click)="playerService.onPrev()" class="button default controls-button">
-							<i class="feather feather-skip-back"></i>
-						</button>
-					</div>
-
-					<div class="control">
-						<button (click)="playerService.onPlayback()" class="button default controls-button playback">
-							<i class="feather {{ playing ? 'feather-pause' : 'feather-play' }}"></i>
-
-
-						</button>
-					</div>
-
-					<div class="control">
-						<button (click)="playerService.onNext()" class="button default controls-button">
-							<i class="feather feather-skip-forward"></i>
-
-						</button>
-					</div>
-
-					<div class="control">
-						<app-track-options [options]="{queue: false}" [track]="track"></app-track-options>
-
-					</div>
+			<div class="seekbar">
+				<div class="progress-controls">
+					<app-slider [value]="progress" (valueChange)="onProgress($event)">
+					</app-slider>
 				</div>
 
 			</div>
 
-			<button (click)="onClear()" class="button action-outline default flex flex-middle"> Clear Queue
-			</button>
-			<app-track-list [track]="track" *ngFor="let track of tracks">
-			</app-track-list>
+			<div class="time-controls">
+				<div class="time">
+					{{currentTime | formatSeconds}}
+				</div>
+
+				<div class="time">
+					{{(track.duration || 0) | formatSeconds}}
+				</div>
+			</div>
+
+			<div class="controls">
+				<div class="control">
+					<app-fav-button [track]="track"></app-fav-button>
+
+
+				</div>
+
+				<div class="control">
+					<button (click)="playerService.onPrev()" class="button default controls-button">
+						<i class="feather feather-skip-back"></i>
+					</button>
+				</div>
+
+				<div class="control">
+					<button (click)="playerService.onPlayback()" class="button default controls-button playback">
+						<i class="feather {{ playing ? 'feather-pause' : 'feather-play' }}"></i>
+
+
+					</button>
+				</div>
+
+				<div class="control">
+					<button (click)="playerService.onNext()" class="button default controls-button">
+						<i class="feather feather-skip-forward"></i>
+
+					</button>
+				</div>
+
+				<div class="control">
+					<app-track-options [options]="{queue: false}" [track]="track"></app-track-options>
+
+				</div>
+			</div>
 
 		</div>
+
+		<button (click)="onClear()" class="button action-outline default flex flex-middle"> Clear Queue
+		</button>
+		<app-track-list [track]="track" *ngFor="let track of tracks">
+		</app-track-list>
+
 		<!--div class="grid m-b-20">
 		<div class="width-expand@md flex flex-middle">
 			<div class="app-page-title">Queue</div>
