@@ -64,9 +64,22 @@ $border-radius: 10px;
 
         .app-sidebar {
             display: block;
-            order: 2;
+            position: fixed;
+            bottom: 0;
+            height: 70px;
+            left: 0;
+            right: 0;
+            width: 100%;
             margin: 0;
         }
+
+        .app-player {
+            display: none;
+        }
+
+
+
+
 
         /* flex-direction: column;
 

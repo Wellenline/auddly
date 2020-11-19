@@ -15,12 +15,21 @@
 
 
 
+.clear-queue {
+    width: calc(100% - 40px);
+    margin: 20px;
+    text-align: center;
+    display: block;
+}
+
 .now-playing {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
+
+
 
     .album-art {
         margin-top: 20%;

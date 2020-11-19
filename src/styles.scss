@@ -321,6 +321,12 @@ textarea,
     .is-desktop {
         display: none;
     }
+
+    .inner-content {
+        padding-left: 0px !important;
+        padding-bottom: 150px;
+        position: relative;
+    }
 }
 
 .app-route {
