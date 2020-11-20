@@ -1,8 +1,9 @@
 .modal-window {
     padding: 20px;
     margin-top: 150px;
-    background-color: rgba(0, 0, 0, .8);
-    backdrop-filter: blur(50px);
+    background-color: rgb(255 255 255);
+    z-index: 999999;
+    border-radius: 20px;
 
     .modal-title {
         margin: 10px auto;

@@ -14,6 +14,34 @@
 }
 
 
+.now-playing-header {
+    display: flex;
+    color: white;
+    align-items: center;
+    // margin-bottom: -15px;
+
+    .title {
+        // padding: 15px;
+        // font-size: 11px;
+        // letter-spacing: 2px;
+
+        //  opacity: 0.3;
+        flex-grow: 1;
+    }
+
+    .actions {
+        display: flex;
+
+        .action {
+            padding: 15px;
+            background-color: transparent !important;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
 
 .clear-queue {
     width: calc(100% - 40px);
@@ -23,12 +51,11 @@
 }
 
 .now-playing {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
-
 
 
     .album-art {
@@ -143,6 +170,14 @@
         .album-header,
         .album-overlay {
             border-radius: 0;
+        }
+
+        .now-playing-header {
+            margin-bottom: -15px;
+        }
+
+        .now-playing {
+            display: flex;
         }
     }
 }

@@ -2,7 +2,18 @@
 	<app-background [image]="track?.album?.picture"></app-background>
 
 	<div class="inner-content">
+		<div class="now-playing-header">
+			<div class="title">
+				<div class="app-page-title">Now Playing</div>
 
+			</div>
+			<div class="actions">
+				<div class="action" (click)="onClear()">
+					<i class="feather-trash"></i>
+
+				</div>
+			</div>
+		</div>
 
 		<div class="now-playing">
 			<div class="album-art">
@@ -73,8 +84,7 @@
 
 		</div>
 
-		<button (click)="onClear()" class="button clear-queue action-outline default flex flex-middle"> Clear Queue
-		</button>
+
 		<app-track-list [track]="track" *ngFor="let track of tracks">
 		</app-track-list>
 

@@ -23,7 +23,7 @@ export class SliderComponent implements OnInit {
 		vertical: false,
 	};
 
-	
+
 	@Input() public waveform: string;
 
 	@ViewChild("wavefromElement") waveformElement: ElementRef;
@@ -38,15 +38,11 @@ export class SliderComponent implements OnInit {
 	}
 
 	ngAfterViewInit() {
-		
-		if (this.waveformElement ) {
-			this.waveformElement.nativeElement.addEventListener('scroll', (e) => this.width = e.target.scrollLeft, false);
-		}
 	}
 
 	public onMouseDown(e) {
 		// e.preventDefault();
-		
+
 		this.isDragging = true;
 
 	}
@@ -67,14 +63,8 @@ export class SliderComponent implements OnInit {
 		this.valueChange.next(position.position);
 	}
 
-	public onMouseUp(e) {		
+	public onMouseUp(e) {
 		this.isDragging = false;
-
-		const maxScroll = this.waveformElement.nativeElement.scrollWidth - this.waveformElement.nativeElement.clientWidth;
-		this.width = this.waveformElement.nativeElement.scrollLeft;
-		this.value =  (this.width  * 100) / maxScroll;
-		this.valueChange.next(this.width / maxScroll);
-
 
 	}
 

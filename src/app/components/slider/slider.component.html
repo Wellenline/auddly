@@ -3,12 +3,3 @@
 	(mousedown)="onMouseDown($event)" class="slider {{ options.vertical ? 'vertical' : '' }}">
 	<div [ngStyle]="options.vertical ? {'height': value + '%'} : {'width': value + '%'}" class="range"></div>
 </div>
-
-
-<div *ngIf="waveform" #wavefromElement class="waveform">
-	<img [src]="waveform" class="base"  (mouseup)="onMouseUp($event)" (touchstart)="onMouseDown($event)"
-	(touchend)="onMouseUp($event)"
-   (mousedown)="onMouseDown($event)" />
-	<img #overlay [style.width.px]="width"  [src]="waveform" class=" overlay" />
-
-</div>

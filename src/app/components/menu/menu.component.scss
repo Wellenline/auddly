@@ -92,10 +92,19 @@ nav {
 
                 a {
                     margin: 0;
+
                     // width: auto;
+                    &.active {
+                        background-color: transparent;
+                        border-bottom: 4px solid var(--accent-color) !important;
+                        border-radius: 0 !important;
+
+                    }
 
                     &:hover {
-                        background: var(--accent-color);
+                        background: transparent;
+                        border-bottom: 4px solid var(--accent-color);
+                        border-radius: 0;
 
                         .title {
                             display: none;

@@ -3,7 +3,7 @@ import { ToastService } from "src/app/services/toast.service";
 
 @Component({
 	selector: "app-toast",
-	template: `<div class="toast {{ toastService.visible ? 'show' : '' }}">{{ toastService.message }}</div>`,
+	templateUrl: `./toast.component.html`,
 	styleUrls: ["./toast.component.scss"],
 })
 export class ToastComponent implements OnInit {

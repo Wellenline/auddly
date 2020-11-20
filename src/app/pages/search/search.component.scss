@@ -30,3 +30,26 @@
         }
     }
 }
+
+.title-action {
+    display: flex;
+    align-items: center;
+
+    .section-title {
+        flex-grow: 1;
+    }
+
+    .float-right {
+        color: white;
+        margin-right: 15px;
+        opacity: 0.3;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 600;
+
+        button {
+            border: none;
+        }
+    }
+}

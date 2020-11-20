@@ -1,4 +1,5 @@
 .artist-meta {
+    padding: 15px;
     padding-bottom: 40px;
 }
 
@@ -26,7 +27,7 @@
         display: inline-block;
         border-radius: 5px;
         background-color: rgba(0, 0, 0, 50%);
-        backdrop-filter: blur(50px);
+        // backdrop-filter: blur(50px);
         color: white;
         padding: 10px;
 

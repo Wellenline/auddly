@@ -7,25 +7,21 @@ interface IOptions {
 	providedIn: "root",
 })
 export class ToastService {
-	public visible = false;
-	public message: string;
 
-	public options: IOptions = { timeout: 1000 };
+	public queue = [];
+
 	constructor() { }
 
-	public show(message, options: IOptions) {
-		this.message = message;
-		this.visible = true;
-		this.options = Object.assign(this.options, options);
-
+	public show(message: string, options: IOptions = { timeout: 3000 }) {
+		console.log("Toast pushed");
+		this.queue.push(message);
 		setTimeout(() => {
-			this.visible = false;
-			this.message = "";
+			this.dismiss();
 		}, options.timeout);
 	}
 
-	public close(status) {
-		this.visible = false;
-		this.message = "";
+	public dismiss(index?: number) {
+		this.queue.splice(index || 0, 1);
+		// this.visible = false;
 	}
 }

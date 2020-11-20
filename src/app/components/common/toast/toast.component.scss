@@ -1,26 +1,86 @@
-.toast {
+.notifications {
+    position: fixed;
+    z-index: 999999;
+    right: 10px;
+    top: 10px;
+
+
+    .notification {
+        position: relative;
+        min-width: 250px;
+        background-color: white;
+        color: black;
+        text-align: center;
+        border-radius: 5px;
+        padding: 16px;
+        margin-bottom: 20px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 10px 0px;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+
+    }
+
+}
+
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes fadeout {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@media all and (max-width: 1000px) {
+    .notifications {
+        top: 10px;
+        width: 100%;
+        right: 10px;
+        top: 10px;
+        left: 10px;
+
+        .notification {
+            width: calc(100% - 20px);
+
+        }
+    }
+}
+
+/*#snackbar {
     visibility: hidden;
     min-width: 250px;
-    background-color: #fff;
-    color: #151515;
+    background-color: #000;
+    color: #fff;
     text-align: center;
-    border-radius: 2px;
+    border-radius: 5px;
     padding: 16px;
     position: fixed;
     z-index: 3;
-    right: 30px;
-    top: 30px;
+    right: 10px;
+    top: 10px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 10px 0px;
+}
 
-    &.hide {
-        visibility: visible;
-        animation: fadeout 0.5s;
-    }
+#snackbar.hide {
+    visibility: visible;
+    animation: fadeout 0.5s;
+}
 
-    &.show {
-        visibility: visible;
-        animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    }
+#snackbar.show {
+    visibility: visible;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
 @keyframes fadein {
@@ -30,7 +90,7 @@
     }
 
     to {
-        top: 30px;
+        top: 10px;
         opacity: 1;
     }
 }
@@ -38,7 +98,7 @@
 
 @keyframes fadeout {
     from {
-        top: 30px;
+        top: 10px;
         opacity: 1;
     }
 
@@ -47,3 +107,12 @@
         opacity: 0;
     }
 }
+
+@media all and (max-width: 1000px) {
+    #snackbar {
+        width: calc(100% - 20px);
+        top: 10px;
+        right: 10px;
+        left: 10px;
+    }
+}*/

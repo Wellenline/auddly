@@ -41,6 +41,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { HorizontalScrollComponent } from './components/horizontal-scroll/horizontal-scroll.component';
 import { BackgroundComponent } from './components/background/background.component';
+import { PlaylistListComponent } from './components/playlist-list/playlist-list.component';
 
 @NgModule({
 	declarations: [
@@ -75,6 +76,7 @@ import { BackgroundComponent } from './components/background/background.componen
 		IndicatorComponent,
 		HorizontalScrollComponent,
 		BackgroundComponent,
+		PlaylistListComponent,
 	],
 
 	imports: [
