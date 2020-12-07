@@ -36,12 +36,13 @@ import { TrackOptionsComponent } from "./components/track-options/track-options.
 import { SliderComponent } from "./components/slider/slider.component";
 import { PlaylistFormComponent } from "./components/playlist-form/playlist-form.component";
 import { PlaylistsComponent } from "./pages/playlists/playlists.component";
-import { IndicatorComponent } from './components/common/indicator/indicator.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
-import { HorizontalScrollComponent } from './components/horizontal-scroll/horizontal-scroll.component';
-import { BackgroundComponent } from './components/background/background.component';
-import { PlaylistListComponent } from './components/playlist-list/playlist-list.component';
+import { IndicatorComponent } from "./components/common/indicator/indicator.component";
+import { ServiceWorkerModule } from "@angular/service-worker";
+import { environment } from "../environments/environment";
+import { HorizontalScrollComponent } from "./components/horizontal-scroll/horizontal-scroll.component";
+import { BackgroundComponent } from "./components/background/background.component";
+import { PlaylistListComponent } from "./components/playlist-list/playlist-list.component";
+import { VirtualScrollerModule } from "ngx-virtual-scroller";
 
 @NgModule({
 	declarations: [
@@ -87,7 +88,8 @@ import { PlaylistListComponent } from './components/playlist-list/playlist-list.
 		CommonModule,
 		LazyLoadImageModule,
 		AppRoutingModule,
-		ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+		VirtualScrollerModule,
+		ServiceWorkerModule.register("ngsw-worker.js", { enabled: environment.production }),
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 	providers: [HttpService, PlayerService],

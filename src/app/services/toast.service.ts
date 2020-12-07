@@ -13,15 +13,11 @@ export class ToastService {
 	constructor() { }
 
 	public show(message: string, options: IOptions = { timeout: 3000 }) {
-		console.log("Toast pushed");
 		this.queue.push(message);
-		setTimeout(() => {
-			this.dismiss();
-		}, options.timeout);
+		setTimeout(() => this.dismiss(), options.timeout);
 	}
 
 	public dismiss(index?: number) {
 		this.queue.splice(index || 0, 1);
-		// this.visible = false;
 	}
 }

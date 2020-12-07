@@ -17,6 +17,7 @@ nav {
                 margin: 0 10px 10px 10px;
                 border-radius: 10px;
                 width: 60px;
+                position: relative;
 
 
                 &.active {
@@ -67,6 +68,8 @@ nav {
                     margin-left: 40px;
                     position: absolute;
                     margin-top: 10px;
+                    position: absolute;                    top: 0;
+                    left: 50px;
                 }
             }
         }

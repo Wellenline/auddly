@@ -54,6 +54,7 @@
     "@angular/router": "~10.2.2",
     "@angular/service-worker": "~10.2.2",
     "ng-lazyload-image": "^7.1.0",
+    "ngx-virtual-scroller": "^4.0.3",
     "qrcode": "^1.4.4",
     "rxjs": "~6.5.4",
     "tslib": "^2.0.0",
