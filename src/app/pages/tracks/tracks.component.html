@@ -7,9 +7,8 @@
 		<infinite-scroll (scrolled)="onScroll()">
 
 			<app-track-list [track]="track" *ngFor="let track of tracks"></app-track-list>
-			<div class="flash primary" *ngIf="loading">
-				Loading tracks...
-			</div>
+			<app-indicator [loading]="loading" message="Loading tracks"></app-indicator>
+
 		</infinite-scroll>
 	</div>
 </section>

@@ -41,7 +41,7 @@ export class PlayerService {
 		this.audio = new Audio();
 		this.audio.addEventListener("timeupdate", this.onProgress.bind(this));
 		this.audio.addEventListener("ended", this.onAudioEnded.bind(this));
-
+		this.audio.volume = parseFloat(localStorage.getItem("volume")) || 1;
 		(navigator as any).mediaSession.setActionHandler("play", this.onPlayback.bind(this));
 		(navigator as any).mediaSession.setActionHandler("pause", this.onPlayback.bind(this));
 		(navigator as any).mediaSession.setActionHandler("previoustrack", this.onPrev.bind(this));
@@ -207,6 +207,8 @@ export class PlayerService {
 	 */
 	public onVolume(volume: number) {
 		this.audio.volume = volume;
+		localStorage.setItem("volume", this.audio.volume.toString());
+
 	}
 
 	public onLike(id: string) {

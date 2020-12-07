@@ -9,7 +9,7 @@ import { HttpService } from "src/app/services/http.service";
 })
 export class PlayerComponent implements OnInit {
 	public progress = 0;
-	public volume = 100;
+	public volume = (parseFloat(localStorage.getItem("volume")) || 1) * 100;
 	public playing = false;
 	public currentTime = 0;
 	public track: ITrack;
