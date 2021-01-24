@@ -16,6 +16,7 @@ export class SetupComponent implements OnInit {
 	constructor(private httpService: HttpService, private router: Router) { }
 
 	ngOnInit(): void {
+		console.log("init ")
 		if (this.httpService.isConnected()) {
 			this.router.navigate(["/"]);
 		}

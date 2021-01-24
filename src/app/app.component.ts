@@ -8,19 +8,9 @@ import { PlaylistService } from "./services/playlist.service";
 	styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
-	public title = "waveline-web-app";
-	constructor(private playerService: PlayerService, public playlistService: PlaylistService) { }
+	constructor() { }
 	ngOnInit() {
-		const color = localStorage.getItem("accent-color");
 
-		if (color) {
-			document.documentElement.style.setProperty("--accent-color", color);
 
-		}
-
-	}
-	@HostListener("document:keypress", ["$event"])
-	handleKeyboardEvent(event: KeyboardEvent) {
-		// 
 	}
 }

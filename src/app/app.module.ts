@@ -43,6 +43,7 @@ import { HorizontalScrollComponent } from "./components/horizontal-scroll/horizo
 import { BackgroundComponent } from "./components/background/background.component";
 import { PlaylistListComponent } from "./components/playlist-list/playlist-list.component";
 import { VirtualScrollerModule } from "ngx-virtual-scroller";
+import { MainComponent } from './layouts/main/main.component';
 
 @NgModule({
 	declarations: [
@@ -78,6 +79,7 @@ import { VirtualScrollerModule } from "ngx-virtual-scroller";
 		HorizontalScrollComponent,
 		BackgroundComponent,
 		PlaylistListComponent,
+		MainComponent,
 	],
 
 	imports: [

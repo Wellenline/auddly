@@ -13,26 +13,37 @@ import { AuthGuard } from "./guards/auth.guard";
 import { PlaylistComponent } from "./pages/playlist/playlist.component";
 import { FavouritesComponent } from "./pages/favourites/favourites.component";
 import { PlaylistsComponent } from "./pages/playlists/playlists.component";
+import { MainComponent } from "./layouts/main/main.component";
 
 const routes: Routes = [
 
-	{ path: "", redirectTo: "search", pathMatch: "full" },
-	{ path: "playlists", component: PlaylistsComponent, canActivate: [AuthGuard] },
 
-	{ path: "tracks", component: TracksComponent, canActivate: [AuthGuard] },
+	{
+		path: "",
+		component: MainComponent, canActivate: [AuthGuard],
+		children: [
 
-	{ path: "albums", component: AlbumsComponent, canActivate: [AuthGuard] },
-	{ path: "albums/:id", component: AlbumComponent, canActivate: [AuthGuard] },
+			{ path: "", redirectTo: "search", pathMatch: "full" },
+			{ path: "playlists", component: PlaylistsComponent, canActivate: [AuthGuard] },
 
-	{ path: "artists", component: ArtistsComponent, canActivate: [AuthGuard] },
-	{ path: "artists/:id", component: ArtistComponent, canActivate: [AuthGuard] },
+			{ path: "tracks", component: TracksComponent, canActivate: [AuthGuard] },
 
-	{ path: "search", component: SearchComponent, canActivate: [AuthGuard] },
-	{ path: "settings", component: SettingsComponent, canActivate: [AuthGuard] },
-	{ path: "playlists/:id", component: PlaylistComponent, canActivate: [AuthGuard] },
-	{ path: "favourites", component: FavouritesComponent, canActivate: [AuthGuard] },
+			{ path: "albums", component: AlbumsComponent, canActivate: [AuthGuard] },
+			{ path: "albums/:id", component: AlbumComponent, canActivate: [AuthGuard] },
 
-	{ path: "queue", component: QueueComponent, canActivate: [AuthGuard] },
+			{ path: "artists", component: ArtistsComponent, canActivate: [AuthGuard] },
+			{ path: "artists/:id", component: ArtistComponent, canActivate: [AuthGuard] },
+
+			{ path: "search", component: SearchComponent, canActivate: [AuthGuard] },
+			{ path: "settings", component: SettingsComponent, canActivate: [AuthGuard] },
+			{ path: "playlists/:id", component: PlaylistComponent, canActivate: [AuthGuard] },
+			{ path: "favourites", component: FavouritesComponent, canActivate: [AuthGuard] },
+
+			{ path: "queue", component: QueueComponent, canActivate: [AuthGuard] },
+
+		]
+	},
+
 
 	{ path: "setup", component: SetupComponent },
 
@@ -40,9 +51,9 @@ const routes: Routes = [
 
 @NgModule({
 	imports: [RouterModule.forRoot(routes, {
-    scrollPositionRestoration: "enabled",
-    relativeLinkResolution: 'legacy'
-})],
+		scrollPositionRestoration: "enabled",
+		relativeLinkResolution: 'legacy'
+	})],
 	exports: [RouterModule],
 })
 export class AppRoutingModule { }

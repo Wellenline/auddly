@@ -1,14 +1,11 @@
 .app-setup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: black;
-    z-index: 3;
-    overflow: auto;
 
-    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: auto;
 }
 
 .app-logo {
@@ -35,48 +32,22 @@
 }
 
 .custom-input {
-    height: 80px;
-
-    font-size: 1.5rem;
-
-    &::placeholder {
-        color: rgba(255, 255, 255, 0.4);
-    }
-
-    padding: .8rem 1rem;
-    background-color: #09090b;
-    border: 0;
-    transition: color .3s ease-out,
-    background-color .3s ease-out,
-    box-shadow .2s ease-out;
-    color: rgba(255, 255, 255, 0.5);
+    background-color: black;
     width: 100%;
+    border: 1px solid #333;
+    color: white;
+    padding: 20px;  
     border-radius: 5px;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-
-    &.round {
-        border-radius: 5px;
-
-    }
-
-    &:hover,
+    font-size: 1.5rem;
     &:focus {
-        outline: none;
-
-        background-color: #fff;
-        color: #495057;
-        box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
-
-        &::placeholder {
-            color: #ddd;
-        }
+        border-color: var(--accent-color);
+        
     }
 }
 
 .button {
     padding: 20px;
-    margin-top: 40px;
+    margin-top: 20px;
     background: #000000;
     font-size: 1.5rem;
 
