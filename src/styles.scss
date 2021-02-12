@@ -187,6 +187,7 @@ textarea,
 .lazyload {
     transition: opacity 1s;
     opacity: 0;
+    object-fit: cover;
 }
 
 
