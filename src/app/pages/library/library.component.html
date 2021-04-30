@@ -1,0 +1,58 @@
+<app-header transparent="true" title="Library">
+
+</app-header>
+
+
+
+
+
+
+<div class="toggle">
+	<span class="{{ tab === 0 ? 'left' : 'right' }}"></span>
+	<div (click)="setTab(0)" class="value {{ tab === 0 ? 'active' : '' }}">
+		Artists
+	</div>
+	<div (click)=" setTab(1)" class="value {{ tab === 1 ? 'active' : '' }}">
+		Albums
+	</div>
+</div>
+<infinite-scroll (scrolled)="onScroll()">
+	<div class="library">
+
+		<ng-container *ngIf="tab === 0">
+
+			<div class="column" *ngFor="let artist of artists" routerLink="./artists/{{ artist.id }}">
+				<img width="170" height="170" class="lazyload" [lazyLoad]="artist.picture || '/assets/logo.png'" />
+
+				<div class="column-details">
+					<div class="title">{{ artist.name }}</div>
+				</div>
+
+			</div>
+
+		</ng-container>
+		<ng-container *ngIf="tab === 1">
+
+			<div class="column" *ngFor="let album of albums" routerLink="./albums/{{ album.id }}">
+				<img class="lazyload" [lazyLoad]="album.picture || '/assets/logo.png'" />
+
+				<div class="column-details">
+					<div class="title">{{ album.name }}</div>
+					<div class="subtitle">{{ album.artist.name }}</div>
+				</div>
+
+
+			</div>
+		</ng-container>
+	</div>
+	<!--div class="grid">
+		<div class="width-2@lg width-4@md width-6@sm width-6@xs" *ngFor="let artist of artists">
+			<app-artist-list [artist]="artist"></app-artist-list>
+
+		</div>
+	</div-->
+	<app-indicator [loading]="loading" message="Loading artists"></app-indicator>
+
+</infinite-scroll>
+
+<app-loading [loading]="loading"></app-loading>

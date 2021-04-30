@@ -1,0 +1,9 @@
+<div class="themes">
+	<div (click)="onToggle()" class="theme {{ themeService.theme === 'dark' ? 'active' : ''}}">
+		<i class="feather-moon"></i>
+	</div>
+
+	<div (click)="onToggle()" class="theme  {{ themeService.theme === 'light' ? 'active' : ''}}">
+		<i class="feather-sun"></i>
+	</div>
+</div>

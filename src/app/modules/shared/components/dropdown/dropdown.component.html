@@ -1,0 +1,35 @@
+<!--div class="dropdown">
+
+	<div class="dropdown-header {{ open ? 'focus' : '' }}">
+
+
+		<ng-container [ngTemplateOutlet]="header ? headerRef : basic" [ngTemplateOutletContext]="{item:this}">
+		</ng-container>
+
+		<ng-template #basic>
+			{{items}}
+		</ng-template>
+	</div>
+
+
+	<div class="dropdown-content {{config.right ? 'right' : ''}} {{open ? 'visible' : '' }}">
+
+		<ng-content></ng-content>
+
+	</div>
+
+</div-->
+
+<div class="dropup">
+	<ng-container [ngTemplateOutlet]="header ? headerRef : basic" [ngTemplateOutletContext]="{item:this}">
+	</ng-container>
+	<ng-template #basic>
+		{{items}}
+	</ng-template>
+	<div
+		class="dropup-content {{open ? 'visible' : '' }}  {{config.right ? 'right' : 'left'}} {{config.up ? 'up' : 'bottom'}}">
+		<ng-content></ng-content>
+
+
+	</div>
+</div>

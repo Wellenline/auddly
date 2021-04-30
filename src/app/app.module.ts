@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -28,8 +28,6 @@ import { SetupComponent } from "./pages/setup/setup.component";
 import { PlaylistComponent } from "./pages/playlist/playlist.component";
 import { FavouritesComponent } from "./pages/favourites/favourites.component";
 import { AudioVisualizerComponent } from "./components/audio-visualizer/audio-visualizer.component";
-import { ToastComponent } from "./components/common/toast/toast.component";
-import { DialogComponent } from "./components/common/dialog/dialog.component";
 import { FavButtonComponent } from "./components/fav-button/fav-button.component";
 import { SizePipe } from "./pipes/size.pipe";
 import { TrackOptionsComponent } from "./components/track-options/track-options.component";
@@ -44,6 +42,15 @@ import { BackgroundComponent } from "./components/background/background.componen
 import { PlaylistListComponent } from "./components/playlist-list/playlist-list.component";
 import { VirtualScrollerModule } from "ngx-virtual-scroller";
 import { MainComponent } from './layouts/main/main.component';
+import { SharedModule } from "./modules/shared/shared.module";
+import { SwiperModule } from 'swiper/angular';
+import { LibraryComponent } from './pages/library/library.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ThemeToggleComponent } from './components/theme-toggle/theme-toggle.component';
+
+import SwiperCore, { EffectCoverflow, Swiper, SwiperOptions, Virtual } from "swiper/core";
+
+SwiperCore.use([Virtual, EffectCoverflow]);
 
 @NgModule({
 	declarations: [
@@ -67,8 +74,6 @@ import { MainComponent } from './layouts/main/main.component';
 		PlaylistComponent,
 		FavouritesComponent,
 		AudioVisualizerComponent,
-		ToastComponent,
-		DialogComponent,
 		FavButtonComponent,
 		SizePipe,
 		TrackOptionsComponent,
@@ -80,20 +85,24 @@ import { MainComponent } from './layouts/main/main.component';
 		BackgroundComponent,
 		PlaylistListComponent,
 		MainComponent,
+		LibraryComponent,
+		ThemeToggleComponent,
 	],
 
 	imports: [
 		BrowserModule,
 		HttpClientModule,
 		ReactiveFormsModule,
+		SharedModule,
 		FormsModule,
 		CommonModule,
+		SwiperModule,
 		LazyLoadImageModule,
 		AppRoutingModule,
 		VirtualScrollerModule,
 		ServiceWorkerModule.register("ngsw-worker.js", { enabled: environment.production }),
 	],
-	schemas: [CUSTOM_ELEMENTS_SCHEMA],
+	schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 	providers: [HttpService, PlayerService],
 	bootstrap: [AppComponent],
 })

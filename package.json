@@ -16,6 +16,8 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~11.0.3",
+    "@angular/cdk": "^11.2.11",
+    "@angular/cdk-experimental": "^11.2.11",
     "@angular/common": "~11.0.3",
     "@angular/compiler": "~11.0.3",
     "@angular/core": "~11.0.3",
@@ -28,6 +30,7 @@
     "ngx-virtual-scroller": "^4.0.3",
     "qrcode": "^1.4.4",
     "rxjs": "~6.5.4",
+    "swiper": "^6.5.8",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },

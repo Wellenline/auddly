@@ -1,351 +1,195 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+@import "~swiper/swiper-bundle";
 
-:root {
-    --accent-color: #4caf50;
+@import "./theme/base.scss";
+
+:root,
+html[data-theme="light"] {
+	--accent-color: #4caf50;
+
+	--swiper-theme-color: #ffffff !important;
+	--cropper-outline-color: rgba(0, 0, 0, 0.8);
+	--cropper-overlay-color: black;
+
+	--background-color: #fff;
+	--background-color-2: #fff;
+	--background-color-3: #fff;
+	--background-color-4: #f9f9f9;
+	--background-color-5: #fbfbfb;
+	--input-color: #181818;
+
+	--border-color: #eee;
+	--highlight-color: #2d63e9;
+
+	--foreground-color: #181818;
+	--menu-add-color: #000;
+
+	--dark-color: #181818;
+	--logo-filter: inherit;
 }
 
-$background: #030304;
-$default: #030304;
-$primary: #4caf50;
-$info: #11abfe;
-$success: #00d090;
-$warning: #f1c90b;
-$danger: #e74b3c;
-$invert: #2f2e35;
+html[data-theme="dark"] {
+	--accent-color: #4caf50;
 
-$highlight: #ffeea8;
+	--swiper-theme-color: #ffffff !important;
+	--cropper-outline-color: rgba(0, 0, 0, 0.8);
+	--cropper-overlay-color: black;
 
-$border-color: #dfe1e6;
-$body-text-color: #292855;
-$font-family: "Open Sans",
-sans-serif;
-$border-radius: 3px;
+	--background-color: #111;
+	--background-color-2: #1c1c1c;
+	--background-color-3: #303030;
+	--background-color-4: #222222;
+	--background-color-5: #222222;
 
+	--border-color: #303030;
+	--highlight-color: #2d63e9;
+	--input-color: #fff;
 
-$text-dark: #363636 !default;
-$text-light: #ffffff !default;
+	--foreground-color: #f7f7f9;
+	--menu-add-color: #303030;
 
+	--dark-color: #181818;
+	--logo-filter: brightness(0) invert(1);
 
-
-$form-placeholder: #949494 !default;
-$input-height: 60px;
-$input-text: #2b2d2f !default;
-
-$text-lead-color: $text-dark;
-$text-lead-size: 1.17em;
-
-$text-meta-color: #7e7e7e;
-$text-meta-size: 0.94rem;
-
-$columns: 12;
-
-$tablet: 768px;
-$phone: 640px;
-$desktop: 1024px;
-
-// Mobile heading font size
-$h1-mobile : 1.75rem !default;
-$h2-mobile : 1.5rem !default;
-$h3-mobile : 1.25rem !default;
-$h4-mobile : 1.1rem !default;
-$h5-mobile : 1rem !default;
-
-// Heading font size
-$h1 : 2.25rem !default;
-$h2 : 2rem !default;
-$h3 : 1.75rem !default;
-$h4 : 1.5rem !default;
-$h5 : 1.25rem !default;
-
-// Headings
-$heading-font-color : #404040 !default;
-$heading-font-weight : 600 !default;
-$heading-font-family : -apple-system,
-BlinkMacSystemFont,
-Helvetica Neue,
-Helvetica,
-Arial,
-sans-serif !default;
-$heading-line-height : 1.2 !default;
+	--shade-loading: grayscale(2.8) brightness(0.12);
+}
 
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 ::-webkit-scrollbar {
-    width: 0px;
-    background: transparent;
+	width: 0px;
+	background: transparent;
 }
 
-input, input:before, input:after {
-    -webkit-user-select: initial;
-    -khtml-user-select: initial;
-    -moz-user-select: initial;
-    -ms-user-select: initial;
-    user-select: initial;
+input,
+input:before,
+input:after {
+	-webkit-user-select: initial;
+	-khtml-user-select: initial;
+	-moz-user-select: initial;
+	-ms-user-select: initial;
+	user-select: initial;
 }
 html,
 body {
-    margin: 0;
-    font-family: $font-family;
-    color: $body-text-color;
-    // background: rgb(244, 246, 248);
-    background: $background;
-
-
+	margin: 0;
 }
 
-$scollbar-hover: #dddddd !default;
-$animation-duration: 0.2s !default;
-
-$scrollbar-thumb: darken($scollbar-hover, 3%);
-$scrollbar-thumb-hover: darken($scollbar-hover, 10%);
-/*
-::-webkit-scrollbar {
-    height: 10px;
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: $default;
-    border-radius: 6px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: $scrollbar-thumb;
-    border-radius: 6px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: $scrollbar-thumb-hover;
-}*/
-
-@import "./assets/theme/utils.scss";
-@import "./assets/theme/button.scss";
-@import "./assets/theme/switch.scss";
-@import "./assets/theme/form.scss";
-@import "./assets/theme/table.scss";
-@import "./assets/theme/flash.scss";
-
-@import "./assets/theme/panel.scss";
-
-@import "./assets/theme/text.scss";
-@import "./assets/theme/tooltip.scss";
-@import "./assets/theme/tabs.scss";
-@import "./assets/theme/modal.scss";
-@import "./assets/theme/grid.scss";
-@import "./assets/theme/navbar.scss";
-@import "./assets/theme/base.scss";
 @import "./assets/feather.css";
 
 :not(input):not(textarea),
 :not(input):not(textarea)::after,
 :not(input):not(textarea)::before {
-    -webkit-user-select: none;
-    user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
 }
 
 input,
 button,
 textarea,
 :focus {
-    outline: none; // You should add some other style for :focus to help UX/a11y
-}
-
-
-
-.app-page-title {
-    font-size: 1.5rem;
-    color: white;
-    font-weight: 600;
-    padding: 15px;
-    // margin-top: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    -webkit-app-region: drag
+	outline: none; // You should add some other style for :focus to help UX/a11y
 }
 
 * {
-    &:focus {
-        outline: none;
-    }
+	&:focus {
+		outline: none;
+	}
 }
 
-.action {
-    background-color: #09090b !important;
+a {
+	color: #333;
+	text-decoration: none;
+	// border-bottom: 1px dashed;
+
+	&:focus,
+	&:hover {
+		color: black;
+		cursor: pointer;
+		text-decoration: none;
+	}
 }
 
 .lazyload {
-    transition: opacity 1s;
-    opacity: 0;
-    object-fit: cover;
+	transition: opacity 1s;
+	opacity: 0;
+	object-fit: cover;
 }
-
 
 .ng-lazyloaded {
-    opacity: 1;
+	opacity: 1;
 }
 
-.action-outline {
-    background-color: transparent !important;
-    color: white !important;
-    border: 1px solid white !important;
-    border-radius: 50px !important;
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-    text-transform: uppercase;
+.dropdown-action-item {
+	font-size: 1.2rem;
+	padding: 5px;
+	border-radius: 5px;
+	display: flex;
+	align-items: center;
+	&:hover {
+		background-color: black;
+		color: white;
+		cursor: pointer;
+	}
 }
 
-/**
- * Tooltip Styles
- */
-
-/* Base styles for the element that has a tooltip */
-[data-tooltip],
-.tooltip {
-    position: relative;
-    cursor: pointer;
+.dropup-content {
+	background-color: rgba(0, 0, 0, 0.8) !important;
+	backdrop-filter: blur(50px) !important;
 }
 
-/* Base styles for the entire tooltip */
-[data-tooltip]:before,
-[data-tooltip]:after,
-.tooltip:before,
-.tooltip:after {
-    position: absolute;
-    visibility: hidden;
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    opacity: 0;
-    transition:
-        opacity 0.2s ease-in-out,
-        visibility 0.2s ease-in-out,
-        transform 0.2s cubic-bezier(0.71, 1.7, 0.77, 1.24);
-    transform: translate3d(0, 0, 0);
-    pointer-events: none;
+.dropdown-action-list {
+	display: flex;
+	flex-direction: column;
+	box-shadow: rgba(17, 17, 18, 0.04) 0 2px 4px, rgba(19, 20, 20, 0.06) 0 1px 1px;
+	a {
+		color: white;
+		&:first-of-type {
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+		}
+
+		&:last-of-type {
+			border-bottom-left-radius: 5px;
+			border-bottom-right-radius: 5px;
+		}
+		padding: 15px;
+		// white-space: nowrap;
+
+		&:hover {
+			background-color: var(--accent-color);
+
+			color: #fff;
+			cursor: pointer;
+		}
+	}
 }
 
-/* Show the entire tooltip on hover and focus */
-[data-tooltip]:hover:before,
-[data-tooltip]:hover:after,
-.tooltip:hover:before,
-.tooltip:hover:after {
-    visibility: visible;
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
-    opacity: 1;
-}
-
-/* Base styles for the tooltip's directional arrow */
-.tooltip:before,
-[data-tooltip]:before {
-    z-index: 1001;
-    border: 6px solid transparent;
-    background: transparent;
-    content: "";
-}
-
-/* Base styles for the tooltip's content area */
-.tooltip:after,
-[data-tooltip]:after {
-    z-index: 1000;
-    padding: 15px;
-    background-color: rgba(0, 0, 0, .8);
-    backdrop-filter: blur(10px);
-    color: #fff;
-    content: attr(data-tooltip);
-    border-radius: 5px;
-    font-size: 14px;
-    line-height: 1.2;
-    white-space: nowrap;
-}
-
-/* Directions */
-
-/* Top (default) */
-[data-tooltip]:before,
-[data-tooltip]:after,
-.tooltip:before,
-.tooltip:after,
-.tooltip-top:before,
-.tooltip-top:after {
-    bottom: 100%;
-    left: 50%;
-    transform: translateY(-12px) translateX(-50%);
-}
-
-/*
-[data-tooltip]:before,
-.tooltip:before,
-.tooltip-top:before {
-    margin-left: 0px;
-    margin-bottom: -12px;
-    border-top-color: #18181b;
-    
-}
-
-*/
-[data-tooltip]:hover:before,
-[data-tooltip]:hover:after,
-.tooltip:hover:before,
-.tooltip:hover:after,
-
-.tooltip-top:hover:before,
-.tooltip-top:hover:after {
-    // transform: translateY(-12px);
-    transform: translateY(-12px) translateX(-50%);
-}
-
-.section-title {
-    padding: 15px;
-    color: white;
-    opacity: 0.3;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: 600;
-}
-
-.is-mobile {
-    display: none;
-}
-
-.is-desktop {
-    display: initial;
+.highlight {
+	font-size: 2.7rem;
+	color: var(--foreground-color);
+	font-weight: 600;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	margin-bottom: 10px;
 }
 
 @media all and (max-width: 1000px) {
-    .is-mobile {
-        display: initial;
-    }
-
-    .is-desktop {
-        display: none;
-    }
-
-    .inner-content {
-        padding-left: 0px !important;
-        padding-bottom: 70px !important;
-        position: relative;
-    }
-}
-
-.app-route {
-    height: 100vh;
-    width: 100vw;
-    overflow: auto;
-
-}
-
-.inner-content {
-    padding-left: 100px;
-    padding-bottom: 150px;
-    position: relative;
+	.container {
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+		min-width: 100% !important;
+		max-width: 100% !important;
+		width: 100% !important;
+	}
 }

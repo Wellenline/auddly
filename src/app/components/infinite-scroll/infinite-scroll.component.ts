@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, OnDestroy } from "@angular/core";
+import { isPlatformBrowser } from "@angular/common";
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, OnDestroy, Inject, PLATFORM_ID } from "@angular/core";
 
 @Component({
 	selector: "infinite-scroll",
@@ -16,30 +17,41 @@ export class InfiniteScrollComponent implements OnInit, OnDestroy {
 
 	private observer: IntersectionObserver;
 
-	constructor(private host: ElementRef) { }
+	constructor(@Inject(PLATFORM_ID) private platformId: Object, private host: ElementRef) { }
 
 	public ngOnInit() {
-		const options = {
-			root: this.isHostScrollable() ? this.host.nativeElement : null,
-			...this.options,
-		};
+		if (isPlatformBrowser(this.platformId)) {
 
-		this.observer = new IntersectionObserver(([entry]) => {
-			// console.log(entry);
-			return entry.isIntersecting && this.scrolled.emit();
-		}, options);
-		this.observer.observe(this.anchor.nativeElement);
+			const options = {
+				root: this.isHostScrollable() ? this.host.nativeElement : null,
+				...this.options,
+			};
+
+			this.observer = new IntersectionObserver(([entry]) => {
+				// console.log(entry);
+				return entry.isIntersecting && this.scrolled.emit();
+			}, options);
+			this.observer.observe(this.anchor.nativeElement);
+		}
 	}
 
 	public ngOnDestroy() {
-		this.observer.disconnect();
+		if (this.observer) {
+			this.observer.disconnect();
+
+		}
 	}
 
 	private isHostScrollable() {
 		const style = window.getComputedStyle(this.element);
 
-		return style.getPropertyValue("overflow") === "auto" ||
-			style.getPropertyValue("overflow-y") === "scroll";
+		if (style) {
+			return style.getPropertyValue("overflow") === "auto" ||
+				style.getPropertyValue("overflow-y") === "scroll";
+		}
+
+
+
 	}
 
 }

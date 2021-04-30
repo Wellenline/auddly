@@ -11,7 +11,7 @@ export class ArtistsComponent implements OnInit {
 	public pagination = {
 		total: 0,
 		skip: 0,
-		limit: 50,
+		limit: 100,
 	};
 	public loading = true;
 	constructor(private httpService: HttpService) { }

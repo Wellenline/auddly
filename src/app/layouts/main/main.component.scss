@@ -1,96 +1,140 @@
-$background-shade: #09090b;
-$border-radius: 10px;
+.player {
+	width: 100%;
+	background-color: var(--background-color-2);
+	border-radius: 5px;
 
-/*.app {
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
-    width: 100vw;
+	position: relative;
+	box-shadow: 0 2px 4px rgb(17 17 18 / 4%), 0 1px 1px rgb(19 20 20 / 6%);
+}
+.toggle {
+	margin-bottom: 20px;
+	width: 100%;
+	background-color: var(--background-color-2);
+	padding: 15px;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: row;
+	position: relative;
+	zoom: 1;
+	box-shadow: 0 2px 4px rgb(17 17 18 / 4%), 0 1px 1px rgb(19 20 20 / 6%);
 
+	&:before,
+	&:after {
+		content: " "; /* 1 */
+		display: table; /* 2 */
+	}
+	&:after {
+		clear: both;
+	}
 
-    .app-sidebar {
-        background-color: $background-shade;
-        border-radius: $border-radius;
-        margin: 20px;
+	span {
+		position: absolute;
+		background-color: var(--border-color);
+		width: calc(20% - 5px);
+		height: calc(100% - 10px);
+		border-radius: 5px;
+		transition: all 200ms ease;
+		top: 5px;
 
-    }
+		&.left {
+			left: 5px;
+		}
+		&.right {
+			left: 20%;
+		}
+	}
+	.value {
+		flex-grow: 1;
+		text-align: center;
+		flex-basis: 0;
+		z-index: 2;
 
-    .app-content {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        width: 100vw;
-        overflow: hidden;
+		&:hover {
+			cursor: pointer;
+		}
 
-
-        .app-router {
-            flex-grow: 1;
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
-
-        .app-player {
-            margin: 20px;
-            background: $background-shade;
-            border-radius: $border-radius;
-        }
-    }
-}*/
+		&.active {
+			color: var(--foreground-color);
+		}
+	}
+}
 
 .app {
-    display: flex;
+	display: flex;
+	flex-direction: column;
+	// overflow: auto;
+	width: 100%;
+	height: 100vh;
 
-    .app-sidebar {
-        position: fixed;
-        z-index: 2;
-        height: 100vh;
-        background-color: rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(10px);
-    }
+	background-color: var(--background-color);
 
-    .app-player {
-        position: fixed;
-        bottom: 0;
-        background-color: rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(10px);
-        border-radius: 0;
-        width: calc(100vw - 80px);
-        right: 0;
-    }
+	&-menu {
+		// height: calc(100vh - 20px);
+		// margin: 10px;
+		// border-radius: 10px;
+		width: 100%;
+		order: 1;
+		position: fixed;
+		bottom: 0;
+
+		background-color: var(--background-color-2);
+
+		box-shadow: 0 2px 4px rgb(0 0 0 / 6%);
+		z-index: 4;
+
+		.menu {
+			display: flex;
+			flex-direction: row;
+			width: 100%;
+
+			&-item {
+				padding: 10px;
+				display: flex;
+				flex-grow: 1;
+				flex-basis: 0;
+				justify-content: center;
+				a {
+					padding: 10px;
+					color: var(--foreground-color);
+					font-weight: normal;
+					display: flex;
+					align-items: center;
+
+					i {
+						padding: 0px;
+					}
+					&.active,
+					&:hover {
+						color: #fff;
+						background-color: var(--accent-color);
+						border-radius: 5px;
+					}
+				}
+			}
+		}
+	}
+
+	&-content {
+		flex-grow: 1;
+		overflow: auto;
+		order: 0;
+		padding-bottom: 60px;
+		position: relative;
+	}
 }
 
 @media all and (max-width: 1000px) {
-    .app {
-
-        .app-sidebar {
-            display: block;
-            position: fixed;
-            bottom: 0;
-            height: 70px;
-            left: 0;
-            right: 0;
-            width: 100%;
-            margin: 0;
-        }
-
-        .app-player {
-            display: none;
-        }
-
-
-
-
-
-        /* flex-direction: column;
-
-        .app-sidebar {
-            display: block;
-            order: 2;
-            margin: 0;
-        }
-
-        .app-player {
-            display: none;
-        }*/
-    }
+	.app {
+		display: flex;
+		flex-direction: column;
+		// overflow: auto;
+		width: 100%;
+		height: 100vh;
+		&-menu {
+			.container {
+				max-width: 100% !important;
+				padding: 0px !important;
+			}
+		}
+	}
 }

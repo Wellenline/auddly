@@ -7,7 +7,7 @@
 			<div class="title">
 				{{track.name}}
 			</div>
-			<div class="artist">
+			<div class="subtitle">
 				{{track.artist}}
 			</div>
 		</div>
@@ -20,15 +20,39 @@
 	<div class="actons fav">
 		<app-fav-button [track]="track"></app-fav-button>
 	</div>
-
-
-	<div class="actions">
-		<app-track-options [track]="track"></app-track-options>
-	</div>
-
 	<div class="duration">
 		{{track.duration | formatSeconds}}
 	</div>
+
+	<div class="actions">
+		<div class="actions">
+			<app-dropdown #dropdown [config]="{right: true, up: true}" [header]="headerTemplate">
+				<ng-template #headerTemplate let-item="item">
+					<div (click)="item.onToggle()" class="dropdown-action-item"><i class="material-icons-outlined">
+							more_vert
+						</i></div>
+				</ng-template>
+
+				<div class="dropdown-action-list">
+
+
+					<a (click)="onPlaylist()">Add to playlist</a>
+					<a (click)="onQueue()">Add to queue</a>
+
+					<a routerLink="/artists/{{track?.album?.artist?.id}}">More from artist</a>
+					<a routerLink="/albums/{{track?.album?.id}}">Go to album</a>
+					<a target="_blank" href="{{httpService.API_ENDPOINT}}/tracks/play/{{ track.id }}"
+						download="{{track.name}}.mp3">Download</a>
+
+
+
+
+				</div>
+			</app-dropdown>
+		</div>
+	</div>
+
+
 
 
 

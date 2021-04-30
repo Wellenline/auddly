@@ -1,0 +1,231 @@
+@mixin input-generator($background) {
+    padding: 15px;
+	width: 100%;
+	border-radius: 5px;
+	outline: none;
+	border: 1px solid #fff; // #2f2e35
+	-webkit-appearance: none;
+	box-sizing: border-box;
+	box-shadow: #ededed 0px 0px 0px 1px;
+	transition: all ease-in-out 0.2s;
+
+	font-family: inherit;
+	&:focus {
+		box-shadow: none;
+		outline: none;
+		box-shadow: #435eea 0px 0px 0px 1px;
+		border: 1px solid #435eea;
+	}
+  
+    &:disabled {
+        cursor: not-allowed;
+        opacity: .4;
+    }
+}
+
+
+.floating-label {
+    position: relative;
+    margin-top: 30px;
+
+    &:last-of-type {
+        margin-bottom: 20px;
+    }
+    label {
+        position: absolute;
+    top: calc(50% - 35px);
+    left: 0px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    }
+
+    input:not(:placeholder-shown) {
+        // padding: 32px 20px 16px 20px;
+    }
+
+    input:not(:placeholder-shown)+label {
+        transform: translateY(-20px);
+        opacity: .7;
+    }
+}
+
+::placeholder {
+    color: #999;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.checkbox {
+    margin-top: 4px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    width: 0;
+    height: 0;
+    margin: 17px -1px;
+    padding: 0;
+    border: 0;
+    opacity: 0;
+    visibility: hidden;
+    margin-bottom: 20px;
+}
+
+.checkbox+label {
+    vertical-align: middle;
+    display: inline-block;
+    width: 50%;
+}
+
+.checkbox+label:before {
+    content: "\A";
+    color: #999999;
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    background: transparent;
+    border: 1px solid #a89090;
+    width: 19px;
+    height: 19px;
+    margin: -2px 8px 0 0;
+}
+
+.checkbox:checked+label:before {
+    content: "✓";
+}
+
+.input-group {
+    display: flex;
+    position: relative;
+
+    .select,
+    input {
+        z-index: 1;
+        background: transparent;
+
+        &:focus,
+        &:active {
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            // border-bottom: 1px solid #797979;
+            outline: none;
+            background: transparent;
+
+            .input-group {
+
+                button {
+                    border: 1px solid #797979 !important;
+                }
+            }
+        }
+
+        &.right {
+
+            padding-left: 60px;
+
+        }
+
+        &.left {
+
+            padding-right: 60px;
+
+        }
+    }
+
+    button {
+        background: transparent;
+        height: 80%;
+        line-height: 0px;
+        top: 50%;
+        transform: translate(0, -50%);
+        border: none;
+        // border-bottom: 1px solid darken($border-color, 5);
+        font-size: 14px;
+        padding: 0 15px;
+        border-radius: 5px;
+        font-weight: 300;
+        box-shadow: none !important;
+        width: auto;
+        white-space: nowrap;
+        outline: none;
+        position: absolute;
+        z-index: 1;
+
+        &+button {
+            margin-right: 50px;
+        }
+
+        &:hover {
+            background: #eee;
+            cursor: pointer;
+        }
+
+        &:disabled {
+            opacity: .4;
+        }
+
+        &.left {
+
+            border-right: none;
+            left: 5px;
+        }
+
+        &.right {
+
+            border-left: none;
+            right: 5px;
+        }
+    }
+
+
+}
+
+.input {
+    @include input-generator(#fff); // #fff, $border-color
+}
+
+.select {
+    @include input-generator(#fff);
+    padding: 15px; // padding-right: 20px;
+
+    // border: 0 !important;
+    // background-color: lightblue;
+    /* needed */
+
+    appearance: none;
+    /* SVG background image */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Ctitle%3Edown-arrow%3C%2Ftitle%3E%3Cg%20fill%3D%22%23000000%22%3E%3Cpath%20d%3D%22M10.293%2C3.293%2C6%2C7.586%2C1.707%2C3.293A1%2C1%2C0%2C0%2C0%2C.293%2C4.707l5%2C5a1%2C1%2C0%2C0%2C0%2C1.414%2C0l5-5a1%2C1%2C0%2C1%2C0-1.414-1.414Z%22%20fill%3D%22%23000000%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+    background-size: .6em;
+    background-position: calc(100% - 1.3em) center;
+    background-repeat: no-repeat;
+
+}
+
+.textarea {
+    @include input-generator(#fff);
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+.fieldset {
+    padding: 20px;
+    margin-bottom: 20px;
+
+}
+
+label {
+    color: #98a0a6;
+
+    font-size: 13px;
+    margin: 8px 0;
+    display: block;
+}

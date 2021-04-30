@@ -1,55 +1,91 @@
 .search-input {
-    height: 60px;
+	height: 60px;
 
-    font-size: 1rem;
+	font-size: 1rem;
 
-    &::placeholder {
-        color: rgba(255, 255, 255, 0.4);
-    }
+	&::placeholder {
+		color: rgba(255, 255, 255, 0.4);
+	}
 
-    padding: .8rem 1rem;
-    background-color: #09090b;
-    border: 0;
-    transition: color .3s ease-out,
-    background-color .3s ease-out,
-    box-shadow .2s ease-out;
-    color: rgba(255, 255, 255, 0.5);
-    width: 100%;
-    border-radius: 5px;
+	padding: 0.8rem 1rem;
+	background-color: #09090b;
+	border: 0;
+	transition: color 0.3s ease-out, background-color 0.3s ease-out, box-shadow 0.2s ease-out;
+	color: rgba(255, 255, 255, 0.5);
+	width: 100%;
+	border-radius: 5px;
 
-    &:hover,
-    &:focus {
-        outline: none;
+	&:hover,
+	&:focus {
+		outline: none;
 
-        background-color: #fff;
-        color: #495057;
-        box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+		background-color: #fff;
+		color: #495057;
+		box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
 
-        &::placeholder {
-            color: #ddd;
-        }
-    }
+		&::placeholder {
+			color: #ddd;
+		}
+	}
 }
 
 .title-action {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 
-    .section-title {
-        flex-grow: 1;
-    }
+	.section-title {
+		flex-grow: 1;
+	}
 
-    .float-right {
-        color: white;
-        margin-right: 15px;
-        opacity: 0.3;
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-weight: 600;
+	.float-right {
+		color: white;
+		margin-right: 15px;
+		opacity: 0.3;
+		font-size: 11px;
+		text-transform: uppercase;
+		letter-spacing: 2px;
+		font-weight: 600;
 
-        button {
-            border: none;
-        }
-    }
+		button {
+			border: none;
+		}
+	}
+}
+
+.image-element {
+	height: 250px;
+	// max-height: 300px;
+	position: relative;
+	&.artist,
+	&.album {
+		height: calc(100vw / 2) !important;
+		max-height: 300px;
+		position: relative;
+	}
+	img {
+		width: 100%;
+		object-fit: cover;
+		height: 100%;
+		border-radius: 5px;
+		box-shadow: rgba(17, 17, 18, 0.04) 0 2px 4px, rgba(19, 20, 20, 0.06) 0 1px 1px;
+	}
+
+	.overlay {
+	}
+
+	.artist {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		padding: 15px;
+		color: white;
+	}
+
+	.album {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		padding: 15px;
+		color: white;
+	}
 }

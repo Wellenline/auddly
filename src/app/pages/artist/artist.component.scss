@@ -1,52 +1,58 @@
 .artist-meta {
-    padding: 15px;
-    padding-bottom: 40px;
+	padding-bottom: 40px;
 }
 
 .artist-picture {
-    width: 190px;
-    height: 190px;
-    border-radius: 50%;
+	width: 190px;
+	height: 190px;
+	border-radius: 50%;
 }
 
 .artist-bio {
-    color: rgba(255, 255, 255, 0.5);
+	color: var(--foreground-color);
 }
 
-
 .app-page-title {
-    margin-left: -15px;
+	margin-left: -15px;
 }
 
 .tags {
-    list-style: none;
-    margin: 20px 0;
-    padding: 0;
+	list-style: none;
+	margin: 20px 0;
+	padding: 0;
 
-    .tag {
-        display: inline-block;
-        border-radius: 5px;
-        background-color: rgba(0, 0, 0, 50%);
-        // backdrop-filter: blur(50px);
-        color: white;
-        padding: 10px;
+	.tag {
+		&:first-of-type {
+			background: blue !important;
+			margin-left: 15px;
+		}
 
-        &.inactive {
-            color: #333;
-        }
+		&:last-of-type {
+			background: red !important;
+			margin-right: 15px;
+		}
+		display: inline-block;
+		border-radius: 5px;
+		background-color: rgba(0, 0, 0, 50%);
+		// backdrop-filter: blur(50px);
+		color: white;
+		padding: 10px;
 
-        a {
-            color: #555;
-            text-decoration: none;
+		&.inactive {
+			color: #333;
+		}
 
-            &:hover {
-                color: var(--accent-color);
-            }
-        }
+		a {
+			color: #555;
+			text-decoration: none;
 
-        &+.tag {
-            margin-left: 10px;
-        }
-    }
+			&:hover {
+				color: var(--accent-color);
+			}
+		}
 
+		& + .tag {
+			margin-left: 10px;
+		}
+	}
 }

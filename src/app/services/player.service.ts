@@ -168,8 +168,6 @@ export class PlayerService {
 					{ src: track.album.picture, sizes: "256x256", type: "image/png" },
 					{ src: track.album.picture, sizes: "384x384", type: "image/png" },
 					{ src: track.album.picture, sizes: "512x512", type: "image/png" },
-					{ src: track.album.picture, sizes: "512x512", type: "image/png" },
-
 				],
 			});
 

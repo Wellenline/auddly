@@ -1,74 +1,72 @@
-<section class="app-route">
-	<app-background [image]="artist.picture"></app-background>
+<app-header back="true" title="{{ artist.name }}"></app-header>
 
-	<div class="inner-content">
 
-		<div class="artist-meta">
-			<div class="grid">
-				<div class="width-auto@md flex flex-middle">
-					<img class="artist-picture lazyload" [lazyLoad]="artist.picture || '/assets/logo.png'" />
+
+<!--app-background [image]="artist.picture"></app-background-->
+
+<div class="inner-content">
+
+	<div class="artist-meta">
+		<div class="grid">
+			<div class="width-auto@md flex flex-middle">
+				<img class="artist-picture lazyload" [lazyLoad]="artist.picture || '/assets/logo.png'" />
+
+			</div>
+
+			<div class="width-expand@md">
+				<div class="app-page-title">{{ artist.name }}</div>
+				<div class="artist-bio" [innerHTML]="artist.bio"></div>
+				<div class="tags">
+
+					<app-horizontal-scroll>
+						<ng-container *ngFor="let tag of artist.tags">
+							<div class="tag inactive">{{ tag }}</div>
+
+						</ng-container>
+					</app-horizontal-scroll>
+
+				</div>
+				<div class="text-meta">Similar Artists</div>
+				<div class="tags">
+					<app-horizontal-scroll>
+						<ng-container *ngFor="let similar of artist.similar">
+							<div class="tag" routerLink="/search" [queryParams]="{ q: similar }">{{ similar }}</div>
+
+						</ng-container>
+					</app-horizontal-scroll>
 
 				</div>
 
-				<div class="width-expand@md">
-					<div class="app-page-title">{{ artist.name }}</div>
-					<div class="artist-bio" [innerHTML]="artist.bio"></div>
-					<div class="tags">
+			</div>
+		</div>
+	</div>
 
-						<app-horizontal-scroll>
-							<ng-container *ngFor="let tag of artist.tags">
-								<div class="tag inactive">{{ tag }}</div>
+	<ng-container *ngIf="albums.length > 0">
 
-							</ng-container>
-						</app-horizontal-scroll>
-
+		<div class="section-title">Albums</div>
+		<swiper [config]="config">
+			<ng-container *ngFor="let album of albums; ">
+				<ng-template swiperSlide>
+					<div routerLink="/library/albums/{{ album.id }}" class="image-element album">
+						<img [src]="album.picture" />
+						<div class="overlay"></div>
+						<div class="album">
+							{{ album.name }}
+						</div>
 					</div>
-					<div class="text-meta">Similar Artists</div>
-					<div class="tags">
-						<app-horizontal-scroll>
-							<ng-container *ngFor="let similar of artist.similar">
-								<div class="tag" routerLink="/search" [queryParams]="{ q: similar }">{{ similar }}</div>
+				</ng-template>
+			</ng-container>
+		</swiper>
+	</ng-container>
 
-							</ng-container>
-						</app-horizontal-scroll>
+	<ng-container *ngIf="tracks.length > 0">
+		<div class="section-title">Popular Tracks</div>
 
-					</div>
-
-				</div>
+		<div class="grid">
+			<div class="width-4@lg width-4@md width-6@sm" *ngFor="let track of tracks">
+				<app-track-list [track]="track"></app-track-list>
 			</div>
 		</div>
 
-		<ng-container *ngIf="albums.length > 0">
-
-			<div class="section-title">Albums</div>
-			<div class="is-mobile">
-
-
-				<app-horizontal-scroll>
-					<ng-container *ngFor="let album of albums">
-						<app-album-list [album]="album"></app-album-list>
-					</ng-container>
-				</app-horizontal-scroll>
-			</div>
-			<div class="is-desktop">
-
-				<div class="grid">
-					<div class="width-3@lg width-4@md width-6@sm" *ngFor="let album of albums">
-						<app-album-list [album]="album"></app-album-list>
-					</div>
-				</div>
-			</div>
-		</ng-container>
-
-		<ng-container *ngIf="tracks.length > 0">
-			<div class="section-title">Popular Tracks</div>
-
-			<div class="grid">
-				<div class="width-4@lg width-4@md width-6@sm" *ngFor="let track of tracks">
-					<app-track-list [track]="track"></app-track-list>
-				</div>
-			</div>
-
-		</ng-container>
-	</div>
-</section>
+	</ng-container>
+</div>

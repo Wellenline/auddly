@@ -1,113 +1,113 @@
 .track {
-    margin-bottom: 15px;
-    border-radius: 5px;
-    color: white;
-    display: flex;
-    align-items: center;
-    margin-left: 15px;
-    margin-right: 15px;
+	// margin-bottom: 15px;
+	border-radius: 5px;
+	color: var(--foreground-color);
+	display: flex;
+	align-items: center;
 
-    padding-left: 15px;
-    padding-right: 15px;
+	&.playing {
+		// background: rgba(37, 39, 42, 0.18);
+		// background-color: rgb(0 0 0 / 25%);
+		background-color: var(--accent-color); //rgb(255 255 255 / 6%);
 
-    &.playing {
-        // background: rgba(37, 39, 42, 0.18);
-        // background-color: rgb(0 0 0 / 25%);
-        background-color: rgb(255 255 255 / 6%);
-        // backdrop-filter: blur(10px);
-    }
+		.title,
+		.subtitle,
+		.details {
+			color: #fff !important;
+		}
 
-    .image {
-        padding: 10px;
+		color: #fff !important;
+		box-shadow: 1px 2px 18px rgba(0, 0, 0, 0.1);
 
-        img {
-            width: 50px;
-            border-radius: 5px;
-        }
-    }
+		// backdrop-filter: blur(10px);
+	}
 
+	.image {
+		padding: 10px;
 
+		img {
+			width: 30px;
+			border-radius: 50%;
+			box-shadow: 0px 0px 20px rgb(0 0 0 / 25%);
+		}
+	}
 
-    .details {
-        padding: 10px;
-        flex-grow: 1;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 100%;
+	.details {
+		padding: 10px;
+		flex-grow: 1;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 100%;
 
-        .title {
-            color: white;
+		.title {
+			color: var(--foreground-color);
+			font-size: 14px;
+		}
 
-        }
+		.subtitle {
+			color: var(--foreground-color);
+			opacity: 0.7;
+			font-size: 12px;
+		}
+	}
 
-        .artist {
-            color: rgba($color: #fff, $alpha: 0.4)
-        }
+	.actions {
+		padding: 10px;
+	}
 
-    }
+	.duration {
+		padding: 10px;
+		font-size: 14px;
+	}
 
+	&:hover {
+		// background: #09090b;
+		// background: rgba(37, 39, 42, 0.18);
+		// background-color: rgb(0 0 0 / 25%);
+		// color: var(--foreground-color);
+		cursor: pointer;
+	}
 
+	.highlight {
+		color: var(--foreground-color);
+	}
 
-    .actions {
-        padding: 10px;
-    }
-
-    .duration {
-        padding: 10px;
-        font-size: 12px;
-    }
-
-    &:hover {
-        // background: #09090b;
-        // background: rgba(37, 39, 42, 0.18);
-        background-color: rgb(0 0 0 / 25%);
-        color: white;
-        cursor: pointer;
-    }
-
-
-    .highlight {
-        color: #fff;
-    }
-
-    .shade {
-        color: #1f1f1f;
-    }
-
+	.shade {
+		color: #1f1f1f;
+	}
 }
 
 @media all and (max-width: 1000px) {
-    .track {
-        // font-size: 13px;
-        margin-left: 0px;
-        margin-right: 0px;
+	.track {
+		// font-size: 13px;
+		margin-left: 0px;
+		margin-right: 0px;
 
-        .image {
-            padding: 10px;
+		.image {
+			padding: 10px;
 
-            img {
-                width: 30px;
+			img {
+				width: 30px;
+			}
+		}
 
-            }
-        }
+		.details {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: 100%;
 
-        .details {
-            font-size: 12px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
+			.title {
+			}
 
-            .title {}
+			.artist {
+			}
+		}
 
-            .artist {}
-
-        }
-
-        .lossless,
-        .fav {
-            display: none;
-        }
-    }
+		.lossless,
+		.fav {
+			display: none;
+		}
+	}
 }

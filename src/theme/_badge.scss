@@ -1,0 +1,35 @@
+.badge {
+			
+	font-size: 12px;
+	display: inline-block;
+	padding: 0.5rem;
+	line-height: 1;
+	border-radius: 5px;
+	background-color: rgba(0,0,0, 0.1);
+	&.info {
+		color: #3384f3;
+	background: rgba(51, 132, 243, 0.15);
+
+	}
+
+	&.success {
+		color: #00b894;
+		background: rgba(0, 184, 148, 0.15);
+	}
+
+	&.warning {
+		color: #D980FA;
+		background: rgba(217, 128, 250, 0.15);
+	}
+
+	&.danger {
+		color: #d63031;
+		background: rgba(214, 48, 49, 0.15);
+	}
+
+	&.warning {
+		color: #fca709;
+		background: rgba(253, 203, 110, 0.2);
+	}
+
+}

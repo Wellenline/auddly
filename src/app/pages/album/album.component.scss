@@ -1,19 +1,6 @@
-section {
-    position: relative;
-    // height: 100vh;
-    // width: calc(100vw - 40px);
-    // margin: 20px;
-    overflow: auto;
-    min-height: 100%;
-    height: 100vh;
-
-    .app-route {
-        overflow-y: auto;
-    }
-
-    .album-header {
-        // filter: blur(20px);
-        /* height: 100%;
+.album-header {
+	// filter: blur(20px);
+	/* height: 100%;
         width: 100%;
         position: absolute;
 
@@ -23,116 +10,105 @@ section {
         border-radius: 10px;
         overflow: hidden;*/
 
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        border-radius: 10px;
-        overflow: hidden;
-        top: 0;
-        bottom: 0;
-        position: fixed;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 10px;
+	overflow: hidden;
+	top: 0;
+	bottom: 0;
+	position: fixed;
+}
 
+.album-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: 10px;
+	overflow: hidden;
+	background-color: rgba(0, 0, 0, 0.8);
+	backdrop-filter: blur(10px);
+	width: 100%;
+	height: 100%;
+}
 
-    }
+.album-meta {
+	padding-bottom: 40px;
 
-    .album-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        border-radius: 10px;
-        overflow: hidden;
-        background-color: rgba(0, 0, 0, .8);
-        backdrop-filter: blur(10px);
-        width: 100%;
-        height: 100%;
-    }
+	display: flex;
+	align-items: center;
 
-    .album-meta {
-        padding-bottom: 40px;
+	.album-picture {
+		width: 250px;
+		height: 250px;
+		margin: 20px;
+		border-radius: 10px;
+		box-shadow: 0px 0px 20px rgba(0, 0, 0, 25%);
+	}
 
-        display: flex;
-        align-items: center;
+	.details {
+		margin: 20px;
+	}
 
-        .album-picture {
-            width: 250px;
-            height: 250px;
-            margin: 20px;
-            border-radius: 10px;
-        }
+	.album-artist {
+		color: var(--foreground-color);
+		// opacity: 0.5;
+		margin-bottom: 10px;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
 
-        .details {
-            margin: 20px;
+		.artist-picture {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			margin-right: 10px;
+			box-shadow: 0px 0px 20px rgba(0, 0, 0, 25%);
+		}
 
-        }
+		&:hover {
+			color: var(--foreground-color);
+			opacity: 1;
+			cursor: pointer;
+		}
+	}
 
+	.album-title {
+		font-size: 2.7rem;
+		color: var(--foreground-color);
+		font-weight: 600;
+		font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+		margin-bottom: 10px;
+	}
 
-        .album-artist {
-            color: white;
-            opacity: 0.5;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-
-            .artist-picture {
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                margin-right: 10px;
-            }
-
-            &:hover {
-                color: white;
-                opacity: 1;
-                cursor: pointer;
-            }
-        }
-
-        .album-title {
-            font-size: 2.7rem;
-            color: white;
-            font-weight: 600;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin-bottom: 10px;
-
-        }
-
-        .play-all {
-            background-color: transparent;
-            color: white;
-            border: 1px solid white;
-            border-radius: 10px;
-        }
-    }
-
-
+	.play-all {
+		background-color: transparent;
+		color: var(--foreground-color);
+		border: 1px solid var(--border-color);
+		border-radius: 10px;
+	}
 }
 
 @media all and (max-width: 1000px) {
-    section {
-        .album-meta {
-            flex-direction: column;
-            text-align: center;
-            justify-content: center;
-            padding-bottom: 20px;
+	.album-meta {
+		flex-direction: column;
+		text-align: center;
+		justify-content: center;
+		padding-bottom: 20px;
 
-            .album-title {
-                font-size: 1.7rem;
-                color: white;
-                font-weight: 600;
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                margin-bottom: 10px;
+		.album-title {
+			font-size: 1.7rem;
+			color: var(--foreground-color);
+			font-weight: 600;
+			font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+			margin-bottom: 10px;
+		}
 
-            }
-
-            .album-artist {
-
-                justify-content: center;
-
-            }
-        }
-    }
+		.album-artist {
+			justify-content: center;
+		}
+	}
 }

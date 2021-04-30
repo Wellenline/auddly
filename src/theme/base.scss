@@ -1,0 +1,52 @@
+$base-gutter: 2em;
+$columns: 12;
+
+$base-border-radius: 5px;
+
+@function bp($bp) {
+    @return map-get($breakpoints, $bp);
+}
+
+$breakpoints: (na: 0px,
+    // For BS grid
+    xs: 320px,
+    // Smartphone
+    sm: 600px,
+    // Tablets
+    md: 900px,
+    // Tablets Landscape and small desktops
+    lg: 1200px,
+    // Desktops
+    xl: 1800px,
+    // Large Desktop
+);
+
+$text-dark: #363636 !default;
+$text-light: #ffffff !default;
+$text-lead-size: 1.17em;
+
+$text-meta-color: #7e7e7e;
+$text-meta-size: 0.94rem;
+
+
+$default: #fff; // efefef
+$primary: #4657fd;
+$info: #11abfe;
+$success: #00d090;
+$warning: #f1c90b;
+$danger: #e74b3c;
+$invert: #2f2e35;
+
+
+@import "./_normalize.scss";
+@import "./_util.scss";
+@import "./_grid.scss";
+@import "./_button.scss";
+@import "./_panel.scss";
+@import "./_tooltip.scss";
+@import "./_form.scss";
+@import "./_switch.scss";
+@import "./_table.scss";
+@import "./_modal.scss";
+@import "./_loading.scss";
+@import "./_badge.scss"; 

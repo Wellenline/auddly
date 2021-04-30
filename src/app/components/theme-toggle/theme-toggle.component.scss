@@ -1,0 +1,14 @@
+.themes {
+	display: flex;
+	padding-left: 15px;
+	.theme {
+		padding: 15px;
+		border-radius: 5px;
+
+		&.active {
+			background-color: #0653f9;
+			color: white;
+			box-shadow: rgba(17, 17, 18, 0.04) 0 2px 4px, rgba(19, 20, 20, 0.06) 0 1px 1px;
+		}
+	}
+}

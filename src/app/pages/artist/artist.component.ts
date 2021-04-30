@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpService } from "src/app/services/http.service";
 import { ActivatedRoute } from "@angular/router";
+import { SwiperOptions } from "swiper";
 
 @Component({
 	selector: "app-artist",
@@ -11,7 +12,41 @@ export class ArtistComponent implements OnInit {
 	public artist: any = {};
 	public albums = [];
 	public tracks = [];
-
+	public config: SwiperOptions = {
+		slidesOffsetBefore: 20,
+		slidesOffsetAfter: 20,
+		navigation: false,
+		pagination: false,
+		breakpoints: {
+			0: {
+				slidesPerView: 3,
+				spaceBetween: 20
+			},
+			// when window width is >= 320px
+			320: {
+				slidesPerView: 2,
+				spaceBetween: 20
+			},
+			// when window width is >= 480px
+			480: {
+				slidesPerView: 3,
+				spaceBetween: 30
+			},
+			// when window width is >= 640px
+			640: {
+				slidesPerView: 4,
+				spaceBetween: 40
+			},
+			1024: {
+				slidesPerView: 6,
+				spaceBetween: 40
+			},
+			1448: {
+				slidesPerView: 8,
+				spaceBetween: 40
+			}
+		},
+	};
 	constructor(private httpService: HttpService, private route: ActivatedRoute) { }
 
 	public ngOnInit(): void {

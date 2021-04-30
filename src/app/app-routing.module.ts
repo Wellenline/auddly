@@ -14,6 +14,7 @@ import { PlaylistComponent } from "./pages/playlist/playlist.component";
 import { FavouritesComponent } from "./pages/favourites/favourites.component";
 import { PlaylistsComponent } from "./pages/playlists/playlists.component";
 import { MainComponent } from "./layouts/main/main.component";
+import { LibraryComponent } from "./pages/library/library.component";
 
 const routes: Routes = [
 
@@ -25,14 +26,15 @@ const routes: Routes = [
 
 			{ path: "", redirectTo: "search", pathMatch: "full" },
 			{ path: "playlists", component: PlaylistsComponent, canActivate: [AuthGuard] },
+			{ path: "library", component: LibraryComponent, canActivate: [AuthGuard] },
 
 			{ path: "tracks", component: TracksComponent, canActivate: [AuthGuard] },
 
-			{ path: "albums", component: AlbumsComponent, canActivate: [AuthGuard] },
-			{ path: "albums/:id", component: AlbumComponent, canActivate: [AuthGuard] },
+			{ path: "library/albums", component: AlbumsComponent, canActivate: [AuthGuard] },
+			{ path: "library/albums/:id", component: AlbumComponent, canActivate: [AuthGuard] },
 
-			{ path: "artists", component: ArtistsComponent, canActivate: [AuthGuard] },
-			{ path: "artists/:id", component: ArtistComponent, canActivate: [AuthGuard] },
+			{ path: "library/artists", component: ArtistsComponent, canActivate: [AuthGuard] },
+			{ path: "library/artists/:id", component: ArtistComponent, canActivate: [AuthGuard] },
 
 			{ path: "search", component: SearchComponent, canActivate: [AuthGuard] },
 			{ path: "settings", component: SettingsComponent, canActivate: [AuthGuard] },
