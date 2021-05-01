@@ -1,10 +1,7 @@
 <section class="app-route">
 	<div class="inner-content">
 
-		<div class="app-page-title">Search</div>
 		<div class="p-10">
-
-
 			<input (keyup)="onSearch($event)" [(ngModel)]="search" autocomplete="off" class="search-input" type="text"
 				placeholder="Search Music, Albums, Tracks" />
 		</div>
@@ -25,16 +22,16 @@
 
 		<ng-container *ngIf="result.artists.length > 0">
 
-			<h3 routerLink="/artists">Artists</h3>
+			<h3 routerLink="/library?tab=artists">Artists</h3>
 
 			<swiper [config]="config">
 				<ng-container *ngFor="let artist of result.artists; ">
 					<ng-template swiperSlide>
-						<div routerLink="/artists/{{ artist.id }}" class="image-element artist">
-							<img height="260" [src]="artist.picture" />
+						<div routerLink="/library/artists/{{ artist.id }}" class="image-element artist">
+							<img height="260" class="lazyLoad" [lazyLoad]="artist.picture" />
 							<div class="overlay"></div>
-							<div class="artist">
-								{{ artist.name }}
+							<div class="column-details">
+								<div class="title">{{ artist.name }}</div>
 							</div>
 						</div>
 					</ng-template>
@@ -45,15 +42,17 @@
 
 		<ng-container *ngIf="result.albums.length > 0">
 
-			<h3 routerLink="/albums">Albums</h3>
+			<h3 routerLink="/library?tab=albums">Albums</h3>
 			<swiper [config]="config">
 				<ng-container *ngFor="let album of result.albums; ">
 					<ng-template swiperSlide>
-						<div routerLink="/albums/{{ album.id }}" class="image-element album">
-							<img height="260" [src]="album.picture" />
+						<div routerLink="/library/albums/{{ album.id }}" class="image-element album">
+							<img height="260" class="lazyLoad" [lazyLoad]="album.picture" />
 							<div class="overlay"></div>
-							<div class="album">
-								{{ album.name }}
+
+							<div class="column-details">
+								<div class="title">{{ album.name }}</div>
+								<div class="subtitle">{{ album.artist.name }}</div>
 							</div>
 						</div>
 					</ng-template>
@@ -82,4 +81,7 @@
 
 		</ng-container>
 	</div>
+
+	<app-player></app-player>
+
 </section>

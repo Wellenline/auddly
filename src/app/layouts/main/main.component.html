@@ -1,28 +1,9 @@
 <div class="app">
-	<div class="app-menu">
-		<div class="container mx-auto">
-			<!--div class="player">
-				<app-player></app-player>
-			</div-->
-			<!--div class="toggle">
-				<span></span>
-				<div class="value " [routerLinkActive]="['active']" routerLink="/search">
-					Search
-				</div>
-				<div [routerLinkActive]="['active']" routerLink="/artists" class="value ">
-					Artists
-				</div>
-				<div class="value " [routerLinkActive]="['active']" routerLink="/queue">
-					Queue
-				</div>
+	<div class="app-menu" style="-webkit-app-region: drag">
+		<app-menu></app-menu>
 
-				<div class="value " [routerLinkActive]="['active']" routerLink="/tracks">
-					tracks
-				</div>
-				<div class="value " [routerLinkActive]="['active']" routerLink="/settings">
-					Settings
-				</div>
-			</div-->
+		<!--div class="container mx-auto">
+		
 			<div class="menu">
 				<div class="menu-item">
 					<a [routerLinkActive]="['active']" routerLink="/search">
@@ -45,6 +26,7 @@
 						<i class="material-icons-outlined">
 							graphic_eq
 						</i>
+					
 					</a>
 				</div>
 
@@ -65,7 +47,8 @@
 				</div>
 			</div>
 
-		</div>
+		</div-->
+
 	</div>
 
 	<div class="app-content">
@@ -97,3 +80,6 @@
 <app-dialog></app-dialog>
 
 <app-playlist-form></app-playlist-form-->
+
+<app-notify></app-notify>
+<app-dialog></app-dialog>

@@ -9,7 +9,7 @@ import { Component, ElementRef, Input, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 	@Input() back: boolean;
 	@Input() transparent: boolean;
-	@Input() static: boolean;
+	@Input() static: boolean = false;
 
 	@Input() title: string;
 	@Input() actions: any[] = [];

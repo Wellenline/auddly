@@ -1,32 +1,40 @@
-<app-header back="true" title="Now Playing"></app-header>
+<app-header transparent="true" back="true" title="Now Playing" [actionTemplate]="actionTemplate">
 
+	<ng-template #actionTemplate>
 
-<div #scrollingBlock>
-	<virtual-scroller #scroll [items]="tracks" [parentScroll]="scrollingBlock" [enableUnequalChildrenSizes]="true">
+		<app-dropdown #dropdown [config]="{right: true}" [header]="headerTemplate">
+			<ng-template #headerTemplate let-item="item">
+				<div (click)="item.onToggle()" class="dropdown-action-item"><i class="material-icons-outlined">
+						more_vert
+					</i></div>
+			</ng-template>
 
-		<div class="now-playing-header">
-			<div class="title">
-				<div class="app-page-title">Now Playing</div>
+			<div class="dropdown-action-list">
+				<a (click)="onClear()">Clear queue</a>
 
+				<a (click)="onPlaylist()">Add to playlist</a>
+				<div class="divider no-margin"></div>
+				<a routerLink="/library/artists/{{track?.album?.artist?.id}}">More from artist</a>
+				<a routerLink="/library/albums/{{track?.album?.id}}">Go to album</a>
 			</div>
-			<div class="actions">
-				<div class="action" (click)="onClear()">
-					<i class="feather-trash"></i>
+		</app-dropdown>
+	</ng-template>
 
-				</div>
-			</div>
-		</div>
+</app-header>
+
+
+<div class="container mx-auto">
+	<virtual-scroller #scroll [items]="tracks" [enableUnequalChildrenSizes]="true">
 
 		<div class="now-playing">
 			<div class="carousel" *ngIf="tracks.length > 0">
 
-				<swiper #swiper [index]="5" [config]="config" (slideChange)="onSlideChange($event)">
+				<swiper #swiper [config]="config" (slideChange)="onSlideChange($event)">
 					<ng-container *ngFor="let track of tracks; ">
 						<ng-template swiperSlide>
 							<div class="album-art">
 								<img height="100" class="lazyload"
 									[lazyLoad]="track?.album?.picture || '/assets/logo.png'" />
-
 							</div>
 						</ng-template>
 					</ng-container>
@@ -63,10 +71,10 @@
 
 			<div class="controls">
 				<div class="control">
-					<button class="button default controls-button {{ track.liked ? 'highlight' : '' }} "
-						[attr.data-tooltip]="!track.liked ? 'Add to favourites' : 'Remove from favourites'"
+					<button class="button default controls-button {{ track.liked ? 'liked' : '' }} "
 						(click)="onLike($event)">
 						<i class="feather feather-heart"></i>
+
 
 					</button>
 
@@ -76,12 +84,14 @@
 				<div class="control">
 					<button (click)="playerService.onPrev()" class="button default controls-button">
 						<i class="feather feather-skip-back"></i>
+
 					</button>
 				</div>
 
 				<div class="control">
 					<button (click)="playerService.onPlayback()" class="button default controls-button playback">
 						<i class="feather {{ playing ? 'feather-pause' : 'feather-play' }}"></i>
+
 
 
 					</button>
@@ -91,34 +101,25 @@
 					<button (click)="playerService.onNext()" class="button default controls-button">
 						<i class="feather feather-skip-forward"></i>
 
+
 					</button>
 				</div>
 
+
 				<div class="control">
-
-					<app-dropdown #dropdown [config]="{right: true, up: true}" [header]="headerTemplate">
-						<ng-template #headerTemplate let-item="item">
-							<div (click)="item.onToggle()" class="button default controls-button"><i
-									class="material-icons-outlined">
-									more_vert
-								</i></div>
-						</ng-template>
-
-						<div class="dropdown-action-list">
-
-
-							<a (click)="onPlaylist()">Add to playlist</a>
-
-							<a routerLink="/artists/{{track?.album?.artist?.id}}">More from artist</a>
-							<a routerLink="/albums/{{track?.album?.id}}">Go to album</a>
-
-
-
-
-
+					<div class="volume-controls">
+						<button class="button default controls-button ">
+							<i *ngIf="volume === 0" class="feather-volume-x"></i>
+							<i *ngIf="volume <= 20 && volume > 0" class="feather-volume"></i>
+							<i *ngIf="volume < 50 && volume > 20" class="feather-volume-1"></i>
+							<i *ngIf="volume >= 50" class="feather-volume-2"></i>
+						</button>
+						<div class="volume-controls-content">
+							<app-slider [options]="{ vertical: true }" [value]="volume"
+								(valueChange)="onVolume($event)">
+							</app-slider>
 						</div>
-					</app-dropdown>
-					<!--app-track-options [options]="{queue: false}" [track]="track"></app-track-options-->
+					</div>
 
 				</div>
 			</div>

@@ -1,7 +1,7 @@
 .app-toolbar {
-	position: fixed;
-	background-color: var(--background-color-2);
-	box-shadow: 0 2px 4px rgb(0 0 0 / 6%);
+	position: sticky;
+	background-color: var(--background-color);
+	// box-shadow: 0 2px 4px rgb(0 0 0 / 6%);
 	top: 0;
 	width: 100%;
 	left: 0;

@@ -26,11 +26,12 @@
 
 					<div class="dropdown-action-list">
 						<ng-container *ngFor="let action of actions">
-							<a *ngIf="action.route" [routerLink]="action.route" [queryParams]="action.queryParams">
+							{{ action.route }}
+							<a *ngIf="action.route" routerLink="{{action.route}}" [queryParams]="action.queryParams">
 								{{ action.title }}
 							</a>
 
-							<a *ngIf="action.action" (click)="action.action">
+							<a *ngIf="action.action" (click)="action.action(action.params)">
 								{{ action.title }}
 							</a>
 						</ng-container>
@@ -41,4 +42,4 @@
 	</div>
 
 </div>
-<div *ngIf="!static" class="filler"></div>
+<!--div *ngIf="!static" class="filler"></div-->

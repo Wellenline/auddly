@@ -91,19 +91,19 @@ export class SearchComponent implements OnInit {
 	}
 
 	public fetchArtists() {
-		this.httpService.get(`/artists/random?total=12`).subscribe((response: any) => {
+		this.httpService.get(`/artists/random?total=20`).subscribe((response: any) => {
 			this.result.artists = response;
 		});
 	}
 
 	public fetchAlbums() {
-		this.httpService.get(`/albums/random?total=12`).subscribe((response: any) => {
+		this.httpService.get(`/albums/random?total=20`).subscribe((response: any) => {
 			this.result.albums = response;
 		});
 	}
 
 	public fetchTracks() {
-		this.httpService.get(`/tracks/random?total=12`).subscribe((response: any) => {
+		this.httpService.get(`/tracks/random?total=20`).subscribe((response: any) => {
 			this.result.tracks = response;
 		});
 	}
