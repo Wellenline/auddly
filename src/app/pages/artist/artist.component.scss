@@ -1,13 +1,28 @@
 .artist-meta {
-	padding-bottom: 40px;
+	padding-bottom: 20px;
 }
-
+h3 {
+	padding-left: 10px;
+	color: var(--foreground-color);
+}
+.artist-name {
+	font-size: 2.7rem;
+	color: var(--foreground-color);
+	font-weight: 600;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	margin-bottom: 10px;
+}
 .artist-picture {
-	width: 190px;
-	height: 190px;
+	width: 250px;
+	height: 250px;
+	margin: 20px;
 	border-radius: 50%;
+	box-shadow: 0 2px 4px rgb(0 0 0 / 6%);
 }
 
+.artist-details {
+	margin-left: 15px;
+}
 .artist-bio {
 	color: var(--foreground-color);
 }
@@ -23,36 +38,118 @@
 
 	.tag {
 		&:first-of-type {
-			background: blue !important;
+			// background: blue !important;
 			margin-left: 15px;
 		}
 
 		&:last-of-type {
-			background: red !important;
+			// background: red !important;
 			margin-right: 15px;
 		}
 		display: inline-block;
 		border-radius: 5px;
-		background-color: rgba(0, 0, 0, 50%);
+		background-color: var(--background-color-4);
 		// backdrop-filter: blur(50px);
-		color: white;
+		color: var(--foreground-color);
 		padding: 10px;
 
 		&.inactive {
-			color: #333;
+			color: var(--foreground-color);
 		}
 
-		a {
-			color: #555;
-			text-decoration: none;
-
-			&:hover {
-				color: var(--accent-color);
-			}
+		&:hover {
+			color: var(--accent-color);
+			cursor: pointer;
 		}
 
 		& + .tag {
 			margin-left: 10px;
 		}
+	}
+}
+
+.image-element {
+	// height: 250px;
+	// max-height: 300px;
+	position: relative;
+	&.artist {
+		img {
+			height: calc(100vw / 2) !important;
+			max-height: 300px;
+		}
+		position: relative;
+	}
+	img {
+		width: 100%;
+		object-fit: cover;
+		height: 100%;
+		border-radius: 5px;
+		box-shadow: rgba(17, 17, 18, 0.04) 0 2px 4px, rgba(19, 20, 20, 0.06) 0 1px 1px;
+	}
+
+	.overlay {
+	}
+
+	.column-details {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		.title {
+			color: var(--foreground-color);
+			font-size: 14px;
+		}
+
+		.subtitle {
+			color: var(--foreground-color);
+			opacity: 0.7;
+			font-size: 12px;
+		}
+	}
+
+	.artist {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		padding: 15px;
+		color: white;
+	}
+
+	.album {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		padding: 15px;
+		color: white;
+	}
+}
+
+.play-button {
+	background-color: var(--accent-color);
+	color: white;
+	display: inline-block;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-right: 15px;
+	border-radius: 20px;
+	box-shadow: 0 2px 4px rgb(0 0 0 / 6%);
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	&:focus {
+	}
+}
+
+.title-action {
+	display: flex;
+	align-items: center;
+
+	h3 {
+		flex-grow: 1;
+	}
+
+	.float-right {
 	}
 }

@@ -33,6 +33,10 @@ export class PlayerComponent implements OnInit {
 		});
 	}
 
+	public onLike(e) {
+
+	}
+
 	public onProgress(e) {
 		this.playerService.onSeek(e);
 	}

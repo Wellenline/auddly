@@ -17,10 +17,10 @@
 		</div>
 
 		<div class="album-title">{{ album.name }}</div>
-		<div>{{ tracks.length }} Songs</div>
-		<button (click)="onPlayAlbum()" class="button m-t-20 default action-outline"><i
-				class="feather feather-play"></i>
-			Play Album</button>
+		<div>{{ tracks.length }} Songs; <i appTooltip tooltip="Duration" class="feather-clock"></i> {{ duration |
+			formatSeconds }}</div>
+		<div (click)="onPlayAlbum()" class="play-button">
+			Play</div>
 	</div>
 
 </div>

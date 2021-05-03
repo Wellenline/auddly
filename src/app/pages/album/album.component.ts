@@ -12,7 +12,7 @@ import { ToastService } from "src/app/services/toast.service";
 export class AlbumComponent implements OnInit {
 	public album: any = {};
 	public tracks: ITrack[] = [];
-
+	public duration = 0;
 	constructor(private toastService: ToastService, private httpService: HttpService, private playerService: PlayerService, private route: ActivatedRoute) { }
 
 	public ngOnInit(): void {
@@ -27,6 +27,12 @@ export class AlbumComponent implements OnInit {
 	public getTracks(id: string) {
 		this.httpService.get(`/tracks?album=${id}&skip=0&limit=1500`).subscribe((response: any) => {
 			this.tracks = this.tracks.concat(response.tracks);
+
+			this.tracks.map((track) => {
+				if (track.duration) {
+					this.duration += track.duration;
+				}
+			})
 		}, (err) => {
 			console.log("Failed to load tracks", err);
 		});

@@ -8,6 +8,8 @@ import { ITrack, PlayerService } from "src/app/services/player.service";
 })
 export class MenuComponent implements OnInit {
 	public track: ITrack = {};
+
+	public miniplayer = false;
 	constructor(private playerService: PlayerService) { }
 
 	public ngOnInit(): void {

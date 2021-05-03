@@ -17,7 +17,7 @@
 	position: absolute;
 	max-height: 220px;
 	min-height: 200px;
-	bottom: 55px;
+	bottom: 25px;
 	padding: 10px;
 	right: 5px;
 
@@ -109,7 +109,7 @@ virtual-scroller {
 			width: 250px;
 			height: 250px;
 			border-radius: 5px;
-			box-shadow: 0px 0px 20px rgba(0, 0, 0, 25%);
+			box-shadow: 0 2px 4px rgb(0 0 0 / 6%);
 		}
 	}
 
@@ -172,7 +172,7 @@ virtual-scroller {
 				text-align: center;
 				border-radius: 50%;
 				font-size: 1.2rem;
-				// box-shadow: 0px 0px 20px rgba(0, 0, 0, 25%);
+				// box-shadow: 0 2px 4px rgb(0 0 0 / 6%);
 
 				&:hover {
 					background-color: transparent;

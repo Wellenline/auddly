@@ -10,12 +10,18 @@
 
 			<h3>Playlists</h3>
 
-			<app-horizontal-scroll>
-				<div *ngFor="let playlist of result.playlists">
-					<app-playlist-list [playlist]="playlist"></app-playlist-list>
+			<div class="playlists">
+				<app-horizontal-scroll>
+					<ng-container *ngFor="let playlist of result.playlists">
+						<div class="playlist"
+							routerLink="{{playlist.id === 'FAVOURITES' ? '/favourites' : '/playlists/' + playlist.id}}">
+							{{ playlist.name }}</div>
 
-				</div>
-			</app-horizontal-scroll>
+					</ng-container>
+				</app-horizontal-scroll>
+
+			</div>
+
 
 		</ng-container>
 
@@ -27,7 +33,7 @@
 			<swiper [config]="config">
 				<ng-container *ngFor="let artist of result.artists; ">
 					<ng-template swiperSlide>
-						<div routerLink="/library/artists/{{ artist.id }}" class="image-element artist">
+						<div routerLink="/library/artists/{{ artist.id }}" class="image-element album">
 							<img height="260" class="lazyLoad" [lazyLoad]="artist.picture" />
 							<div class="overlay"></div>
 							<div class="column-details">
@@ -67,9 +73,10 @@
 				<h3>Tracks</h3>
 
 				<div class="float-right">
-					<button (click)="onPlayTracks()" class="button m-t-20 default action-outline"><i
-							class="feather feather-play"></i>
-						Play Tracks</button>
+
+
+					<div (click)="onPlayTracks()" class="play-button">
+						Play</div>
 				</div>
 			</div>
 

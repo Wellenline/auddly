@@ -10,6 +10,12 @@ nav {
 		text-align: center;
 
 		.menu-item {
+			position: relative;
+			&:hover {
+				.player-popover {
+					display: inline-block;
+				}
+			}
 			a {
 				color: var(--foreground-color);
 				display: block;
@@ -21,6 +27,9 @@ nav {
 
 				&.active {
 					background: var(--accent-color);
+					i {
+						color: white !important;
+					}
 				}
 
 				&:hover {
@@ -59,12 +68,12 @@ nav {
 
 				.title {
 					display: none;
-					background: var(--background-color-2);
+					background: var(--border-color);
 					z-index: 99999;
 					padding: 10px;
 					border-radius: 5px;
 					color: var(--foreground-color);
-					margin-left: 20px;
+					margin-left: 40px;
 					position: absolute;
 					margin-top: 10px;
 					position: absolute;
@@ -73,6 +82,13 @@ nav {
 				}
 			}
 		}
+	}
+
+	.player-popover {
+		position: absolute;
+		top: 0;
+		display: none;
+		left: 80px;
 	}
 }
 
@@ -92,7 +108,6 @@ nav {
 				// flex-grow: 1;
 				// flex-basis: 0;
 				margin: 0 auto;
-
 				a {
 					width: 40px;
 					height: 40px;

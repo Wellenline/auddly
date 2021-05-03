@@ -1,4 +1,4 @@
-<app-header back="true" title="{{ artist.name }}"></app-header>
+<app-header static="true" back="true"></app-header>
 
 
 
@@ -14,8 +14,11 @@
 			</div>
 
 			<div class="width-expand@md">
-				<div class="app-page-title">{{ artist.name }}</div>
-				<div class="artist-bio" [innerHTML]="artist.bio"></div>
+				<div class="artist-details">
+					<div class="artist-name">{{ artist.name }}</div>
+					<div class="artist-bio" [innerHTML]="artist.bio"></div>
+				</div>
+
 				<div class="tags">
 
 					<app-horizontal-scroll>
@@ -26,7 +29,7 @@
 					</app-horizontal-scroll>
 
 				</div>
-				<div class="text-meta">Similar Artists</div>
+				<h3>Similar Artists</h3>
 				<div class="tags">
 					<app-horizontal-scroll>
 						<ng-container *ngFor="let similar of artist.similar">
@@ -43,15 +46,17 @@
 
 	<ng-container *ngIf="albums.length > 0">
 
-		<div class="section-title">Albums</div>
+		<h3>Albums</h3>
 		<swiper [config]="config">
 			<ng-container *ngFor="let album of albums; ">
 				<ng-template swiperSlide>
 					<div routerLink="/library/albums/{{ album.id }}" class="image-element album">
-						<img [src]="album.picture" />
+						<img height="260" class="lazyLoad" [lazyLoad]="album.picture" />
 						<div class="overlay"></div>
-						<div class="album">
-							{{ album.name }}
+
+						<div class="column-details">
+							<div class="title">{{ album.name }}</div>
+							<div class="subtitle">{{ album.artist.name }}</div>
 						</div>
 					</div>
 				</ng-template>
@@ -60,10 +65,41 @@
 	</ng-container>
 
 	<ng-container *ngIf="tracks.length > 0">
-		<div class="section-title">Popular Tracks</div>
+		<div class="title-action">
+			<h3>Popular</h3>
+
+			<div class="float-right">
+
+
+				<div (click)="onPlayTracks()" class="play-button">
+					Play</div>
+			</div>
+		</div>
 
 		<div class="grid">
 			<div class="width-4@lg width-4@md width-6@sm" *ngFor="let track of tracks">
+				<app-track-list [track]="track"></app-track-list>
+			</div>
+		</div>
+
+	</ng-container>
+
+	<ng-container *ngIf="result.tracks.length > 0">
+
+
+		<div class="title-action">
+			<h3>Appears on: </h3>
+
+			<div class="float-right">
+
+
+				<div (click)="onPlayTracks()" class="play-button">
+					Play</div>
+			</div>
+		</div>
+
+		<div class="grid ">
+			<div class="width-3@lg width-4@md width-6@sm" *ngFor="let track of result.tracks">
 				<app-track-list [track]="track"></app-track-list>
 			</div>
 		</div>

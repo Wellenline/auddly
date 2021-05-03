@@ -12,7 +12,7 @@ export class FavouritesComponent implements OnInit {
 	public pagination = {
 		total: 0,
 		skip: 0,
-		limit: 20,
+		limit: 1000,
 	};
 	public loading = true;
 	constructor(private httpService: HttpService, private playerService: PlayerService) { }

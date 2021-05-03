@@ -13,13 +13,11 @@
 		</div>
 	</div>
 
-	<div *ngIf="track.lossless" class="actions lossless" [attr.data-tooltip]="'Lossless'">
+	<div *ngIf="track.lossless" class="actions lossless" appTooltip tooltip="Lossless">
 		<i class="feather feather-headphones"></i>
 	</div>
 
-	<div class="actons fav">
-		<app-fav-button [track]="track"></app-fav-button>
-	</div>
+
 	<div class="duration">
 		{{track.duration | formatSeconds}}
 	</div>

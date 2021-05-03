@@ -13,8 +13,6 @@ import { InfiniteScrollComponent } from "./components/infinite-scroll/infinite-s
 import { TrackListComponent } from "./components/track-list/track-list.component";
 import { TracksComponent } from "./pages/tracks/tracks.component";
 import { HttpService } from "./services/http.service";
-import { ArtistsComponent } from "./pages/artists/artists.component";
-import { AlbumsComponent } from "./pages/albums/albums.component";
 import { SearchComponent } from "./pages/search/search.component";
 import { AlbumComponent } from "./pages/album/album.component";
 import { ArtistComponent } from "./pages/artist/artist.component";
@@ -22,15 +20,11 @@ import { QueueComponent } from "./pages/queue/queue.component";
 import { FormatSecondsPipe } from "./pipes/format-seconds.pipe";
 import { SettingsComponent } from "./pages/settings/settings.component";
 import { PlayerService } from "./services/player.service";
-import { AlbumListComponent } from "./components/album-list/album-list.component";
-import { ArtistListComponent } from "./components/artist-list/artist-list.component";
+
 import { SetupComponent } from "./pages/setup/setup.component";
 import { PlaylistComponent } from "./pages/playlist/playlist.component";
 import { FavouritesComponent } from "./pages/favourites/favourites.component";
-import { AudioVisualizerComponent } from "./components/audio-visualizer/audio-visualizer.component";
-import { FavButtonComponent } from "./components/fav-button/fav-button.component";
 import { SizePipe } from "./pipes/size.pipe";
-import { TrackOptionsComponent } from "./components/track-options/track-options.component";
 import { SliderComponent } from "./components/slider/slider.component";
 import { PlaylistFormComponent } from "./components/playlist-form/playlist-form.component";
 import { PlaylistsComponent } from "./pages/playlists/playlists.component";
@@ -38,15 +32,13 @@ import { IndicatorComponent } from "./components/common/indicator/indicator.comp
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
 import { HorizontalScrollComponent } from "./components/horizontal-scroll/horizontal-scroll.component";
-import { BackgroundComponent } from "./components/background/background.component";
 import { PlaylistListComponent } from "./components/playlist-list/playlist-list.component";
 import { VirtualScrollerModule } from "ngx-virtual-scroller";
-import { MainComponent } from './layouts/main/main.component';
+import { MainComponent } from "./layouts/main/main.component";
 import { SharedModule } from "./modules/shared/shared.module";
-import { SwiperModule } from 'swiper/angular';
-import { LibraryComponent } from './pages/library/library.component';
-import { ScrollingModule } from '@angular/cdk/scrolling';
-import { ThemeToggleComponent } from './components/theme-toggle/theme-toggle.component';
+import { SwiperModule } from "swiper/angular";
+import { LibraryComponent } from "./pages/library/library.component";
+import { ThemeToggleComponent } from "./components/theme-toggle/theme-toggle.component";
 
 import SwiperCore, { EffectCoverflow, Swiper, SwiperOptions, Virtual } from "swiper/core";
 
@@ -60,29 +52,21 @@ SwiperCore.use([Virtual, EffectCoverflow]);
 		InfiniteScrollComponent,
 		TrackListComponent,
 		TracksComponent,
-		ArtistsComponent,
-		AlbumsComponent,
 		SearchComponent,
 		AlbumComponent,
 		ArtistComponent,
 		QueueComponent,
 		FormatSecondsPipe,
 		SettingsComponent,
-		AlbumListComponent,
-		ArtistListComponent,
 		SetupComponent,
 		PlaylistComponent,
 		FavouritesComponent,
-		AudioVisualizerComponent,
-		FavButtonComponent,
 		SizePipe,
-		TrackOptionsComponent,
 		SliderComponent,
 		PlaylistFormComponent,
 		PlaylistsComponent,
 		IndicatorComponent,
 		HorizontalScrollComponent,
-		BackgroundComponent,
 		PlaylistListComponent,
 		MainComponent,
 		LibraryComponent,
