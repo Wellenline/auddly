@@ -9,7 +9,6 @@ import { SettingsComponent } from "./pages/settings/settings.component";
 import { SetupComponent } from "./pages/setup/setup.component";
 import { AuthGuard } from "./guards/auth.guard";
 import { PlaylistComponent } from "./pages/playlist/playlist.component";
-import { FavouritesComponent } from "./pages/favourites/favourites.component";
 import { PlaylistsComponent } from "./pages/playlists/playlists.component";
 import { MainComponent } from "./layouts/main/main.component";
 import { LibraryComponent } from "./pages/library/library.component";
@@ -35,7 +34,6 @@ const routes: Routes = [
 			{ path: "search", component: SearchComponent, canActivate: [AuthGuard] },
 			{ path: "settings", component: SettingsComponent, canActivate: [AuthGuard] },
 			{ path: "playlists/:id", component: PlaylistComponent, canActivate: [AuthGuard] },
-			{ path: "favourites", component: FavouritesComponent, canActivate: [AuthGuard] },
 
 			{ path: "queue", component: QueueComponent, canActivate: [AuthGuard] },
 

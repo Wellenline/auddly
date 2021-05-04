@@ -4,7 +4,7 @@
 	color: var(--foreground-color);
 	display: flex;
 	align-items: center;
-
+	position: relative;
 	&.playing {
 		// background: rgba(37, 39, 42, 0.18);
 		// background-color: rgb(0 0 0 / 25%);
@@ -38,10 +38,12 @@
 	.details {
 		padding: 10px;
 		flex-grow: 1;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		max-width: 100%;
+		// position: relative;
+
+		//white-space: nowrap;
+		//overflow: hidden;
+		//text-overflow: ellipsis;
+		//max-width: 100%;
 
 		.title {
 			color: var(--foreground-color);
@@ -96,10 +98,10 @@
 		}
 
 		.details {
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			max-width: 100%;
+			//white-space: nowrap;
+			//overflow: hidden;
+			//text-overflow: ellipsis;
+			//max-width: 100%;
 
 			.title {
 			}

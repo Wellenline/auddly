@@ -1,37 +1,90 @@
-<div class="modal {{interfaceService.dialog.visible ? 'is-visible' : ''}}">
+<div class="dialog {{interfaceService.dialog.visible ? 'is-visible' : ''}}">
+
 
 	<div class="modal-window small middle">
 		<div class="modal-header">
+			<div class="modal-title">
+				<div>
+					<h3>{{ interfaceService.dialog?.options?.title || interfaceService.dialog?.options?.type }}
+					</h3>
+					<div class="text-meta">{{ interfaceService.dialog?.options?.message }}</div>
+				</div>
+			</div>
+			<!--div (click)="close(false)" class="modal-close">
+				<i class="feather feather-x"></i>
+			</div-->
+		</div>
 
+		<div class="modal-body"
+			*ngIf="interfaceService.dialog?.options?.type === 'prompt' || interfaceService.dialog?.options?.type === 'picker'">
 
-			<div class="modal-title">{{ interfaceService.dialog?.options?.title }}</div>
+			<ng-container *ngIf="interfaceService.dialog?.options?.type === 'prompt'">
+				<div>
+					<label>{{ interfaceService.dialog?.options?.title }}</label>
+					<input autocomplete="off" class="input" [(ngModel)]="prompt"
+						placeholder="{{ interfaceService.dialog?.options?.title }}" />
+				</div>
+			</ng-container>
+
+			<ng-container *ngIf="interfaceService.dialog?.options?.type === 'picker'">
+				<div class="list">
+					<div *ngFor="let item of interfaceService.dialog?.options?.items; let i = index" (click)="close(i)"
+						class="item">
+						{{ item }}
+					</div>
+				</div>
+			</ng-container>
 
 		</div>
-		<div class="modal-body">{{ interfaceService.dialog?.options?.message }}
-			<div *ngIf="interfaceService.dialog?.options?.type === 'prompt'" class="m-t-10">
-				<input autocomplete="off" class="input" [(ngModel)]="prompt"
-					placeholder="{{interfaceService.dialog?.options?.title}}" />
+
+		<div class="modal-footer">
+			<div class="actions">
+				<ng-container *ngIf="interfaceService.dialog?.options?.type !== 'alert'">
+					<div class="action" (click)="close(false)">
+						{{interfaceService.dialog?.options?.cancelButtonText}}
+					</div>
+				</ng-container>
+				<ng-container *ngIf="interfaceService.dialog?.options?.type !== 'picker'">
+
+					<div class=" action" (click)="close(true)">
+						{{interfaceService.dialog?.options?.okButtonText}}
+					</div>
+				</ng-container>
+
+
 			</div>
+
+		</div>
+
+	</div>
+
+
+
+	<!--div class="modal-window small">
+		<div class="modal-title">{{ interfaceService.dialog?.options?.title }}</div>
+		<div class="modal-message">{{ interfaceService.dialog?.options?.message }}</div>
+		<div *ngIf="interfaceService.dialog?.options?.type === 'prompt'" class="m-20">
+			<input autocomplete="off" class="input" [(ngModel)]="prompt"
+				placeholder="{{interfaceService.dialog?.options?.title}}" />
 		</div>
 
 		<div class="modal-footer">
 
 
-			<div class="flex flex-right">
+			<div class="flex flex-right m-20">
 
-				<button
-					*ngIf="interfaceService.dialog?.options?.type === 'confirm' || interfaceService.dialog?.options?.type === 'prompt'"
+				<button *ngIf="interfaceService.dialog?.options?.type === 'confirm' || interfaceService.dialog?.options?.type === 'prompt'"
 					(click)="close(false)"
-					class="button  block default m-r-10">{{interfaceService.dialog?.options?.cancelButtonText}}</button>
+					class="button fill  primary m-r-10">{{interfaceService.dialog?.options?.cancelButtonText}}</button>
+
 
 				<button *ngIf="interfaceService.dialog?.options?.type !== 'prompt'" (click)="close(true)"
-					class="button block  primary">{{interfaceService.dialog?.options?.okButtonText}}</button>
+					class="button fill primary">{{interfaceService.dialog?.options?.okButtonText}}</button>
 
-				<button [disabled]="!prompt" *ngIf="interfaceService.dialog?.options?.type === 'prompt'"
-					(click)="close(prompt)"
-					class="button block fill primary">{{interfaceService.dialog?.options?.okButtonText}}</button>
+				<button [disabled]="!prompt" *ngIf="interfaceService.dialog?.options?.type === 'prompt'" (click)="close(prompt)"
+					class="button fill primary">{{interfaceService.dialog?.options?.okButtonText}}</button>
 			</div>
 		</div>
-	</div>
+	</div-->
 
 </div>

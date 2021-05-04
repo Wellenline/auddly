@@ -15,8 +15,8 @@ export class SearchComponent implements OnInit {
 		albums: [],
 		tracks: [],
 		artists: [],
-		playlists: [],
 	};
+	public playlists = [];
 
 	public search: string;
 	public config: SwiperOptions = {
@@ -51,6 +51,12 @@ export class SearchComponent implements OnInit {
 
 		},
 	};
+	public loading = {
+		albums: true,
+		artists: true,
+		tracks: true,
+		playlists: true,
+	};
 	constructor(private httpService: HttpService, private playerService: PlayerService, private router: Router, private route: ActivatedRoute) { }
 
 	public ngOnInit(): void {
@@ -84,33 +90,61 @@ export class SearchComponent implements OnInit {
 		if (search.length < 3) {
 			return;
 		}
-
+		this.loading = {
+			artists: true,
+			albums: true,
+			playlists: true,
+			tracks: true,
+		};
 		this.httpService.get(`/search?q=${search}`).subscribe((response: any) => {
+			console.log(response);
 			this.result = response;
+		}).add(() => {
+			this.loading = {
+				artists: false,
+				albums: false,
+				playlists: false,
+				tracks: false,
+			};
 		});
 	}
 
 	public fetchArtists() {
+		this.loading.artists = true;
 		this.httpService.get(`/artists/random?total=20`).subscribe((response: any) => {
 			this.result.artists = response;
+		}).add(() => {
+			this.loading.artists = false;
 		});
 	}
 
 	public fetchAlbums() {
+		this.loading.albums = true;
+
 		this.httpService.get(`/albums/random?total=20`).subscribe((response: any) => {
 			this.result.albums = response;
+		}).add(() => {
+			this.loading.albums = false;
 		});
 	}
 
 	public fetchTracks() {
+		this.loading.tracks = true;
+
 		this.httpService.get(`/tracks/random?total=20`).subscribe((response: any) => {
 			this.result.tracks = response;
+		}).add(() => {
+			this.loading.tracks = false;
 		});
 	}
 
 	public fetchPlaylists() {
+		this.loading.playlists = true;
+
 		this.httpService.get(`/playlists`).subscribe((response: any) => {
-			this.result.playlists = [{ name: "Favorites", id: "FAVOURITES" }].concat(response.playlists);
+			this.playlists = [{ name: "Favorites", id: "FAVOURITES" }].concat(response.playlists);
+		}).add(() => {
+			this.loading.playlists = false;
 		});
 	}
 }

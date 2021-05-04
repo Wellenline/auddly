@@ -7,9 +7,10 @@ interface IOptions {
 interface IDialogOptions {
 	title?: string;
 	message?: string;
-	type?: "confirm" | "alert" | "prompt";
+	type?: "confirm" | "alert" | "prompt" | "picker";
 	cancelButtonText?: string;
 	okButtonText?: string;
+	items?: any[];
 	closed?: (status) => void;
 }
 @Injectable({

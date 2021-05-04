@@ -1,19 +1,70 @@
-<app-header title="Tracks"></app-header>
+<app-header title="Tracks" [actionTemplate]="actionTemplate">
 
-<section class="app-route">
-	<div class="inner-content">
+	<ng-template #actionTemplate>
 
-		<div class="app-page-title">Tracks</div>
 
+
+		<app-dropdown #dropdown [config]="{right: true}" [header]="headerTemplate">
+			<ng-template #headerTemplate let-item="item">
+				<div (click)="item.onToggle()" class="dropdown-action-item"><i class="material-icons-outlined">
+						more_vert
+					</i></div>
+			</ng-template>
+
+			<div class="dropdown-action-list">
+				<a (click)="onPlay()">Play <i class="feather-play"></i></a>
+
+				<a (click)="onSort()">Sort <i *ngIf="filter.sort" class="feather-chevrons-down"></i>
+
+					<i *ngIf="!filter.sort" class="feather-chevrons-up"></i>
+				</a>
+
+				<div class="divider no-margin"></div>
+				<a (click)="onLiked()">Liked <i class="feather-heart"></i>
+				</a>
+
+				<a (click)="onGenre()">Genre</a>
+				<div class="divider no-margin"></div>
+				<a (click)="onLimit()">{{ pagination.limit }}
+				</a>
+			</div>
+		</app-dropdown>
+	</ng-template>
+</app-header>
+
+<div class="filters">
+	<app-horizontal-scroll>
+		<div (click)="onLimit()" class="filter">
+			Limit: {{ pagination.limit }}
+		</div>
+		<div *ngIf="filter.liked" (click)="onLiked()" class="filter">
+			Favourites <i class="feather-x"></i>
+		</div>
+		<div *ngIf="filter.genre" (click)="onClearGenre()" class="filter">
+			{{ genre?.name }} <i class="feather-x"></i>
+		</div>
+
+		<div *ngIf="filter.sort" (click)="onSort()" class="filter">
+			Sort <i class="feather-chevrons-down"></i>
+		</div>
+	</app-horizontal-scroll>
+
+</div>
+
+
+<div class="relative">
+
+
+	<cdk-virtual-scroll-viewport autosize itemSize="75" class="viewport">
 
 		<infinite-scroll (scrolled)="onScroll()">
 
+			<div *cdkVirtualFor="let track of tracks; templateCacheSize: 0">
 
 
-
-			<app-track-list [track]="track" *ngFor="let track of tracks"></app-track-list>
+				<app-track-list [track]="track"></app-track-list>
+			</div>
 			<app-indicator [loading]="loading" message="Loading tracks"></app-indicator>
-
 		</infinite-scroll>
-	</div>
-</section>
+	</cdk-virtual-scroll-viewport>
+</div>

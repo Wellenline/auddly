@@ -5,18 +5,29 @@
 			<input (keyup)="onSearch($event)" [(ngModel)]="search" autocomplete="off" class="search-input" type="text"
 				placeholder="Search Music, Albums, Tracks" />
 		</div>
+		<ng-container *ngIf="loading.playlists">
+			<lines class="shine"></lines>
+			<lines class="shine"></lines>
 
-		<ng-container *ngIf="result.playlists.length > 0">
+			<app-horizontal-scroll>
+				<rect class="shine"></rect>
+			</app-horizontal-scroll>
+		</ng-container>
+
+		<ng-container *ngIf="playlists.length > 0">
 
 			<h3>Playlists</h3>
 
 			<div class="playlists">
 				<app-horizontal-scroll>
-					<ng-container *ngFor="let playlist of result.playlists">
-						<div class="playlist"
-							routerLink="{{playlist.id === 'FAVOURITES' ? '/favourites' : '/playlists/' + playlist.id}}">
+					<ng-container *ngFor="let playlist of playlists">
+						<div *ngIf="playlist.id === 'FAVOURITES'" class="playlist" routerLink="/tracks"
+							[queryParams]="{liked: true}">
 							{{ playlist.name }}</div>
 
+						<div *ngIf="playlist.id !== 'FAVOURITES'" class="playlist"
+							routerLink="/playlists/{{playlist.id}}">
+							{{ playlist.name }}</div>
 					</ng-container>
 				</app-horizontal-scroll>
 
@@ -25,16 +36,43 @@
 
 		</ng-container>
 
+		<ng-container *ngIf="loading.artists">
+			<lines class="shine"></lines>
+			<lines class="shine"></lines>
+
+			<app-horizontal-scroll>
+
+				<div class="artists">
+					<box class="shine"></box>
+					<box class="shine"></box>
+					<box class="shine"></box>
+				</div>
+			</app-horizontal-scroll>
+		</ng-container>
+
 
 		<ng-container *ngIf="result.artists.length > 0">
 
 			<h3 routerLink="/library?tab=artists">Artists</h3>
+			<div class="scrollable">
+				<app-horizontal-scroll>
 
-			<swiper [config]="config">
+					<ng-container *ngFor="let artist of result.artists; ">
+
+						<div routerLink="/library/artists/{{ artist.id }}" class="image-element album">
+							<img class="lazyLoad" [lazyLoad]="artist.picture" />
+							<div class="column-details">
+								<div class="title">{{ artist.name }}</div>
+							</div>
+						</div>
+					</ng-container>
+				</app-horizontal-scroll>
+			</div>
+			<!--swiper [config]="config">
 				<ng-container *ngFor="let artist of result.artists; ">
 					<ng-template swiperSlide>
-						<div routerLink="/library/artists/{{ artist.id }}" class="image-element album">
-							<img height="260" class="lazyLoad" [lazyLoad]="artist.picture" />
+						<div routerLink="/library/artists/{{ artist.id }}" class="image-element">
+							<img class="lazyLoad" [lazyLoad]="artist.picture" />
 							<div class="overlay"></div>
 							<div class="column-details">
 								<div class="title">{{ artist.name }}</div>
@@ -42,18 +80,47 @@
 						</div>
 					</ng-template>
 				</ng-container>
-			</swiper>
+			</swiper-->
 
+		</ng-container>
+
+		<ng-container *ngIf="loading.albums">
+
+			<lines class="shine"></lines>
+			<lines class="shine"></lines>
+
+			<app-horizontal-scroll>
+
+				<div class="artists">
+					<box class="shine"></box>
+					<box class="shine"></box>
+					<box class="shine"></box>
+				</div>
+			</app-horizontal-scroll>
 		</ng-container>
 
 		<ng-container *ngIf="result.albums.length > 0">
 
 			<h3 routerLink="/library?tab=albums">Albums</h3>
-			<swiper [config]="config">
+			<div class="scrollable">
+				<app-horizontal-scroll>
+					<ng-container *ngFor="let album of result.albums; ">
+						<div routerLink="/library/albums/{{ album.id }}" class="image-element">
+							<img class="lazyLoad" [lazyLoad]="album.picture" />
+
+							<div class="column-details">
+								<div class="title">{{ album.name }}</div>
+								<div class="subtitle">{{ album.artist.name }}</div>
+							</div>
+						</div>
+					</ng-container>
+				</app-horizontal-scroll>
+			</div>
+			<!--swiper [config]="config">
 				<ng-container *ngFor="let album of result.albums; ">
 					<ng-template swiperSlide>
-						<div routerLink="/library/albums/{{ album.id }}" class="image-element album">
-							<img height="260" class="lazyLoad" [lazyLoad]="album.picture" />
+						<div routerLink="/library/albums/{{ album.id }}" class="image-element">
+							<img class="lazyLoad" [lazyLoad]="album.picture" />
 							<div class="overlay"></div>
 
 							<div class="column-details">
@@ -63,8 +130,16 @@
 						</div>
 					</ng-template>
 				</ng-container>
-			</swiper>
+			</swiper-->
 		</ng-container>
+
+		<ng-container *ngIf="loading.tracks">
+			<lines class="shine"></lines>
+
+			<lines class="shine"></lines>
+			<lines class="shine"></lines>
+		</ng-container>
+
 
 		<ng-container *ngIf="result.tracks.length > 0">
 

@@ -1,5 +1,6 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { VirtualScrollerComponent } from 'ngx-virtual-scroller';
 import { HttpService } from 'src/app/services/http.service';
 
@@ -20,7 +21,7 @@ export class LibraryComponent implements OnInit {
 	};
 	public loading = true;
 	public height = 0;
-	constructor(private httpService: HttpService) { }
+	constructor(private httpService: HttpService, private router: Router, private route: ActivatedRoute) { }
 
 	public onScroll(e?) {
 		if (this.tab === 0) {
@@ -37,10 +38,31 @@ export class LibraryComponent implements OnInit {
 		}
 
 
+
 	}
 
 	public ngOnInit(): void {
-		this.fetchArtists();
+
+		this.route.queryParams.subscribe((params) => {
+
+			console.log(params);
+			if (params.tab !== undefined) {
+				this.tab = parseInt(params.tab, 10);
+				setTimeout(() => {
+					if (params.tab === "0") {
+						this.fetchArtists();
+						// this.onShowFollowers();
+					} else {
+						this.fetchAlbums();
+
+						// this.onShowFollowing();
+					}
+				}, 100);
+			} else {
+				this.fetchArtists();
+			}
+		});
+		// this.fetchArtists();
 	}
 
 	public fetchArtists() {
@@ -71,16 +93,12 @@ export class LibraryComponent implements OnInit {
 		};
 		this.tab = index;
 
-		setTimeout(() => {
-			if (index === 0) {
-				this.fetchArtists();
-				// this.onShowFollowers();
-			} else {
-				this.fetchAlbums();
+		this.router.navigate(["/library"], {
+			queryParams: {
+				tab: this.tab,
+			}, queryParamsHandling: "merge",
+		});
 
-				// this.onShowFollowing();
-			}
-		}, 100);
 
 	}
 

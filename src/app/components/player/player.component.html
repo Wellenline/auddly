@@ -5,11 +5,11 @@
 		</div>
 
 		<div class="details">
-			<div class="artist">
+			<div routerLink="/library/artists/{{track?.album?.artist?.id}}" class="artist">
 				{{ track.artist }}
 			</div>
 
-			<div class="name">
+			<div routerLink="/library/albums/{{track?.album?.id}}" class="name">
 				{{ track.name }}
 			</div>
 		</div>

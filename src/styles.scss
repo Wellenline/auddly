@@ -68,9 +68,21 @@ html[data-theme="dark"] {
 }
 
 ::-webkit-scrollbar {
-	width: 0px;
+	width: 5px;
 	background: transparent;
 }
+/*
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}*/
 
 input,
 input:before,
@@ -130,7 +142,30 @@ a {
 .ng-lazyloaded {
 	opacity: 1;
 }
+/*
+.overflow-text {
+	position: relative;
+	top: 0;
+	left: 0;
+	display: inline-block;
+	white-space: nowrap;
+	animation-name: bounce;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+}
 
+@keyframes bounce {
+	0% {
+		transform: translateX(10%);
+	}
+	50% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(10%);
+	}
+}
+*/
 .dropdown-action-item {
 	font-size: 1.2rem;
 	padding: 5px;
@@ -172,6 +207,11 @@ a {
 
 			color: #fff;
 			cursor: pointer;
+		}
+
+		i {
+			text-align: right;
+			float: right;
 		}
 	}
 }

@@ -27,6 +27,7 @@
     "@angular/router": "~11.0.3",
     "@angular/service-worker": "~11.0.3",
     "ng-lazyload-image": "^7.1.0",
+    "ngx-drag-scroll": "^11.0.0-beta.1",
     "ngx-virtual-scroller": "^4.0.3",
     "qrcode": "^1.4.4",
     "rxjs": "~6.5.4",

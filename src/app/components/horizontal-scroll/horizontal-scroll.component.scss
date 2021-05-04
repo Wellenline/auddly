@@ -1,17 +1,16 @@
 #flex-wrapper {
-    overflow: hidden;
+	overflow: hidden;
 
-    #flex-container {
-        display: flex;
-        overflow-x: auto;
-        width: 100%;
-        -webkit-overflow-scrolling: touch;
+	#flex-container {
+		display: flex;
+		overflow-x: auto;
+		width: 100%;
+		-webkit-overflow-scrolling: touch;
 
-        #flex-inside {
-            background-color: transparent;
-            display: flex;
-            flex: 0 0 auto;
-
-        }
-    }
+		#flex-inside {
+			background-color: transparent;
+			display: flex;
+			flex: 0 0 auto;
+		}
+	}
 }

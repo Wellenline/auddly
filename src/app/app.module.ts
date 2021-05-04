@@ -23,7 +23,6 @@ import { PlayerService } from "./services/player.service";
 
 import { SetupComponent } from "./pages/setup/setup.component";
 import { PlaylistComponent } from "./pages/playlist/playlist.component";
-import { FavouritesComponent } from "./pages/favourites/favourites.component";
 import { SizePipe } from "./pipes/size.pipe";
 import { SliderComponent } from "./components/slider/slider.component";
 import { PlaylistFormComponent } from "./components/playlist-form/playlist-form.component";
@@ -32,13 +31,13 @@ import { IndicatorComponent } from "./components/common/indicator/indicator.comp
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
 import { HorizontalScrollComponent } from "./components/horizontal-scroll/horizontal-scroll.component";
-import { PlaylistListComponent } from "./components/playlist-list/playlist-list.component";
 import { VirtualScrollerModule } from "ngx-virtual-scroller";
 import { MainComponent } from "./layouts/main/main.component";
 import { SharedModule } from "./modules/shared/shared.module";
 import { SwiperModule } from "swiper/angular";
 import { LibraryComponent } from "./pages/library/library.component";
 import { ThemeToggleComponent } from "./components/theme-toggle/theme-toggle.component";
+import { DragScrollModule } from "ngx-drag-scroll";
 
 import SwiperCore, { EffectCoverflow, Swiper, SwiperOptions, Virtual } from "swiper/core";
 
@@ -60,14 +59,12 @@ SwiperCore.use([Virtual, EffectCoverflow]);
 		SettingsComponent,
 		SetupComponent,
 		PlaylistComponent,
-		FavouritesComponent,
 		SizePipe,
 		SliderComponent,
 		PlaylistFormComponent,
 		PlaylistsComponent,
 		IndicatorComponent,
 		HorizontalScrollComponent,
-		PlaylistListComponent,
 		MainComponent,
 		LibraryComponent,
 		ThemeToggleComponent,
@@ -81,6 +78,7 @@ SwiperCore.use([Virtual, EffectCoverflow]);
 		FormsModule,
 		CommonModule,
 		SwiperModule,
+		DragScrollModule,
 		LazyLoadImageModule,
 		AppRoutingModule,
 		VirtualScrollerModule,
