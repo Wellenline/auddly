@@ -5,12 +5,17 @@
 			<input (keyup)="onSearch($event)" [(ngModel)]="search" autocomplete="off" class="search-input" type="text"
 				placeholder="Search Music, Albums, Tracks" />
 		</div>
+
+
 		<ng-container *ngIf="loading.playlists">
-			<lines class="shine"></lines>
-			<lines class="shine"></lines>
+			<app-shiner margin="0px 0px 5px 0px" height="10px" width="100px"></app-shiner>
+			<app-shiner margin="0px 0px 20px 0px" height="10px" width="100px"></app-shiner>
+
 
 			<app-horizontal-scroll>
-				<rect class="shine"></rect>
+				<app-shiner margin="0px 0px 5px 0px" height="30px" width="100px"></app-shiner>
+
+				<app-shiner margin="0px 0px 5px 10px" height="30px" width="100px"></app-shiner>
 			</app-horizontal-scroll>
 		</ng-container>
 
@@ -25,8 +30,8 @@
 							[queryParams]="{liked: true}">
 							{{ playlist.name }}</div>
 
-						<div *ngIf="playlist.id !== 'FAVOURITES'" class="playlist"
-							routerLink="/playlists/{{playlist.id}}">
+						<div *ngIf="playlist.id !== 'FAVOURITES'" class="playlist" routerLink="/tracks"
+							[queryParams]="{playlist: playlist.id}">
 							{{ playlist.name }}</div>
 					</ng-container>
 				</app-horizontal-scroll>
@@ -156,7 +161,7 @@
 			</div>
 
 			<div class="grid ">
-				<div class="width-3@lg width-4@md width-6@sm" *ngFor="let track of result.tracks">
+				<div class="width-4@lg width-6@md width-6@sm" *ngFor="let track of result.tracks">
 					<app-track-list [track]="track"></app-track-list>
 				</div>
 			</div>
@@ -164,6 +169,6 @@
 		</ng-container>
 	</div>
 
-	<app-player></app-player>
+	<!--app-player></app-player-->
 
 </section>

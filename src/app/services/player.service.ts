@@ -12,6 +12,10 @@ export interface ITrack {
 	album?: any;
 	lossless?: boolean;
 	path?: string;
+	lyrics?: {
+		text: string
+	} | null;
+	playlists?: { name?: string, id?: number }[];
 	name?: string;
 	source?: string;
 	liked?: boolean;

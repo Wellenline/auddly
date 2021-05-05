@@ -23,6 +23,7 @@ import { AutoSizeDirective } from './directives/auto-size.directive';
 import { DragDropDirective } from './directives/drag-drop.directive';
 import { VirtualScrollerModule } from "ngx-virtual-scroller";
 import { HeaderComponent } from "./components/header/header.component";
+import { ShinerComponent } from './components/shiner/shiner.component';
 
 
 
@@ -41,7 +42,8 @@ import { HeaderComponent } from "./components/header/header.component";
 		DropdownComponent,
 		AutoSizeDirective,
 		DragDropDirective,
-		HeaderComponent,],
+		HeaderComponent,
+		ShinerComponent,],
 	imports: [
 		CommonModule,
 		FormsModule,
@@ -76,7 +78,8 @@ import { HeaderComponent } from "./components/header/header.component";
 		DragDropModule,
 		AutoSizeDirective,
 		HeaderComponent,
-		DragDropDirective
+		DragDropDirective,
+		ShinerComponent,
 
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],

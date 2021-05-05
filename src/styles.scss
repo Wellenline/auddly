@@ -114,6 +114,14 @@ textarea,
 	outline: none; // You should add some other style for :focus to help UX/a11y
 }
 
+input,
+select,
+textarea {
+	//background-color: var(--background-color-2) !important;
+	//color: var(--foreground-color) !important;
+	//box-shadow: none !important;
+	//border: 1px solid var(--border-color) !important;
+}
 * {
 	&:focus {
 		outline: none;

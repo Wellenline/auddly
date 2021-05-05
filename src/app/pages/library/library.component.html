@@ -1,4 +1,22 @@
-<app-header transparent="true" title="Library">
+<app-header transparent="true" title="Library" [actionTemplate]="actionTemplate">
+
+	<ng-template #actionTemplate>
+
+		<app-dropdown *ngIf="tab === 2" #dropdown [config]="{right: true}" [header]="headerTemplate">
+			<ng-template #headerTemplate let-item="item">
+				<div (click)="item.onToggle()" class="dropdown-action-item"><i class="material-icons-outlined">
+						more_vert
+					</i></div>
+			</ng-template>
+
+			<div class="dropdown-action-list">
+
+				<a (click)="onCreate()">New playlist <i class="feather-plus"></i></a>
+
+
+			</div>
+		</app-dropdown>
+	</ng-template>
 
 </app-header>
 
@@ -8,12 +26,15 @@
 
 
 <div class="toggle">
-	<span class="{{ tab === 0 ? 'left' : 'right' }}"></span>
 	<div (click)="setTab(0)" class="value {{ tab === 0 ? 'active' : '' }}">
 		Artists
 	</div>
 	<div (click)=" setTab(1)" class="value {{ tab === 1 ? 'active' : '' }}">
 		Albums
+	</div>
+
+	<div (click)=" setTab(2)" class="value {{ tab === 2 ? 'active' : '' }}">
+		Playlists
 	</div>
 </div>
 <infinite-scroll (scrolled)="onScroll()">
@@ -44,15 +65,43 @@
 
 			</div>
 		</ng-container>
-	</div>
-	<!--div class="grid">
-		<div class="width-2@lg width-4@md width-6@sm width-6@xs" *ngFor="let artist of artists">
-			<app-artist-list [artist]="artist"></app-artist-list>
 
-		</div>
-	</div-->
+	</div>
+
 	<app-indicator [loading]="loading" message="Loading artists"></app-indicator>
 
 </infinite-scroll>
+
+<ng-container *ngIf="tab === 2">
+
+	<div class="playlists">
+
+		<div class="playlist" *ngFor="let playlist of playlists">
+
+
+			<div routerLink="/tracks" [queryParams]="{ playlist: playlist.id}" class="playlist-name">{{ playlist.name }}
+			</div>
+			<div *ngIf="!playlist.readonly" class="playlist-actions">
+				<app-dropdown #dropdown [config]="{right: true}" [header]="headerTemplate">
+					<ng-template #headerTemplate let-item="item">
+						<div (click)="item.onToggle()" class="dropdown-action-item"><i class="material-icons-outlined">
+								more_vert
+							</i></div>
+					</ng-template>
+
+					<div class="dropdown-action-list">
+
+						<a (click)="onEdit(playlist)">Edit</a>
+						<a (click)="onDelete(playlist)">Delete</a>
+
+
+					</div>
+				</app-dropdown>
+			</div>
+
+		</div>
+
+	</div>
+</ng-container>
 
 <app-loading [loading]="loading"></app-loading>

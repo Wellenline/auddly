@@ -1,78 +1,84 @@
-<section class="app-route">
-	<div class="inner-content">
+<app-header transparent="true" title="Settings" [actionTemplate]="actionTemplate">
+	<ng-template #actionTemplate>
+		<app-dropdown #dropdown [config]="{right: true}" [header]="headerTemplate">
+			<ng-template #headerTemplate let-item="item">
+				<div (click)="item.onToggle()" class="dropdown-action-item"><i class="material-icons-outlined">
+						more_vert
+					</i></div>
+			</ng-template>
 
-		<div class="app-page-title">Settings</div>
+			<div class="dropdown-action-list">
+
+				<a (click)="onDisconnect()">Disconnect</a>
 
 
-		<section class="settings-item">
-			<app-theme-toggle></app-theme-toggle>
-		</section>
-
-
-		<section class="settings-item">
-			<div class="text-lead">Server</div>
-			<div class="text-white">{{httpService.API_ENDPOINT}}</div>
-		</section>
-
-		<section class="settings-item">
-			<div class="grid">
-				<div class="width-expand@md">
-					<div class="text-lead">Last Sync</div>
-					<div class="text-white">{{server.last_scan | date: 'medium'}}</div>
-				</div>
-
-				<div class="width-auto@md">
-					<button class="button  danger" (click)="onDisconnect()"><i class="feather-alert-circle"></i>
-						Disconnect from server</button>
-
-				</div>
 			</div>
-		</section>
+		</app-dropdown>
+	</ng-template>
+</app-header>
 
-		<section class="settings-item">
-			<div class="text-lead">Duration</div>
-			<div class="text-white">{{server.seconds}}s</div>
-		</section>
+<div class="bubbles">
+	<div class="bubble">
+		<h1>{{ server.tracks || 0 }}</h1>
+		<p>Songs</p>
+	</div>
 
-		<section class="settings-item">
-			<div class="text-lead">Tracks</div>
-			<div class="text-white">{{server.tracks}}</div>
-		</section>
+	<div class="bubble">
+		<h1>{{ server.albums || 0 }}</h1>
+		<p>Albums</p>
+	</div>
 
-		<section class="settings-item">
-			<div class="text-lead">Albums</div>
-			<div class="text-white">{{server.albums}}</div>
-		</section>
+	<div class="bubble">
+		<h1>{{ server.artists || 0 }}</h1>
+		<p>Artists</p>
+	</div>
+</div>
 
-		<section class="settings-item">
-			<div class="text-lead">Artists</div>
-			<div class="text-white">{{server.artists}}</div>
-		</section>
+<div class="title-action">
+	<h3>Theme</h3>
 
-		<section class="settings-item">
-			<div class="text-lead">Mount</div>
-			<div class="text-white">{{server.mount}}</div>
-		</section>
+	<div class="float-right">
 
-
-		<section class="settings-item">
-			<div class="text-lead">Size</div>
-			<div class="text-white">{{server.size | size}}</div>
-		</section>
-
-		<section class="settings-item">
-			<div class="text-lead">Theme</div>
-
-
-			<app-horizontal-scroll>
-				<ng-container *ngFor="let color of colors">
-					<div class="color-block" [style.background-color]="color" (click)="setTheme(color)">
-						{{ color}}</div>
-				</ng-container>
-			</app-horizontal-scroll>
-
-		</section>
-
+		<app-theme-toggle></app-theme-toggle>
 
 	</div>
-</section>
+</div>
+<div class="theme">
+	<app-horizontal-scroll>
+		<ng-container *ngFor="let color of colors">
+			<div class="color-block" [style.background-color]="color" (click)="setTheme(color)">
+				{{ color}}</div>
+		</ng-container>
+	</app-horizontal-scroll>
+</div>
+<h3>Server</h3>
+
+<div class="list">
+	<div class="list-item">
+		<div class="text-lead">Last Sync</div>
+		<div class="text-meta">{{server.last_scan | date: 'medium'}}</div>
+	</div>
+
+	<div class="list-item">
+		<div class="text-lead">Duration</div>
+		<div class="text-meta">{{server.seconds}}s</div>
+	</div>
+	<div class="list-item">
+		<div class="text-lead">Size</div>
+		<div class="text-meta">{{server.size | size}}</div>
+	</div>
+	<div class="list-item">
+		<div class="text-lead">Mount</div>
+		<div class="text-meta">{{server.mount}}</div>
+	</div>
+
+	<div *ngIf="api_key" class="list-item">
+		<div class="text-lead">API Key</div>
+		<div class="text-meta">{{api_key}}</div>
+	</div>
+
+	<div *ngIf="api_key" class="list-item">
+		<div class="text-lead">Host</div>
+		<div class="text-meta">{{ httpService.API_ENDPOINT }}</div>
+	</div>
+</div>

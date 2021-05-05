@@ -20,10 +20,13 @@
 				</a>
 
 				<div class="divider no-margin"></div>
-				<a (click)="onLiked()">Liked <i class="feather-heart"></i>
+				<a (click)="onLiked()">Favourites <i class="feather-heart"></i>
 				</a>
 
 				<a (click)="onGenre()">Genre</a>
+
+				<a (click)="onPlaylist()">Playlist</a>
+
 				<div class="divider no-margin"></div>
 				<a (click)="onLimit()">{{ pagination.limit }}
 				</a>
@@ -42,6 +45,10 @@
 		</div>
 		<div *ngIf="filter.genre" (click)="onClearGenre()" class="filter">
 			{{ genre?.name }} <i class="feather-x"></i>
+		</div>
+
+		<div *ngIf="filter.playlist" (click)="onClearPlaylist()" class="filter">
+			{{ playlist?.name }} <i class="feather-x"></i>
 		</div>
 
 		<div *ngIf="filter.sort" (click)="onSort()" class="filter">

@@ -22,11 +22,8 @@ import { SettingsComponent } from "./pages/settings/settings.component";
 import { PlayerService } from "./services/player.service";
 
 import { SetupComponent } from "./pages/setup/setup.component";
-import { PlaylistComponent } from "./pages/playlist/playlist.component";
 import { SizePipe } from "./pipes/size.pipe";
 import { SliderComponent } from "./components/slider/slider.component";
-import { PlaylistFormComponent } from "./components/playlist-form/playlist-form.component";
-import { PlaylistsComponent } from "./pages/playlists/playlists.component";
 import { IndicatorComponent } from "./components/common/indicator/indicator.component";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
@@ -58,11 +55,8 @@ SwiperCore.use([Virtual, EffectCoverflow]);
 		FormatSecondsPipe,
 		SettingsComponent,
 		SetupComponent,
-		PlaylistComponent,
 		SizePipe,
 		SliderComponent,
-		PlaylistFormComponent,
-		PlaylistsComponent,
 		IndicatorComponent,
 		HorizontalScrollComponent,
 		MainComponent,

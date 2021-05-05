@@ -232,3 +232,32 @@ virtual-scroller {
 		height: calc(100vh - 120px);
 	}
 }
+
+.track-lyrics {
+	position: fixed;
+	overflow: auto;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	padding: 15px;
+	padding-top: 60px;
+	padding-bottom: 60px;
+	background: var(--background-color);
+	left: 0;
+	z-index: 7;
+
+	.close {
+		position: fixed;
+		top: 15px;
+		right: 15px;
+		color: var(--foreground-color);
+		padding: 15px;
+	}
+
+	.lyrics {
+		color: var(--foreground-color);
+		white-space: pre-line;
+		text-align: center;
+		line-height: 1.5;
+	}
+}

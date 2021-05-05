@@ -10,9 +10,11 @@
 			</ng-template>
 
 			<div class="dropdown-action-list">
+				<a *ngIf="track.lyrics" (click)="lyrics = true">Lyrics</a>
+
 				<a (click)="onClear()">Clear queue</a>
 
-				<a (click)="onPlaylist()">Add to playlist</a>
+				<!--a (click)="onPlaylist()">Add to playlist</a-->
 				<div class="divider no-margin"></div>
 				<a routerLink="/library/artists/{{track?.album?.artist?.id}}">More from artist</a>
 				<a routerLink="/library/albums/{{track?.album?.id}}">Go to album</a>
@@ -23,7 +25,7 @@
 </app-header>
 
 
-<div class="container mx-auto">
+<div class="container relative mx-auto">
 	<virtual-scroller #scroll [items]="tracks" [enableUnequalChildrenSizes]="true">
 
 		<div class="now-playing">
@@ -49,6 +51,8 @@
 				<div class="track-artist">
 					{{ track.artist }}
 				</div>
+
+
 			</div>
 
 			<div class="seekbar">
@@ -133,4 +137,11 @@
 
 		</div>
 	</virtual-scroller>
+	<div *ngIf="lyrics" class="track-lyrics">
+		<div (click)="lyrics = false" class="close"><i class="feather-x"></i></div>
+		<div class="lyrics">
+			{{ track?.lyrics?.text}}
+
+		</div>
+	</div>
 </div>

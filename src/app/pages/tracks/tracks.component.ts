@@ -17,9 +17,13 @@ export class TracksComponent implements OnInit {
 		limit: 50,
 	};
 	public genres = [];
+	public playlists = [];
+
 	public loading = true;
 	public genre: { name?: string, id?: number } = {};
-	public filter: { limit?: number, liked?: boolean, genre?: number, sort?: boolean } = { sort: true, limit: 50, };
+	public playlist: { name?: string, id?: number } = {};
+
+	public filter: { limit?: number, liked?: boolean, playlist?: number, genre?: number, sort?: boolean } = { sort: true, limit: 50, };
 	constructor(private httpService: HttpService,
 		private interfaceService: InterfaceService,
 		private playerService: PlayerService, private route: ActivatedRoute, private router: Router) { }
@@ -36,6 +40,8 @@ export class TracksComponent implements OnInit {
 			this.fetchTracks(true);
 		});
 		this.getGenres();
+		this.getPlaylists();
+
 	}
 
 	public onPlay() {
@@ -93,6 +99,31 @@ export class TracksComponent implements OnInit {
 		});
 	}
 
+	public onPlaylist() {
+		this.interfaceService.dialog.show({
+			items: this.playlists.map((playlist) => playlist.name),
+			type: "picker",
+			title: "Playlist",
+			message: "Choose a playlist to filter",
+			closed: (index) => {
+				if (index !== false) {
+					const { id, name } = this.playlists[index];
+					this.playlist = {
+						id,
+						name
+					};
+					this.router.navigate(["/tracks"], {
+						relativeTo: this.route,
+						queryParams: {
+							playlist: id,
+						}, queryParamsHandling: "merge",
+					});
+
+				}
+			},
+		});
+	}
+
 	public onGenre() {
 		this.interfaceService.dialog.show({
 			items: this.genres.map((genre) => genre.name),
@@ -125,8 +156,18 @@ export class TracksComponent implements OnInit {
 				genre: null,
 			}, queryParamsHandling: "merge",
 		});
+	}
+
+	public onClearPlaylist() {
+		this.router.navigate(["/tracks"], {
+			relativeTo: this.route,
+			queryParams: {
+				playlist: null,
+			}, queryParamsHandling: "merge",
+		});
 
 	}
+
 
 	public getGenres() {
 		this.httpService.get(`/genres`).subscribe((response: any[]) => {
@@ -134,6 +175,16 @@ export class TracksComponent implements OnInit {
 
 			if (this.filter.genre) {
 				this.genre = this.genres.find((genre) => genre.id === Number(this.filter.genre));
+			}
+		});
+	}
+
+	public getPlaylists() {
+		this.httpService.get(`/playlists`).subscribe((response: { playlists: [] }) => {
+			this.playlists = response.playlists;
+			console.log(this.playlists);
+			if (this.filter.playlist) {
+				this.playlist = this.playlists.find((playlist) => playlist.id === Number(this.filter.playlist));
 			}
 		});
 	}

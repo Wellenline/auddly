@@ -2,6 +2,7 @@ import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VirtualScrollerComponent } from 'ngx-virtual-scroller';
+import { InterfaceService } from 'src/app/modules/shared/services/interface.service';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class LibraryComponent implements OnInit {
 	public tab = 0;
-
+	public playlists = [];
 	public artists = [];
 	public albums = [];
 	public pagination = {
@@ -21,7 +22,7 @@ export class LibraryComponent implements OnInit {
 	};
 	public loading = true;
 	public height = 0;
-	constructor(private httpService: HttpService, private router: Router, private route: ActivatedRoute) { }
+	constructor(private httpService: HttpService, private interfaceService: InterfaceService, private router: Router, private route: ActivatedRoute) { }
 
 	public onScroll(e?) {
 		if (this.tab === 0) {
@@ -52,10 +53,13 @@ export class LibraryComponent implements OnInit {
 					if (params.tab === "0") {
 						this.fetchArtists();
 						// this.onShowFollowers();
-					} else {
+					} else if (params.tab === "1") {
 						this.fetchAlbums();
 
 						// this.onShowFollowing();
+					} else {
+						this.fetchPlaylists();
+
 					}
 				}, 100);
 			} else {
@@ -106,4 +110,81 @@ export class LibraryComponent implements OnInit {
 		this.height = document.getElementsByClassName("app-content")[0].clientHeight;
 	}
 
+
+	public fetchPlaylists() {
+		this.loading = true;
+
+		this.httpService.get(`/playlists`).subscribe((response: any) => {
+			this.playlists = response.playlists;
+		}, (err) => {
+			console.log(err);
+		}).add(() => {
+			this.loading = false;
+		});
+	}
+
+	public onCreate() {
+		this.interfaceService.dialog.show({
+			title: "Playlist Name",
+			message: `Please enter a playlist name`,
+			type: "prompt",
+			okButtonText: "Save",
+			closed: (value) => {
+				if (value) {
+					this.httpService.post(`/playlists`, {
+						name: value,
+					}).subscribe((response) => {
+						this.fetchPlaylists();
+						this.interfaceService.notify("Playlist created!");
+					});
+				}
+			},
+		});
+	}
+
+	public onEdit(playlist) {
+		this.interfaceService.dialog.show({
+			title: "Playlist Name",
+			message: `Please enter a playlist name`,
+			type: "prompt",
+			default: playlist.name,
+			okButtonText: "Save",
+			closed: (value) => {
+				if (value && value !== playlist.name) {
+					this._onUpdatePlaylist(playlist.id, value);
+				}
+			},
+		});
+	}
+
+	public onDelete(playlist) {
+		this.interfaceService.dialog.show({
+			title: "Confirm",
+			message: `Are you sure you wish to delete ${playlist.name} playlist?`,
+			type: "confirm",
+			okButtonText: "Yes",
+			cancelButtonText: "No",
+			closed: (value) => {
+				if (value) {
+					this._onDeletePlaylist(playlist.id);
+				}
+			},
+		});
+	}
+
+	private _onDeletePlaylist(id: number) {
+		this.httpService.delete(`/playlists/${id}`).subscribe((response) => {
+			this.interfaceService.notify("Playlist deleted");
+			this.fetchPlaylists();
+		});
+	}
+
+	private _onUpdatePlaylist(id: number, name: string) {
+		this.httpService.put(`/playlists/${id}`, {
+			name,
+		}).subscribe((response) => {
+			this.interfaceService.notify("Playlist updated!");
+			this.fetchPlaylists();
+		});
+	}
 }

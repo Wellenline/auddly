@@ -2,6 +2,19 @@ nav {
 	.app-logo {
 		text-align: center;
 		padding: 20px 15px;
+		font-size: 11px;
+		letter-spacing: 1.2px;
+		text-transform: uppercase;
+		font-weight: 600;
+		min-height: 40px;
+		line-height: 40px;
+		color: var(--foreground-color);
+
+		div {
+			margin-top: -28px;
+			font-size: 8px;
+			opacity: 0.6;
+		}
 	}
 
 	.menu {

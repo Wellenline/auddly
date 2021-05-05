@@ -12,7 +12,9 @@
 			</div>
 		</div>
 	</div>
-
+	<div *ngIf="track.lyrics" class="actions lossless" appTooltip tooltip="Lyrics availalbe">
+		<i class="feather feather-list"></i>
+	</div>
 	<div *ngIf="track.lossless" class="actions lossless" appTooltip tooltip="Lossless">
 		<i class="feather feather-headphones"></i>
 	</div>
@@ -33,7 +35,6 @@
 
 				<div class="dropdown-action-list">
 
-
 					<a (click)="onPlaylist()">Add to playlist</a>
 					<a (click)="onQueue()">Add to queue</a>
 
@@ -42,7 +43,7 @@
 					<a target="_blank" href="{{httpService.API_ENDPOINT}}/tracks/play/{{ track.id }}"
 						download="{{track.name}}.mp3">Download</a>
 
-
+					<a *ngIf="track?.playlists?.length > 0" (click)="onRemoveFromPlaylist()">Remove from playlist</a>
 
 
 				</div>

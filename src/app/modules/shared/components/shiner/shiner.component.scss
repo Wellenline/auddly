@@ -1,0 +1,21 @@
+.shine {
+	background: var(--background-color-4);
+	background-image: linear-gradient(
+		to right,
+		var(--background-color-4) 0%,
+		var(--background-color-2) 20%,
+		var(--background-color-4) 40%,
+		var(--background-color-4) 100%
+	);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	display: inline-block;
+	position: relative;
+
+	animation-duration: 1s;
+	animation-fill-mode: forwards;
+	animation-iteration-count: infinite;
+	animation-name: placeholderShimmer;
+	animation-timing-function: linear;
+	display: block;
+}

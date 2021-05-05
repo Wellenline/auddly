@@ -32,7 +32,7 @@ export class QueueComponent implements OnInit {
 			slideShadows: false,
 		},
 	};
-
+	public lyrics = false;
 	public actions = [];
 
 	public currentTime = 0;
@@ -58,6 +58,7 @@ export class QueueComponent implements OnInit {
 
 		this.playerService.$track.subscribe((track) => {
 			this.track = track;
+			this.lyrics = false;
 			if (this.swiper) {
 				this.swiper.setIndex(this.playerService.index);
 			}

@@ -8,8 +8,6 @@ import { SearchComponent } from "./pages/search/search.component";
 import { SettingsComponent } from "./pages/settings/settings.component";
 import { SetupComponent } from "./pages/setup/setup.component";
 import { AuthGuard } from "./guards/auth.guard";
-import { PlaylistComponent } from "./pages/playlist/playlist.component";
-import { PlaylistsComponent } from "./pages/playlists/playlists.component";
 import { MainComponent } from "./layouts/main/main.component";
 import { LibraryComponent } from "./pages/library/library.component";
 
@@ -22,7 +20,6 @@ const routes: Routes = [
 		children: [
 
 			{ path: "", redirectTo: "search", pathMatch: "full" },
-			{ path: "playlists", component: PlaylistsComponent, canActivate: [AuthGuard] },
 			{ path: "library", component: LibraryComponent, canActivate: [AuthGuard] },
 
 			{ path: "tracks", component: TracksComponent, canActivate: [AuthGuard] },
@@ -33,7 +30,6 @@ const routes: Routes = [
 
 			{ path: "search", component: SearchComponent, canActivate: [AuthGuard] },
 			{ path: "settings", component: SettingsComponent, canActivate: [AuthGuard] },
-			{ path: "playlists/:id", component: PlaylistComponent, canActivate: [AuthGuard] },
 
 			{ path: "queue", component: QueueComponent, canActivate: [AuthGuard] },
 
@@ -48,7 +44,7 @@ const routes: Routes = [
 @NgModule({
 	imports: [RouterModule.forRoot(routes, {
 		scrollPositionRestoration: "enabled",
-		relativeLinkResolution: 'legacy'
+		relativeLinkResolution: "legacy"
 	})],
 	exports: [RouterModule],
 })
