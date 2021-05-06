@@ -6,14 +6,22 @@ import { AlbumComponent } from "./pages/album/album.component";
 import { ArtistComponent } from "./pages/artist/artist.component";
 import { SearchComponent } from "./pages/search/search.component";
 import { SettingsComponent } from "./pages/settings/settings.component";
-import { SetupComponent } from "./pages/setup/setup.component";
 import { AuthGuard } from "./guards/auth.guard";
 import { MainComponent } from "./layouts/main/main.component";
 import { LibraryComponent } from "./pages/library/library.component";
+import { AuthComponent } from "./layouts/auth/auth.component";
+import { ConnectComponent } from "./pages/connect/connect.component";
 
 const routes: Routes = [
+	{
+		path: "auth",
+		component: AuthComponent,
+		children: [
+			{ path: "", redirectTo: "connect", pathMatch: "full" },
+			{ path: "connect", component: ConnectComponent, },
 
-
+		]
+	},
 	{
 		path: "",
 		component: MainComponent, canActivate: [AuthGuard],
@@ -37,7 +45,6 @@ const routes: Routes = [
 	},
 
 
-	{ path: "setup", component: SetupComponent },
 
 ];
 

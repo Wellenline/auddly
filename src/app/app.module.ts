@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LazyLoadImageModule, scrollPreset } from "ng-lazyload-image";
@@ -20,8 +20,6 @@ import { QueueComponent } from "./pages/queue/queue.component";
 import { FormatSecondsPipe } from "./pipes/format-seconds.pipe";
 import { SettingsComponent } from "./pages/settings/settings.component";
 import { PlayerService } from "./services/player.service";
-
-import { SetupComponent } from "./pages/setup/setup.component";
 import { SizePipe } from "./pipes/size.pipe";
 import { SliderComponent } from "./components/slider/slider.component";
 import { IndicatorComponent } from "./components/common/indicator/indicator.component";
@@ -36,9 +34,12 @@ import { LibraryComponent } from "./pages/library/library.component";
 import { ThemeToggleComponent } from "./components/theme-toggle/theme-toggle.component";
 import { DragScrollModule } from "ngx-drag-scroll";
 
-import SwiperCore, { EffectCoverflow, Swiper, SwiperOptions, Virtual } from "swiper/core";
+import SwiperCore, { EffectCoverflow, Lazy, Swiper, SwiperOptions, Virtual } from "swiper/core";
+import { AuthComponent } from "./layouts/auth/auth.component";
+import { ConnectComponent } from "./pages/connect/connect.component";
+import { AuthInterceptor } from "./interceptors/auth.interceptor";
 
-SwiperCore.use([Virtual, EffectCoverflow]);
+SwiperCore.use([Virtual, EffectCoverflow, Lazy]);
 
 @NgModule({
 	declarations: [
@@ -54,7 +55,6 @@ SwiperCore.use([Virtual, EffectCoverflow]);
 		QueueComponent,
 		FormatSecondsPipe,
 		SettingsComponent,
-		SetupComponent,
 		SizePipe,
 		SliderComponent,
 		IndicatorComponent,
@@ -62,6 +62,8 @@ SwiperCore.use([Virtual, EffectCoverflow]);
 		MainComponent,
 		LibraryComponent,
 		ThemeToggleComponent,
+		AuthComponent,
+		ConnectComponent,
 	],
 
 	imports: [
@@ -79,7 +81,11 @@ SwiperCore.use([Virtual, EffectCoverflow]);
 		ServiceWorkerModule.register("ngsw-worker.js", { enabled: environment.production }),
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
-	providers: [HttpService, PlayerService],
+	providers: [HttpService, PlayerService, {
+		provide: HTTP_INTERCEPTORS,
+		useClass: AuthInterceptor,
+		multi: true,
+	},],
 	bootstrap: [AppComponent],
 })
 export class AppModule { }

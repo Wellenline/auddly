@@ -1,5 +1,4 @@
 import { Component, OnInit, HostListener } from "@angular/core";
-import { DialogService } from "src/app/services/dialog.service";
 import { InterfaceService } from "../../services/interface.service";
 
 @Component({

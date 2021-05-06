@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { PlayerService, ITrack } from "src/app/services/player.service";
 import { HttpService } from "src/app/services/http.service";
+import { InterfaceService } from "src/app/modules/shared/services/interface.service";
 
 @Component({
 	selector: "app-player",
@@ -15,7 +16,7 @@ export class PlayerComponent implements OnInit {
 	public track: ITrack;
 	public isFullscreen = false;
 	public volumeControls = false;
-	constructor(public playerService: PlayerService) { }
+	constructor(public playerService: PlayerService, private interfaceService: InterfaceService) { }
 
 	public ngOnInit(): void {
 
@@ -33,8 +34,15 @@ export class PlayerComponent implements OnInit {
 		});
 	}
 
-	public onLike(e) {
 
+	public onLike(e) {
+		e.stopPropagation();
+		this.playerService.onLike(this.track.id).subscribe(() => {
+			this.track.liked = !this.track.liked;
+			this.interfaceService.notify(`${this.track.name} ${this.track.liked ? "added to favourites" : "removed from favourites"}`, {
+				timeout: 3000,
+			});
+		});
 	}
 
 	public onProgress(e) {

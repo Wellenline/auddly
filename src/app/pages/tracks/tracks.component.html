@@ -59,19 +59,20 @@
 </div>
 
 
-<div class="relative">
+<div class=" relative">
 
 
-	<cdk-virtual-scroll-viewport autosize itemSize="75" class="viewport">
 
-		<infinite-scroll (scrolled)="onScroll()">
-
-			<div *cdkVirtualFor="let track of tracks; templateCacheSize: 0">
+	<virtual-scroller (vsEnd)="onScroll($event)" #scroll [items]="tracks" [enableUnequalChildrenSizes]="true" autosize
+		itemSize="75" class="viewport">
 
 
-				<app-track-list [track]="track"></app-track-list>
-			</div>
-			<app-indicator [loading]="loading" message="Loading tracks"></app-indicator>
-		</infinite-scroll>
-	</cdk-virtual-scroll-viewport>
+		<div *ngFor="let track of scroll.viewPortItems; ">
+
+
+			<app-track-list [track]="track"></app-track-list>
+		</div>
+		<app-indicator [loading]="loading" message="Loading tracks"></app-indicator>
+	</virtual-scroller>
+
 </div>

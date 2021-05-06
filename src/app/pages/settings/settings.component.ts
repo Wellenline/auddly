@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from "@angular/core";
+import { AuthService } from "src/app/services/auth.service";
 import { HttpService } from "src/app/services/http.service";
 
 @Component({
@@ -12,7 +13,7 @@ export class SettingsComponent implements OnInit, AfterViewInit {
 	public colors = ["#4caf50", "#3c91ff", "#7fcd91", "#fe346e", "#381460", "#ffa41b", "#9399ff", "#21bf73", "#C1935B", "#F0050E"];
 	public api_key = localStorage.getItem("key");
 	@ViewChild("qr") public qr: ElementRef;
-	constructor(public httpService: HttpService) { }
+	constructor(public httpService: HttpService, private authService: AuthService) { }
 
 	ngOnInit(): void {
 		this.fetchServerInfo();
@@ -28,7 +29,7 @@ export class SettingsComponent implements OnInit, AfterViewInit {
 	}
 
 	public fetchServerInfo() {
-		this.httpService.get(`/system/info`).subscribe((response: any) => {
+		this.httpService.get(`/info`).subscribe((response: any) => {
 			this.server = response;
 		}, (err) => {
 			console.log(err);
@@ -36,7 +37,7 @@ export class SettingsComponent implements OnInit, AfterViewInit {
 	}
 
 	public onDisconnect() {
-		this.httpService.disconnect();
+		this.authService.disconnect();
 		location.reload();
 	}
 

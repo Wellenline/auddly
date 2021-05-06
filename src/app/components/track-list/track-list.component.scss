@@ -40,10 +40,10 @@
 		flex-grow: 1;
 		// position: relative;
 
-		//white-space: nowrap;
-		//overflow: hidden;
-		//text-overflow: ellipsis;
-		//max-width: 100%;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 100%;
 
 		.title {
 			color: var(--foreground-color);
@@ -98,10 +98,10 @@
 		}
 
 		.details {
-			//white-space: nowrap;
-			//overflow: hidden;
-			//text-overflow: ellipsis;
-			//max-width: 100%;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: 100%;
 
 			.title {
 			}

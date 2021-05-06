@@ -1,0 +1,46 @@
+<div class="connect">
+	<div class="window">
+		<div class="logo">
+			<div>
+
+
+				<div class="logo-lead">
+					audau
+				</div>
+				<div class="logo-meta">
+					Music
+				</div>
+			</div>
+		</div>
+
+		<div class="highlight-text">Connect to your music server</div>
+		<div *ngIf="error" class="panel danger m-t-20 m-b-20">
+			{{error}}
+		</div>
+
+		<form (ngSubmit)="connect()" ngNativeValidate>
+
+			<div class="connect-input">
+				<input required placeholder="Server endpoint" type="text" [(ngModel)]="connection.endpoint"
+					name="endpoint">
+			</div>
+
+
+			<div *ngIf="step === 1" class="connect-input">
+				<input required placeholder="API key" type="text" [(ngModel)]="connection.key" name="key">
+			</div>
+
+
+
+			<div class="submit">
+				<div class="hue"></div>
+
+				<button>Next</button>
+
+			</div>
+
+
+		</form>
+
+	</div>
+</div>

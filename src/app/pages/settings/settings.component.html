@@ -81,4 +81,21 @@
 		<div class="text-lead">Host</div>
 		<div class="text-meta">{{ httpService.API_ENDPOINT }}</div>
 	</div>
+
+	<div class="list-item">
+		<div class="text-lead">Uptime</div>
+		<div class="text-meta">{{ server.uptime }}</div>
+	</div>
+	<div class="list-item">
+		<div class="text-lead">Free Mem</div>
+		<div class="text-meta">{{ server.free_mem }}</div>
+	</div>
+	<div class="list-item">
+		<div class="text-lead">Server</div>
+		<div class="text-meta">CPU: {{ server.arch }}, Runtime: {{ server.node_version }}</div>
+	</div>
+	<div class="list-item">
+		<div class="text-lead">Version</div>
+		<div class="text-meta">{{ server.version }}</div>
+	</div>
 </div>

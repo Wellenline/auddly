@@ -12,29 +12,6 @@ export class HttpService {
 	public API_KEY = localStorage.getItem("key");
 	constructor(private http: HttpClient) { }
 
-	public isConnected() {
-		return this.API_ENDPOINT;
-	}
-
-	public connect(data: { server?: string, key?: string }) {
-
-		if (data.server) {
-			this.API_ENDPOINT = data.server;
-			localStorage.setItem("api", this.API_ENDPOINT);
-		}
-
-		if (data.key) {
-			this.API_KEY = data.key;
-			localStorage.setItem("key", this.API_KEY);
-		}
-	}
-
-	public disconnect() {
-		this.API_ENDPOINT = undefined;
-		this.API_KEY = undefined;
-		localStorage.clear();
-	}
-
 	public get(path: any, skipBase?: boolean) {
 		return this.http.get(skipBase ? path : `${this.API_ENDPOINT}${path}`, { headers: this.headers() }).pipe(
 			catchError(this.handleError), map((res) => res),
@@ -75,9 +52,11 @@ export class HttpService {
 		return headers;
 	}
 	private handleError(error: HttpErrorResponse) {
+
 		if (error.error instanceof ErrorEvent) {
 			console.error("An error occurred:", error.error.message);
 		} else {
+			console.log(error)
 			console.error(
 				`Backend returned code ${error.status}, ` +
 				`body was: ${error.error.message}`);

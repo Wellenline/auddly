@@ -20,11 +20,13 @@ export class SearchComponent implements OnInit {
 
 	public search: string;
 	public config: SwiperOptions = {
-		slidesOffsetBefore: 20,
-		slidesOffsetAfter: 20,
+		slidesOffsetBefore: 15,
+		slidesOffsetAfter: 15,
 		navigation: false,
 		pagination: false,
-		breakpoints: {
+		slidesPerView: "auto",
+
+		/*breakpoints: {
 			0: {
 				slidesPerView: 3,
 				spaceBetween: 20
@@ -49,7 +51,7 @@ export class SearchComponent implements OnInit {
 				spaceBetween: 40
 			},
 
-		},
+		},*/
 	};
 	public loading = {
 		albums: true,

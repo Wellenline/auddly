@@ -12,7 +12,6 @@
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	transition: all ease-in-out 0.4s;
 
 	&.transparent {
 		background-color: var(--background-color);

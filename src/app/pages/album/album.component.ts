@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { HttpService } from "src/app/services/http.service";
 import { PlayerService, ITrack } from "src/app/services/player.service";
 import { ActivatedRoute } from "@angular/router";
-import { ToastService } from "src/app/services/toast.service";
+import { InterfaceService } from "src/app/modules/shared/services/interface.service";
 
 @Component({
 	selector: "app-album",
@@ -13,7 +13,7 @@ export class AlbumComponent implements OnInit {
 	public album: any = {};
 	public tracks: ITrack[] = [];
 	public duration = 0;
-	constructor(private toastService: ToastService, private httpService: HttpService, private playerService: PlayerService, private route: ActivatedRoute) { }
+	constructor(private httpService: HttpService, private playerService: PlayerService, private route: ActivatedRoute, private interfaceService: InterfaceService) { }
 
 	public ngOnInit(): void {
 
@@ -45,7 +45,7 @@ export class AlbumComponent implements OnInit {
 		} else {
 			this.playerService.queue(this.tracks);
 		}
-		this.toastService.show(`${this.tracks.length} tracks added to queue`, {
+		this.interfaceService.notify(`${this.tracks.length} tracks added to queue`, {
 			timeout: 3000,
 		});
 

@@ -24,6 +24,7 @@ export class QueueComponent implements OnInit {
 		spaceBetween: 20,
 		centeredSlides: true,
 		effect: "coverflow",
+
 		coverflowEffect: {
 			rotate: 0,
 			stretch: 80,

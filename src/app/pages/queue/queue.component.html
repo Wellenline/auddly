@@ -12,12 +12,14 @@
 			<div class="dropdown-action-list">
 				<a *ngIf="track.lyrics" (click)="lyrics = true">Lyrics</a>
 
-				<a (click)="onClear()">Clear queue</a>
 
 				<!--a (click)="onPlaylist()">Add to playlist</a-->
-				<div class="divider no-margin"></div>
 				<a routerLink="/library/artists/{{track?.album?.artist?.id}}">More from artist</a>
 				<a routerLink="/library/albums/{{track?.album?.id}}">Go to album</a>
+				<div class="divider no-margin"></div>
+
+				<a (click)="onClear()">Clear queue</a>
+
 			</div>
 		</app-dropdown>
 	</ng-template>

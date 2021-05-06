@@ -47,21 +47,21 @@
 	<ng-container *ngIf="albums.length > 0">
 
 		<h3>Albums</h3>
-		<swiper [config]="config">
-			<ng-container *ngFor="let album of albums; ">
-				<ng-template swiperSlide>
-					<div routerLink="/library/albums/{{ album.id }}" class="image-element album">
-						<img height="260" class="lazyLoad" [lazyLoad]="album.picture" />
-						<div class="overlay"></div>
-
-						<div class="column-details">
-							<div class="title">{{ album.name }}</div>
-							<div class="subtitle">{{ album.artist.name }}</div>
+		<div class="albums">
+			<swiper [config]="config">
+				<ng-container *ngFor="let album of albums; ">
+					<ng-template swiperSlide>
+						<div routerLink="/library/albums/{{ album.id }}" class="album">
+							<img class="lazyLoad" [lazyLoad]="album.picture" />
+							<div class="column-details">
+								<div class="title">{{ album.name }}</div>
+								<div class="subtitle">{{ album.artist.name }}</div>
+							</div>
 						</div>
-					</div>
-				</ng-template>
-			</ng-container>
-		</swiper>
+					</ng-template>
+				</ng-container>
+			</swiper>
+		</div>
 	</ng-container>
 
 	<ng-container *ngIf="tracks.length > 0">

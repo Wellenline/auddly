@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { InterfaceService } from "src/app/modules/shared/services/interface.service";
 import { HttpService } from "src/app/services/http.service";
 import { ITrack, PlayerService } from "src/app/services/player.service";
-import { ToastService } from "src/app/services/toast.service";
 
 @Component({
 	selector: "app-track-list",
