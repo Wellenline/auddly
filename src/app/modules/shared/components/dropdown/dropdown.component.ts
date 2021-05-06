@@ -36,7 +36,7 @@ export class DropdownComponent implements OnInit {
 	public open = false;
 	public search: string;
 	@ViewChild("searchField", { static: true }) public searchField: ElementRef;
-
+	@ViewChild("dropup") dropup: ElementRef;
 	public _selectedItems: any;
 	public _mappedItems = [];
 	public _itemsCache = [];
@@ -47,7 +47,7 @@ export class DropdownComponent implements OnInit {
 
 
 
-		this.config = Object.assign({ multiple: false, lazyload: true, clear: true, search: true, }, this.config)
+		this.config = Object.assign({ multiple: false, lazyload: true, clear: true, search: true, }, this.config);
 
 		if (this.header) {
 			this.headerRef = this.header;
@@ -56,6 +56,21 @@ export class DropdownComponent implements OnInit {
 
 	public ngOnChanges(changes: SimpleChanges) {
 
+	}
+
+	public outOfViewport() {
+		// Get element's bounding
+		const bounding = this.dropup.nativeElement.getBoundingClientRect();
+		// Check if it's out of the viewport on each side
+		const out: { top?: boolean, left?: boolean, bottom?: boolean, right?: boolean, any?: boolean, all?: boolean } = {};
+		out.top = bounding.top < 0;
+		out.left = bounding.left < 0;
+		out.bottom = bounding.bottom > (window.innerHeight || document.documentElement.clientHeight);
+		out.right = bounding.right > (window.innerWidth || document.documentElement.clientWidth);
+		out.any = out.top || out.left || out.bottom || out.right;
+		out.all = out.top && out.left && out.bottom && out.right;
+
+		return out;
 	}
 
 	public close() {
@@ -68,6 +83,17 @@ export class DropdownComponent implements OnInit {
 
 	public onToggle() {
 		this.open = !this.open;
+		if (this.open) {
+			const out = this.outOfViewport();
+			if (out.top) {
+				this.config.up = false;
+			}
+
+			if (out.bottom) {
+				this.config.up = true;
+			}
+		}
+
 	}
 
 	@HostListener("document:mousedown", ["$event"])
