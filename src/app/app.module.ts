@@ -8,7 +8,6 @@ import { LazyLoadImageModule, scrollPreset } from "ng-lazyload-image";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { PlayerComponent } from "./components/player/player.component";
-import { MenuComponent } from "./components/menu/menu.component";
 import { InfiniteScrollComponent } from "./components/infinite-scroll/infinite-scroll.component";
 import { TrackListComponent } from "./components/track-list/track-list.component";
 import { TracksComponent } from "./pages/tracks/tracks.component";
@@ -45,7 +44,6 @@ SwiperCore.use([Virtual, EffectCoverflow, Lazy]);
 	declarations: [
 		AppComponent,
 		PlayerComponent,
-		MenuComponent,
 		InfiniteScrollComponent,
 		TrackListComponent,
 		TracksComponent,

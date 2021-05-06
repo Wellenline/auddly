@@ -1,54 +1,61 @@
 <div class="app">
 	<div class="app-menu" style="-webkit-app-region: drag">
-		<app-menu></app-menu>
 
-		<!--div class="container mx-auto">
-		
-			<div class="menu">
-				<div class="menu-item">
-					<a [routerLinkActive]="['active']" routerLink="/search">
-						<i class="material-icons-outlined">
-							search
-						</i>
-					</a>
-				</div>
+		<div class="menu">
+			<div class="app-logo">
+				Audau
+				<div>Music</div>
+			</div>
+			<div class="menu-item">
 
-				<div class="menu-item">
-					<a [routerLinkActive]="['active']" routerLink="/library">
-						<i class="material-icons-outlined">
-							folder
-						</i>
-					</a>
-				</div>
+				<a [routerLinkActive]="['active']" routerLink="/search">
+					<i class="feather-search"></i>
+					<div class="title">Home</div>
+				</a>
+			</div>
 
-				<div class="menu-item">
-					<a [routerLinkActive]="['active']" routerLink="/queue">
-						<i class="material-icons-outlined">
-							graphic_eq
-						</i>
-					
-					</a>
-				</div>
+			<div class="menu-item">
 
-				<div class="menu-item">
-					<a [routerLinkActive]="['active']" routerLink="/tracks">
-						<i class="material-icons-outlined">
-							music_note
-						</i>
-					</a>
-				</div>
+				<a [routerLinkActive]="['active']" routerLink="/library">
+					<i class="feather-folder"></i>
+					<div class="title">Library</div>
+				</a>
+			</div>
 
-				<div class="menu-item">
-					<a [routerLinkActive]="['active']" routerLink="/settings">
-						<i class="material-icons-outlined">
-							settings
-						</i>
-					</a>
+
+			<div class="menu-item">
+
+				<a [routerLinkActive]="['active']" routerLink="/tracks">
+					<i class="feather-music"></i>
+					<div class="title">Tracks</div>
+				</a>
+			</div>
+
+			<div class="menu-item">
+
+				<a [routerLinkActive]="['active']" routerLink="/queue">
+					<div class="image">
+						<img class="lazyload" [lazyLoad]="track?.album?.picture || '/assets/logo.png'" />
+
+					</div>
+				</a>
+
+				<div class="player-popover">
+					<app-player></app-player>
+
 				</div>
 			</div>
 
-		</div-->
+			<div class="menu-fill"></div>
 
+			<div class="menu-item">
+
+				<a [routerLinkActive]="['active']" routerLink="/settings">
+					<i class="feather-settings"></i>
+					<div class="title">Settings</div>
+				</a>
+			</div>
+		</div>
 	</div>
 
 	<div class="app-content">
