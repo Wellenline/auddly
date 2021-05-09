@@ -6,13 +6,13 @@
 
 <div class="album-meta">
 	<div class="picture">
-		<img class="album-picture lazyload" [lazyLoad]="album.picture || '/assets/logo.png'" />
+		<img class="album-picture lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
 
 	</div>
 
 	<div class="details">
 		<div routerLink="/library/artists/{{album?.artist?.id}}" class="album-artist">
-			<img class="artist-picture lazyload" [lazyLoad]="album?.artist?.picture || '/assets/logo.png'" />
+			<img class="artist-picture lazyload" [lazyLoad]="album?.artist?.picture || '/assets/app-icon-text.png'" />
 			{{ album?.artist?.name }}
 		</div>
 

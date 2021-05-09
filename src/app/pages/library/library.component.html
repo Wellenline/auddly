@@ -43,7 +43,8 @@
 		<ng-container *ngIf="tab === 0">
 
 			<div class="column" *ngFor="let artist of artists" routerLink="./artists/{{ artist.id }}">
-				<img width="170" height="170" class="lazyload" [lazyLoad]="artist.picture || '/assets/logo.png'" />
+				<img width="170" height="170" class="lazyload"
+					[lazyLoad]="artist.picture || '/assets/app-icon-text.png'" />
 
 				<div class="column-details">
 					<div class="title">{{ artist.name }}</div>
@@ -55,7 +56,7 @@
 		<ng-container *ngIf="tab === 1">
 
 			<div class="column" *ngFor="let album of albums" routerLink="./albums/{{ album.id }}">
-				<img class="lazyload" [lazyLoad]="album.picture || '/assets/logo.png'" />
+				<img class="lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
 
 				<div class="column-details">
 					<div class="title">{{ album.name }}</div>

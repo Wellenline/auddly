@@ -1,6 +1,6 @@
 <div class="track {{ playerService.$track.getValue().id === track.id ? 'playing' : '' }}">
 	<div class="image">
-		<img class="lazyload" [lazyLoad]="track?.album?.picture || '/assets/logo.png'" />
+		<img class="lazyload" [lazyLoad]="track?.album?.picture || '/assets/app-icon-text.png'" />
 	</div>
 	<div (click)="onPlay($event)" class="details">
 		<div appTooltip tooltip="{{ track.artist }} - {{ track.name }}" class="overflow-text">

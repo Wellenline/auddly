@@ -1,5 +1,5 @@
 .connect {
-	background-color: #111;
+	background-color: #3ec7c2;
 	width: 100vw;
 	height: 100vh;
 
@@ -9,31 +9,12 @@
 	.window {
 		z-index: 1;
 		.logo {
-			width: 60px;
-			margin-bottom: 20px;
-			height: 60px;
-			border-radius: 5px;
-			background-color: #fff;
-			display: flex;
-			position: relative;
-			align-items: center;
-			justify-content: center;
-			text-align: center;
-			color: black;
-			letter-spacing: 1.2px;
-			text-transform: uppercase;
-			box-shadow: rgb(17 17 18 / 4%) 0 2px 4px, rgb(19 20 20 / 6%) 0 1px 1px;
-
-			font-weight: 600;
-			&-lead {
-				font-size: 12px;
-				z-index: 6;
-				opacity: 0.99;
-			}
-			&-meta {
-				font-size: 8px;
-				opacity: 0.6;
-				z-index: 6;
+			img {
+				width: 60px;
+				height: 60px;
+				margin-bottom: 10px;
+				//border: 2px solid black;
+				// border-radius: 5px;
 			}
 		}
 		max-width: 90%;
@@ -41,10 +22,11 @@
 
 		.highlight-text {
 			font-size: 2.7rem;
-			color: white;
-			font-weight: 600;
-			font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+			color: black;
+			font-weight: 800;
+			font-family: "Open Sans", sans-serif;
 			margin-bottom: 20px;
+			text-transform: uppercase;
 
 			.brand {
 				text-align: center;
@@ -58,15 +40,24 @@
 			margin-bottom: 15px;
 			input {
 				border: none;
-				border-radius: 5px;
-				padding: 20px 15px;
-				background-color: #222222;
+				border-radius: 0px;
+				padding: 20px;
+				background-color: transparent;
 				width: 100%;
-				box-shadow: rgb(17 17 18 / 4%) 0 2px 4px, rgb(19 20 20 / 6%) 0 1px 1px !important;
-				color: white;
+				border-bottom: 2px solid black;
+				// box-shadow: rgb(17 17 18 / 4%) 0 2px 4px, rgb(19 20 20 / 6%) 0 1px 1px !important;
+				color: black;
+				transition: all ease-in-out 0.4s;
 				&:hover,
 				&:focus {
-					background-color: #2e2e2e;
+					background-color: #000;
+					color: white;
+					&::placeholder {
+						color: white;
+					}
+				}
+				&::placeholder {
+					color: black;
 				}
 			}
 		}
@@ -75,14 +66,16 @@
 			position: relative;
 		}
 		button {
-			background-color: #3c91ff;
-			border: none;
-			padding: 15px;
-			color: white;
-			width: 100%;
-			border-radius: 5px;
-			position: relative;
+			background-color: transparent;
+			border: 2px solid #000;
+			color: black;
+			padding: 13px;
 
+			width: 100%;
+			border-radius: 0px;
+			position: relative;
+			text-transform: uppercase;
+			font-weight: 600;
 			&:hover {
 				cursor: pointer;
 			}
@@ -91,70 +84,5 @@
 
 	.panel {
 		border: none;
-	}
-}
-
-.hue {
-	position: absolute;
-	left: 0;
-	right: 0;
-	border-radius: 5px;
-	top: 0;
-	bottom: 0;
-	filter: hue-rotate(0deg);
-	background: linear-gradient(45deg, #0f8, #08f);
-	animation: hue 10000ms infinite linear;
-}
-.hue .b1 {
-	left: 42%;
-}
-.hue .b2 {
-	left: 50%;
-	animation-delay: 100ms;
-}
-.hue .b3 {
-	left: 58%;
-	animation-delay: 200ms;
-}
-.hue .b1,
-.hue .b2,
-.hue .b3 {
-	width: 10px;
-	height: 30px;
-	background-color: rgba(256, 256, 256, 0.8);
-	position: absolute;
-	top: 50%;
-	transform: rotate(0);
-	animation-name: spinify;
-	animation-duration: 1600ms;
-	animation-iteration-count: infinite;
-}
-@keyframes spinify {
-	0% {
-		transform: translate(0px, 0px);
-	}
-	33% {
-		transform: translate(0px, 24px);
-		border-radius: 100%;
-		width: 10px;
-		height: 10px;
-	}
-	66% {
-		transform: translate(0px, -16px);
-	}
-
-	88% {
-		transform: translate(0px, 4px);
-	}
-	100% {
-		transform: translate(0px, 0px);
-	}
-}
-@keyframes hue {
-	0% {
-		filter: hue-rotate(0deg);
-	}
-	100% {
-		filter: hue-rotate(360deg);
 	}
 }
