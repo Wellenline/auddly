@@ -52,7 +52,7 @@
 				<ng-container *ngFor="let album of albums; ">
 					<ng-template swiperSlide>
 						<div routerLink="/library/albums/{{ album.id }}" class="album">
-							<img class="lazyLoad" [lazyLoad]="album.picture" />
+							<img class="lazyLoad" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
 							<div class="column-details">
 								<div class="title">{{ album.name }}</div>
 								<div class="subtitle">{{ album.artist.name }}</div>
