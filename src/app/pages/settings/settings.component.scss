@@ -2,6 +2,18 @@
 	height: 400px;
 }
 
+.app-logo {
+	margin: 0 auto;
+	padding-bottom: 15px;
+	padding-top: 15px;
+	text-align: center;
+	img {
+		width: 150px;
+		height: 150px;
+		object-fit: cover;
+		border-radius: 50%;
+	}
+}
 .bubbles {
 	display: flex;
 	align-items: center;
@@ -19,9 +31,23 @@
 
 		padding: 20px;
 		text-align: center;
-		h1,
+
+		h1 {
+			font-family: "Open Sans", sans-serif;
+			font-weight: 800;
+			text-transform: uppercase;
+			font-size: 1.7rem;
+			margin: 0px;
+		}
+
 		p {
 			margin: 0px;
+			font-family: "Open Sans", sans-serif;
+
+			text-transform: uppercase;
+			font-size: 12px;
+			font-weight: 600;
+			opacity: 0.7;
 		}
 
 		& + .bubble {
@@ -33,6 +59,10 @@
 h3 {
 	padding-left: 10px;
 	color: var(--foreground-color);
+	font-family: "Open Sans", sans-serif;
+	font-weight: 800;
+	text-transform: uppercase;
+	font-size: 1rem;
 }
 
 .title-action {
