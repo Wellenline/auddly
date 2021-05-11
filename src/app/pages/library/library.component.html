@@ -37,72 +37,76 @@
 		Playlists
 	</div>
 </div>
-<infinite-scroll (scrolled)="onScroll()">
-	<div class="library">
+<div class="relative">
 
-		<ng-container *ngIf="tab === 0">
+	<infinite-scroll (scrolled)="onScroll()">
+		<div class="library">
 
-			<div class="column" *ngFor="let artist of artists" routerLink="./artists/{{ artist.id }}">
-				<img width="170" height="170" class="lazyload"
-					[lazyLoad]="artist.picture || '/assets/app-icon-text.png'" />
+			<ng-container *ngIf="tab === 0">
 
-				<div class="column-details">
-					<div class="title">{{ artist.name }}</div>
-				</div>
+				<div class="column" *ngFor="let artist of artists" routerLink="./artists/{{ artist.id }}">
+					<img width="170" height="170" class="lazyload"
+						[lazyLoad]="artist.picture || '/assets/app-icon-text.png'" />
 
-			</div>
-
-		</ng-container>
-		<ng-container *ngIf="tab === 1">
-
-			<div class="column" *ngFor="let album of albums" routerLink="./albums/{{ album.id }}">
-				<img class="lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
-
-				<div class="column-details">
-					<div class="title">{{ album.name }}</div>
-					<div class="subtitle">{{ album.artist.name }}</div>
-				</div>
-
-
-			</div>
-		</ng-container>
-
-	</div>
-
-	<app-indicator [loading]="loading" message="Loading artists"></app-indicator>
-
-</infinite-scroll>
-
-<ng-container *ngIf="tab === 2">
-
-	<div class="playlists">
-
-		<div class="playlist" *ngFor="let playlist of playlists">
-
-
-			<div routerLink="/tracks" [queryParams]="{ playlist: playlist.id}" class="playlist-name">{{ playlist.name }}
-			</div>
-			<div *ngIf="!playlist.readonly" class="playlist-actions">
-				<app-dropdown #dropdown [config]="{right: true}" [header]="headerTemplate">
-					<ng-template #headerTemplate let-item="item">
-						<div (click)="item.onToggle()" class="dropdown-action-item"><i class="material-icons-outlined">
-								more_vert
-							</i></div>
-					</ng-template>
-
-					<div class="dropdown-action-list">
-
-						<a (click)="onEdit(playlist)">Edit</a>
-						<a (click)="onDelete(playlist)">Delete</a>
-
-
+					<div class="column-details">
+						<div class="title">{{ artist.name }}</div>
 					</div>
-				</app-dropdown>
-			</div>
+
+				</div>
+
+			</ng-container>
+			<ng-container *ngIf="tab === 1">
+
+				<div class="column" *ngFor="let album of albums" routerLink="./albums/{{ album.id }}">
+					<img class="lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
+
+					<div class="column-details">
+						<div class="title">{{ album.name }}</div>
+						<div class="subtitle">{{ album.artist.name }}</div>
+					</div>
+
+
+				</div>
+			</ng-container>
 
 		</div>
 
-	</div>
-</ng-container>
+	</infinite-scroll>
 
-<app-loading [loading]="loading"></app-loading>
+	<ng-container *ngIf="tab === 2">
+
+		<div class="playlists">
+
+			<div class="playlist" *ngFor="let playlist of playlists">
+
+
+				<div routerLink="/tracks" [queryParams]="{ playlist: playlist.id}" class="playlist-name">{{
+					playlist.name }}
+				</div>
+				<div *ngIf="!playlist.readonly" class="playlist-actions">
+					<app-dropdown #dropdown [config]="{right: true}" [header]="headerTemplate">
+						<ng-template #headerTemplate let-item="item">
+							<div (click)="item.onToggle()" class="dropdown-action-item"><i
+									class="material-icons-outlined">
+									more_vert
+								</i></div>
+						</ng-template>
+
+						<div class="dropdown-action-list">
+
+							<a (click)="onEdit(playlist)">Edit</a>
+							<a (click)="onDelete(playlist)">Delete</a>
+
+
+						</div>
+					</app-dropdown>
+				</div>
+
+			</div>
+
+		</div>
+	</ng-container>
+	<app-loading [loading]="loading"></app-loading>
+
+
+</div>

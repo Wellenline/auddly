@@ -64,7 +64,7 @@
 					<ng-container *ngFor="let artist of result.artists; ">
 						<ng-template swiperSlide>
 							<div routerLink="/library/artists/{{ artist.id }}" class="artist">
-								<img class="lazyLoad" [lazyLoad]="artist.picture || '/assets/app-icon-text.png'" />
+								<img class="lazyLoad" [src]="artist.picture || '/assets/app-icon-text.png'" />
 								<div class="column-details">
 									<div class="title">{{ artist.name }}</div>
 								</div>
@@ -115,7 +115,7 @@
 					<ng-container *ngFor="let album of result.albums; ">
 						<ng-template swiperSlide>
 							<div routerLink="/library/albums/{{ album.id }}" class="album">
-								<img class="lazyLoad" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
+								<img class="lazyLoad" [src]="album.picture || '/assets/app-icon-text.png'" />
 								<div class="column-details">
 									<div class="title">{{ album.name }}</div>
 									<div class="subtitle">{{ album.artist.name }}</div>
