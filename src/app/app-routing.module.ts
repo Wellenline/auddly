@@ -11,6 +11,7 @@ import { MainComponent } from "./layouts/main/main.component";
 import { LibraryComponent } from "./pages/library/library.component";
 import { AuthComponent } from "./layouts/auth/auth.component";
 import { ConnectComponent } from "./pages/connect/connect.component";
+import { UploadComponent } from "./pages/settings/upload/upload.component";
 
 const routes: Routes = [
 	{
@@ -38,7 +39,7 @@ const routes: Routes = [
 
 			{ path: "search", component: SearchComponent, canActivate: [AuthGuard] },
 			{ path: "settings", component: SettingsComponent, canActivate: [AuthGuard] },
-
+			{ path: "settings/upload", component: UploadComponent, canActivate: [AuthGuard] },
 			{ path: "queue", component: QueueComponent, canActivate: [AuthGuard] },
 
 		]

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { environment } from "../../environments/environment";
 import { catchError, map } from "rxjs/operators";
 import { throwError } from "rxjs";
@@ -23,10 +23,24 @@ export class HttpService {
 			catchError(this.handleError), map((res) => res));
 	}
 
-	public upload(path: any, data: any) {
+	public upload(path: any, data: any, progress = false) {
+		if (progress) {
+			// const headers = this.headers();
+			const headers = new HttpHeaders({ "ngsw-bypass": "", ...this.headers() });
+
+			return this.http.post(`${this.API_ENDPOINT}${path}`, data, {
+				headers,
+				reportProgress: true,
+				observe: "events",
+				responseType: "json",
+			}).pipe(
+				catchError(this.handleError));
+		}
+
 		return this.http.post(`${this.API_ENDPOINT}${path}`, data, { headers: this.headers() }).pipe(
 			catchError(this.handleError), map((res) => res));
 	}
+
 
 	public put(path: any, data: any) {
 		return this.http.put(`${this.API_ENDPOINT}${path}`, data, { headers: this.headers() }).pipe(
