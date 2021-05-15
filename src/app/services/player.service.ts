@@ -51,7 +51,9 @@ export class PlayerService {
 		this.audio.addEventListener("timeupdate", this.onProgress.bind(this));
 		this.audio.addEventListener("canplay", () => {
 			console.log("Enough data to start playback");
-
+		});
+		this.audio.addEventListener("error", () => {
+			console.log("Failed to load audio");
 		});
 		this.audio.addEventListener("loadeddata", () => {
 			console.log("Loaded audio data");
@@ -253,7 +255,6 @@ export class PlayerService {
 		const progress = (this.audio.currentTime / this.audio.duration) * 100;
 		if (!isNaN(progress)) {
 			this.$progress.next(progress);
-			console.log(progress);
 			localStorage.setItem("progress", progress.toString());
 		}
 
