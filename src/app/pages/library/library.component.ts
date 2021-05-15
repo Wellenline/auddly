@@ -52,11 +52,8 @@ export class LibraryComponent implements OnInit {
 				setTimeout(() => {
 					if (params.tab === "0") {
 						this.fetchArtists();
-						// this.onShowFollowers();
 					} else if (params.tab === "1") {
 						this.fetchAlbums();
-
-						// this.onShowFollowing();
 					} else {
 						this.fetchPlaylists();
 

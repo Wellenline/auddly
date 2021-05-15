@@ -37,12 +37,28 @@ export class QueueComponent implements OnInit {
 	public actions = [];
 
 	public currentTime = 0;
+	public buffering = false;
+	public buffer = 0;
 	@ViewChild("swiper") swiper: SwiperComponent;
 	constructor(public playerService: PlayerService, private interfaceService: InterfaceService, private location: Location) { }
 
 	ngOnInit(): void {
 		this.playerService.$playing.subscribe((playing) => {
 			this.playing = playing;
+		});
+
+		this.playerService.$buffering.subscribe((buffering) => {
+			this.buffering = buffering;
+		});
+
+
+		this.playerService.$buffer.subscribe((buffer) => {
+			this.buffer = buffer;
+		});
+
+
+		this.playerService.$volume.subscribe((volume) => {
+			this.volume = volume * 100;
 		});
 		this.playerService.$progress.subscribe((num) => {
 			this.progress = num;
@@ -59,6 +75,9 @@ export class QueueComponent implements OnInit {
 
 		this.playerService.$track.subscribe((track) => {
 			this.track = track;
+			if (this.track.progress) {
+				this.progress = this.track.progress;
+			}
 			this.lyrics = false;
 			if (this.swiper) {
 				this.swiper.setIndex(this.playerService.index);
@@ -101,7 +120,7 @@ export class QueueComponent implements OnInit {
 	}
 
 	public onPlaylist() {
-
+		this.playerService.onAddToPlaylist(this.track);
 	}
 
 	public onVolume(e) {

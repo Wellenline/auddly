@@ -19,13 +19,13 @@ export class TrackListComponent implements OnInit {
 	public onPlay(e) {
 		e.preventDefault();
 		e.stopPropagation();
-		console.log(JSON.stringify(this.track))
+		console.log(JSON.stringify(this.track));
 		this.playerService.onPlay(this.track);
 	}
 
-	onPlaylist() {
+	public onPlaylist() {
 		// todo
-		this.httpService.get(`/playlists`).subscribe((response: { playlists: [{ name: any, id: number }] }) => {
+		/*this.httpService.get(`/playlists`).subscribe((response: { playlists: [{ name: any, id: number }] }) => {
 			this.interfaceService.dialog.show({
 				items: response.playlists.map((playlist) => playlist.name),
 				type: "picker",
@@ -41,12 +41,15 @@ export class TrackListComponent implements OnInit {
 					}
 				},
 			});
-		});
+		});*/
+		this.playerService.onAddToPlaylist(this.track);
 
 	}
 
 	public onRemoveFromPlaylist() {
-		this.interfaceService.dialog.show({
+		this.playerService.onRemoveFromPlaylist(this.track);
+
+		/*this.interfaceService.dialog.show({
 			items: this.track.playlists.map((playlist) => playlist.name),
 			type: "picker",
 			title: "Playlist",
@@ -59,10 +62,10 @@ export class TrackListComponent implements OnInit {
 
 				}
 			},
-		});
+		});*/
 	}
 
-	onQueue() {
+	public onQueue() {
 		if (!this.playerService.$playing.getValue()) {
 			this.playerService.onPlay(this.track);
 		} else {

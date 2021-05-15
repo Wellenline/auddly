@@ -1,4 +1,5 @@
-<button [disabled]="disabled" #button class="button {{ class }} {{ block ? 'block' : ''}} {{ invert ? 'invert' : '' }}">
+<button [disabled]="disabled" #button
+	class="relative {{ class ? 'class' : 'button' }} {{ block ? 'block' : ''}} {{ invert ? 'invert' : '' }}">
 
 	<ng-content></ng-content>
 

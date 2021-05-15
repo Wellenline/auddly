@@ -24,6 +24,7 @@ import { DragDropDirective } from './directives/drag-drop.directive';
 import { VirtualScrollerModule } from "ngx-virtual-scroller";
 import { HeaderComponent } from "./components/header/header.component";
 import { ShinerComponent } from './components/shiner/shiner.component';
+import { BottomSheetComponent } from "./components/bottom-sheet/bottom-sheet.component";
 
 
 
@@ -43,7 +44,7 @@ import { ShinerComponent } from './components/shiner/shiner.component';
 		AutoSizeDirective,
 		DragDropDirective,
 		HeaderComponent,
-		ShinerComponent,],
+		ShinerComponent, BottomSheetComponent],
 	imports: [
 		CommonModule,
 		FormsModule,
@@ -80,6 +81,7 @@ import { ShinerComponent } from './components/shiner/shiner.component';
 		HeaderComponent,
 		DragDropDirective,
 		ShinerComponent,
+		BottomSheetComponent
 
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],

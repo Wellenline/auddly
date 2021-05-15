@@ -11,6 +11,7 @@
 
 			<div class="dropdown-action-list">
 				<a *ngIf="track.lyrics" (click)="lyrics = true">Lyrics</a>
+				<a (click)="onPlaylist()">Add to playlist</a>
 
 
 				<!--a (click)="onPlaylist()">Add to playlist</a-->
@@ -57,12 +58,13 @@
 
 			</div>
 
-			<div class="seekbar">
+			<div class="seekbar relative">
 				<div class="progress-controls">
-					<app-slider [value]="progress" (valueChange)="onProgress($event)">
+					<app-slider [buffer]="buffer" [value]="progress" (valueChange)="onProgress($event)">
 					</app-slider>
 				</div>
 
+				<app-loading [loading]="buffering && playing"></app-loading>
 			</div>
 
 			<div class="time-controls">
@@ -95,8 +97,10 @@
 				</div>
 
 				<div class="control">
-					<button (click)="playerService.onPlayback()" class="button default controls-button playback">
+					<button [disabled]="buffering" (click)="playerService.onPlayback()"
+						class="button default controls-button playback">
 						<i class="feather {{ playing ? 'feather-pause' : 'feather-play' }}"></i>
+
 
 
 

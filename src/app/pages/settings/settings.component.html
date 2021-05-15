@@ -42,17 +42,18 @@
 
 	<div class="float-right">
 
-		<app-theme-toggle></app-theme-toggle>
+
 
 	</div>
 </div>
 <div class="theme">
-	<app-horizontal-scroll>
+	<app-theme-toggle></app-theme-toggle>
+	<!--app-horizontal-scroll>
 		<ng-container *ngFor="let color of colors">
 			<div class="color-block" [style.background-color]="color" (click)="setTheme(color)">
 				{{ color}}</div>
 		</ng-container>
-	</app-horizontal-scroll>
+	</app-horizontal-scroll-->
 </div>
 <h3>Server</h3>
 

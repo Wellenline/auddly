@@ -187,7 +187,7 @@ virtual-scroller {
 					height: 60px;
 					background-color: var(--accent-color) !important;
 					color: white;
-
+					position: relative;
 					&:focus,
 					&:hover {
 						cursor: pointer;

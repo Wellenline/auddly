@@ -89,6 +89,7 @@
 				</ng-template>
 
 				<div class="dropdown-action-list">
+					<a (click)="onPlaylist()">Add to playlist</a>
 
 					<a routerLink="/library/artists/{{track?.album?.artist?.id}}">More from artist</a>
 					<a routerLink="/library/albums/{{track?.album?.id}}">Go to album</a>

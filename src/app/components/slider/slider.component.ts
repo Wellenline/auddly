@@ -23,6 +23,8 @@ export class SliderComponent implements OnInit {
 		vertical: false,
 	};
 
+	@Input() public buffer: number;
+
 
 	@Input() public waveform: string;
 

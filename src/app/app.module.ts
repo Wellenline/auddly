@@ -37,7 +37,7 @@ import SwiperCore, { EffectCoverflow, Lazy, Swiper, SwiperOptions, Virtual } fro
 import { AuthComponent } from "./layouts/auth/auth.component";
 import { ConnectComponent } from "./pages/connect/connect.component";
 import { AuthInterceptor } from "./interceptors/auth.interceptor";
-import { UploadComponent } from './pages/settings/upload/upload.component';
+import { UploadComponent } from "./pages/settings/upload/upload.component";
 
 SwiperCore.use([Virtual, EffectCoverflow, Lazy]);
 
@@ -85,7 +85,7 @@ SwiperCore.use([Virtual, EffectCoverflow, Lazy]);
 		provide: HTTP_INTERCEPTORS,
 		useClass: AuthInterceptor,
 		multi: true,
-	},],
+	}],
 	bootstrap: [AppComponent],
 })
 export class AppModule { }

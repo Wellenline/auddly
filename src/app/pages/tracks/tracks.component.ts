@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { InterfaceService } from "src/app/modules/shared/services/interface.service";
 import { HttpService } from "src/app/services/http.service";
@@ -24,6 +24,7 @@ export class TracksComponent implements OnInit {
 	public playlist: { name?: string, id?: number } = {};
 
 	public filter: { limit?: number, liked?: boolean, playlist?: number, genre?: number, sort?: boolean } = { sort: true, limit: 50, };
+
 	constructor(private httpService: HttpService,
 		private interfaceService: InterfaceService,
 		private playerService: PlayerService, private route: ActivatedRoute, private router: Router) { }
@@ -43,6 +44,7 @@ export class TracksComponent implements OnInit {
 		this.getPlaylists();
 
 	}
+
 
 	public onPlay() {
 		if (this.tracks.length > 0) {

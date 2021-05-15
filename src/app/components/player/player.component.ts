@@ -24,6 +24,10 @@ export class PlayerComponent implements OnInit {
 			this.playing = playing;
 		});
 
+		this.playerService.$volume.subscribe((volume) => {
+			this.volume = volume * 100;
+		});
+
 		this.playerService.$progress.subscribe((num) => {
 			this.progress = num;
 			this.currentTime = this.playerService.audio.currentTime;
@@ -34,6 +38,9 @@ export class PlayerComponent implements OnInit {
 		});
 	}
 
+	public onPlaylist() {
+		this.playerService.onAddToPlaylist(this.track);
+	}
 
 	public onLike(e) {
 		e.stopPropagation();

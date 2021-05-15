@@ -1,0 +1,14 @@
+<div class="bottom-sheet-bg-overlay" *ngIf="flags.isBottomSheetEnabled" (click)="close()"></div>
+<div class="bottom-sheet-container" *ngIf="flags.isBottomSheetEnabled" [@slideUpToggle]>
+	<div>
+		<div class="bottom-sheet-header">
+			<h4 class="title">{{options?.title}}</h4>
+		</div>
+		<div class="bottom-sheet-content">
+			<ng-content></ng-content>
+		</div>
+		<div class="bottom-sheet-footer" (click)="close()" *ngIf="flags.isCloseButtonEnabled">
+			{{options.closeButtonTitle}}
+		</div>
+	</div>
+</div>

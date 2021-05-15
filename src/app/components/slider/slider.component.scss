@@ -24,6 +24,9 @@
 			border-radius: 5px;
 			bottom: 0;
 			position: absolute;
+			z-index: 2;
+
+			transition: all ease-in-out 0.4s;
 		}
 
 		&:hover {
@@ -39,9 +42,21 @@
 
 		.range {
 			width: 0;
+			z-index: 2;
+			position: absolute;
 			background: var(--accent-color);
 			height: 100%;
 			border-radius: 5px;
+		}
+
+		.buffer {
+			width: 0;
+			bottom: 0;
+			position: absolute;
+			background: var(--background-color-3);
+			height: 100%;
+			border-radius: 5px;
+			z-index: 1;
 		}
 	}
 }

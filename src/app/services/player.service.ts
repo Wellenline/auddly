@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
+import { InterfaceService } from "../modules/shared/services/interface.service";
 import { HttpService } from "./http.service";
 
 export interface ITrack {
@@ -12,6 +13,7 @@ export interface ITrack {
 	album?: any;
 	lossless?: boolean;
 	path?: string;
+	progress?: number;
 	lyrics?: {
 		text: string
 	} | null;
@@ -29,8 +31,12 @@ export class PlayerService {
 	public $queue = new BehaviorSubject<ITrack[]>(JSON.parse(localStorage.getItem("queue")) || []);
 	public $track = new BehaviorSubject<ITrack>(JSON.parse(localStorage.getItem("track")) || {});
 
-	public $progress = new BehaviorSubject<number>(0);
-	public $volume = new BehaviorSubject<number>(100);
+	public $progress = new BehaviorSubject<number>(parseInt(localStorage.getItem("progress"), 10) || 0);
+	public $buffer = new BehaviorSubject<number>(0);
+
+	public $buffering = new BehaviorSubject<boolean>(false);
+
+	public $volume = new BehaviorSubject<number>(parseFloat(localStorage.getItem("volume")) || 100);
 	public $playing = new BehaviorSubject<boolean>(false);
 
 	public audio: HTMLAudioElement;
@@ -39,9 +45,21 @@ export class PlayerService {
 	public repeat = false;
 	public loop = false;
 
-	constructor(private httpService: HttpService) {
+	constructor(private httpService: HttpService, private interfaceService: InterfaceService) {
 		this.audio = new Audio();
+
 		this.audio.addEventListener("timeupdate", this.onProgress.bind(this));
+		this.audio.addEventListener("canplay", () => {
+			console.log("Enough data to start playback");
+
+		});
+		this.audio.addEventListener("loadeddata", () => {
+			console.log("Loaded audio data");
+			if (this.$progress.getValue()) {
+				this.audio.currentTime = (this.$progress.getValue() * this.audio.duration) / 100;
+			}
+			// this.$buffering.next(this.audio.readyState >= 2);
+		});
 		this.audio.addEventListener("ended", this.onAudioEnded.bind(this));
 		this.audio.volume = parseFloat(localStorage.getItem("volume")) || 1;
 		if ("mediaSession" in navigator) {
@@ -144,6 +162,7 @@ export class PlayerService {
 		localStorage.setItem("track", JSON.stringify(tracks[0]));
 		this.$track.next(tracks[0]);
 		this.$progress.next(0);
+
 		this.$playing.next(true);
 		this.setupAudioPlayer(tracks[0]);
 
@@ -153,11 +172,12 @@ export class PlayerService {
 	public setupAudioPlayer(track: ITrack, autoPlay: boolean = true) {
 		this.audio.src = track.source;
 		this.audio.crossOrigin = "anonymous";
-		this.audio.load();
+		// this.audio.load();
 		if (autoPlay) {
 			this.audio.play();
 			this.$playing.next(true);
 		}
+
 
 		if ("mediaSession" in navigator) {
 			// @ts-ignore
@@ -188,6 +208,7 @@ export class PlayerService {
 			this.audio.pause();
 			this.$playing.next(false);
 		} else {
+
 			this.audio.play();
 			this.$playing.next(true);
 		}
@@ -209,6 +230,7 @@ export class PlayerService {
 	public onVolume(volume: number) {
 		this.audio.volume = volume;
 		localStorage.setItem("volume", this.audio.volume.toString());
+		this.$volume.next(volume);
 
 	}
 
@@ -217,12 +239,90 @@ export class PlayerService {
 	}
 
 	private onProgress() {
-		this.$progress.next((this.audio.currentTime / this.audio.duration) * 100);
+		this.$buffering.next(this.audio.buffered.length === 0);
+		if (this.audio.duration > 0) {
+			for (let index = 0; index < this.audio.buffered.length; index++) {
+				if (this.audio.buffered.start(this.audio.buffered.length - 1 - index) < this.audio.currentTime) {
+					this.$buffer.next((this.audio.buffered.end(this.audio.buffered.length - 1 - index) / this.audio.duration) * 100);
+					break;
+				}
+
+			}
+		}
+
+		const progress = (this.audio.currentTime / this.audio.duration) * 100;
+		if (!isNaN(progress)) {
+			this.$progress.next(progress);
+			console.log(progress);
+			localStorage.setItem("progress", progress.toString());
+		}
+
+
 	}
 
 	private onAudioEnded() {
 		this.audio.currentTime = 0;
 		this.$playing.next(false);
 		this.onNext();
+	}
+
+	public onAddToPlaylist(track: ITrack) {
+		console.log(track.playlists);
+		this.httpService.get(`/playlists`).subscribe((response: { playlists: [{ name: any, id: number }] }) => {
+			this.interfaceService.dialog.show({
+				items: response.playlists.map((playlist) => playlist.name),
+				type: "picker",
+				title: "Playlist",
+				message: "Choose the playlist you wish to add the track",
+				closed: (index) => {
+					if (index !== false && index !== undefined) {
+						const playlist = response.playlists[index];
+						if (!track.playlists) {
+							track.playlists = [];
+						}
+						if (!track.playlists || track.playlists.findIndex((p) => p.id === playlist.id) === -1) {
+							this._addToPlaylist(track, playlist);
+						}
+					}
+				},
+			});
+		});
+	}
+
+	public onRemoveFromPlaylist(track: ITrack) {
+		this.interfaceService.dialog.show({
+			items: track.playlists.map((playlist) => playlist.name),
+			type: "picker",
+			title: "Playlist",
+			message: "Choose the playlist you wish to remove the track from",
+			closed: (index) => {
+				console.log(index);
+				if (index !== false && index !== undefined) {
+					const playlist = track.playlists[index];
+					this._removeFromPlaylist(track, playlist, index);
+
+				}
+			},
+		});
+	}
+
+
+	private _addToPlaylist(track, playlist) {
+		this.httpService.post(`/playlists/${playlist.id}`, {
+			track: track.id,
+		}).subscribe((response) => {
+			this.interfaceService.notify(`${track.name} added to ${playlist.name}`);
+			track.playlists.push(playlist);
+		});
+	}
+
+	private _removeFromPlaylist(track, playlist, index) {
+		this.httpService.delete(`/playlists/${playlist.id}/${track.id}`).subscribe((response) => {
+			this.interfaceService.notify(`${track.name} removed from ${playlist.name}`);
+			if (index > -1) {
+				track.playlists.splice(index, 1);
+			}
+			// this.reload.emit(true);
+		});
 	}
 }
