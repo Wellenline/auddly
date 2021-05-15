@@ -19,6 +19,7 @@ export class ArtistComponent implements OnInit {
 		artists: [],
 		playlists: [],
 	};
+
 	public config: SwiperOptions = {
 		slidesOffsetBefore: 20,
 		slidesOffsetAfter: 20,
@@ -51,7 +52,7 @@ export class ArtistComponent implements OnInit {
 
 		},
 	};
-
+	public loading = true;
 	constructor(private httpService: HttpService, private playerService: PlayerService, private route: ActivatedRoute) { }
 
 	public ngOnInit(): void {
@@ -65,18 +66,13 @@ export class ArtistComponent implements OnInit {
 	}
 
 	public getArtist(id: string) {
+		this.loading = true;
 		this.httpService.get(`/artists/${id}`).subscribe((response: any) => {
 			this.artist = response;
 			this.getSearchResults(this.artist.name);
 			// this.getArtistMetadata();
-		});
-	}
-
-	public getArtistMetadata() {
-		// tslint:disable-next-line:max-line-length
-		this.httpService.get(`https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${this.artist.name}&api_key=57ee3318536b23ee81d6b27e36997cde&format=json`, true).subscribe((response: any) => {
-			this.artist.bio = response.artist.bio.summary;
-			this.artist.tags = response.artist.tags.tag;
+		}).add(() => {
+			this.loading = false;
 		});
 	}
 

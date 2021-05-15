@@ -9,6 +9,7 @@ export class ShinerComponent implements OnInit {
 	@Input() public height: string;
 	@Input() public width: string;
 	@Input() public margin: string;
+	@Input() public borderRadius: string;
 
 	constructor() { }
 

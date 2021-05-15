@@ -9,15 +9,31 @@
 	<div class="artist-meta">
 		<div class="grid">
 			<div class="width-auto@md flex flex-middle">
-				<img class="artist-picture lazyload" [lazyLoad]="artist.picture || '/assets/app-icon-text.png'" />
+
+				<app-shiner *ngIf="loading" margin="20px" height="250px" width="250px" borderRadius="50%"></app-shiner>
+				<img *ngIf="!loading" class="artist-picture lazyload"
+					[lazyLoad]="artist.picture || '/assets/app-icon-text.png'" />
 
 			</div>
 
 			<div class="width-expand@md">
-				<div class="artist-details">
+				<div *ngIf="!loading" class="artist-details">
 					<div class="artist-name">{{ artist.name }}</div>
 					<div class="artist-bio" [innerHTML]="artist.bio"></div>
 				</div>
+
+				<div *ngIf="loading" class="artist-details">
+					<div class="artist-name">
+						<app-shiner *ngIf="loading" margin="0px" height="40px" width="250px"></app-shiner>
+					</div>
+					<div class="artist-bio">
+						<app-shiner *ngIf="loading" margin="0px 0px 5px 0px" height="10px" width="320px"></app-shiner>
+						<app-shiner *ngIf="loading" margin="0px 0px 5px 0px" height="10px" width="320px"></app-shiner>
+						<app-shiner *ngIf="loading" margin="0px 0px 5px 0px" height="10px" width="320px"></app-shiner>
+						<app-shiner *ngIf="loading" margin="0px 0px 5px 0px" height="10px" width="320px"></app-shiner>
+					</div>
+				</div>
+
 
 				<div class="tags">
 
