@@ -25,7 +25,7 @@ export class LibraryComponent implements OnInit {
 	constructor(private httpService: HttpService, private interfaceService: InterfaceService, private router: Router, private route: ActivatedRoute) { }
 
 	public onScroll(e?) {
-		if (this.tab === 0) {
+		if (this.tab === 1) {
 			if (this.artists.length !== this.pagination.total) {
 				this.pagination.skip += this.pagination.limit;
 
@@ -50,9 +50,9 @@ export class LibraryComponent implements OnInit {
 			if (params.tab !== undefined) {
 				this.tab = parseInt(params.tab, 10);
 				setTimeout(() => {
-					if (params.tab === "0") {
+					if (params.tab === "1") {
 						this.fetchArtists();
-					} else if (params.tab === "1") {
+					} else if (params.tab === "0") {
 						this.fetchAlbums();
 					} else {
 						this.fetchPlaylists();
@@ -60,7 +60,7 @@ export class LibraryComponent implements OnInit {
 					}
 				}, 100);
 			} else {
-				this.fetchArtists();
+				this.fetchAlbums();
 			}
 		});
 		// this.fetchArtists();

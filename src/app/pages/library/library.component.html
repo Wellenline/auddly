@@ -27,10 +27,10 @@
 
 <div class="toggle">
 	<div (click)="setTab(0)" class="value {{ tab === 0 ? 'active' : '' }}">
-		Artists
+		Albums
 	</div>
 	<div (click)=" setTab(1)" class="value {{ tab === 1 ? 'active' : '' }}">
-		Albums
+		Artists
 	</div>
 
 	<div (click)=" setTab(2)" class="value {{ tab === 2 ? 'active' : '' }}">
@@ -42,7 +42,7 @@
 	<infinite-scroll (scrolled)="onScroll()">
 		<div class="library">
 
-			<ng-container *ngIf="tab === 0">
+			<ng-container *ngIf="tab === 1">
 
 				<div class="column" *ngFor="let artist of artists" routerLink="./artists/{{ artist.id }}">
 					<img width="170" height="170" class="lazyload"
@@ -55,7 +55,7 @@
 				</div>
 
 			</ng-container>
-			<ng-container *ngIf="tab === 1">
+			<ng-container *ngIf="tab === 0">
 
 				<div class="column" *ngFor="let album of albums" routerLink="./albums/{{ album.id }}">
 					<img class="lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
