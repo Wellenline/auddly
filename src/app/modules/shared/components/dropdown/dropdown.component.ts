@@ -97,10 +97,12 @@ export class DropdownComponent implements OnInit {
 	}
 
 	@HostListener("document:mousedown", ["$event"])
+	@HostListener("document:touchstart", ["$event"])
+
 	public onGlobalClick(event): void {
-		if (!this.elementRef.nativeElement.contains(event.target)) {
-			// clicked outside => close dropdown list
-			this.open = false;
-		}
+		//if (!this.elementRef.nativeElement.contains(event.target)) {
+		// clicked outside => close dropdown list
+		this.open = false;
+		//}
 	}
 }
