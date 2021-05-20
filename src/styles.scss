@@ -96,6 +96,7 @@ input:after {
 html,
 body {
 	margin: 0;
+	background-color: var(--background-color);
 }
 
 @import "./assets/feather.css";

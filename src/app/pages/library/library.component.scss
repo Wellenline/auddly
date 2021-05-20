@@ -109,14 +109,12 @@
 	background-color: var(--background-color);
 	border-radius: 0px;
 	display: flex;
-	top: 60px;
+	top: 0px;
 	flex-direction: row;
 	zoom: 1;
 	width: 100%;
 	z-index: 6;
-	padding-bottom: 15px;
-	padding-left: 15px;
-	padding-right: 15px;
+	padding: 15px;
 	// box-shadow: 0 2px 4px rgb(17 17 18 / 4%), 0 1px 1px rgb(19 20 20 / 6%);
 	left: 0;
 	&:before,
@@ -151,7 +149,7 @@
 		z-index: 2;
 		padding: 10px;
 		color: var(--foreground-color);
-		&:first-of-type {
+		/*&:first-of-type {
 			border-top-left-radius: 5px;
 			border-bottom-left-radius: 5px;
 		}
@@ -159,7 +157,8 @@
 		&:last-of-type {
 			border-top-right-radius: 5px;
 			border-bottom-right-radius: 5px;
-		}
+		}*/
+		border-radius: 5px;
 		&:hover {
 			cursor: pointer;
 		}
