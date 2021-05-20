@@ -1,33 +1,3 @@
-<app-header transparent="true" title="Now Playing" [actionTemplate]="actionTemplate">
-
-	<ng-template #actionTemplate>
-
-		<app-dropdown #dropdown [config]="{right: true}" [header]="headerTemplate">
-			<ng-template #headerTemplate let-item="item">
-				<div (click)="item.onToggle()" class="dropdown-action-item"><i class="material-icons-outlined">
-						more_vert
-					</i></div>
-			</ng-template>
-
-			<div class="dropdown-action-list">
-				<a *ngIf="track.lyrics" (click)="lyrics = true">Lyrics</a>
-				<a (click)="onPlaylist()">Add to playlist</a>
-
-
-				<!--a (click)="onPlaylist()">Add to playlist</a-->
-				<a routerLink="/library/artists/{{track?.album?.artist?.id}}">More from artist</a>
-				<a routerLink="/library/albums/{{track?.album?.id}}">Go to album</a>
-				<div class="divider no-margin"></div>
-
-				<a (click)="onClear()">Clear queue</a>
-
-			</div>
-		</app-dropdown>
-	</ng-template>
-
-</app-header>
-
-
 <div class="container relative mx-auto">
 	<virtual-scroller #scroll [items]="tracks" [enableUnequalChildrenSizes]="true">
 
@@ -117,7 +87,7 @@
 
 
 				<div class="control">
-					<div class="volume-controls">
+					<!--div class="volume-controls">
 						<button class="button default controls-button ">
 							<i *ngIf="volume === 0" class="feather-volume-x"></i>
 							<i *ngIf="volume <= 20 && volume > 0" class="feather-volume"></i>
@@ -129,7 +99,29 @@
 								(valueChange)="onVolume($event)">
 							</app-slider>
 						</div>
-					</div>
+					</div-->
+					<app-dropdown #dropdown [config]="{right: true}" [header]="headerTemplate">
+						<ng-template #headerTemplate let-item="item">
+							<button (click)="item.onToggle()" class="button default controls-button">
+								<i class="feather feather-more-vertical"></i>
+
+							</button>
+						</ng-template>
+
+						<div class="dropdown-action-list">
+							<a *ngIf="track.lyrics" (click)="lyrics = true">Lyrics</a>
+							<a (click)="onPlaylist()">Add to playlist</a>
+
+
+							<!--a (click)="onPlaylist()">Add to playlist</a-->
+							<a routerLink="/library/artists/{{track?.album?.artist?.id}}">More from artist</a>
+							<a routerLink="/library/albums/{{track?.album?.id}}">Go to album</a>
+							<div class="divider no-margin"></div>
+
+							<a (click)="onClear()">Clear queue</a>
+
+						</div>
+					</app-dropdown>
 
 				</div>
 			</div>
