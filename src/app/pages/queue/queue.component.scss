@@ -230,7 +230,7 @@ virtual-scroller {
 		position: fixed;
 		overflow: auto;*/
 		width: 100%;
-		height: calc(100vh - 60px);
+		height: calc(100vh - (60px + env(safe-area-inset-bottom) + env(safe-area-inset-top)));
 	}
 }
 
