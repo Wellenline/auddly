@@ -86,6 +86,9 @@
 					<app-slider [options]="{vertical: false, autoSize: false}" [buffer]="buffer" [value]="progress"
 						(valueChange)="onProgress($event)">
 					</app-slider>
+
+
+					<app-loading [loading]="buffering && playing"></app-loading>
 				</div>
 				<div class="playing-progress-time">
 					<div class="current">
