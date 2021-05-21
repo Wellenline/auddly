@@ -1,8 +1,14 @@
 .filters {
 	list-style: none;
 	padding: 0;
+	position: sticky;
+	top: 0px;
+	margin-bottom: 15px;
+	display: flex;
+	align-items: center;
+	z-index: 2;
 	.filter {
-		margin-bottom: 15px;
+		margin-bottom: 0px;
 		margin-top: 0px;
 		&:first-of-type {
 			// background: blue !important;
@@ -39,7 +45,7 @@
 }
 virtual-scroller {
 	width: 100%;
-	height: calc(100vh - 128px);
+	height: 100vh;
 }
 
 @media all and (max-width: 1000px) {
@@ -50,6 +56,6 @@ virtual-scroller {
 		position: fixed;
 		overflow: auto;*/
 		width: 100%;
-		height: calc(100vh - 188px);
+		height: calc(100vh - (180px + env(safe-area-inset-bottom) + env(safe-area-inset-top)));
 	}
 }

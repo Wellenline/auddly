@@ -1,5 +1,6 @@
 import { Component, HostListener } from "@angular/core";
 import { PlayerService } from "./services/player.service";
+import { ThemeService } from "./services/theme.service";
 
 @Component({
 	selector: "app-root",
@@ -7,7 +8,7 @@ import { PlayerService } from "./services/player.service";
 	styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
-	constructor() { }
+	constructor(private themeService: ThemeService) { }
 	ngOnInit() {
 
 

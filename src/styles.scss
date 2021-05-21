@@ -69,6 +69,7 @@ html[data-theme="dark"] {
 
 ::-webkit-scrollbar {
 	width: 0px;
+	height: 0px;
 	background: transparent;
 }
 /*
@@ -159,22 +160,22 @@ a {
 	display: inline-block;
 	white-space: nowrap;
 	animation-name: bounce;
-	animation-duration: 5s;
+	animation-duration: 20s;
 	animation-iteration-count: infinite;
 }
 
 @keyframes bounce {
 	0% {
-		transform: translateX(10%);
+		transform: translateX(0%);
 	}
 	50% {
 		transform: translateX(-100%);
 	}
 	100% {
-		transform: translateX(10%);
+		transform: translateX(0%);
 	}
-}
-*/
+}*/
+
 .dropdown-action-item {
 	font-size: 1.2rem;
 	padding: 5px;

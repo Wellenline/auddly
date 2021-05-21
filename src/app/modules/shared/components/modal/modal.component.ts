@@ -22,8 +22,17 @@ export class ModalComponent implements OnInit {
 		this.close();
 	}
 
+
+	public show() {
+		this.visible = true;
+		this.visibleChange.emit(true);
+
+
+
+	}
+
 	public close() {
-		// this.visible = false;
+		this.visible = false;
 		this.visibleChange.emit(false);
 		setTimeout(() => {
 			this.router.navigate(

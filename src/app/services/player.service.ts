@@ -41,8 +41,8 @@ export class PlayerService {
 
 	public audio: HTMLAudioElement;
 
-	public shuffle = false;
-	public repeat = false;
+	public shuffle = localStorage.getItem("shuffle") === "true";
+	public repeat = localStorage.getItem("repeat") === "true";
 	public loop = false;
 
 	constructor(private httpService: HttpService, private interfaceService: InterfaceService) {
@@ -111,6 +111,16 @@ export class PlayerService {
 		if (!this.shuffle && this.repeat && this.isLast) {
 			this.onPlay(this.$queue.getValue()[0]);
 		}
+	}
+
+	public onRepeat() {
+		this.repeat = !this.repeat;
+		localStorage.setItem("repeat", this.repeat.toString());
+	}
+
+	public onShuffle() {
+		this.shuffle = !this.shuffle;
+		localStorage.setItem("shuffle", this.shuffle.toString());
 	}
 
 	public onPrev() {
@@ -240,33 +250,6 @@ export class PlayerService {
 		return this.httpService.get(`/tracks/like/${id}`);
 	}
 
-	private onProgress() {
-		this.$buffering.next(this.audio.buffered.length === 0);
-		if (this.audio.duration > 0) {
-			for (let index = 0; index < this.audio.buffered.length; index++) {
-				if (this.audio.buffered.start(this.audio.buffered.length - 1 - index) < this.audio.currentTime) {
-					this.$buffer.next((this.audio.buffered.end(this.audio.buffered.length - 1 - index) / this.audio.duration) * 100);
-					break;
-				}
-
-			}
-		}
-
-		const progress = (this.audio.currentTime / this.audio.duration) * 100;
-		if (!isNaN(progress)) {
-			this.$progress.next(progress);
-			localStorage.setItem("progress", progress.toString());
-		}
-
-
-	}
-
-	private onAudioEnded() {
-		this.audio.currentTime = 0;
-		this.$playing.next(false);
-		this.onNext();
-	}
-
 	public onAddToPlaylist(track: ITrack) {
 		console.log(track.playlists);
 		this.httpService.get(`/playlists`).subscribe((response: { playlists: [{ name: any, id: number }] }) => {
@@ -325,5 +308,32 @@ export class PlayerService {
 			}
 			// this.reload.emit(true);
 		});
+	}
+
+	private onProgress() {
+		this.$buffering.next(this.audio.buffered.length === 0);
+		if (this.audio.duration > 0) {
+			for (let index = 0; index < this.audio.buffered.length; index++) {
+				if (this.audio.buffered.start(this.audio.buffered.length - 1 - index) < this.audio.currentTime) {
+					this.$buffer.next((this.audio.buffered.end(this.audio.buffered.length - 1 - index) / this.audio.duration) * 100);
+					break;
+				}
+
+			}
+		}
+
+		const progress = (this.audio.currentTime / this.audio.duration) * 100;
+		if (!isNaN(progress)) {
+			this.$progress.next(progress);
+			localStorage.setItem("progress", progress.toString());
+		}
+
+
+	}
+
+	private onAudioEnded() {
+		this.audio.currentTime = 0;
+		this.$playing.next(false);
+		this.onNext();
 	}
 }

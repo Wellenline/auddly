@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from "@angular/core";
+import { NgForOfContext } from "@angular/common";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, Input, OnInit, TemplateRef } from "@angular/core";
 import { SlideUpToggleAnimation } from "../../animation/slide-up";
 import { BottomSheetConfig } from "../../interfaces/bottom-sheet";
 
@@ -14,7 +15,14 @@ export class BottomSheetComponent implements OnInit {
 	public flags: any = {
 		isBottomSheetEnabled: false
 	};
-	@Input() options: BottomSheetConfig;
+	@Input() options: BottomSheetConfig = {
+		maxHeight: "400"
+	};
+
+	@Input() public header: TemplateRef<any>;
+
+	@ContentChild(TemplateRef) public headerRef: TemplateRef<any>;
+
 
 	constructor(private changeDetector: ChangeDetectorRef) {
 	}
@@ -22,6 +30,12 @@ export class BottomSheetComponent implements OnInit {
 	ngOnInit() {
 		this.flags.isCloseButtonEnabled = this.options.enableCloseButton ? true : false;
 		this.options.closeButtonTitle = this.options.closeButtonTitle ? this.options.closeButtonTitle : "Close";
+
+		this.options.maxHeight = this.options.maxHeight ? this.options.maxHeight : "400";
+
+		if (this.header) {
+			this.headerRef = this.header;
+		}
 	}
 
 	/**

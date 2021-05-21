@@ -12,6 +12,7 @@ import { LibraryComponent } from "./pages/library/library.component";
 import { AuthComponent } from "./layouts/auth/auth.component";
 import { ConnectComponent } from "./pages/connect/connect.component";
 import { UploadComponent } from "./pages/settings/upload/upload.component";
+import { NowPlayingComponent } from "./pages/now-playing/now-playing.component";
 
 const routes: Routes = [
 	{
@@ -41,6 +42,7 @@ const routes: Routes = [
 			{ path: "settings", component: SettingsComponent, canActivate: [AuthGuard] },
 			{ path: "settings/upload", component: UploadComponent, canActivate: [AuthGuard] },
 			{ path: "queue", component: QueueComponent, canActivate: [AuthGuard] },
+			{ path: "playing", component: NowPlayingComponent, canActivate: [AuthGuard] },
 
 		]
 	},

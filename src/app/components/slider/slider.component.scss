@@ -36,8 +36,10 @@
 	}
 
 	&:not(.vertical) {
-		&:hover {
-			height: 15px;
+		&.auto-size {
+			&:hover {
+				height: 15px;
+			}
 		}
 
 		.range {

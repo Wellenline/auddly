@@ -1,0 +1,31 @@
+.page-overlay {
+	position: fixed;
+	background: #00000099;
+	backdrop-filter: blur(5px);
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 9;
+	opacity: 0;
+	visibility: hidden;
+
+	transition: opacity 0.3s, visibility 0.3s;
+
+	&.is-visible {
+		opacity: 1;
+		visibility: visible;
+		left: 0;
+
+		.page-overlay-container {
+			max-height: 100vh;
+		}
+	}
+
+	&-container {
+		max-height: 0;
+		transition-property: all;
+		transition-duration: 0.5s;
+		transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+	}
+}

@@ -1,6 +1,7 @@
 <div *ngIf="!waveform" (click)="onClick($event)" (mouseup)="onMouseUp($event)" (touchstart)="onMouseDown($event)"
 	(touchmove)="onMouseMove($event)" (touchend)="onMouseUp($event)" (mousemove)="onMouseMove($event)"
-	(mousedown)="onMouseDown($event)" class="slider {{ options.vertical ? 'vertical' : '' }}">
+	(mousedown)="onMouseDown($event)"
+	class="slider {{ options.vertical ? 'vertical' : '' }} {{ options.autoSize ? 'auto-size' : '' }}">
 	<div [ngStyle]="options.vertical ? {'height': buffer + '%'} : {'width': buffer + '%'}" class="buffer"></div>
 	<div [ngStyle]="options.vertical ? {'height': value + '%'} : {'width': value + '%'}" class="range"></div>
 

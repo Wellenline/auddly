@@ -50,6 +50,11 @@ export class LibraryComponent implements OnInit {
 			if (params.tab !== undefined) {
 				this.tab = parseInt(params.tab, 10);
 				setTimeout(() => {
+					this.pagination = {
+						total: 0,
+						skip: 0,
+						limit: 50,
+					};
 					if (params.tab === "1") {
 						this.fetchArtists();
 					} else if (params.tab === "0") {

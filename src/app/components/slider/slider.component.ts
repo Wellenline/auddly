@@ -12,15 +12,16 @@ export class SliderComponent implements OnInit {
 			const maxScroll = this.waveformElement.nativeElement.scrollWidth - this.waveformElement.nativeElement.clientWidth;
 			this.waveformElement.nativeElement.scrollLeft = val * (maxScroll / 100);
 		}
-	};
+	}
 
 	public get value() {
 		return this._value;
-	};
+	}
 	@Output() valueChange = new EventEmitter();
 
 	@Input() options = {
 		vertical: false,
+		autoSize: true,
 	};
 
 	@Input() public buffer: number;

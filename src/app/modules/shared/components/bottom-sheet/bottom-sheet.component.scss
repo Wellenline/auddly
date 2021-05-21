@@ -5,6 +5,7 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
+	z-index: 95;
 }
 
 .bottom-sheet-container {
@@ -16,7 +17,7 @@
 	left: 50%;
 	margin-left: -35%;
 	width: 75%;
-	z-index: 4;
+	z-index: 99;
 	color: var(--foreground-color);
 	box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14),
 		0 6px 30px 5px rgba(0, 0, 0, 0.12);
@@ -43,29 +44,16 @@
 }
 
 .bottom-sheet-content {
-	max-height: 400px;
+	// max-height: 400px;
 	overflow-y: auto;
 	// padding: 16px;
 }
 
 /* width */
 ::-webkit-scrollbar {
-	width: 4px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-	background: #bdbdbd;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-	background: #888;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-	background: rgb(92, 92, 92);
+	width: 0px;
+	height: 0px;
+	background: transparent;
 }
 
 @media (max-width: 992px) {
