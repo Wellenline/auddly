@@ -52,8 +52,7 @@
 					<ng-container *ngFor="let track of tracks; ">
 						<ng-template swiperSlide>
 							<div class="playing-carousel-art">
-								<img height="100" class="lazyload"
-									[lazyLoad]="track?.album?.picture || '/assets/app-icon-text.png'" />
+								<img height="100" [src]="track?.album?.picture || '/assets/app-icon-text.png'" />
 							</div>
 						</ng-template>
 					</ng-container>
