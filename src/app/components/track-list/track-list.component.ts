@@ -17,9 +17,7 @@ export class TrackListComponent implements OnInit {
 	}
 
 	public onPlay(e) {
-		e.preventDefault();
-		e.stopPropagation();
-		console.log(JSON.stringify(this.track));
+		console.log("Adding single track", this.track);
 		this.playerService.onPlay(this.track);
 	}
 

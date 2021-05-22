@@ -45,8 +45,9 @@
 
 			<div class="playing-carousel">
 				<!--div class="playing-carousel-art">
-			<img height="100" class="lazyload" [lazyLoad]="track?.album?.picture || '/assets/app-icon-text.png'" />
-		</div-->
+					<img height="100" class="lazyload"
+						[lazyLoad]="track?.album?.picture || '/assets/app-icon-text.png'" />
+				</div-->
 				<swiper #swiper [config]="config" (slideChange)="onSlideChange($event)">
 					<ng-container *ngFor="let track of tracks; ">
 						<ng-template swiperSlide>

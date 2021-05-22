@@ -30,7 +30,6 @@ export class NowPlayingComponent implements OnInit {
 
 	};
 	public lyrics = false;
-	public actions = [];
 
 	public currentTime = 0;
 	public buffering = false;
@@ -44,11 +43,16 @@ export class NowPlayingComponent implements OnInit {
 	};
 
 	constructor(public playerService: PlayerService, private interfaceService: InterfaceService, private location: Location,
-		private modal: ModalPageComponent,
 		private router: Router,
+		private modal: ModalPageComponent,
 	) { }
 
 	ngOnInit(): void {
+		this.modal.$visible.subscribe((visible) => {
+			if (visible) {
+				this.swiper.setIndex(this.playerService.index);
+			}
+		});
 		this.router.events.pipe(
 			filter(event => event instanceof NavigationEnd)
 		).subscribe((event: NavigationEnd) => {
@@ -102,25 +106,13 @@ export class NowPlayingComponent implements OnInit {
 				this.swiper.setIndex(this.playerService.index);
 			}
 
-			this.actions = [{
-				title: "Add to playlist",
-				action: this.onPlaylist.bind(this),
-			}, {
-				title: "More from artist",
-				route: "/library/artists/" + this.track.album.artist.id,
-			}, {
-				title: "Go to album",
-				route: "/library/albums/" + this.track.album.id,
-			}, {
-				title: "Clear queue",
-				action: this.onClear.bind(this)
-			}];
+
 		});
 
 	}
 
 	public onSlideChange(e) {
-		if (e.activeIndex !== this.playerService.index) {
+		if (e.activeIndex !== this.playerService.index && this.modal.visible) {
 			this.playerService.onPlay(this.tracks[e.activeIndex]);
 		}
 	}

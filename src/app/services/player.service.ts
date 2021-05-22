@@ -101,9 +101,8 @@ export class PlayerService {
 	 * Play next track
 	 */
 	public onNext() {
-		console.log(this.index);
+		this.audio.currentTime = 0;
 		const index = this.shuffle ? this.randomIndex : (this.index + 1);
-		console.log(index, this.isLast);
 		if (this.$queue.getValue()[index]) {
 			this.onPlay(this.$queue.getValue()[index]);
 		}
@@ -124,6 +123,7 @@ export class PlayerService {
 	}
 
 	public onPrev() {
+		this.audio.currentTime = 0;
 		const index = this.shuffle ? this.randomIndex : (this.index - 1);
 		if (this.$queue.getValue()[index]) {
 			this.onPlay(this.$queue.getValue()[index]);
@@ -167,11 +167,11 @@ export class PlayerService {
 				},
 			};
 		});
+		localStorage.setItem("track", JSON.stringify(tracks[0]));
 
 		// super ugly oneliner
 		this.queue(tracks);
 
-		localStorage.setItem("track", JSON.stringify(tracks[0]));
 		this.$track.next(tracks[0]);
 		this.$progress.next(0);
 

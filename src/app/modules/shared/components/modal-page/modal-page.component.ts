@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, HostListener, OnInit } from "@angular/core";
 import { SlideUpToggleAnimation } from "src/app/modules/shared/animation/slide-up";
 import { PlatformLocation } from "@angular/common"
 
@@ -7,11 +7,14 @@ import { PlatformLocation } from "@angular/common"
 	templateUrl: "./modal-page.component.html",
 	styleUrls: ["./modal-page.component.scss"],
 	animations: [SlideUpToggleAnimation],
-	// changeDetection: ChangeDetectionStrategy.OnPush
+	changeDetection: ChangeDetectionStrategy.OnPush
 
 })
 export class ModalPageComponent implements OnInit {
 	public visible = false;
+
+	public $visible = new EventEmitter();
+	public render = false;
 	constructor(private changeDetector: ChangeDetectorRef, private location: PlatformLocation) { }
 
 	ngOnInit(): void {
@@ -21,25 +24,18 @@ export class ModalPageComponent implements OnInit {
 
 	public show() {
 		this.visible = true;
-		// this.changeDetector.detectChanges();
+		this.$visible.next(this.visible);
+		this.changeDetector.detectChanges();
 		history.pushState(null, "modalPageOpen");
-
-		setTimeout(() => {
-			document.body.style.position = "fixed";
-			document.body.style.top = `-${window.scrollY}px`;
-		}, 300);
 
 
 	}
 
 	public close() {
 		this.visible = false;
-		// this.changeDetector.detectChanges();
+		this.$visible.next(this.visible);
 
-		const scrollY = document.body.style.top;
-		document.body.style.position = "";
-		document.body.style.top = "";
-		window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
+		this.changeDetector.detectChanges();
 
 	}
 
