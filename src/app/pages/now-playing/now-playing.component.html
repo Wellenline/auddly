@@ -1,5 +1,5 @@
-<div class="playing-container">
-	<virtual-scroller #scroll [items]="tracks" [enableUnequalChildrenSizes]="true">
+<div class="playing-container" #scrollingBlock>
+	<virtual-scroller #scroll [items]="tracks" [enableUnequalChildrenSizes]="true" [parentScroll]="scrollingBlock">
 
 
 		<div class="playing">
