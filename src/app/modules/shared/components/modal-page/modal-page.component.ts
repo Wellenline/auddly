@@ -7,7 +7,7 @@ import { PlatformLocation } from "@angular/common"
 	templateUrl: "./modal-page.component.html",
 	styleUrls: ["./modal-page.component.scss"],
 	animations: [SlideUpToggleAnimation],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	// changeDetection: ChangeDetectionStrategy.OnPush
 
 })
 export class ModalPageComponent implements OnInit {
@@ -21,7 +21,7 @@ export class ModalPageComponent implements OnInit {
 
 	public show() {
 		this.visible = true;
-		this.changeDetector.detectChanges();
+		// this.changeDetector.detectChanges();
 		history.pushState(null, "modalPageOpen");
 
 		setTimeout(() => {
@@ -34,7 +34,7 @@ export class ModalPageComponent implements OnInit {
 
 	public close() {
 		this.visible = false;
-		this.changeDetector.detectChanges();
+		// this.changeDetector.detectChanges();
 
 		const scrollY = document.body.style.top;
 		document.body.style.position = "";

@@ -8,6 +8,8 @@ import { InterfaceService } from "src/app/modules/shared/services/interface.serv
 import { ITrack, PlayerService } from "src/app/services/player.service";
 import { SwiperOptions } from "swiper";
 import { SwiperComponent } from "swiper/angular";
+import { NavigationEnd, Router } from "@angular/router";
+import { filter } from "rxjs/operators";
 
 @Component({
 	selector: "app-now-playing",
@@ -43,9 +45,17 @@ export class NowPlayingComponent implements OnInit {
 
 	constructor(public playerService: PlayerService, private interfaceService: InterfaceService, private location: Location,
 		private modal: ModalPageComponent,
+		private router: Router,
 	) { }
 
 	ngOnInit(): void {
+		this.router.events.pipe(
+			filter(event => event instanceof NavigationEnd)
+		).subscribe((event: NavigationEnd) => {
+			if (this.modal.visible) {
+				this.modal.close();
+			}
+		});
 		this.playerService.$playing.subscribe((playing) => {
 			this.playing = playing;
 		});
