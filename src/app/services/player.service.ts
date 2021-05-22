@@ -101,7 +101,6 @@ export class PlayerService {
 	 * Play next track
 	 */
 	public onNext() {
-		this.audio.currentTime = 0;
 		const index = this.shuffle ? this.randomIndex : (this.index + 1);
 		if (this.$queue.getValue()[index]) {
 			this.onPlay(this.$queue.getValue()[index]);
@@ -123,7 +122,6 @@ export class PlayerService {
 	}
 
 	public onPrev() {
-		this.audio.currentTime = 0;
 		const index = this.shuffle ? this.randomIndex : (this.index - 1);
 		if (this.$queue.getValue()[index]) {
 			this.onPlay(this.$queue.getValue()[index]);
