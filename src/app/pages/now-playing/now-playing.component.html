@@ -1,5 +1,6 @@
 <div class="playing-container" #scrollingBlock>
-	<virtual-scroller #scroll [items]="tracks" [enableUnequalChildrenSizes]="true" [parentScroll]="scrollingBlock">
+	<virtual-scroller #scroll [items]="tracks" [checkResizeInterval]="0" [enableUnequalChildrenSizes]="true"
+		[parentScroll]="scrollingBlock">
 
 
 		<div class="playing">
@@ -144,7 +145,7 @@
 
 			<div class="playing-queue">
 
-				<div class="playing-queue-header" (click)="bottomSheet.toggle()">
+				<!--div class="playing-queue-header" (click)="bottomSheet.toggle()">
 
 
 					<div class="playing-queue-header-playing">
@@ -162,7 +163,7 @@
 
 						</div>
 					</div>
-				</div>
+				</div-->
 				<!--div (click)="bottomSheet.toggle()" class="playing-queue-handle"></div-->
 
 				<app-loading [loading]="loading"></app-loading>
