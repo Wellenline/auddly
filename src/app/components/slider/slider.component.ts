@@ -24,6 +24,7 @@ export class SliderComponent implements OnInit {
 		autoSize: true,
 	};
 
+	@Input() seekable = true;
 	@Input() public buffer: number;
 
 
@@ -62,8 +63,12 @@ export class SliderComponent implements OnInit {
 		}
 
 		const position = this.getPosition(e);
-		this.value = position.percentage;
-		this.valueChange.next(position.position);
+		if (position.percentage <= 100 && position.percentage >= 0) {
+
+			this.value = position.percentage;
+			this.valueChange.next(position.position);
+
+		}
 	}
 
 	public onMouseUp(e) {

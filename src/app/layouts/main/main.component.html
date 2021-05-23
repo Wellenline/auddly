@@ -32,18 +32,7 @@
 
 			<div class="menu-item">
 
-				<a (click)="modal.show()">
-					<div class="image">
-						<img class="lazyload" [lazyLoad]="track?.album?.picture || '/assets/app-icon-text.png'" />
-
-					</div>
-				</a>
-
-				<div class="player-popover">
-					<app-player></app-player>
-
-				</div>
-				<!--a [routerLinkActive]="['active']" routerLink="/playing">
+				<!--a (click)="modal.show()">
 					<div class="image">
 						<img class="lazyload" [lazyLoad]="track?.album?.picture || '/assets/app-icon-text.png'" />
 
@@ -54,6 +43,17 @@
 					<app-player></app-player>
 
 				</div-->
+				<a [routerLinkActive]="['active']" [routerLink]="['/', { outlets: { modal: ['modal','playing'] } }]">
+					<div class="image">
+						<img class="lazyload" [lazyLoad]="track?.album?.picture || '/assets/app-icon-text.png'" />
+
+					</div>
+				</a>
+
+				<div class="player-popover">
+					<app-player></app-player>
+
+				</div>
 			</div>
 
 			<div class="menu-fill"></div>
@@ -77,9 +77,9 @@
 
 </div>
 
-<app-modal-page #modal>
+<!--app-modal-page #modal>
 	<app-now-playing></app-now-playing>
-</app-modal-page>
+</app-modal-page-->
 <!--div class="app">
 	<div class="app-menu" style="-webkit-app-region: drag">
 		<app-menu></app-menu>
@@ -101,8 +101,6 @@
 <app-dialog></app-dialog>
 
 <app-playlist-form></app-playlist-form-->
-
-
 <app-notify></app-notify>
 <app-dialog></app-dialog>
 <app-tooltip></app-tooltip>

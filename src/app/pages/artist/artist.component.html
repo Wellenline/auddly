@@ -67,8 +67,8 @@
 			<swiper [config]="config">
 				<ng-container *ngFor="let album of albums; ">
 					<ng-template swiperSlide>
-						<div routerLink="/library/albums/{{ album.id }}" class="album">
-							<img class="lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
+						<div [routerLink]="['/', { outlets: { modal: ['modal', 'albums', album?.id] } }]" class="album">
+							<img [src]="album.picture || '/assets/app-icon-text.png'" />
 							<div class="column-details">
 								<div class="title">{{ album.name }}</div>
 								<div class="subtitle">{{ album.artist.name }}</div>
@@ -100,7 +100,7 @@
 
 	</ng-container>
 
-	<ng-container *ngIf="result.tracks.length > 0">
+	<!--ng-container *ngIf="result.tracks.length > 0">
 
 
 		<div class="title-action">
@@ -120,5 +120,5 @@
 			</div>
 		</div>
 
-	</ng-container>
+	</ng-container-->
 </div>

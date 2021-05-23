@@ -25,8 +25,6 @@ import { VirtualScrollerModule } from "ngx-virtual-scroller";
 import { HeaderComponent } from "./components/header/header.component";
 import { ShinerComponent } from './components/shiner/shiner.component';
 import { BottomSheetComponent } from "./components/bottom-sheet/bottom-sheet.component";
-import { ModalPageComponent } from "./components/modal-page/modal-page.component";
-
 
 
 @NgModule({
@@ -45,7 +43,7 @@ import { ModalPageComponent } from "./components/modal-page/modal-page.component
 		AutoSizeDirective,
 		DragDropDirective,
 		HeaderComponent,
-		ShinerComponent, BottomSheetComponent, ModalPageComponent],
+		ShinerComponent, BottomSheetComponent],
 	imports: [
 		CommonModule,
 		FormsModule,
@@ -83,7 +81,6 @@ import { ModalPageComponent } from "./components/modal-page/modal-page.component
 		DragDropDirective,
 		ShinerComponent,
 		BottomSheetComponent,
-		ModalPageComponent
 
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],

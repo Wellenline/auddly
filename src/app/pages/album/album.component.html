@@ -6,13 +6,13 @@
 
 <div class="album-meta">
 	<div class="picture">
-		<img class="album-picture lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
+		<img class="album-picture" [src]="album.picture || '/assets/app-icon-text.png'" />
 
 	</div>
 
 	<div class="details">
-		<div routerLink="/library/artists/{{album?.artist?.id}}" class="album-artist">
-			<img class="artist-picture lazyload" [lazyLoad]="album?.artist?.picture || '/assets/app-icon-text.png'" />
+		<div [routerLink]="['/', { outlets: { modal: ['modal', 'artists', album?.artist?.id] } }]" class="album-artist">
+			<img class="artist-picture" [src]="album?.artist?.picture || '/assets/app-icon-text.png'" />
 			{{ album?.artist?.name }}
 		</div>
 
@@ -26,3 +26,5 @@
 </div>
 
 <app-track-list [track]="track" *ngFor="let track of tracks"></app-track-list>
+
+<app-loading [loading]="loading"></app-loading>

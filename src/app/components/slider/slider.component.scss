@@ -49,6 +49,18 @@
 			background: var(--accent-color);
 			height: 100%;
 			border-radius: 5px;
+			&.seekable {
+				&::after {
+					content: " ";
+					background: var(--accent-color);
+					height: 15px;
+					position: absolute;
+					width: 15px;
+					right: -5px;
+					top: -5px;
+					border-radius: 50%;
+				}
+			}
 		}
 
 		.buffer {

@@ -10,6 +10,11 @@ import { ITrack, PlayerService } from "src/app/services/player.service";
 })
 export class TrackListComponent implements OnInit {
 	@Input() public track: ITrack = {};
+	@Input() public options = {
+		picture: true,
+		actions: true,
+	};
+
 	@Output() public reload = new EventEmitter();
 	constructor(public playerService: PlayerService, public httpService: HttpService, private interfaceService: InterfaceService) { }
 

@@ -43,30 +43,27 @@ export class LibraryComponent implements OnInit {
 	}
 
 	public ngOnInit(): void {
+		console.log(this.router.url);
 
+		switch (this.router.url) {
+			case "/library/artists":
+				this.tab = 1;
+				this.fetchArtists();
+				break;
+			case "/library/albums":
+				this.tab = 0;
+				this.fetchAlbums();
+				break;
+			case "/library/playlists":
+				this.tab = 2;
+				this.fetchPlaylists();
+				break;
+
+			default:
+				break;
+		}
 		this.route.queryParams.subscribe((params) => {
 
-			console.log(params);
-			if (params.tab !== undefined) {
-				this.tab = parseInt(params.tab, 10);
-				setTimeout(() => {
-					this.pagination = {
-						total: 0,
-						skip: 0,
-						limit: 50,
-					};
-					if (params.tab === "1") {
-						this.fetchArtists();
-					} else if (params.tab === "0") {
-						this.fetchAlbums();
-					} else {
-						this.fetchPlaylists();
-
-					}
-				}, 100);
-			} else {
-				this.fetchAlbums();
-			}
 		});
 		// this.fetchArtists();
 	}

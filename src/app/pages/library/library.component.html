@@ -26,25 +26,25 @@
 
 
 <div class="toggle">
-	<div (click)="setTab(0)" class="value {{ tab === 0 ? 'active' : '' }}">
+	<div routerLink="/library/albums" class="value {{ tab === 0 ? 'active' : '' }}">
 		Albums
 	</div>
-	<div (click)=" setTab(1)" class="value {{ tab === 1 ? 'active' : '' }}">
+	<div routerLink="/library/artists" class="value {{ tab === 1 ? 'active' : '' }}">
 		Artists
 	</div>
 
-	<div (click)=" setTab(2)" class="value {{ tab === 2 ? 'active' : '' }}">
+	<div routerLink="/library/playlists" class="value {{ tab === 2 ? 'active' : '' }}">
 		Playlists
 	</div>
 </div>
 <div class="relative">
-
 	<infinite-scroll (scrolled)="onScroll()">
 		<div class="library">
 
 			<ng-container *ngIf="tab === 1">
 
-				<div class="column" *ngFor="let artist of artists" routerLink="./artists/{{ artist.id }}">
+				<div class="column" *ngFor="let artist of artists"
+					[routerLink]="['/', { outlets: { modal: ['modal', 'artists', artist.id] } }]">
 					<img width="170" height="170" class="lazyload"
 						[lazyLoad]="artist.picture || '/assets/app-icon-text.png'" />
 
@@ -57,7 +57,10 @@
 			</ng-container>
 			<ng-container *ngIf="tab === 0">
 
-				<div class="column" *ngFor="let album of albums" routerLink="./albums/{{ album.id }}">
+				<div class="column" *ngFor="let album of albums"
+					[routerLink]="['/', { outlets: { modal: ['modal','albums', album.id] } }]">
+
+
 					<img class="lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
 
 					<div class="column-details">

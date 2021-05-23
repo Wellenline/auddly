@@ -10,10 +10,10 @@ export const SlideUpToggleAnimation = [
 		})),
 		transition(":enter", [
 			style({ transform: "translateY(100%)" }),
-			animate("200ms ease-in", style({ transform: "translateY(0%)" }))
+			animate("260ms ease-in", style({ transform: "translateY(0%)" }))
 		]),
 		transition(":leave", [
-			animate("200ms ease-in", style({ transform: "translateY(100%)" }))
+			animate("260ms ease-in", style({ transform: "translateY(100%)" }))
 		]),
 		transition("closed => open", [
 

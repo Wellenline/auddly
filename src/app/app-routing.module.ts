@@ -13,6 +13,7 @@ import { AuthComponent } from "./layouts/auth/auth.component";
 import { ConnectComponent } from "./pages/connect/connect.component";
 import { UploadComponent } from "./pages/settings/upload/upload.component";
 import { NowPlayingComponent } from "./pages/now-playing/now-playing.component";
+import { ModalContainerComponent } from "./layouts/modal-container/modal-container.component";
 
 const routes: Routes = [
 	{
@@ -30,14 +31,18 @@ const routes: Routes = [
 		children: [
 
 			{ path: "", redirectTo: "search", pathMatch: "full" },
-			{ path: "library", component: LibraryComponent, canActivate: [AuthGuard] },
+			{ path: "library", redirectTo: "library/albums", pathMatch: "full", canActivate: [AuthGuard] },
+
+			{ path: "library/albums", component: LibraryComponent, canActivate: [AuthGuard] },
+			{ path: "library/artists", component: LibraryComponent, canActivate: [AuthGuard] },
+			{ path: "library/playlists", component: LibraryComponent, canActivate: [AuthGuard] },
 
 			{ path: "tracks", component: TracksComponent, canActivate: [AuthGuard] },
 
-			{ path: "library/albums/:id", component: AlbumComponent, canActivate: [AuthGuard] },
+			/*{ path: "library/albums/:id", component: ModalContainerComponent, canActivate: [AuthGuard], outlet: "modal" },
 
-			{ path: "library/artists/:id", component: ArtistComponent, canActivate: [AuthGuard] },
-
+			{ path: "library/artists/:id", component: ModalContainerComponent, canActivate: [AuthGuard], outlet: "modal" },
+*/
 			{ path: "search", component: SearchComponent, canActivate: [AuthGuard] },
 			{ path: "settings", component: SettingsComponent, canActivate: [AuthGuard] },
 			{ path: "settings/upload", component: UploadComponent, canActivate: [AuthGuard] },
@@ -47,6 +52,22 @@ const routes: Routes = [
 		]
 	},
 
+	{
+		path: "modal",
+		component: ModalContainerComponent,
+		outlet: "modal",
+		data: {
+			animation: "open",
+		},
+		children: [
+			{ path: "albums/:id", component: AlbumComponent, canActivate: [AuthGuard], data: { animation: "open" } },
+
+			{ path: "artists/:id", component: ArtistComponent, canActivate: [AuthGuard], data: { animation: "open" } },
+			{ path: "playing", component: NowPlayingComponent, canActivate: [AuthGuard], data: { animation: "open" } },
+			{ path: "queue", component: QueueComponent, canActivate: [AuthGuard] },
+
+		]
+	},
 
 
 ];

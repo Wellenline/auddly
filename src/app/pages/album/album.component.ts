@@ -13,6 +13,7 @@ export class AlbumComponent implements OnInit {
 	public album: any = {};
 	public tracks: ITrack[] = [];
 	public duration = 0;
+	public loading = true;
 	constructor(private httpService: HttpService, private playerService: PlayerService, private route: ActivatedRoute, private interfaceService: InterfaceService) { }
 
 	public ngOnInit(): void {
@@ -53,10 +54,13 @@ export class AlbumComponent implements OnInit {
 	}
 
 	public getAlbum(id: string) {
+		this.loading = true;
 		this.httpService.get(`/albums/${id}`).subscribe((response: any) => {
 			this.album = response;
 		}, (err) => {
 			console.log("Failed to load album", err);
+		}).add((loading) => {
+			this.loading = false;
 		});
 	}
 

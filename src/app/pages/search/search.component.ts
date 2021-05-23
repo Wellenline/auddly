@@ -81,7 +81,7 @@ export class SearchComponent implements OnInit {
 			this.playerService.onPlay(...this.result.tracks);
 		}
 	}
-
+	@debounce(300)
 	public onSearch(e) {
 		const search = e.target.value && e.target.value.length >= 3 ? e.target.value : "";
 		this.router.navigate(["."], { relativeTo: this.route, queryParams: { q: search } });

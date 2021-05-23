@@ -83,7 +83,7 @@ export class ArtistComponent implements OnInit {
 	}
 
 	public getPopular(id: string) {
-		this.httpService.get(`/tracks?popular=true&artist=${id}`).subscribe((response: any) => {
+		this.httpService.get(`/tracks?popular=true&artist=${id}&limit=10`).subscribe((response: any) => {
 			this.tracks = response.tracks;
 		});
 	}

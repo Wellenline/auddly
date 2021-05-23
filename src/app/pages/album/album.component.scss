@@ -1,3 +1,11 @@
+:host {
+	overflow: auto;
+	display: block;
+	padding-bottom: 60px;
+	height: 100vh;
+	position: relative;
+}
+
 .album {
 	&-picture {
 	}

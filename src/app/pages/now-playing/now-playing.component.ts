@@ -1,6 +1,5 @@
 import { Location } from "@angular/common";
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { ModalPageComponent } from "src/app/modules/shared/components/modal-page/modal-page.component";
 import { BottomSheetComponent } from "src/app/modules/shared/components/bottom-sheet/bottom-sheet.component";
 import { ModalComponent } from "src/app/modules/shared/components/modal/modal.component";
 import { BottomSheetConfig } from "src/app/modules/shared/interfaces/bottom-sheet";
@@ -9,7 +8,8 @@ import { ITrack, PlayerService } from "src/app/services/player.service";
 import { SwiperOptions } from "swiper";
 import { SwiperComponent } from "swiper/angular";
 import { NavigationEnd, Router } from "@angular/router";
-import { filter } from "rxjs/operators";
+import { filter, takeUntil, takeWhile } from "rxjs/operators";
+import { Subject } from "rxjs";
 
 @Component({
 	selector: "app-now-playing",
@@ -23,7 +23,7 @@ export class NowPlayingComponent implements OnInit {
 	public volume = (parseFloat(localStorage.getItem("volume")) || 1) * 100;
 	public playing = false;
 	public config: SwiperOptions = {
-		virtual: false,
+		virtual: true,
 		slidesPerView: 1,
 		spaceBetween: 0,
 		centeredSlides: true,
@@ -41,48 +41,36 @@ export class NowPlayingComponent implements OnInit {
 	public options: BottomSheetConfig = {
 		maxHeight: "80vh"
 	};
-
+	private destroy = new Subject();
 	constructor(public playerService: PlayerService, private interfaceService: InterfaceService, private location: Location,
 		private router: Router,
-		private modal: ModalPageComponent,
+		// private modal: ModalPageComponent,
 	) { }
 
 	ngOnInit(): void {
-		this.modal.$visible.subscribe((visible) => {
-			if (visible) {
-				this.swiper.setIndex(this.playerService.index);
-			}
-		});
-		this.router.events.pipe(
-			filter(event => event instanceof NavigationEnd)
-		).subscribe((event: NavigationEnd) => {
-			if (this.modal.visible) {
-				this.modal.close();
-			}
-		});
-		this.playerService.$playing.subscribe((playing) => {
+		this.playerService.$playing.pipe(takeUntil(this.destroy)).subscribe((playing) => {
 			this.playing = playing;
 		});
 
-		this.playerService.$buffering.subscribe((buffering) => {
+		this.playerService.$buffering.pipe(takeUntil(this.destroy)).subscribe((buffering) => {
 			this.buffering = buffering;
 		});
 
 
-		this.playerService.$buffer.subscribe((buffer) => {
+		this.playerService.$buffer.pipe(takeUntil(this.destroy)).subscribe((buffer) => {
 			this.buffer = buffer;
 		});
 
 
-		this.playerService.$volume.subscribe((volume) => {
+		this.playerService.$volume.pipe(takeUntil(this.destroy)).subscribe((volume) => {
 			this.volume = volume * 100;
 		});
-		this.playerService.$progress.subscribe((num) => {
+		this.playerService.$progress.pipe(takeUntil(this.destroy)).subscribe((num) => {
 			this.progress = num;
 			this.currentTime = this.playerService.audio.currentTime;
 		});
 
-		this.playerService.$queue.subscribe((tracks) => {
+		this.playerService.$queue.pipe(takeUntil(this.destroy)).subscribe((tracks) => {
 			this.tracks = tracks;
 			if (!this.config.initialSlide) {
 				this.config.initialSlide = this.playerService.index;
@@ -96,7 +84,7 @@ export class NowPlayingComponent implements OnInit {
 			});
 		});
 
-		this.playerService.$track.subscribe((track) => {
+		this.playerService.$track.pipe(takeUntil(this.destroy)).subscribe((track) => {
 			this.track = track;
 			if (this.track.progress) {
 				this.progress = this.track.progress;
@@ -112,7 +100,7 @@ export class NowPlayingComponent implements OnInit {
 	}
 
 	public onSlideChange(e) {
-		if (e.activeIndex !== this.playerService.index && this.modal.visible) {
+		if (e.activeIndex !== this.playerService.index) {
 			this.playerService.onPlay(this.tracks[e.activeIndex]);
 		}
 	}
@@ -135,19 +123,17 @@ export class NowPlayingComponent implements OnInit {
 		this.playerService.onAddToPlaylist(this.track);
 	}
 
-	public onVolume(e) {
-		const volume = 1 - e;
-
+	public onVolume(e: number) {
+		const value = 100 - (e * 100);
+		const volume = 1 - (value / 100);
 		if (volume >= 0 && volume <= 1) {
 			this.playerService.onVolume(volume);
 		}
-
-		this.volume = volume * 100;
+		this.volume = 100 - value;
 	}
 
 
-	onLike(e) {
-		e.stopPropagation();
+	public onLike(e) {
 		this.playerService.onLike(this.track.id).subscribe(() => {
 			this.track.liked = !this.track.liked;
 			this.interfaceService.notify(`${this.track.name} ${this.track.liked ? "added to favourites" : "removed from favourites"}`, {
@@ -156,5 +142,9 @@ export class NowPlayingComponent implements OnInit {
 		});
 	}
 
+
+	ngOnDestroy() {
+		this.destroy.next();
+	}
 
 }

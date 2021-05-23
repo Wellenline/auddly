@@ -39,6 +39,7 @@ import { ConnectComponent } from "./pages/connect/connect.component";
 import { AuthInterceptor } from "./interceptors/auth.interceptor";
 import { UploadComponent } from "./pages/settings/upload/upload.component";
 import { NowPlayingComponent } from './pages/now-playing/now-playing.component';
+import { ModalContainerComponent } from './layouts/modal-container/modal-container.component';
 
 
 SwiperCore.use([Virtual, EffectCoverflow, Lazy]);
@@ -67,6 +68,7 @@ SwiperCore.use([Virtual, EffectCoverflow, Lazy]);
 		ConnectComponent,
 		UploadComponent,
 		NowPlayingComponent,
+		ModalContainerComponent,
 	],
 
 	imports: [

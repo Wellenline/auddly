@@ -63,7 +63,8 @@
 				<swiper [config]="config">
 					<ng-container *ngFor="let artist of result.artists; ">
 						<ng-template swiperSlide>
-							<div routerLink="/library/artists/{{ artist.id }}" class="artist">
+							<div [routerLink]="['/', { outlets: { modal: ['modal','artists', artist.id] } }]"
+								class="artist">
 								<img class="lazyload" [lazyLoad]="artist.picture || '/assets/app-icon-text.png'" />
 								<div class="column-details">
 									<div class="title">{{ artist.name }}</div>
@@ -114,7 +115,8 @@
 				<swiper [config]="config">
 					<ng-container *ngFor="let album of result.albums; ">
 						<ng-template swiperSlide>
-							<div routerLink="/library/albums/{{ album.id }}" class="album">
+							<div [routerLink]="['/', { outlets: { modal: ['modal','albums', album.id] } }]"
+								class="album">
 								<img class="lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
 								<div class="column-details">
 									<div class="title">{{ album.name }}</div>

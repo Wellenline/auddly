@@ -1,5 +1,5 @@
 <div class="track {{ playerService.$track.getValue().id === track.id ? 'playing' : '' }}">
-	<div appTooltip tooltip="{{ track.artist }} - {{ track.name }}" class="image">
+	<div *ngIf="options.picture" appTooltip tooltip="{{ track.artist }} - {{ track.name }}" class="image">
 		<img class="lazyload" [lazyLoad]="track?.album?.picture || '/assets/app-icon-text.png'" />
 	</div>
 	<div (click)="onPlay($event)" class="details">
@@ -24,7 +24,7 @@
 		{{track.duration | formatSeconds}}
 	</div>
 
-	<div class="actions">
+	<div *ngIf="options.actions" class="actions">
 		<div class="actions">
 			<app-dropdown #dropdown [config]="{right: true, up: true}" [header]="headerTemplate">
 				<ng-template #headerTemplate let-item="item">

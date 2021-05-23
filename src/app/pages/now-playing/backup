@@ -1,0 +1,219 @@
+<div class="playing-container" #scrollingBlock>
+	<virtual-scroller #scroll [items]="tracks" [checkResizeInterval]="0" [enableUnequalChildrenSizes]="true"
+		[parentScroll]="scrollingBlock">
+
+
+		<div class="playing">
+
+			<div class="playing-header">
+				<div (click)="onClose()" class="playing-header-action">
+					<div class="playing-header-action-item">
+
+						<i class="feather-chevron-down"></i>
+					</div>
+				</div>
+
+				<div class="playing-header-playing">
+					<div class="subtitle">Now Playing</div>
+				</div>
+
+				<div (click)="dropdown.onToggle()" class="playing-header-action">
+					<app-dropdown #dropdown [config]="{right: true}" [header]="headerTemplate">
+						<ng-template #headerTemplate let-item="item">
+							<div class="playing-header-action-item">
+
+								<i class="feather feather-more-vertical"></i>
+
+
+							</div>
+						</ng-template>
+
+						<div class="dropdown-action-list">
+							<a *ngIf="track.lyrics" (click)="lyrics = true">Lyrics</a>
+							<a (click)="onPlaylist()">Add to playlist</a>
+
+
+							<a
+								[routerLink]="['/', { outlets: { modal: ['modal','artists', track?.album?.artist?.id] } }]">More
+								from artist</a>
+							<a [routerLink]="['/', { outlets: { modal: ['modal','albums',track?.album?.id] } }]">Go to
+								album</a>
+							<div class="divider no-margin"></div>
+
+							<a (click)="onClear()">Clear queue</a>
+
+						</div>
+					</app-dropdown>
+				</div>
+			</div>
+
+			<div class="playing-carousel">
+				<!--div class="playing-carousel-art">
+					<img height="100" class="lazyload"
+						[lazyLoad]="track?.album?.picture || '/assets/app-icon-text.png'" />
+				</div-->
+				<swiper #swiper [config]="config" (slideChange)="onSlideChange($event)">
+					<ng-container *ngFor="let track of tracks; ">
+						<ng-template swiperSlide>
+							<div class="playing-carousel-art">
+								<img height="100" [src]="track?.album?.picture || '/assets/app-icon-text.png'" />
+							</div>
+						</ng-template>
+					</ng-container>
+				</swiper>
+
+			</div>
+
+			<div class="playing-track">
+				<div class="playing-track-details">
+					<div class="name">
+						<div class="overflow-text">
+							{{ track.name }}
+
+						</div>
+					</div>
+
+					<div class="artists">
+						{{ track.artist }}
+					</div>
+				</div>
+
+				<div class="playing-track-actions">
+					<div (click)="onLike($event)" class="{{ track.liked ? 'active' : '' }}">
+						<i class="feather-heart"></i>
+					</div>
+				</div>
+			</div>
+
+			<div class="playing-progress">
+				<div class="playing-progress-slider">
+					<app-slider [options]="{vertical: false, autoSize: false}" [buffer]="buffer" [value]="progress"
+						(valueChange)="onProgress($event)">
+					</app-slider>
+
+
+					<app-loading [loading]="buffering && playing"></app-loading>
+				</div>
+				<div class="playing-progress-time">
+					<div class="current">
+						{{currentTime | formatSeconds}}
+
+					</div>
+
+					<div class="total">
+						{{(track.duration || 0) | formatSeconds}}
+					</div>
+				</div>
+			</div>
+
+			<div class="playing-controls">
+				<div (click)="playerService.onShuffle()"
+					class="playing-controls-control shuffle {{ playerService.shuffle ? 'active' : '' }}">
+					<span class="material-icons-round ">
+						shuffle
+					</span>
+				</div>
+				<div class="playing-controls-control grow">
+
+					<div (click)="playerService.onPrev()" class=" skip">
+						<span class="material-icons-round">
+							skip_previous
+						</span>
+
+
+					</div>
+
+					<div (click)="playerService.onPlayback()" class=" playback">
+						<span class="material-icons-round">
+							{{playing ? 'pause' : 'play_arrow' }}
+						</span>
+
+					</div>
+
+					<div (click)="playerService.onNext()" class="skip">
+						<span class="material-icons-round">
+							skip_next
+						</span>
+					</div>
+
+				</div>
+
+				<div (click)="playerService.onRepeat()"
+					class="playing-controls-control repeat {{ playerService.repeat ? 'active' : '' }}">
+					<span class="material-icons-round">
+						repeat
+					</span>
+				</div>
+			</div>
+
+			<div class="playing-queue">
+
+				<!--div class="playing-queue-header" (click)="bottomSheet.toggle()">
+
+
+					<div class="playing-queue-header-playing">
+						<div class="title">Queue</div>
+						<div class="subtitle">{{ tracks.length }} Songs in queue <i appTooltip tooltip="Duration"
+								class="feather-clock"></i>
+							{{ duration | formatSeconds }}</div>
+					</div>
+
+					<div (click)="onClear()" class="playing-queue-header-action">
+						<div class="playing-header-action-item">
+
+							<i class="feather feather-trash"></i>
+
+
+						</div>
+					</div>
+				</div-->
+				<!--div (click)="bottomSheet.toggle()" class="playing-queue-handle"></div-->
+
+				<app-loading [loading]="loading"></app-loading>
+				<div #container>
+
+					<app-track-list [track]="track" *ngFor="let track of scroll.viewPortItems">
+					</app-track-list>
+
+				</div>
+			</div>
+
+		</div>
+	</virtual-scroller>
+</div>
+<app-bottom-sheet [options]="options" [header]="header" #bottomSheet>
+	<ng-template #header>
+		<div class="playing-header">
+			<div class="playing-header-action">
+				<div (click)="bottomSheet.toggle()" class="playing-header-action-item">
+
+					<i class="feather-chevron-down"></i>
+				</div>
+			</div>
+
+			<div class="playing-header-playing">
+				<div class="title">{{ tracks.length }}</div>
+				<div class="subtitle">Songs in queue</div>
+			</div>
+
+			<div (click)="onClear()" class="playing-header-action">
+				<div class="playing-header-action-item">
+
+					<i class="feather feather-trash"></i>
+
+
+				</div>
+			</div>
+		</div>
+	</ng-template>
+	<!--virtual-scroller #scroll [items]="tracks" [enableUnequalChildrenSizes]="true">
+
+		<app-loading [loading]="loading"></app-loading>
+		<div #container>
+
+			<app-track-list [track]="track" *ngFor="let track of scroll.viewPortItems">
+			</app-track-list>
+
+		</div>
+	</virtual-scroller-->
+</app-bottom-sheet>

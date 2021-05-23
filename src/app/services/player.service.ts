@@ -69,6 +69,7 @@ export class PlayerService {
 			(navigator as any).mediaSession.setActionHandler("pause", this.onPlayback.bind(this));
 			(navigator as any).mediaSession.setActionHandler("previoustrack", this.onPrev.bind(this));
 			(navigator as any).mediaSession.setActionHandler("nexttrack", this.onNext.bind(this));
+			(navigator as any).mediaSession.setActionHandler("seekto", this.onSeek.bind(this));
 		}
 		if (this.$track.getValue().id) {
 			this.setupAudioPlayer(this.$track.getValue(), false);
@@ -95,6 +96,13 @@ export class PlayerService {
 	 */
 	public get isLast() {
 		return (this.index + 1) === this.$queue.getValue().length;
+	}
+
+	/**
+ * Check if track is last in queue
+ */
+	public get isFirst() {
+		return this.index === 0;
 	}
 
 	/**
@@ -161,11 +169,9 @@ export class PlayerService {
 			return {
 				...track, ...{
 					source: `${this.httpService.API_ENDPOINT}/tracks/play/${track.id}`,
-					waveform: `${this.httpService.API_ENDPOINT}/tracks/waveform/${track.id}`,
 				},
 			};
 		});
-		localStorage.setItem("track", JSON.stringify(tracks[0]));
 
 		// super ugly oneliner
 		this.queue(tracks);
@@ -175,6 +181,7 @@ export class PlayerService {
 
 		this.$playing.next(true);
 		this.setupAudioPlayer(tracks[0]);
+		localStorage.setItem("track", JSON.stringify(tracks[0]));
 
 
 	}
@@ -190,6 +197,7 @@ export class PlayerService {
 
 
 		if ("mediaSession" in navigator) {
+			(navigator as any).mediaSession.setPositionState(null);
 			// @ts-ignore
 			(navigator as any).mediaSession.metadata = new MediaMetadata({
 				title: track.name,
@@ -228,8 +236,18 @@ export class PlayerService {
 	 * Seek audio to specific position
 	 * @param time number
 	 */
-	public onSeek(time: number) {
-		this.audio.currentTime = time * this.audio.duration;
+	public onSeek(time: number | {
+		action: "seekto"
+		fastSeek: boolean
+		seekTime: number
+	}) {
+		console.log(time);
+
+		if (typeof time === "number") {
+			this.audio.currentTime = time * this.audio.duration;
+		} else {
+			this.audio.currentTime = time.seekTime;
+		}
 	}
 
 	/**
@@ -324,6 +342,13 @@ export class PlayerService {
 		if (!isNaN(progress)) {
 			this.$progress.next(progress);
 			localStorage.setItem("progress", progress.toString());
+
+			if ("mediaSession" in navigator) {
+				(navigator as any).mediaSession.setPositionState({
+					duration: this.audio.duration,
+					position: this.audio.currentTime,
+				});
+			}
 		}
 
 
