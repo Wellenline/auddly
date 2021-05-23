@@ -47,15 +47,20 @@
 			<app-loading [loading]="buffering && playing"></app-loading>
 
 		</div-->
-		<swiper #swiper [config]="config" (slideChange)="onSlideChange($event)">
-			<ng-container *ngFor="let track of tracks; ">
-				<ng-template swiperSlide>
-					<div class="playing-carousel-art">
-						<img height="100" [src]="track?.album?.picture || '/assets/app-icon-text.png'" />
-					</div>
-				</ng-template>
-			</ng-container>
-		</swiper>
+		<div>
+
+
+			<swiper #swiper [config]="config" (slideChange)="onSlideChange($event)">
+				<ng-container *ngFor="let track of tracks; ">
+					<ng-template swiperSlide>
+						<div class="playing-carousel-art">
+							<img [src]="track?.album?.picture || '/assets/app-icon-text.png'" />
+						</div>
+					</ng-template>
+				</ng-container>
+			</swiper>
+
+		</div>
 
 	</div>
 

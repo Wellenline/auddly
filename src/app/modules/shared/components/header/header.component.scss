@@ -14,7 +14,7 @@
 	align-items: center;
 
 	&.transparent {
-		background-color: var(--background-color);
+		background-color: transparent;
 		box-shadow: none;
 	}
 	&.static {
