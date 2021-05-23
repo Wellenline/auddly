@@ -1,6 +1,11 @@
 :host ::ng-deep .swiper-slide {
 	//	height: auto !important;
 }
+:host {
+	overflow: auto;
+	display: block;
+	height: 100vh;
+}
 
 .playing {
 	display: flex;
@@ -325,6 +330,7 @@
 virtual-scroller {
 	width: 100%;
 	height: 80vh;
+	padding-bottom: env(safe-area-inset-bottom);
 	// overflow: auto;
 }
 /*
