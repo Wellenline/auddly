@@ -1,5 +1,6 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from "@angular/core";
+
+import { BrowserModule, HammerModule } from "@angular/platform-browser";
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, Injectable } from "@angular/core";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -38,11 +39,19 @@ import { AuthComponent } from "./layouts/auth/auth.component";
 import { ConnectComponent } from "./pages/connect/connect.component";
 import { AuthInterceptor } from "./interceptors/auth.interceptor";
 import { UploadComponent } from "./pages/settings/upload/upload.component";
-import { NowPlayingComponent } from './pages/now-playing/now-playing.component';
-import { ModalContainerComponent } from './layouts/modal-container/modal-container.component';
+import { NowPlayingComponent } from "./pages/now-playing/now-playing.component";
+import { ModalContainerComponent } from "./layouts/modal-container/modal-container.component";
 
+import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from "@angular/platform-browser";
+import * as Hammer from "hammerjs";
 
 SwiperCore.use([Virtual, EffectCoverflow, Lazy]);
+@Injectable()
+export class HammerConfig extends HammerGestureConfig {
+	overrides = {
+		swipe: { direction: Hammer.DIRECTION_ALL },
+	};
+}
 
 @NgModule({
 	declarations: [
@@ -80,6 +89,7 @@ SwiperCore.use([Virtual, EffectCoverflow, Lazy]);
 		CommonModule,
 		SwiperModule,
 		DragScrollModule,
+		HammerModule,
 		LazyLoadImageModule,
 		AppRoutingModule,
 		VirtualScrollerModule,
@@ -90,7 +100,11 @@ SwiperCore.use([Virtual, EffectCoverflow, Lazy]);
 		provide: HTTP_INTERCEPTORS,
 		useClass: AuthInterceptor,
 		multi: true,
-	}],
+	}, {
+			provide: HAMMER_GESTURE_CONFIG,
+			useClass: HammerConfig,
+		},
+	],
 	bootstrap: [AppComponent],
 })
 export class AppModule { }

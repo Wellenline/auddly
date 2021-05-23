@@ -70,4 +70,8 @@ export class BottomSheetComponent implements OnInit {
 		this.changeDetector.detectChanges();
 	}
 
+	onPan(e) {
+		console.log(e);
+	}
+
 }

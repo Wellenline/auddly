@@ -41,6 +41,8 @@ export class NowPlayingComponent implements OnInit {
 	public options: BottomSheetConfig = {
 		maxHeight: "80vh"
 	};
+	private SWIPE_ACTION = { LEFT: "swipeleft", RIGHT: "swiperight" };
+
 	private destroy = new Subject();
 	constructor(public playerService: PlayerService, private interfaceService: InterfaceService, private location: Location,
 		private router: Router,
@@ -142,6 +144,19 @@ export class NowPlayingComponent implements OnInit {
 		});
 	}
 
+	public onSwipe(e) {
+		console.log("Swipe", e);
+		const direction = Math.abs(e.deltaX) > 40 ? (e.deltaX > 0 ? 1 : 2) : 0;
+
+		if (direction === 2) { // right swipe
+			this.playerService.onNext();
+		}
+
+		if (direction === 1) { // right swipe
+			this.playerService.onPrev();
+		}
+
+	}
 
 	ngOnDestroy() {
 		this.destroy.next();

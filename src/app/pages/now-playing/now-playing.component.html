@@ -9,7 +9,7 @@
 		</div>
 
 		<div class="playing-header-playing">
-			<div class="subtitle">Now Playing</div>
+			<div class="title">Now Playing</div>
 		</div>
 
 		<div (click)="dropdown.onToggle()" class="playing-header-action">
@@ -40,29 +40,29 @@
 			</app-dropdown>
 		</div>
 	</div>
-
 	<div class="playing-carousel">
-		<!--div class="playing-carousel-art">
-			<img [src]="track?.album?.picture || '/assets/app-icon-text.png'" />
-			<app-loading [loading]="buffering && playing"></app-loading>
-
-		</div-->
-		<div>
-
-
-			<swiper #swiper [config]="config" (slideChange)="onSlideChange($event)">
-				<ng-container *ngFor="let track of tracks; ">
-					<ng-template swiperSlide>
-						<div class="playing-carousel-art">
-							<img [src]="track?.album?.picture || '/assets/app-icon-text.png'" />
-						</div>
-					</ng-template>
-				</ng-container>
-			</swiper>
+		<div class="image-wrap">
+			<img (swipe)="onSwipe($event)" [src]="track?.album?.picture || '/assets/app-icon-text.png'" />
 
 		</div>
-
 	</div>
+	<!--div class="playing-carousel">
+		<div class="playing-carousel-art">
+			<img (swipe)="onSwipe($event)" [src]="track?.album?.picture || '/assets/app-icon-text.png'" />
+
+
+		</div>
+	</div-->
+
+	<!--swiper #swiper [config]="config" (slideChange)="onSlideChange($event)">
+			<ng-container *ngFor="let track of tracks; ">
+				<ng-template swiperSlide>
+					<div class="playing-carousel-art">
+						<img [src]="track?.album?.picture || '/assets/app-icon-text.png'" />
+					</div>
+				</ng-template>
+			</ng-container>
+		</swiper-->
 
 	<div class="playing-track">
 		<div class="playing-track-details">
@@ -147,7 +147,7 @@
 		</div>
 	</div>
 
-	<div class="playing-volume">
+	<!--div class="playing-volume">
 		<div class="playing-volume-controls">
 			<div class="playing-volume-controls-level">
 				<i *ngIf="volume === 0" class="feather-volume-x"></i>
@@ -161,14 +161,22 @@
 				</app-slider>
 			</div>
 		</div>
-	</div>
+	</div-->
 
 	<div class="playing-queue">
 
 
 		<div class="playing-queue-header" (click)="bottomSheet.toggle()">
 
+			<div class="playing-queue-header-action">
+				<div class="playing-header-action-item" style="padding-right: 15px;">
 
+					<i class="material-icons-round">
+						keyboard_arrow_up
+					</i>
+
+				</div>
+			</div>
 			<div class="playing-queue-header-playing">
 				<div class="title">Queue</div>
 				<div class="subtitle">{{ tracks.length }} Songs in queue
@@ -186,8 +194,6 @@
 			</div>
 		</div>
 
-
-		<app-loading [loading]="loading"></app-loading>
 
 	</div>
 

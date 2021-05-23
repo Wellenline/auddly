@@ -1,5 +1,5 @@
 <div class="bottom-sheet-bg-overlay" *ngIf="flags.isBottomSheetEnabled" (click)="close()"></div>
-<div class="bottom-sheet-container" *ngIf="flags.isBottomSheetEnabled" [@slideUpToggle]>
+<div (pan)="onPan($event)" class="bottom-sheet-container" *ngIf="flags.isBottomSheetEnabled" [@slideUpToggle]>
 	<div>
 		<ng-container *ngIf="header || options.title">
 			<ng-container [ngTemplateOutlet]="header ? headerRef : basic" [ngTemplateOutletContext]="{item:this}">
