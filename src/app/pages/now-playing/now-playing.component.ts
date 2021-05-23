@@ -26,7 +26,7 @@ export class NowPlayingComponent implements OnInit {
 		virtual: true,
 		slidesPerView: 1,
 		spaceBetween: 0,
-		centeredSlides: true,
+
 
 	};
 	public lyrics = false;

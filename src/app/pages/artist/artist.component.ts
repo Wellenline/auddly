@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpService } from "src/app/services/http.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { SwiperOptions } from "swiper";
 import { PlayerService } from "src/app/services/player.service";
+import { Route } from "@angular/compiler/src/core";
 
 @Component({
 	selector: "app-artist",
@@ -53,7 +54,7 @@ export class ArtistComponent implements OnInit {
 		},
 	};
 	public loading = true;
-	constructor(private httpService: HttpService, private playerService: PlayerService, private route: ActivatedRoute) { }
+	constructor(private httpService: HttpService, private playerService: PlayerService, private router: Router, private route: ActivatedRoute) { }
 
 	public ngOnInit(): void {
 
@@ -102,5 +103,16 @@ export class ArtistComponent implements OnInit {
 		this.httpService.get(`/search?q=${search}`).subscribe((response: any) => {
 			this.result = response;
 		});
+	}
+
+	public onSearch(similar) {
+		this.router.navigate(["", {
+			outlets: { modal: null, primary: "search" },
+		}], {
+			queryParams: {
+				q: similar,
+			}
+		});
+		// [routerLink]="['/search', {outlets: {modal: [null]}}]" [queryParams]="{ q: similar }"
 	}
 }

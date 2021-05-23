@@ -38,8 +38,9 @@
 					<a (click)="onPlaylist()">Add to playlist</a>
 					<a (click)="onQueue()">Add to queue</a>
 
-					<a routerLink="/library/artists/{{track?.album?.artist?.id}}">More from artist</a>
-					<a routerLink="/library/albums/{{track?.album?.id}}">Go to album</a>
+					<a [routerLink]="['/', { outlets: { modal: ['modal','artists', track?.album?.artist?.id] } }]">More
+						from artist</a>
+					<a [routerLink]="['/', { outlets: { modal: ['modal','albums',track?.album?.id] } }]">Go to album</a>
 					<a target="_blank" href="{{httpService.API_ENDPOINT}}/tracks/play/{{ track.id }}"
 						download="{{track.name}}.mp3">Download</a>
 

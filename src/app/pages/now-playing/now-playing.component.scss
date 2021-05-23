@@ -55,6 +55,13 @@
 		}
 	}
 
+	&-section {
+		background: blue;
+		flex-grow: 1;
+		display: flex;
+		flex-direction: row;
+	}
+
 	&-carousel {
 		width: 100%;
 		text-align: center;

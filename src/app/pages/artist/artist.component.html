@@ -49,7 +49,7 @@
 				<div class="tags">
 					<app-horizontal-scroll>
 						<ng-container *ngFor="let similar of artist.similar">
-							<div class="tag" routerLink="/search" [queryParams]="{ q: similar }">{{ similar }}</div>
+							<div class="tag" (click)="onSearch(similar)">{{ similar }}</div>
 
 						</ng-container>
 					</app-horizontal-scroll>
