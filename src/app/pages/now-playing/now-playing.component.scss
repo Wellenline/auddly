@@ -296,9 +296,6 @@
 	}
 
 	&-volume {
-		flex-grow: 1;
-
-		align-items: flex-end;
 		display: flex;
 		flex-direction: row;
 		min-width: 0px;
@@ -405,22 +402,9 @@ virtual-scroller {
 		transform: scale(1.2);
 	}
 }
-/*
-@media all and (max-width: 1000px) {
-	.playing-container {
-		position: fixed;
-		width: 100%;
-		bottom: 0;
-		z-index: 5;
-		padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
-			env(safe-area-inset-left);
-		height: 100%;
-	}
-	// height: calc(100vh - (env(safe-area-inset-bottom) + env(safe-area-inset-top)));
 
-	virtual-scroller {
-		width: 100vw;
-		height: calc(100% - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+@media all and (max-width: 1000px) {
+	.playing-volume {
+		display: none;
 	}
 }
-*/
