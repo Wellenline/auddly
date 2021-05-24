@@ -1,5 +1,5 @@
-<div class="bottom-sheet-bg-overlay" *ngIf="flags.isBottomSheetEnabled" (click)="close()"></div>
-<div (pan)="onPan($event)" class="bottom-sheet-container" *ngIf="flags.isBottomSheetEnabled" [@slideUpToggle]>
+<div class="bottom-sheet-bg-overlay" *ngIf="_visible" (click)="close()"></div>
+<div (pan)="onPan($event)" class="bottom-sheet-container" *ngIf="_visible" [@slideUpToggle] #bottomSheetContainer>
 	<div>
 		<ng-container *ngIf="header || options.title">
 			<ng-container [ngTemplateOutlet]="header ? headerRef : basic" [ngTemplateOutletContext]="{item:this}">
@@ -14,11 +14,9 @@
 
 
 
-		<div class="bottom-sheet-content" [ngStyle]="{'max-height': options?.maxHeight}">
+		<div class="bottom-sheet-content" [ngStyle]="{'height': options?.maxHeight}">
 			<ng-content></ng-content>
 		</div>
-		<div class="bottom-sheet-footer" (click)="close()" *ngIf="flags.isCloseButtonEnabled">
-			{{options.closeButtonTitle}}
-		</div>
+
 	</div>
 </div>

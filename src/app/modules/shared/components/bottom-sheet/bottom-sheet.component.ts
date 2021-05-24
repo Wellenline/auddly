@@ -1,5 +1,5 @@
 import { NgForOfContext } from "@angular/common";
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, Input, OnInit, TemplateRef } from "@angular/core";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, ElementRef, Input, OnInit, TemplateRef, ViewChild } from "@angular/core";
 import { SlideUpToggleAnimation } from "../../animation/slide-up";
 import { BottomSheetConfig } from "../../interfaces/bottom-sheet";
 
@@ -8,13 +8,10 @@ import { BottomSheetConfig } from "../../interfaces/bottom-sheet";
 	templateUrl: "./bottom-sheet.component.html",
 	styleUrls: ["./bottom-sheet.component.scss"],
 	animations: [SlideUpToggleAnimation],
-	changeDetection: ChangeDetectionStrategy.OnPush
+	// changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BottomSheetComponent implements OnInit {
 
-	public flags: any = {
-		isBottomSheetEnabled: false
-	};
 	@Input() options: BottomSheetConfig = {
 		maxHeight: "400"
 	};
@@ -23,14 +20,16 @@ export class BottomSheetComponent implements OnInit {
 
 	@ContentChild(TemplateRef) public headerRef: TemplateRef<any>;
 
+	public moving = false;
+	public deltaY = 0;
+	private _visible = false;
+
+	@ViewChild("bottomSheetContainer") bottomSheetContainer: ElementRef;
 
 	constructor(private changeDetector: ChangeDetectorRef) {
 	}
 
 	ngOnInit() {
-		this.flags.isCloseButtonEnabled = this.options.enableCloseButton ? true : false;
-		this.options.closeButtonTitle = this.options.closeButtonTitle ? this.options.closeButtonTitle : "Close";
-
 		this.options.maxHeight = this.options.maxHeight ? this.options.maxHeight : "400";
 
 		if (this.header) {
@@ -42,7 +41,7 @@ export class BottomSheetComponent implements OnInit {
 	 * Opens bottom sheet component
 	 */
 	open() {
-		this.flags.isBottomSheetEnabled = true;
+		this._visible = true;
 		this.changeDetector.detectChanges();
 	}
 
@@ -50,7 +49,7 @@ export class BottomSheetComponent implements OnInit {
 	 * Closes bottom sheet component
 	 */
 	close() {
-		this.flags.isBottomSheetEnabled = false;
+		this._visible = false;
 		this.changeDetector.detectChanges();
 	}
 
@@ -58,20 +57,38 @@ export class BottomSheetComponent implements OnInit {
 	 * Toggles bottom sheet component
 	 */
 	toggle() {
-		this.flags.isBottomSheetEnabled = !this.flags.isBottomSheetEnabled;
+		this._visible = !this._visible;
 		this.changeDetector.detectChanges();
 	}
 
-	/**
-	 * Toggles close button
-	 */
-	toggleCloseButton() {
-		this.flags.isCloseButtonEnabled = !this.flags.isCloseButtonEnabled;
-		this.changeDetector.detectChanges();
+	onPan(event) {
+		const delta = event.deltaY;
+
+		if (event.deltaY > 0) {
+			this.deltaY = delta;
+		}
+
+		if (event.isFinal) {
+			const height = this.bottomSheetContainer.nativeElement.clientHeight;
+			if (this.deltaY > (height / 2.5)) {
+				this.close();
+			} else {
+				this.deltaY = 0;
+			}
+			// this.deltaY = 0;
+		}
+
+		if (this._visible) {
+			this.bottomSheetContainer.nativeElement.style = `transform: translateY(${this.deltaY}px)`;
+
+		}
+
+
+		console.log(this.deltaY);
+		// this.changeDetector.detectChanges();
+
 	}
 
-	onPan(e) {
-		console.log(e);
-	}
+
 
 }

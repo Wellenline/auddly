@@ -13,9 +13,19 @@ import { takeUntil } from "rxjs/operators";
 		trigger("routeAnimation", [
 
 			transition("* <=> *", [
+				/*query(":enter", style({
+					"opacity": "1",
+				}), {
+					optional: true,
+				}),
 
+				query(":leave", style({
+					"opacity": "0.6"
+				}), {
+					optional: true,
+				}),*/
 				query(":enter, :leave", style({
-					position: "fixed",
+					position: "absolute",
 					left: 0,
 					right: 0,
 					width: "100%",

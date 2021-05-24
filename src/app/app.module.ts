@@ -50,6 +50,7 @@ SwiperCore.use([Virtual, EffectCoverflow, Lazy]);
 export class HammerConfig extends HammerGestureConfig {
 	overrides = {
 		swipe: { direction: Hammer.DIRECTION_ALL },
+		pan: { direction: Hammer.DIRECTION_VERTICAL }
 	};
 }
 
