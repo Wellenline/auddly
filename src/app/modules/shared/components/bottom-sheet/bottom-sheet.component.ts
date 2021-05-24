@@ -22,7 +22,7 @@ export class BottomSheetComponent implements OnInit {
 
 	public moving = false;
 	public deltaY = 0;
-	private _visible = false;
+	public _visible = false;
 
 	@ViewChild("bottomSheetContainer") bottomSheetContainer: ElementRef;
 
