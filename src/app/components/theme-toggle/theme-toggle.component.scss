@@ -1,9 +1,10 @@
 .themes {
 	display: flex;
-	padding-left: 15px;
+	// padding-left: 15px;
 	.theme {
 		padding: 5px;
 		border-radius: 5px;
+		background-color: var(--background-color-2);
 		color: var(--foreground-color);
 		opacity: 0.5;
 		& + .theme {
@@ -12,9 +13,23 @@
 
 		&.active {
 			opacity: 1;
-			// background-color: var(--accent-color);
-			// color: #fff;
-			// box-shadow: rgba(17, 17, 18, 0.04) 0 2px 4px, rgba(19, 20, 20, 0.06) 0 1px 1px;
+			background-color: var(--accent-color);
+			color: #fff;
+		}
+	}
+}
+
+.theme {
+	svg {
+		width: 20px;
+		color: #94949f;
+		fill: transparent;
+		transition: 0.5s;
+		cursor: pointer;
+
+		&.active {
+			fill: #ffce45;
+			stroke: #ffce45;
 		}
 	}
 }

@@ -1,9 +1,8 @@
-<div class="themes">
-	<div (click)="onToggle()" class="theme {{ themeService.theme === 'dark' ? 'active' : ''}}">
-		<i class="feather-moon"></i> Dark
-	</div>
+<div class="theme" (click)="onToggle()">
 
-	<div (click)="onToggle()" class="theme  {{ themeService.theme === 'light' ? 'active' : ''}}">
-		<i class="feather-sun"></i> Light
-	</div>
+
+	<svg class=" {{ themeService.theme === 'dark' ? 'active' : ''}}" viewBox="0 0 24 24" stroke="currentColor"
+		stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+		<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+	</svg>
 </div>

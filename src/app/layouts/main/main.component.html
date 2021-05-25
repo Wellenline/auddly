@@ -1,106 +1,60 @@
 <div class="app">
-	<div class="app-menu" style="-webkit-app-region: drag">
-
-		<div class="menu">
-			<div class="app-logo">
-				Auddly
-			</div>
-			<div class="menu-item">
-
-				<a [routerLinkActive]="['active']" routerLink="/search">
-					<i class="feather-search"></i>
-					<div class="title">Home</div>
-				</a>
-			</div>
-
-			<div class="menu-item">
-
-				<a [routerLinkActive]="['active']" routerLink="/library">
-					<i class="feather-folder"></i>
-					<div class="title">Library</div>
-				</a>
-			</div>
-
-
-			<div class="menu-item">
-
-				<a [routerLinkActive]="['active']" routerLink="/tracks">
-					<i class="feather-music"></i>
-					<div class="title">Tracks</div>
-				</a>
-			</div>
-
-			<div class="menu-item">
-
-				<!--a (click)="modal.show()">
-					<div class="image">
-						<img class="lazyload" [lazyLoad]="track?.album?.picture || '/assets/app-icon-text.png'" />
-
-					</div>
-				</a>
-
-				<div class="player-popover">
-					<app-player></app-player>
-
-				</div-->
-				<a [routerLinkActive]="['active']" [routerLink]="['/', { outlets: { modal: ['modal','playing'] } }]">
-					<div class="image">
-						<img class="lazyload" [lazyLoad]="track?.album?.picture || '/assets/app-icon-text.png'" />
-
-					</div>
-				</a>
-
-				<div class="player-popover">
-					<app-player></app-player>
-
-				</div>
-			</div>
-
-			<div class="menu-fill"></div>
-
-			<div class="menu-item">
-
-				<a [routerLinkActive]="['active']" routerLink="/settings">
-					<i class="feather-settings"></i>
-					<div class="title">Settings</div>
-				</a>
-			</div>
-		</div>
-	</div>
-
 	<div class="app-content">
 		<div class="container mx-auto">
 			<router-outlet></router-outlet>
 		</div>
-
 	</div>
+	<div class="container mx-auto">
 
-</div>
+		<!--div class="auddly-player">
 
-<!--app-modal-page #modal>
-	<app-now-playing></app-now-playing>
-</app-modal-page-->
-<!--div class="app">
-	<div class="app-menu" style="-webkit-app-region: drag">
-		<app-menu></app-menu>
-	</div>
+			<app-player></app-player>
+		</div-->
+		<div class="app-menu">
 
-	<div class="app-content">
-		<div class="app-router">
-			<router-outlet></router-outlet>
+			<a [routerLinkActive]="['active']" routerLink="/search">
+				<span class="material-icons-round">
+					track_changes
+				</span>
+				<div class="title">Home</div>
+			</a>
+
+			<a [routerLinkActive]="['active']" routerLink="/library">
+				<span class="material-icons-round">
+					folder_open
+				</span>
+				<div class="title">Library</div>
+			</a>
+
+			<a [routerLinkActive]="['active']" routerLink="/tracks">
+				<span class="material-icons-round">
+					audiotrack
+				</span>
+				<div class="title">Tracks</div>
+			</a>
+
+			<!--a [routerLinkActive]="['active']" [routerLink]="['/', { outlets: { modal: ['modal','playing'] } }]">
+			<i class="feather-music"></i>
+			<div class="title">Music</div>
+
+		</a-->
+			<a [routerLinkActive]="['active']" routerLink="/settings">
+				<span class="material-icons-round">
+					settings
+				</span>
+				<div class="title">Settings</div>
+			</a>
+
+
 		</div>
 
 		<div class="app-player">
+
 			<app-player></app-player>
 		</div>
 	</div>
-
 </div>
 
-<app-toast></app-toast>
-<app-dialog></app-dialog>
-
-<app-playlist-form></app-playlist-form-->
 <app-notify></app-notify>
 <app-dialog></app-dialog>
 <app-tooltip></app-tooltip>

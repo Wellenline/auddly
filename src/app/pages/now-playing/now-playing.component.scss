@@ -93,7 +93,7 @@
 				right: 0;
 				border-radius: 5px;
 
-				animation: move 40s ease-in-out;
+				animation: move 60s ease infinite;
 				/* Add infinite to loop. */
 				margin: 0 auto;
 				position: absolute;
@@ -341,7 +341,7 @@
 			// border: 1px solid var(--border-color);
 			background: var(--background-color-2);
 
-			box-shadow: 0 2px 4px rgb(0 0 0 / 6%);
+			// box-shadow: 0 2px 4px rgb(17 17 18 / 4%), 0 1px 1px rgb(19 20 20 / 6%);
 
 			margin: 15px;
 			border-radius: 20px;

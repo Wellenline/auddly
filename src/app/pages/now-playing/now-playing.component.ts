@@ -10,6 +10,7 @@ import { SwiperComponent } from "swiper/angular";
 import { NavigationEnd, Router } from "@angular/router";
 import { filter, takeUntil, takeWhile } from "rxjs/operators";
 import { Subject } from "rxjs";
+import { VirtualScrollerComponent } from "ngx-virtual-scroller";
 
 @Component({
 	selector: "app-now-playing",
@@ -38,6 +39,7 @@ export class NowPlayingComponent implements OnInit {
 	public loading = false;
 	@ViewChild("swiper") swiper: SwiperComponent;
 	@ViewChild("bottomSheet") bottomSheet: BottomSheetComponent;
+	@ViewChild("scroll") virtualScroll: VirtualScrollerComponent;
 	public options: BottomSheetConfig = {
 		maxHeight: "80vh"
 	};
@@ -155,6 +157,12 @@ export class NowPlayingComponent implements OnInit {
 		if (direction === 1) { // right swipe
 			this.playerService.onPrev();
 		}
+
+	}
+
+	public onQueue() {
+		this.bottomSheet.toggle();
+		this.virtualScroll.scrollToIndex(this.playerService.index);
 
 	}
 

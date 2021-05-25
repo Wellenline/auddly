@@ -9,7 +9,6 @@
 	left: 0;
 	right: 0;
 	z-index: 95;
-	touch-action: none !important;
 }
 
 .bottom-sheet-container {
@@ -20,7 +19,6 @@
 	left: 0;
 	border-radius: 8px 8px 0px 0;
 	z-index: 99;
-	touch-action: none !important;
 	will-change: transform, opacity;
 	color: var(--foreground-color);
 	box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14),

@@ -16,9 +16,14 @@ export class PlayerComponent implements OnInit {
 	public track: ITrack;
 	public isFullscreen = false;
 	public volumeControls = false;
+	public radialProgress = 0;
+	public circumference = 0;
 	constructor(public playerService: PlayerService, private interfaceService: InterfaceService) { }
 
 	public ngOnInit(): void {
+		const r = 19;
+		const circumference = Math.PI * (r * 2);
+		this.circumference = circumference;
 
 		this.playerService.$playing.subscribe((playing) => {
 			this.playing = playing;
@@ -30,6 +35,12 @@ export class PlayerComponent implements OnInit {
 
 		this.playerService.$progress.subscribe((num) => {
 			this.progress = num;
+
+
+			this.radialProgress = (((100 - this.progress) / 100) * this.circumference);
+
+
+
 			this.currentTime = this.playerService.audio.currentTime;
 		});
 
@@ -73,5 +84,19 @@ export class PlayerComponent implements OnInit {
 	public onCloseFullscreen() {
 		// document.exitFullscreen();
 		this.isFullscreen = false;
+	}
+
+	public onSwipe(e) {
+		console.log("Swipe", e);
+		const direction = Math.abs(e.deltaX) > 40 ? (e.deltaX > 0 ? 1 : 2) : 0;
+
+		if (direction === 2) { // right swipe
+			this.playerService.onNext();
+		}
+
+		if (direction === 1) { // right swipe
+			this.playerService.onPrev();
+		}
+
 	}
 }

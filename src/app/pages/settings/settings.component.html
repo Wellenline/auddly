@@ -88,11 +88,11 @@
 
 	<div class="list-item">
 		<div class="text-lead">Uptime</div>
-		<div class="text-meta">{{ server.uptime }}</div>
+		<div class="text-meta">{{ server.uptime | formatSeconds }}</div>
 	</div>
 	<div class="list-item">
 		<div class="text-lead">Free Mem</div>
-		<div class="text-meta">{{ server.free_mem }}</div>
+		<div class="text-meta">{{ server.free_mem | size }}</div>
 	</div>
 	<div class="list-item">
 		<div class="text-lead">Server</div>

@@ -70,8 +70,19 @@
 
 
 				</div>
+
 			</ng-container>
 
+		</div>
+
+		<div class="text-center" *ngIf="tab === 1">
+			<a *ngIf="artists.length !== pagination.total" (click)="onScroll()">Load
+				more</a>
+		</div>
+
+		<div class="text-center" *ngIf="tab === 0">
+			<a *ngIf="albums.length !== pagination.total" (click)="onScroll()">Load
+				more</a>
 		</div>
 
 	</infinite-scroll>

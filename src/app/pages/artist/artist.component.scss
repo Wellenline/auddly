@@ -3,6 +3,7 @@
 	display: block;
 	height: 100vh;
 	padding-bottom: 60px;
+	background: var(--background-color);
 }
 
 :host ::ng-deep .swiper-slide {
