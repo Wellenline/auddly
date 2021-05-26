@@ -26,6 +26,8 @@ html[data-theme="light"] {
 
 	--dark-color: #181818;
 	--logo-filter: inherit;
+	--glass: 250, 250, 250;
+	--glass-opacity: 0.8;
 }
 
 html[data-theme="dark"] {
@@ -52,6 +54,8 @@ html[data-theme="dark"] {
 	--logo-filter: brightness(0) invert(1);
 
 	--shade-loading: grayscale(2.8) brightness(0.12);
+	--glass: 24, 24, 24;
+	--glass-opacity: 0.9;
 }
 
 *,
@@ -70,7 +74,7 @@ html[data-theme="dark"] {
 ::-webkit-scrollbar {
 	width: 0px;
 	height: 0px;
-	background: transparent;
+	background: rgb(24, 24, 24);
 }
 /*
 ::-webkit-scrollbar-track {
@@ -233,7 +237,10 @@ a {
 	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 	margin-bottom: 10px;
 }
-
+.container {
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
 @media all and (max-width: 1000px) {
 	.container {
 		padding-left: 0px !important;

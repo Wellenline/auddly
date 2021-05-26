@@ -89,6 +89,10 @@ export class BottomSheetComponent implements OnInit {
 
 	}
 
+	public onShow() {
+
+	}
+
 
 
 }

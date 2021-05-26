@@ -1,5 +1,9 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Observable } from "rxjs";
+import { fromEvent } from "rxjs/internal/observable/fromEvent";
+import { debounceTime, distinctUntilKeyChanged, map, startWith, tap } from "rxjs/operators";
+import { BottomSheetConfig } from "src/app/modules/shared/interfaces/bottom-sheet";
 import { InterfaceService } from "src/app/modules/shared/services/interface.service";
 import { HttpService } from "src/app/services/http.service";
 import { PlayerService } from "src/app/services/player.service";
@@ -16,29 +20,38 @@ export class TracksComponent implements OnInit {
 		skip: 0,
 		limit: 50,
 	};
+
+
 	public genres = [];
 	public playlists = [];
 
 	public loading = true;
 	public genre: { name?: string, id?: number } = {};
 	public playlist: { name?: string, id?: number } = {};
-
+	hostHeight$: Observable<number>;
+	public options: BottomSheetConfig = {
+		maxHeight: "80vh"
+	};
 	public filter: { limit?: number, liked?: boolean, playlist?: number, genre?: number, sort?: boolean } = { sort: true, limit: 50, };
-
 	constructor(private httpService: HttpService,
 		private interfaceService: InterfaceService,
+		private host: ElementRef,
 		private playerService: PlayerService, private route: ActivatedRoute, private router: Router) { }
 
 	public ngOnInit(): void {
-
+		console.log(this.host.nativeElement.offsetHeight);
+		this.hostHeight$ = fromEvent(window, "resize").pipe(
+			startWith(this.host.nativeElement.offsetHeight),
+			debounceTime(300),
+			map(() => (document.getElementsByClassName("app-content").item(0) as any).offsetHeight),
+			// tap(console.log)
+		);
 		this.route.queryParams.subscribe((params) => {
 
-			console.log(params);
-			this.filter = params;
-
-
-
-			this.fetchTracks(true);
+			if (this.filter !== params) {
+				this.filter = params;
+				this.fetchTracks(true);
+			}
 		});
 		this.getGenres();
 		this.getPlaylists();
@@ -192,10 +205,8 @@ export class TracksComponent implements OnInit {
 	}
 
 	public onScroll(e) {
-		// console.log("finished scrolling, load more");
-
 		if (this.tracks.length > 0 && e.endIndex === this.tracks.length - 1) {
-			// console.log("Reached end load more");
+			console.log("Reached end load more");
 			if (this.tracks.length !== this.pagination.total) {
 				this.pagination.skip += this.pagination.limit;
 				this.fetchTracks();
@@ -228,5 +239,9 @@ export class TracksComponent implements OnInit {
 		}, (err) => {
 			console.log(err);
 		});
+	}
+
+	trackBy(index: number, el: any): number {
+		return el._id;
 	}
 }

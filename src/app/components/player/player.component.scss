@@ -33,14 +33,16 @@
 			align-items: center;
 			&-artist {
 				font-size: 12px;
-				opacity: 0.8;
+				opacity: 0.6;
 				padding-top: 5px;
 				padding-bottom: 0px;
 			}
 
 			&-name {
+				opacity: 0.8;
+
 				margin-top: -5px;
-				font-size: 1rem;
+				font-size: 14px;
 			}
 		}
 	}

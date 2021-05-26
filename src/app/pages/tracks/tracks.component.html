@@ -55,24 +55,24 @@
 			Sort <i class="feather-chevrons-down"></i>
 		</div>
 	</app-horizontal-scroll>
-
 </div>
 
-
-<div class=" relative">
-
-
-
-	<virtual-scroller (vsEnd)="onScroll($event)" #scroll [items]="tracks" [enableUnequalChildrenSizes]="true" autosize
-		itemSize="75" class="viewport">
+<virtual-scroller [checkResizeInterval]="200" (vsEnd)="onScroll($event)" #scroll [items]="tracks"
+	[ngStyle]="{'height.px': (hostHeight$ | async)- 105 }">
 
 
-		<div *ngFor="let track of scroll.viewPortItems; ">
+	<div *ngFor="let track of scroll.viewPortItems; ">
 
 
-			<app-track-list [track]="track"></app-track-list>
+		<app-track-list [track]="track"></app-track-list>
+	</div>
+	<app-indicator [loading]="loading" message="Loading tracks"></app-indicator>
+</virtual-scroller>
+
+<app-bottom-sheet [options]="options" [header]="header" #bottomSheet>
+	<ng-template #header>
+		<div class="bottomsheet-header">
 		</div>
-		<app-indicator [loading]="loading" message="Loading tracks"></app-indicator>
-	</virtual-scroller>
+	</ng-template>
 
-</div>
+</app-bottom-sheet>

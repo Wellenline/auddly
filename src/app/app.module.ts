@@ -105,6 +105,7 @@ export class HammerConfig extends HammerGestureConfig {
 			provide: HAMMER_GESTURE_CONFIG,
 			useClass: HammerConfig,
 		},
+
 	],
 	bootstrap: [AppComponent],
 })

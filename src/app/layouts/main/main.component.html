@@ -4,57 +4,50 @@
 			<router-outlet></router-outlet>
 		</div>
 	</div>
-	<div class="container mx-auto">
-
-		<!--div class="auddly-player">
-
-			<app-player></app-player>
-		</div-->
-		<div class="app-menu">
-
-			<a [routerLinkActive]="['active']" routerLink="/search">
-				<span class="material-icons-round">
-					track_changes
-				</span>
-				<div class="title">Home</div>
-			</a>
-
-			<a [routerLinkActive]="['active']" routerLink="/library">
-				<span class="material-icons-round">
-					folder_open
-				</span>
-				<div class="title">Library</div>
-			</a>
-
-			<a [routerLinkActive]="['active']" routerLink="/tracks">
-				<span class="material-icons-round">
-					audiotrack
-				</span>
-				<div class="title">Tracks</div>
-			</a>
-
-			<!--a [routerLinkActive]="['active']" [routerLink]="['/', { outlets: { modal: ['modal','playing'] } }]">
-			<i class="feather-music"></i>
-			<div class="title">Music</div>
-
-		</a-->
-			<a [routerLinkActive]="['active']" routerLink="/settings">
-				<span class="material-icons-round">
-					settings
-				</span>
-				<div class="title">Settings</div>
-			</a>
 
 
-		</div>
+	<div class="app-menu">
 
-		<div class="app-player">
+		<a [routerLinkActive]="['active']" routerLink="/search">
+			<span class="material-icons-round">
+				track_changes
+			</span>
+			<div class="title">Home</div>
+		</a>
 
-			<app-player></app-player>
-		</div>
+		<a [routerLinkActive]="['active']" routerLink="/library">
+			<span class="material-icons-round">
+				folder_open
+			</span>
+			<div class="title">Library</div>
+		</a>
+
+		<a [routerLinkActive]="['active']" routerLink="/tracks">
+			<span class="material-icons-round">
+				audiotrack
+			</span>
+			<div class="title">Tracks</div>
+		</a>
+		<div class="grow"></div>
+		<a [routerLinkActive]="['active']" routerLink="/settings">
+			<span class="material-icons-round">
+				settings
+			</span>
+			<div class="title">Settings</div>
+		</a>
+
+
 	</div>
+
+	<div class="app-player">
+
+		<app-player></app-player>
+	</div>
+
+
 </div>
 
 <app-notify></app-notify>
 <app-dialog></app-dialog>
+
 <app-tooltip></app-tooltip>

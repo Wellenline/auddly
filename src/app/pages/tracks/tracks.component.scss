@@ -1,18 +1,24 @@
+:host {
+	display: block;
+}
 .filters {
-	list-style: none;
-	padding: 0;
-	position: sticky;
-	top: 0px;
-	margin-bottom: 15px;
+	background-color: var(--background-color);
+	border-radius: 0px;
 	display: flex;
-	align-items: center;
-	z-index: 2;
+	flex-direction: row;
+	width: 100%;
+	height: 60px;
+	margin-top: -15px;
+	z-index: 1;
+	padding: 15px;
+	// box-shadow: 0 2px 4px rgb(17 17 18 / 4%), 0 1px 1px rgb(19 20 20 / 6%);
+	left: 0;
 	.filter {
 		margin-bottom: 0px;
 		margin-top: 0px;
 		&:first-of-type {
 			// background: blue !important;
-			margin-left: 15px;
+			margin-left: 0px;
 		}
 
 		&:last-of-type {
@@ -43,19 +49,8 @@
 		}
 	}
 }
-virtual-scroller {
-	width: 100%;
-	height: 100vh;
-}
 
-@media all and (max-width: 1000px) {
-	virtual-scroller {
-		/*width: 100%;
-		left: 0;
-		height: calc(100% - 120px);
-		position: fixed;
-		overflow: auto;*/
-		width: 100%;
-		height: calc(100vh - (180px + env(safe-area-inset-bottom) + env(safe-area-inset-top)));
-	}
+virtual-scroller {
+	height: 100%;
+	width: 100%;
 }

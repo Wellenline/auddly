@@ -1,30 +1,35 @@
-<app-header static="true" back="true" transparent="true" title="">
-
-</app-header>
+<div class="container mx-auto">
 
 
+	<app-header static="true" back="true" transparent="true" title="">
 
-<div class="album-meta">
-	<div class="picture">
-		<img class="album-picture" [src]="album.picture || '/assets/app-icon-text.png'" />
+	</app-header>
 
-	</div>
 
-	<div class="details">
-		<div [routerLink]="['/', { outlets: { modal: ['modal', 'artists', album?.artist?.id] } }]" class="album-artist">
-			<img class="artist-picture" [src]="album?.artist?.picture || '/assets/app-icon-text.png'" />
-			{{ album?.artist?.name }}
+
+	<div class="album-meta">
+		<div class="picture">
+			<img class="album-picture" [src]="album.picture || '/assets/app-icon-text.png'" />
+
 		</div>
 
-		<div class="album-title">{{ album.name }}</div>
-		<div>{{ tracks.length }} Songs; <i appTooltip tooltip="Duration" class="feather-clock"></i> {{ duration |
-			formatSeconds }}</div>
-		<div (click)="onPlayAlbum()" class="play-button">
-			Play</div>
+		<div class="details">
+			<div [routerLink]="['/', { outlets: { modal: ['modal', 'artists', album?.artist?.id] } }]"
+				class="album-artist">
+				<img class="artist-picture" [src]="album?.artist?.picture || '/assets/app-icon-text.png'" />
+				{{ album?.artist?.name }}
+			</div>
+
+			<div class="album-title">{{ album.name }}</div>
+			<div>{{ tracks.length }} Songs; <i appTooltip tooltip="Duration" class="feather-clock"></i> {{ duration |
+				formatSeconds }}</div>
+			<div (click)="onPlayAlbum()" class="play-button">
+				Play</div>
+		</div>
+
 	</div>
 
+	<app-track-list [track]="track" *ngFor="let track of tracks"></app-track-list>
+
+	<app-loading [loading]="loading"></app-loading>
 </div>
-
-<app-track-list [track]="track" *ngFor="let track of tracks"></app-track-list>
-
-<app-loading [loading]="loading"></app-loading>
