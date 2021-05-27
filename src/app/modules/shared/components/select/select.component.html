@@ -54,51 +54,6 @@
 
 
 			</virtual-scroller>
-
-
-
-			<!--cdk-virtual-scroll-viewport style="height: 220px" itemSize="55">
-
-				<ng-container *cdkVirtualFor="let item of _mappedItems;let i = index">
-					<div class="item" *ngIf="(config.multiple && !_selectedItems.includes(item)) || !config.multiple"
-						(click)="onSelect(item)">
-
-
-						<ng-container [ngTemplateOutlet]="template ? template : basic"
-							[ngTemplateOutletContext]="{item:item}">
-						</ng-container>
-
-						<ng-template #basic>
-							{{item}}
-						</ng-template>
-					</div>
-				</ng-container>
-			</cdk-virtual-scroll-viewport-->
 		</div>
-
-		<!--ul *ngIf="_mappedItems && _mappedItems.length > 0">
-
-			<cdk-virtual-scroll-viewport style="height: 220px" itemSize="55">
-				<ng-container *cdkVirtualFor="let item of _mappedItems;let i = index">
-					<li *ngIf="(config.multiple && !_selectedItems.includes(item)) || !config.multiple"
-						(click)="onSelect(item)">
-
-
-						<ng-container [ngTemplateOutlet]="template ? template : basic"
-							[ngTemplateOutletContext]="{item:item}">
-						</ng-container>
-
-						<ng-template #basic>
-							{{item}}
-						</ng-template>
-					</li>
-				</ng-container>
-			</cdk-virtual-scroll-viewport>
-
-
-		</ul-->
-
-		<!--div class="p-10 text-center"
-			*ngIf="_mappedItems.length === 0 || _itemsCache.length === 0 || _selectedItems?.length === _mappedItems?.length">
-			Nothing to select</div-->
 	</div>
+</div>

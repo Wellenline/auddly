@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { fromEvent } from "rxjs/internal/observable/fromEvent";
-import { debounceTime, distinctUntilKeyChanged, map, startWith, tap } from "rxjs/operators";
+import { debounceTime, map, startWith } from "rxjs/operators";
 import { BottomSheetConfig } from "src/app/modules/shared/interfaces/bottom-sheet";
 import { InterfaceService } from "src/app/modules/shared/services/interface.service";
 import { HttpService } from "src/app/services/http.service";
@@ -39,15 +39,12 @@ export class TracksComponent implements OnInit {
 		private playerService: PlayerService, private route: ActivatedRoute, private router: Router) { }
 
 	public ngOnInit(): void {
-		console.log(this.host.nativeElement.offsetHeight);
 		this.hostHeight$ = fromEvent(window, "resize").pipe(
 			startWith(this.host.nativeElement.offsetHeight),
 			debounceTime(300),
 			map(() => (document.getElementsByClassName("app-content").item(0) as any).offsetHeight),
-			// tap(console.log)
 		);
 		this.route.queryParams.subscribe((params) => {
-
 			if (this.filter !== params) {
 				this.filter = params;
 				this.fetchTracks(true);
@@ -206,17 +203,11 @@ export class TracksComponent implements OnInit {
 
 	public onScroll(e) {
 		if (this.tracks.length > 0 && e.endIndex === this.tracks.length - 1) {
-			console.log("Reached end load more");
 			if (this.tracks.length !== this.pagination.total) {
 				this.pagination.skip += this.pagination.limit;
 				this.fetchTracks();
 			}
 		}
-		/*if (this.tracks.length !== this.pagination.total) {
-			this.pagination.skip += this.pagination.limit;
-			this.fetchTracks();
-		}*/
-		// console.log(e);
 	}
 
 	private fetchTracks(reset: boolean = false) {

@@ -23,8 +23,7 @@ h3 {
 .artist-name {
 	font-size: 2.7rem;
 	color: var(--foreground-color);
-	font-weight: 600;
-	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	font-weight: 800;
 	margin-bottom: 10px;
 }
 .artist-picture {
@@ -53,18 +52,15 @@ h3 {
 
 	.tag {
 		&:first-of-type {
-			// background: blue !important;
 			margin-left: 15px;
 		}
 
 		&:last-of-type {
-			// background: red !important;
 			margin-right: 15px;
 		}
 		display: inline-block;
 		border-radius: 5px;
 		background-color: var(--background-color-4);
-		// backdrop-filter: blur(50px);
 		color: var(--foreground-color);
 		padding: 10px;
 
@@ -132,9 +128,6 @@ h3 {
 	&:hover {
 		cursor: pointer;
 	}
-
-	&:focus {
-	}
 }
 
 .title-action {
@@ -143,9 +136,6 @@ h3 {
 
 	h3 {
 		flex-grow: 1;
-	}
-
-	.float-right {
 	}
 }
 /*

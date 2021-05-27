@@ -17,7 +17,6 @@ export class DialogComponent implements OnInit {
 		this.interfaceService.dialog.status$.subscribe((visible) => {
 			if (visible) {
 				this.prompt = this.interfaceService.dialog.options.default || "";
-				console.log(this.interfaceService.dialog.options.default)
 			}
 		});
 	}

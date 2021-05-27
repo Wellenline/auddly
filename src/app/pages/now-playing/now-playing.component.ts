@@ -1,14 +1,13 @@
 import { Location } from "@angular/common";
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { BottomSheetComponent } from "src/app/modules/shared/components/bottom-sheet/bottom-sheet.component";
-import { ModalComponent } from "src/app/modules/shared/components/modal/modal.component";
 import { BottomSheetConfig } from "src/app/modules/shared/interfaces/bottom-sheet";
 import { InterfaceService } from "src/app/modules/shared/services/interface.service";
 import { ITrack, PlayerService } from "src/app/services/player.service";
 import { SwiperOptions } from "swiper";
 import { SwiperComponent } from "swiper/angular";
-import { NavigationEnd, Router } from "@angular/router";
-import { filter, takeUntil, takeWhile } from "rxjs/operators";
+import { Router } from "@angular/router";
+import { takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
 import { VirtualScrollerComponent } from "ngx-virtual-scroller";
 
@@ -27,11 +26,8 @@ export class NowPlayingComponent implements OnInit {
 		virtual: true,
 		slidesPerView: 1,
 		spaceBetween: 0,
-
-
 	};
 	public lyrics = false;
-
 	public currentTime = 0;
 	public buffering = false;
 	public buffer = 0;
@@ -43,8 +39,6 @@ export class NowPlayingComponent implements OnInit {
 	public options: BottomSheetConfig = {
 		maxHeight: "80vh"
 	};
-	private SWIPE_ACTION = { LEFT: "swipeleft", RIGHT: "swiperight" };
-
 	private destroy = new Subject();
 	constructor(public playerService: PlayerService, private interfaceService: InterfaceService, private location: Location,
 		private router: Router,
@@ -78,8 +72,8 @@ export class NowPlayingComponent implements OnInit {
 			this.tracks = tracks;
 			if (!this.config.initialSlide) {
 				this.config.initialSlide = this.playerService.index;
-
 			}
+
 			this.duration = 0;
 			this.tracks.map((track) => {
 				if (track.duration) {
@@ -97,8 +91,6 @@ export class NowPlayingComponent implements OnInit {
 			if (this.swiper) {
 				this.swiper.setIndex(this.playerService.index);
 			}
-
-
 		});
 
 	}
@@ -147,14 +139,13 @@ export class NowPlayingComponent implements OnInit {
 	}
 
 	public onSwipe(e) {
-		console.log("Swipe", e);
 		const direction = Math.abs(e.deltaX) > 40 ? (e.deltaX > 0 ? 1 : 2) : 0;
 
-		if (direction === 2) { // right swipe
+		if (direction === 2) {
 			this.playerService.onNext();
 		}
 
-		if (direction === 1) { // right swipe
+		if (direction === 1) {
 			this.playerService.onPrev();
 		}
 

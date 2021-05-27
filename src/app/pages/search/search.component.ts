@@ -101,6 +101,8 @@ export class SearchComponent implements OnInit {
 		this.httpService.get(`/search?q=${search}`).subscribe((response: any) => {
 			console.log(response);
 			this.result = response;
+		}, (err) => {
+			console.log(err);
 		}).add(() => {
 			this.loading = {
 				artists: false,
@@ -115,6 +117,8 @@ export class SearchComponent implements OnInit {
 		this.loading.artists = true;
 		this.httpService.get(`/artists/random?total=20`).subscribe((response: any) => {
 			this.result.artists = response;
+		}, (err) => {
+			console.log(err);
 		}).add(() => {
 			this.loading.artists = false;
 		});
@@ -125,6 +129,8 @@ export class SearchComponent implements OnInit {
 
 		this.httpService.get(`/albums/random?total=20`).subscribe((response: any) => {
 			this.result.albums = response;
+		}, (err) => {
+			console.log(err);
 		}).add(() => {
 			this.loading.albums = false;
 		});
@@ -135,6 +141,8 @@ export class SearchComponent implements OnInit {
 
 		this.httpService.get(`/tracks/random?total=20`).subscribe((response: any) => {
 			this.result.tracks = response;
+		}, (err) => {
+			console.log(err);
 		}).add(() => {
 			this.loading.tracks = false;
 		});
@@ -145,6 +153,8 @@ export class SearchComponent implements OnInit {
 
 		this.httpService.get(`/playlists`).subscribe((response: any) => {
 			this.playlists = [{ name: "Favorites", id: "FAVOURITES" }].concat(response.playlists);
+		}, (err) => {
+			console.log(err);
 		}).add(() => {
 			this.loading.playlists = false;
 		});

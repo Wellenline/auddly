@@ -14,43 +14,42 @@ export class AlbumComponent implements OnInit {
 	public tracks: ITrack[] = [];
 	public duration = 0;
 	public loading = true;
-	constructor(private httpService: HttpService, private playerService: PlayerService, private route: ActivatedRoute, private interfaceService: InterfaceService) { }
+	constructor(private httpService: HttpService,
+		private playerService: PlayerService,
+		private route: ActivatedRoute,
+		private interfaceService: InterfaceService) { }
 
 	public ngOnInit(): void {
-
 		this.route.params.subscribe((params) => {
 			this.getTracks(params.id);
 			this.getAlbum(params.id);
 		});
-
 	}
 
 	public getTracks(id: string) {
-		this.httpService.get(`/tracks?album=${id}&skip=0&limit=1500`).subscribe((response: any) => {
+		this.httpService.get(`/tracks?album=${id}&skip=0&limit=1500`).subscribe((response: { tracks: ITrack[] }) => {
 			this.tracks = this.tracks.concat(response.tracks);
 
 			this.tracks.map((track) => {
 				if (track.duration) {
 					this.duration += track.duration;
 				}
-			})
+			});
 		}, (err) => {
 			console.log("Failed to load tracks", err);
 		});
 	}
 
 	public onPlayAlbum() {
-
 		if (!this.playerService.$playing.getValue()) {
 			this.playerService.onPlay(...this.tracks);
 		} else {
 			this.playerService.queue(this.tracks);
 		}
+
 		this.interfaceService.notify(`${this.tracks.length} tracks added to queue`, {
 			timeout: 3000,
 		});
-
-		// this.playerService.onPlay(...this.tracks);
 	}
 
 	public getAlbum(id: string) {
@@ -59,7 +58,7 @@ export class AlbumComponent implements OnInit {
 			this.album = response;
 		}, (err) => {
 			console.log("Failed to load album", err);
-		}).add((loading) => {
+		}).add(() => {
 			this.loading = false;
 		});
 	}

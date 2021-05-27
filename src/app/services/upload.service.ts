@@ -1,11 +1,11 @@
-import { HttpEventType } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { HttpService } from './http.service';
+import { HttpEventType } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
+import { map } from "rxjs/operators";
+import { HttpService } from "./http.service";
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: "root"
 })
 export class UploadService {
 	public $queue = new BehaviorSubject([]);
@@ -28,7 +28,7 @@ export class UploadService {
 
 	public async upload() {
 		let index = 0;
-		console.log("Does it reach this?")
+		console.log("Does it reach this?");
 		this.$uploading.next(true);
 		const sleep = (time: number) => {
 			return new Promise((resolve) => setTimeout(resolve, time));

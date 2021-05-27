@@ -1,14 +1,12 @@
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { VirtualScrollerComponent } from 'ngx-virtual-scroller';
-import { InterfaceService } from 'src/app/modules/shared/services/interface.service';
-import { HttpService } from 'src/app/services/http.service';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { InterfaceService } from "src/app/modules/shared/services/interface.service";
+import { HttpService } from "src/app/services/http.service";
 
 @Component({
-	selector: 'app-library',
-	templateUrl: './library.component.html',
-	styleUrls: ['./library.component.scss']
+	selector: "app-library",
+	templateUrl: "./library.component.html",
+	styleUrls: ["./library.component.scss"]
 })
 export class LibraryComponent implements OnInit {
 	public tab = 0;
@@ -24,11 +22,10 @@ export class LibraryComponent implements OnInit {
 	public height = 0;
 	constructor(private httpService: HttpService, private interfaceService: InterfaceService, private router: Router, private route: ActivatedRoute) { }
 
-	public onScroll(e?) {
+	public onScroll() {
 		if (this.tab === 1) {
 			if (this.artists.length !== this.pagination.total) {
 				this.pagination.skip += this.pagination.limit;
-
 				this.fetchArtists();
 			}
 		} else {
@@ -43,8 +40,6 @@ export class LibraryComponent implements OnInit {
 	}
 
 	public ngOnInit(): void {
-		console.log(this.router.url);
-
 		switch (this.router.url) {
 			case "/library/artists":
 				this.tab = 1;
@@ -62,10 +57,6 @@ export class LibraryComponent implements OnInit {
 			default:
 				break;
 		}
-		this.route.queryParams.subscribe((params) => {
-
-		});
-		// this.fetchArtists();
 	}
 
 	public fetchArtists() {
@@ -73,6 +64,10 @@ export class LibraryComponent implements OnInit {
 		this.httpService.get(`/artists?skip=${this.pagination.skip}&limit=${this.pagination.limit}`).subscribe((response: any) => {
 			this.artists = this.artists.concat(response.artists);
 			this.pagination.total = response.total;
+			this.loading = false;
+		}, (err) => {
+			console.log(err);
+		}).add(() => {
 			this.loading = false;
 		});
 	}
@@ -85,6 +80,8 @@ export class LibraryComponent implements OnInit {
 			this.loading = false;
 		}, (err) => {
 			console.log(err);
+		}).add(() => {
+			this.loading = false;
 		});
 	}
 
@@ -101,18 +98,11 @@ export class LibraryComponent implements OnInit {
 				tab: this.tab,
 			}, queryParamsHandling: "merge",
 		});
-
-
-	}
-
-	public ngAfterViewInit() {
-		this.height = document.getElementsByClassName("app-content")[0].clientHeight;
 	}
 
 
 	public fetchPlaylists() {
 		this.loading = true;
-
 		this.httpService.get(`/playlists`).subscribe((response: any) => {
 			this.playlists = response.playlists;
 		}, (err) => {

@@ -18,7 +18,6 @@ export class UpdateService {
 				closed: (success) => {
 					if (success) {
 						window.location.reload();
-
 					}
 				},
 			});

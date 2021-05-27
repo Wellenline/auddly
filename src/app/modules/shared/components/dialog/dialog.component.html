@@ -10,9 +10,6 @@
 					<div class="text-meta">{{ interfaceService.dialog?.options?.message }}</div>
 				</div>
 			</div>
-			<!--div (click)="close(false)" class="modal-close">
-				<i class="feather feather-x"></i>
-			</div-->
 		</div>
 
 		<div class="modal-body"
@@ -57,34 +54,4 @@
 		</div>
 
 	</div>
-
-
-
-	<!--div class="modal-window small">
-		<div class="modal-title">{{ interfaceService.dialog?.options?.title }}</div>
-		<div class="modal-message">{{ interfaceService.dialog?.options?.message }}</div>
-		<div *ngIf="interfaceService.dialog?.options?.type === 'prompt'" class="m-20">
-			<input autocomplete="off" class="input" [(ngModel)]="prompt"
-				placeholder="{{interfaceService.dialog?.options?.title}}" />
-		</div>
-
-		<div class="modal-footer">
-
-
-			<div class="flex flex-right m-20">
-
-				<button *ngIf="interfaceService.dialog?.options?.type === 'confirm' || interfaceService.dialog?.options?.type === 'prompt'"
-					(click)="close(false)"
-					class="button fill  primary m-r-10">{{interfaceService.dialog?.options?.cancelButtonText}}</button>
-
-
-				<button *ngIf="interfaceService.dialog?.options?.type !== 'prompt'" (click)="close(true)"
-					class="button fill primary">{{interfaceService.dialog?.options?.okButtonText}}</button>
-
-				<button [disabled]="!prompt" *ngIf="interfaceService.dialog?.options?.type === 'prompt'" (click)="close(prompt)"
-					class="button fill primary">{{interfaceService.dialog?.options?.okButtonText}}</button>
-			</div>
-		</div>
-	</div-->
-
 </div>

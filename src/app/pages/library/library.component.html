@@ -1,7 +1,5 @@
 <app-header static="true" transparent="true" title="Library" [actionTemplate]="actionTemplate">
-
 	<ng-template #actionTemplate>
-
 		<app-dropdown *ngIf="tab === 2" #dropdown [config]="{right: true}" [header]="headerTemplate">
 			<ng-template #headerTemplate let-item="item">
 				<div (click)="item.onToggle()" class="dropdown-action-item"><i class="material-icons-outlined">
@@ -10,30 +8,21 @@
 			</ng-template>
 
 			<div class="dropdown-action-list">
-
 				<a (click)="onCreate()">New playlist <i class="feather-plus"></i></a>
-
-
 			</div>
 		</app-dropdown>
 	</ng-template>
-
 </app-header>
 
-
-
-
-
-
-<div class="toggle">
-	<div routerLink="/library/albums" class="value {{ tab === 0 ? 'active' : '' }}">
+<div class="tabs">
+	<div routerLink="/library/albums" class="tab {{ tab === 0 ? 'active' : '' }}">
 		Albums
 	</div>
-	<div routerLink="/library/artists" class="value {{ tab === 1 ? 'active' : '' }}">
+	<div routerLink="/library/artists" class="tab {{ tab === 1 ? 'active' : '' }}">
 		Artists
 	</div>
 
-	<div routerLink="/library/playlists" class="value {{ tab === 2 ? 'active' : '' }}">
+	<div routerLink="/library/playlists" class="tab {{ tab === 2 ? 'active' : '' }}">
 		Playlists
 	</div>
 </div>
@@ -56,62 +45,47 @@
 
 			</ng-container>
 			<ng-container *ngIf="tab === 0">
-
 				<div class="column" *ngFor="let album of albums"
 					[routerLink]="['/', { outlets: { modal: ['modal','albums', album.id] } }]">
-
-
 					<img class="lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
-
 					<div class="column-details">
 						<div class="title">{{ album.name }}</div>
 						<div class="subtitle">{{ album.artist.name }}</div>
 					</div>
-
-
 				</div>
-
 			</ng-container>
-
 		</div>
 
-		<div class="text-center" *ngIf="tab === 1">
+		<div class="text-center" *ngIf="tab !== 2">
 			<a *ngIf="artists.length !== pagination.total" (click)="onScroll()">Load
 				more</a>
-		</div>
-
-		<div class="text-center" *ngIf="tab === 0">
 			<a *ngIf="albums.length !== pagination.total" (click)="onScroll()">Load
 				more</a>
 		</div>
 
+
+
 	</infinite-scroll>
 
 	<ng-container *ngIf="tab === 2">
-
 		<div class="playlists">
-
 			<div class="playlist" *ngFor="let playlist of playlists">
-
-
 				<div routerLink="/tracks" [queryParams]="{ playlist: playlist.id}" class="playlist-name">{{
 					playlist.name }}
 				</div>
 				<div *ngIf="!playlist.readonly" class="playlist-actions">
 					<app-dropdown #dropdown [config]="{right: true}" [header]="headerTemplate">
 						<ng-template #headerTemplate let-item="item">
-							<div (click)="item.onToggle()" class="dropdown-action-item"><i
-									class="material-icons-outlined">
+							<div (click)="item.onToggle()" class="dropdown-action-item">
+								<i class="material-icons-outlined">
 									more_vert
-								</i></div>
+								</i>
+							</div>
 						</ng-template>
 
 						<div class="dropdown-action-list">
-
 							<a (click)="onEdit(playlist)">Edit</a>
-							<a (click)="onDelete(playlist)">Delete</a>
-
-
+							<a (click)="onDelete(playlishet)">Delete</a>
 						</div>
 					</app-dropdown>
 				</div>
@@ -121,6 +95,4 @@
 		</div>
 	</ng-container>
 	<app-loading [loading]="loading"></app-loading>
-
-
 </div>

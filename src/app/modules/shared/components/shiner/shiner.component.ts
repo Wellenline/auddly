@@ -1,9 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from "@angular/core";
 
 @Component({
-	selector: 'app-shiner',
-	templateUrl: './shiner.component.html',
-	styleUrls: ['./shiner.component.scss']
+	selector: "app-shiner",
+	templateUrl: "./shiner.component.html",
+	styleUrls: ["./shiner.component.scss"]
 })
 export class ShinerComponent implements OnInit {
 	@Input() public height: string;

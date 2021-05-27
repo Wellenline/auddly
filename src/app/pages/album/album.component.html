@@ -1,16 +1,9 @@
 <div class="container mx-auto">
-
-
-	<app-header static="true" back="true" transparent="true" title="">
-
-	</app-header>
-
-
+	<app-header static="true" back="true" transparent="true" title=""></app-header>
 
 	<div class="album-meta">
 		<div class="picture">
 			<img class="album-picture" [src]="album.picture || '/assets/app-icon-text.png'" />
-
 		</div>
 
 		<div class="details">
@@ -26,10 +19,7 @@
 			<div (click)="onPlayAlbum()" class="play-button">
 				Play</div>
 		</div>
-
 	</div>
-
 	<app-track-list [track]="track" *ngFor="let track of tracks"></app-track-list>
-
 	<app-loading [loading]="loading"></app-loading>
 </div>

@@ -6,11 +6,6 @@ import { Pipe, PipeTransform } from "@angular/core";
 export class FormatSecondsPipe implements PipeTransform {
 
 	public transform(totalSeconds: number, ...args: unknown[]) {
-		/*
-		const date = new Date(null);
-		date.setSeconds(value);
-		return date.toISOString().substr(14, 5);*/
-
 		const hours = Math.floor(totalSeconds / 3600);
 
 		totalSeconds %= 3600;

@@ -38,11 +38,6 @@ const routes: Routes = [
 			{ path: "library/playlists", component: LibraryComponent, canActivate: [AuthGuard] },
 
 			{ path: "tracks", component: TracksComponent, canActivate: [AuthGuard] },
-
-			/*{ path: "library/albums/:id", component: ModalContainerComponent, canActivate: [AuthGuard], outlet: "modal" },
-
-			{ path: "library/artists/:id", component: ModalContainerComponent, canActivate: [AuthGuard], outlet: "modal" },
-*/
 			{ path: "search", component: SearchComponent, canActivate: [AuthGuard] },
 			{ path: "settings", component: SettingsComponent, canActivate: [AuthGuard] },
 			{ path: "settings/upload", component: UploadComponent, canActivate: [AuthGuard] },
@@ -74,8 +69,8 @@ const routes: Routes = [
 
 @NgModule({
 	imports: [RouterModule.forRoot(routes, {
-		scrollPositionRestoration: "enabled",
-		relativeLinkResolution: "legacy"
+		scrollPositionRestoration: "disabled",
+		// relativeLinkResolution: "legacy"
 	})],
 	exports: [RouterModule],
 })

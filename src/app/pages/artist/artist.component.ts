@@ -3,7 +3,6 @@ import { HttpService } from "src/app/services/http.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { SwiperOptions } from "swiper";
 import { PlayerService } from "src/app/services/player.service";
-import { Route } from "@angular/compiler/src/core";
 
 @Component({
 	selector: "app-artist",
@@ -71,21 +70,32 @@ export class ArtistComponent implements OnInit {
 		this.httpService.get(`/artists/${id}`).subscribe((response: any) => {
 			this.artist = response;
 			this.getSearchResults(this.artist.name);
-			// this.getArtistMetadata();
+		}, (err) => {
+			console.log(err);
 		}).add(() => {
 			this.loading = false;
 		});
 	}
 
 	public getAlbums(id: string) {
+		this.loading = true;
 		this.httpService.get(`/albums?artist=${id}`).subscribe((response: any) => {
 			this.albums = response.albums;
+		}, (err) => {
+			console.log(err);
+		}).add(() => {
+			this.loading = false;
 		});
 	}
 
 	public getPopular(id: string) {
+		this.loading = true;
 		this.httpService.get(`/tracks?popular=true&artist=${id}&limit=10`).subscribe((response: any) => {
 			this.tracks = response.tracks;
+		}, (err) => {
+			console.log(err);
+		}).add(() => {
+			this.loading = false;
 		});
 	}
 
@@ -102,6 +112,10 @@ export class ArtistComponent implements OnInit {
 
 		this.httpService.get(`/search?q=${search}`).subscribe((response: any) => {
 			this.result = response;
+		}, (err) => {
+			console.log(err);
+		}).add(() => {
+			this.loading = false;
 		});
 	}
 

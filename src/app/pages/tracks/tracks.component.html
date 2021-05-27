@@ -62,17 +62,7 @@
 
 
 	<div *ngFor="let track of scroll.viewPortItems; ">
-
-
 		<app-track-list [track]="track"></app-track-list>
 	</div>
 	<app-indicator [loading]="loading" message="Loading tracks"></app-indicator>
 </virtual-scroller>
-
-<app-bottom-sheet [options]="options" [header]="header" #bottomSheet>
-	<ng-template #header>
-		<div class="bottomsheet-header">
-		</div>
-	</ng-template>
-
-</app-bottom-sheet>

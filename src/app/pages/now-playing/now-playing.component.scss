@@ -1,6 +1,3 @@
-:host ::ng-deep .swiper-slide {
-	//	height: auto !important;
-}
 :host {
 	overflow: auto;
 	display: block;
@@ -320,14 +317,8 @@
 		}
 	}
 	&-queue {
-		// padding: 15px;
-		/// display: flex;
-		// justify-content: center;
-		//align-items: flex-end;
-		//flex-grow: 1;
 		display: flex;
 		align-items: flex-end;
-		// flex-grow: 1;
 		width: 100%;
 		padding-top: 15px;
 
@@ -336,12 +327,7 @@
 			align-items: center;
 			padding: 15px;
 			flex-grow: 1;
-
-			// border: 1px solid var(--border-color);
 			background: var(--background-color-2);
-
-			// box-shadow: 0 2px 4px rgb(17 17 18 / 4%), 0 1px 1px rgb(19 20 20 / 6%);
-
 			margin: 15px;
 			border-radius: 20px;
 
@@ -364,14 +350,11 @@
 				flex-grow: 1;
 				.title {
 					font-weight: 600;
-					//font-family: "Open Sans", sans-serif;
-					//text-transform: uppercase;
 				}
 
 				.subtitle {
 					opacity: 0.5;
 					font-size: 13px;
-					// font-weight: 600;
 				}
 			}
 		}

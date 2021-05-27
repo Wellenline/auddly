@@ -10,27 +10,13 @@ import { ThemeService } from "src/app/services/theme.service";
 	styleUrls: ["./main.component.scss"]
 })
 export class MainComponent implements OnInit {
-	public track: ITrack = {};
 
-	constructor(private playerService: PlayerService, private router: Router, private themeService: ThemeService,) { }
+	constructor(private themeService: ThemeService) { }
 	ngOnInit() {
 		const color = localStorage.getItem("accent-color");
-
 		if (color) {
 			document.documentElement.style.setProperty("--accent-color", color);
 		}
-
-		this.playerService.$track.subscribe((track) => {
-			this.track = track;
-		});
-
-		this.router.events.pipe(filter((event) => event instanceof NavigationEnd))
-			.subscribe((event: RouterEvent) => {
-				if (event && event.url) {
-					console.log(event);
-
-				}
-			});
 	}
 	@HostListener("document:keypress", ["$event"])
 	handleKeyboardEvent(event: KeyboardEvent) {
