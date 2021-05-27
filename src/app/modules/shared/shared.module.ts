@@ -16,15 +16,18 @@ import { ToggleComponent } from "./components/toggle/toggle.component";
 import { ModalComponent } from "./components/modal/modal.component";
 import { ContenteditableModel } from "./directives/contenteditable.directive";
 import { DropdownComponent } from "./components/dropdown/dropdown.component";
-import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ScrollingModule } from "@angular/cdk/scrolling";
 import { Scroll } from "@angular/router";
 import { DragDropModule } from "@angular/cdk/drag-drop";
-import { AutoSizeDirective } from './directives/auto-size.directive';
-import { DragDropDirective } from './directives/drag-drop.directive';
+import { AutoSizeDirective } from "./directives/auto-size.directive";
+import { DragDropDirective } from "./directives/drag-drop.directive";
 import { VirtualScrollerModule } from "ngx-virtual-scroller";
 import { HeaderComponent } from "./components/header/header.component";
-import { ShinerComponent } from './components/shiner/shiner.component';
+import { ShinerComponent } from "./components/shiner/shiner.component";
 import { BottomSheetComponent } from "./components/bottom-sheet/bottom-sheet.component";
+import { HorizontalScrollComponent } from "./components/horizontal-scroll/horizontal-scroll.component";
+import { InfiniteScrollComponent } from "./components/infinite-scroll/infinite-scroll.component";
+import { ThemeToggleComponent } from "./components/theme-toggle/theme-toggle.component";
 
 
 @NgModule({
@@ -43,7 +46,7 @@ import { BottomSheetComponent } from "./components/bottom-sheet/bottom-sheet.com
 		AutoSizeDirective,
 		DragDropDirective,
 		HeaderComponent,
-		ShinerComponent, BottomSheetComponent],
+		ShinerComponent, BottomSheetComponent, HorizontalScrollComponent, InfiniteScrollComponent, ThemeToggleComponent],
 	imports: [
 		CommonModule,
 		FormsModule,
@@ -81,6 +84,9 @@ import { BottomSheetComponent } from "./components/bottom-sheet/bottom-sheet.com
 		DragDropDirective,
 		ShinerComponent,
 		BottomSheetComponent,
+		HorizontalScrollComponent,
+		InfiniteScrollComponent,
+		ThemeToggleComponent
 
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],

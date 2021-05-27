@@ -7,11 +7,6 @@ import { Component, OnInit, HostListener, ElementRef, Input, Output, EventEmitte
 export class SliderComponent implements OnInit {
 	@Input() public set value(val) {
 		this._value = val;
-
-		if (this.waveformElement && !this.isDragging) {
-			const maxScroll = this.waveformElement.nativeElement.scrollWidth - this.waveformElement.nativeElement.clientWidth;
-			this.waveformElement.nativeElement.scrollLeft = val * (maxScroll / 100);
-		}
 	}
 
 	public get value() {
@@ -26,11 +21,6 @@ export class SliderComponent implements OnInit {
 
 	@Input() seekable = true;
 	@Input() public buffer: number;
-
-
-	@Input() public waveform: string;
-
-	@ViewChild("wavefromElement") waveformElement: ElementRef;
 
 	public width = 1;
 

@@ -1,13 +1,13 @@
-#flex-wrapper {
+.horizontal-scroll {
 	overflow: hidden;
 
-	#flex-container {
+	&-container {
 		display: flex;
 		overflow-x: auto;
 		width: 100%;
 		-webkit-overflow-scrolling: touch;
 
-		#flex-inside {
+		&-inside {
 			background-color: transparent;
 			display: flex;
 			flex: 0 0 auto;
