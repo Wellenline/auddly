@@ -1,6 +1,6 @@
 <p align="center">
 <a href="https://auddly.app">
-<img style="border-radius:20px; width: 100px; height: 100px;" src="./app-icon.png" />
+<img width="100" height="100" src="./app-icon.png" />
 </a>
 </p>
 <p align="center">
