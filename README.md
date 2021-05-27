@@ -15,6 +15,9 @@ This is an installable PWA frontend for [Wellenline/waveline-server](https://git
 You can either build it yourself or use the hosted version located at https://music.auddly.app
 
 
+## Running in docker
+``` $ docker run --rm -d -p 80:80/tcp wellenline/auddly:latest```
+
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
