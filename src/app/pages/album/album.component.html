@@ -21,5 +21,29 @@
 		</div>
 	</div>
 	<app-track-list [track]="track" *ngFor="let track of tracks"></app-track-list>
+
+
+
+	<ng-container *ngIf="albums.length > 0">
+		<h3>More by {{ album.artist.name }}</h3>
+		<div class="albums">
+			<swiper [config]="config">
+				<ng-container *ngFor="let album of albums; ">
+					<ng-template swiperSlide>
+						<div [routerLink]="['/', { outlets: { modal: ['modal', 'albums', album?.id] } }]" class="album">
+							<img [src]="album.picture || '/assets/app-icon-text.png'" />
+							<div class="column-details">
+								<div class="title">{{ album.name }}</div>
+								<div class="subtitle">{{ album.artist.name }}</div>
+							</div>
+						</div>
+					</ng-template>
+				</ng-container>
+			</swiper>
+		</div>
+	</ng-container>
+
 	<app-loading [loading]="loading"></app-loading>
+
+
 </div>
