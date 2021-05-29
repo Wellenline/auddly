@@ -13,11 +13,17 @@
 
 			<div class="dropdown-action-list">
 				<a (click)="onPlay()">Play <i class="feather-play"></i></a>
+				<div class="divider no-margin"></div>
 
-				<a (click)="onSort()">Sort <i *ngIf="filter.sort" class="feather-chevrons-down"></i>
+				<a (click)="onSort('name')">Sort by name</a>
+				<a (click)="onSort('created_at')">Sort by date</a>
+
+				<div class="divider no-margin"></div>
+
+				<!--a (click)="onSort()">Sort <i *ngIf="filter.sort" class="feather-chevrons-down"></i>
 
 					<i *ngIf="!filter.sort" class="feather-chevrons-up"></i>
-				</a>
+				</a-->
 
 				<div class="divider no-margin"></div>
 				<a (click)="onLiked()">Favourites <i class="feather-heart"></i>

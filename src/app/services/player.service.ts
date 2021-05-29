@@ -48,7 +48,7 @@ export class PlayerService {
 	constructor(private httpService: HttpService, private interfaceService: InterfaceService) {
 		this.audio = new Audio();
 
-		this.audio.addEventListener("timeupdate", this.onProgress.bind(this));
+		this.audio.addEventListener("timeupdate", this._onProgress.bind(this));
 		this.audio.addEventListener("canplay", () => {
 			console.log("Enough data to start playback");
 		});
@@ -62,7 +62,7 @@ export class PlayerService {
 			}
 			// this.$buffering.next(this.audio.readyState >= 2);
 		});
-		this.audio.addEventListener("ended", this.onAudioEnded.bind(this));
+		this.audio.addEventListener("ended", this._onAudioEnded.bind(this));
 		this.audio.volume = parseFloat(localStorage.getItem("volume")) || 1;
 		if ("mediaSession" in navigator) {
 			(navigator as any).mediaSession.setActionHandler("play", this.onPlayback.bind(this));
@@ -182,6 +182,8 @@ export class PlayerService {
 		this.$playing.next(true);
 		this.setupAudioPlayer(tracks[0]);
 		localStorage.setItem("track", JSON.stringify(tracks[0]));
+		this._onIncrement(this.$track.getValue());
+
 
 
 	}
@@ -326,7 +328,7 @@ export class PlayerService {
 		});
 	}
 
-	private onProgress() {
+	private _onProgress() {
 		this.$buffering.next(this.audio.buffered.length === 0);
 		if (this.audio.duration > 0) {
 			for (let index = 0; index < this.audio.buffered.length; index++) {
@@ -354,9 +356,15 @@ export class PlayerService {
 
 	}
 
-	private onAudioEnded() {
+	private _onAudioEnded() {
 		this.audio.currentTime = 0;
 		this.$playing.next(false);
 		this.onNext();
+	}
+
+	private _onIncrement(track: ITrack) {
+		this.httpService.put(`/tracks/plays/${track._id}`, {}).subscribe((response) => {
+			console.log("Saved");
+		});
 	}
 }

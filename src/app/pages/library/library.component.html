@@ -11,7 +11,23 @@
 				<a (click)="onCreate()">New playlist <i class="feather-plus"></i></a>
 			</div>
 		</app-dropdown>
+
+		<app-dropdown *ngIf="tab !== 2" #dropdown [config]="{right: true}" [header]="headerTemplate">
+			<ng-template #headerTemplate let-item="item">
+				<div (click)="item.onToggle()" class="dropdown-action-item"><i class="material-icons-outlined">
+						more_vert
+					</i></div>
+			</ng-template>
+
+			<div class="dropdown-action-list">
+				<a (click)="onSort('name')">Sort by name</a>
+				<a (click)="onSort('created_at')">Sort by date</a>
+
+			</div>
+		</app-dropdown>
 	</ng-template>
+
+
 </app-header>
 
 <div class="tabs">

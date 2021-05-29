@@ -18,6 +18,8 @@ export class LibraryComponent implements OnInit {
 		skip: 0,
 		limit: 50,
 	};
+
+	public sort = "-created_at";
 	public get canLoadMore() {
 		if (this.tab === 2) {
 			return false;
@@ -48,6 +50,25 @@ export class LibraryComponent implements OnInit {
 
 	}
 
+	public onSort(key: string) {
+		console.log(this.sort, this.sort.includes(key), key)
+		this.sort = this.sort.includes(key) ? this.sort.startsWith("-") ? this.sort.replace("-", "") : `-${key}` : key;
+
+
+		this.pagination = {
+			total: 0,
+			skip: 0,
+			limit: 50,
+		};
+		this.artists = [];
+		this.albums = [];
+		if (this.tab === 1) {
+			this.fetchArtists();
+
+		} else {
+			this.fetchAlbums();
+		}
+	}
 
 	public ngOnInit(): void {
 		switch (this.router.url) {
@@ -71,7 +92,7 @@ export class LibraryComponent implements OnInit {
 
 	public fetchArtists() {
 		this.loading = true;
-		this.httpService.get(`/artists?skip=${this.pagination.skip}&limit=${this.pagination.limit}`).subscribe((response: any) => {
+		this.httpService.get(`/artists?skip=${this.pagination.skip}&limit=${this.pagination.limit}&sort=${this.sort}`).subscribe((response: any) => {
 			this.artists = this.artists.concat(response.artists);
 			this.pagination.total = response.total;
 			this.loading = false;
@@ -84,7 +105,7 @@ export class LibraryComponent implements OnInit {
 
 	private fetchAlbums() {
 		this.loading = true;
-		this.httpService.get(`/albums?skip=${this.pagination.skip}&limit=${this.pagination.limit}`).subscribe((response: any) => {
+		this.httpService.get(`/albums?skip=${this.pagination.skip}&limit=${this.pagination.limit}&sort=${this.sort}`).subscribe((response: any) => {
 			this.albums = this.albums.concat(response.albums);
 			this.pagination.total = response.total;
 			this.loading = false;
@@ -99,7 +120,7 @@ export class LibraryComponent implements OnInit {
 		this.pagination = {
 			total: 0,
 			skip: 0,
-			limit: 100,
+			limit: 50,
 		};
 		this.tab = index;
 

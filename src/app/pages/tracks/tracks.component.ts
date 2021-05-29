@@ -32,7 +32,7 @@ export class TracksComponent implements OnInit {
 	public options: BottomSheetConfig = {
 		maxHeight: "80vh"
 	};
-	public filter: { limit?: number, liked?: boolean, playlist?: number, genre?: number, sort?: boolean } = { sort: true, limit: 50, };
+	public filter: { limit?: number, liked?: boolean, playlist?: number, genre?: number, sort?: string } = { sort: "-created_at", limit: 50, };
 	constructor(private httpService: HttpService,
 		private interfaceService: InterfaceService,
 		private host: ElementRef,
@@ -46,7 +46,7 @@ export class TracksComponent implements OnInit {
 		);
 		this.route.queryParams.subscribe((params) => {
 			if (this.filter !== params) {
-				this.filter = params;
+				this.filter = { ...params };
 				this.fetchTracks(true);
 			}
 		});
@@ -62,11 +62,16 @@ export class TracksComponent implements OnInit {
 		}
 	}
 
-	public onSort() {
+
+	public onSort(key) {
+		console.log(this.filter, key)
+		this.filter.sort = this.filter.sort?.includes(key) ?
+			(this.filter.sort.startsWith("-") ? this.filter.sort.replace("-", "") : `-${key}`) : key;
+
 		this.router.navigate(["/tracks"], {
 			relativeTo: this.route,
 			queryParams: {
-				sort: this.filter.sort ? null : true,
+				sort: this.filter.sort,
 			}, queryParamsHandling: "merge",
 		});
 	}
