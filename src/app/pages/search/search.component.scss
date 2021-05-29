@@ -1,6 +1,10 @@
 :host ::ng-deep .swiper-slide {
 	width: auto !important;
 }
+
+:host ::ng-deep .swiper-container {
+	margin-left: 0px;
+}
 .search-input {
 	height: 60px;
 

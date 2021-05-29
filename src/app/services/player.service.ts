@@ -4,7 +4,7 @@ import { InterfaceService } from "../modules/shared/services/interface.service";
 import { HttpService } from "./http.service";
 
 export interface ITrack {
-	id?: string;
+	_id?: string;
 	picture?: string;
 	duration?: number;
 	playing?: boolean;
@@ -17,7 +17,7 @@ export interface ITrack {
 	lyrics?: {
 		text: string
 	} | null;
-	playlists?: { name?: string, id?: number }[];
+	playlists?: { name?: string, _id?: number }[];
 	name?: string;
 	source?: string;
 	liked?: boolean;
@@ -71,7 +71,7 @@ export class PlayerService {
 			(navigator as any).mediaSession.setActionHandler("nexttrack", this.onNext.bind(this));
 			(navigator as any).mediaSession.setActionHandler("seekto", this.onSeek.bind(this));
 		}
-		if (this.$track.getValue().id) {
+		if (this.$track.getValue()._id) {
 			this.setupAudioPlayer(this.$track.getValue(), false);
 
 		}
@@ -81,7 +81,7 @@ export class PlayerService {
 	 * Return current track index in the playlist
 	 */
 	public get index() {
-		return Math.abs(this.$queue.getValue().findIndex((t) => t.id === this.$track.getValue().id));
+		return Math.abs(this.$queue.getValue().findIndex((t) => t._id === this.$track.getValue()._id));
 	}
 
 	/**
@@ -141,7 +141,7 @@ export class PlayerService {
 	 * @param tracks tracks
 	 */
 	public queue(tracks: ITrack[]) {
-		const queue = this.$queue.getValue().concat(tracks.filter((track) => !this.$queue.getValue().map((t) => t.id).includes(track.id)));
+		const queue = this.$queue.getValue().concat(tracks.filter((track) => !this.$queue.getValue().map((t) => t._id).includes(track._id)));
 		localStorage.setItem("queue", JSON.stringify(queue));
 
 		this.$queue.next(queue);
@@ -168,7 +168,7 @@ export class PlayerService {
 		tracks = tracks.map((track) => {
 			return {
 				...track, ...{
-					source: `${this.httpService.API_ENDPOINT}/tracks/play/${track.id}`,
+					source: `${this.httpService.API_ENDPOINT}/tracks/play/${track._id}`,
 				},
 			};
 		});
@@ -268,7 +268,7 @@ export class PlayerService {
 
 	public onAddToPlaylist(track: ITrack) {
 		console.log(track.playlists);
-		this.httpService.get(`/playlists`).subscribe((response: { playlists: [{ name: any, id: number }] }) => {
+		this.httpService.get(`/playlists`).subscribe((response: { playlists: [{ name: any, _id: number }] }) => {
 			this.interfaceService.dialog.show({
 				items: response.playlists.map((playlist) => playlist.name),
 				type: "picker",
@@ -280,7 +280,7 @@ export class PlayerService {
 						if (!track.playlists) {
 							track.playlists = [];
 						}
-						if (!track.playlists || track.playlists.findIndex((p) => p.id === playlist.id) === -1) {
+						if (!track.playlists || track.playlists.findIndex((p) => p._id === playlist._id) === -1) {
 							this._addToPlaylist(track, playlist);
 						}
 					}
@@ -308,8 +308,8 @@ export class PlayerService {
 
 
 	private _addToPlaylist(track, playlist) {
-		this.httpService.post(`/playlists/${playlist.id}`, {
-			track: track.id,
+		this.httpService.post(`/playlists/${playlist._id}`, {
+			track: track._id,
 		}).subscribe((response) => {
 			this.interfaceService.notify(`${track.name} added to ${playlist.name}`);
 			track.playlists.push(playlist);
@@ -317,7 +317,7 @@ export class PlayerService {
 	}
 
 	private _removeFromPlaylist(track, playlist, index) {
-		this.httpService.delete(`/playlists/${playlist.id}/${track.id}`).subscribe((response) => {
+		this.httpService.delete(`/playlists/${playlist._id}/${track._id}`).subscribe((response) => {
 			this.interfaceService.notify(`${track.name} removed from ${playlist.name}`);
 			if (index > -1) {
 				track.playlists.splice(index, 1);

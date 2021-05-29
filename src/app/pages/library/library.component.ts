@@ -18,6 +18,15 @@ export class LibraryComponent implements OnInit {
 		skip: 0,
 		limit: 50,
 	};
+	public get canLoadMore() {
+		if (this.tab === 2) {
+			return false;
+		}
+
+		return this.tab === 0 ?
+			this.pagination.total !== this.albums.length :
+			this.pagination.total !== this.artists.length;
+	}
 	public loading = true;
 	public height = 0;
 	constructor(private httpService: HttpService, private interfaceService: InterfaceService, private router: Router, private route: ActivatedRoute) { }
@@ -38,6 +47,7 @@ export class LibraryComponent implements OnInit {
 
 
 	}
+
 
 	public ngOnInit(): void {
 		switch (this.router.url) {
@@ -140,7 +150,7 @@ export class LibraryComponent implements OnInit {
 			okButtonText: "Save",
 			closed: (value) => {
 				if (value && value !== playlist.name) {
-					this._onUpdatePlaylist(playlist.id, value);
+					this._onUpdatePlaylist(playlist._id, value);
 				}
 			},
 		});
@@ -155,7 +165,7 @@ export class LibraryComponent implements OnInit {
 			cancelButtonText: "No",
 			closed: (value) => {
 				if (value) {
-					this._onDeletePlaylist(playlist.id);
+					this._onDeletePlaylist(playlist._id);
 				}
 			},
 		});

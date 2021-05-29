@@ -37,7 +37,7 @@ export class TrackListComponent implements OnInit {
 				closed: (index) => {
 					if (index !== false && index !== undefined) {
 						const playlist = response.playlists[index];
-						if (this.track.playlists.findIndex((p) => p.id === playlist.id) === -1) {
+						if (this.track.playlists.findIndex((p) => p._id === playlist._id) === -1) {
 							this._addToPlaylist(playlist);
 						}
 
@@ -78,8 +78,8 @@ export class TrackListComponent implements OnInit {
 	}
 
 	private _addToPlaylist(playlist) {
-		this.httpService.post(`/playlists/${playlist.id}`, {
-			track: this.track.id,
+		this.httpService.post(`/playlists/${playlist._id}`, {
+			track: this.track._id,
 		}).subscribe((response) => {
 			this.interfaceService.notify(`${this.track.name} added to ${playlist.name}`);
 			this.track.playlists.push(playlist);
@@ -87,7 +87,7 @@ export class TrackListComponent implements OnInit {
 	}
 
 	private _removeFromPlaylist(playlist, index) {
-		this.httpService.delete(`/playlists/${playlist.id}/${this.track.id}`).subscribe((response) => {
+		this.httpService.delete(`/playlists/${playlist._id}/${this.track._id}`).subscribe((response) => {
 			this.interfaceService.notify(`${this.track.name} removed from ${playlist.name}`);
 			if (index > -1) {
 				this.track.playlists.splice(index, 1);

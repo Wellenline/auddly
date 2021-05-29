@@ -11,7 +11,7 @@ export class SettingsComponent implements OnInit, AfterViewInit {
 	public settings: any = {};
 	public server: any = {};
 	public loading = true;
-	public colors = ["#3ec7c2", "#4caf50", "#3c91ff", "#7fcd91", "#fe346e", "#381460", "#ffa41b", "#9399ff", "#21bf73", "#C1935B", "#F0050E"];
+	public colors = ["#3ec7c2", "#0fdbff", "#4caf50", "#3c91ff", "#7fcd91", "#fe346e", "#381460", "#ffa41b", "#9399ff", "#21bf73", "#C1935B", "#F0050E"];
 	public api_key = localStorage.getItem("key");
 	constructor(public httpService: HttpService, private authService: AuthService) { }
 

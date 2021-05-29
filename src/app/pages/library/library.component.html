@@ -33,7 +33,7 @@
 			<ng-container *ngIf="tab === 1">
 
 				<div class="column" *ngFor="let artist of artists"
-					[routerLink]="['/', { outlets: { modal: ['modal', 'artists', artist.id] } }]">
+					[routerLink]="['/', { outlets: { modal: ['modal', 'artists', artist._id] } }]">
 					<img width="170" height="170" class="lazyload"
 						[lazyLoad]="artist.picture || '/assets/app-icon-text.png'" />
 
@@ -46,7 +46,7 @@
 			</ng-container>
 			<ng-container *ngIf="tab === 0">
 				<div class="column" *ngFor="let album of albums"
-					[routerLink]="['/', { outlets: { modal: ['modal','albums', album.id] } }]">
+					[routerLink]="['/', { outlets: { modal: ['modal','albums', album._id] } }]">
 					<img class="lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
 					<div class="column-details">
 						<div class="title">{{ album.name }}</div>
@@ -56,11 +56,10 @@
 			</ng-container>
 		</div>
 
-		<div class="text-center" *ngIf="tab !== 2">
-			<a *ngIf="artists.length !== pagination.total" (click)="onScroll()">Load
+		<div *ngIf="canLoadMore" class="text-center">
+			<a (click)="onScroll()">Load
 				more</a>
-			<a *ngIf="albums.length !== pagination.total" (click)="onScroll()">Load
-				more</a>
+
 		</div>
 
 
@@ -70,7 +69,7 @@
 	<ng-container *ngIf="tab === 2">
 		<div class="playlists">
 			<div class="playlist" *ngFor="let playlist of playlists">
-				<div routerLink="/tracks" [queryParams]="{ playlist: playlist.id}" class="playlist-name">{{
+				<div routerLink="/tracks" [queryParams]="{ playlist: playlist._id}" class="playlist-name">{{
 					playlist.name }}
 				</div>
 				<div *ngIf="!playlist.readonly" class="playlist-actions">

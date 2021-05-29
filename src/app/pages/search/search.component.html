@@ -26,12 +26,12 @@
 			<div class="playlists">
 				<app-horizontal-scroll>
 					<ng-container *ngFor="let playlist of playlists">
-						<div *ngIf="playlist.id === 'FAVOURITES'" class="playlist" routerLink="/tracks"
+						<div *ngIf="playlist._id === 'FAVOURITES'" class="playlist" routerLink="/tracks"
 							[queryParams]="{liked: true}">
 							{{ playlist.name }}</div>
 
-						<div *ngIf="playlist.id !== 'FAVOURITES'" class="playlist" routerLink="/tracks"
-							[queryParams]="{playlist: playlist.id}">
+						<div *ngIf="playlist._id !== 'FAVOURITES'" class="playlist" routerLink="/tracks"
+							[queryParams]="{playlist: playlist._id}">
 							{{ playlist.name }}</div>
 					</ng-container>
 				</app-horizontal-scroll>
@@ -63,7 +63,7 @@
 				<swiper [config]="config">
 					<ng-container *ngFor="let artist of result.artists; ">
 						<ng-template swiperSlide>
-							<div [routerLink]="['/', { outlets: { modal: ['modal','artists', artist.id] } }]"
+							<div [routerLink]="['/', { outlets: { modal: ['modal','artists', artist._id] } }]"
 								class="artist">
 								<img class="lazyload" [lazyLoad]="artist.picture || '/assets/app-icon-text.png'" />
 								<div class="column-details">
@@ -100,7 +100,7 @@
 			<!--div class="scrollable">
 				<app-horizontal-scroll>
 					<ng-container *ngFor="let album of result.albums; ">
-						<div routerLink="/library/albums/{{ album.id }}" class="image-element">
+						<div routerLink="/library/albums/{{ album._id }}" class="image-element">
 							<img class="lazyload" [lazyLoad]="album.picture" />
 
 							<div class="column-details">
@@ -115,7 +115,7 @@
 				<swiper [config]="config">
 					<ng-container *ngFor="let album of result.albums; ">
 						<ng-template swiperSlide>
-							<div [routerLink]="['/', { outlets: { modal: ['modal','albums', album.id] } }]"
+							<div [routerLink]="['/', { outlets: { modal: ['modal','albums', album._id] } }]"
 								class="album">
 								<img class="lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
 								<div class="column-details">

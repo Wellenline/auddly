@@ -55,7 +55,7 @@ export class PlayerComponent implements OnInit {
 
 	public onLike(e) {
 		e.stopPropagation();
-		this.playerService.onLike(this.track.id).subscribe(() => {
+		this.playerService.onLike(this.track._id).subscribe(() => {
 			this.track.liked = !this.track.liked;
 			this.interfaceService.notify(`${this.track.name} ${this.track.liked ? "added to favourites" : "removed from favourites"}`, {
 				timeout: 3000,

@@ -88,10 +88,10 @@ export class QueueComponent implements OnInit {
 				action: this.onPlaylist.bind(this),
 			}, {
 				title: "More from artist",
-				route: "/library/artists/" + this.track.album.artist.id,
+				route: "/library/artists/" + this.track.album.artist._id,
 			}, {
 				title: "Go to album",
-				route: "/library/albums/" + this.track.album.id,
+				route: "/library/albums/" + this.track.album._id,
 			}, {
 				title: "Clear queue",
 				action: this.onClear.bind(this)
@@ -136,7 +136,7 @@ export class QueueComponent implements OnInit {
 
 	onLike(e) {
 		e.stopPropagation();
-		this.playerService.onLike(this.track.id).subscribe(() => {
+		this.playerService.onLike(this.track._id).subscribe(() => {
 			this.track.liked = !this.track.liked;
 			this.interfaceService.notify(`${this.track.name} ${this.track.liked ? "added to favourites" : "removed from favourites"}`, {
 				timeout: 3000,

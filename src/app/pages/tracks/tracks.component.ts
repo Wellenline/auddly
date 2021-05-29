@@ -26,8 +26,8 @@ export class TracksComponent implements OnInit {
 	public playlists = [];
 
 	public loading = true;
-	public genre: { name?: string, id?: number } = {};
-	public playlist: { name?: string, id?: number } = {};
+	public genre: { name?: string, _id?: number } = {};
+	public playlist: { name?: string, _id?: number } = {};
 	hostHeight$: Observable<number>;
 	public options: BottomSheetConfig = {
 		maxHeight: "80vh"
@@ -119,15 +119,15 @@ export class TracksComponent implements OnInit {
 			message: "Choose a playlist to filter",
 			closed: (index) => {
 				if (index !== false) {
-					const { id, name } = this.playlists[index];
+					const { _id, name } = this.playlists[index];
 					this.playlist = {
-						id,
+						_id,
 						name
 					};
 					this.router.navigate(["/tracks"], {
 						relativeTo: this.route,
 						queryParams: {
-							playlist: id,
+							playlist: _id,
 						}, queryParamsHandling: "merge",
 					});
 
@@ -144,15 +144,15 @@ export class TracksComponent implements OnInit {
 			message: "Choose a genre to filter",
 			closed: (index) => {
 				if (index !== false) {
-					const { id, name } = this.genres[index];
+					const { _id, name } = this.genres[index];
 					this.genre = {
-						id,
+						_id,
 						name
 					};
 					this.router.navigate(["/tracks"], {
 						relativeTo: this.route,
 						queryParams: {
-							genre: id,
+							genre: _id,
 						}, queryParamsHandling: "merge",
 					});
 
@@ -186,7 +186,7 @@ export class TracksComponent implements OnInit {
 			this.genres = response;
 
 			if (this.filter.genre) {
-				this.genre = this.genres.find((genre) => genre.id === Number(this.filter.genre));
+				this.genre = this.genres.find((genre) => genre._id === this.filter.genre);
 			}
 		});
 	}
@@ -196,7 +196,7 @@ export class TracksComponent implements OnInit {
 			this.playlists = response.playlists;
 			console.log(this.playlists);
 			if (this.filter.playlist) {
-				this.playlist = this.playlists.find((playlist) => playlist.id === Number(this.filter.playlist));
+				this.playlist = this.playlists.find((playlist) => playlist._id === this.filter.playlist);
 			}
 		});
 	}

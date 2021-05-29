@@ -92,7 +92,7 @@ export class AlbumComponent implements OnInit {
 		this.httpService.get(`/albums/${id}`).subscribe((response: any) => {
 			this.album = response;
 
-			this.getAlbums(this.album.artist.id);
+			this.getAlbums(this.album.artist._id);
 
 		}, (err) => {
 			console.log("Failed to load album", err);
@@ -104,7 +104,7 @@ export class AlbumComponent implements OnInit {
 	public getAlbums(id: string) {
 		this.loading = true;
 		this.httpService.get(`/albums?artist=${id}`).subscribe((response: any) => {
-			this.albums = response.albums.filter((album) => album.id !== this.album.id);
+			this.albums = response.albums.filter((album) => album._id !== this.album._id);
 		}, (err) => {
 			console.log(err);
 		}).add(() => {

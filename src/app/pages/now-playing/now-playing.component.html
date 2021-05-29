@@ -31,9 +31,9 @@
 						<a (click)="onPlaylist()">Add to playlist</a>
 
 
-						<a [routerLink]="['/', { outlets: { modal: ['modal','artists', track?.album?.artist?.id] } }]">More
+						<a [routerLink]="['/', { outlets: { modal: ['modal','artists', track?.album?.artist?._id] } }]">More
 							from artist</a>
-						<a [routerLink]="['/', { outlets: { modal: ['modal','albums',track?.album?.id] } }]">Go to
+						<a [routerLink]="['/', { outlets: { modal: ['modal','albums',track?.album?._id] } }]">Go to
 							album</a>
 						<div class="divider no-margin"></div>
 

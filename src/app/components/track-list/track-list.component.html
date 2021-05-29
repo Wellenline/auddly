@@ -1,4 +1,4 @@
-<div class="track {{ playerService.$track.getValue().id === track.id ? 'playing' : '' }}">
+<div class="track {{ playerService.$track.getValue()._id === track._id ? 'playing' : '' }}">
 	<div *ngIf="options.picture" appTooltip tooltip="{{ track.artist }} - {{ track.name }}" class="image">
 		<img class="lazyload" [lazyLoad]="track?.album?.picture || '/assets/app-icon-text.png'" />
 	</div>
@@ -39,10 +39,10 @@
 				<a (click)="onPlaylist()">Add to playlist</a>
 				<a (click)="onQueue()">Add to queue</a>
 
-				<a [routerLink]="['/', { outlets: { modal: ['modal','artists', track?.album?.artist?.id] } }]">More
+				<a [routerLink]="['/', { outlets: { modal: ['modal','artists', track?.album?.artist?._id] } }]">More
 					from artist</a>
-				<a [routerLink]="['/', { outlets: { modal: ['modal','albums',track?.album?.id] } }]">Go to album</a>
-				<a target="_blank" href="{{httpService.API_ENDPOINT}}/tracks/play/{{ track.id }}"
+				<a [routerLink]="['/', { outlets: { modal: ['modal','albums',track?.album?._id] } }]">Go to album</a>
+				<a target="_blank" href="{{httpService.API_ENDPOINT}}/tracks/play/{{ track._id }}"
 					download="{{track.name}}.mp3">Download</a>
 
 				<a *ngIf="track?.playlists?.length > 0" (click)="onRemoveFromPlaylist()">Remove from playlist</a>

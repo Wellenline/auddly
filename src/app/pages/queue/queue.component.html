@@ -114,8 +114,8 @@
 
 
 							<!--a (click)="onPlaylist()">Add to playlist</a-->
-							<a routerLink="/library/artists/{{track?.album?.artist?.id}}">More from artist</a>
-							<a routerLink="/library/albums/{{track?.album?.id}}">Go to album</a>
+							<a routerLink="/library/artists/{{track?.album?.artist?._id}}">More from artist</a>
+							<a routerLink="/library/albums/{{track?.album?._id}}">Go to album</a>
 							<div class="divider no-margin"></div>
 
 							<a (click)="onClear()">Clear queue</a>

@@ -7,7 +7,7 @@
 		</div>
 
 		<div class="details">
-			<div [routerLink]="['/', { outlets: { modal: ['modal', 'artists', album?.artist?.id] } }]"
+			<div [routerLink]="['/', { outlets: { modal: ['modal', 'artists', album?.artist?._id] } }]"
 				class="album-artist">
 				<img class="artist-picture" [src]="album?.artist?.picture || '/assets/app-icon-text.png'" />
 				{{ album?.artist?.name }}
@@ -30,7 +30,8 @@
 			<swiper [config]="config">
 				<ng-container *ngFor="let album of albums; ">
 					<ng-template swiperSlide>
-						<div [routerLink]="['/', { outlets: { modal: ['modal', 'albums', album?.id] } }]" class="album">
+						<div [routerLink]="['/', { outlets: { modal: ['modal', 'albums', album?._id] } }]"
+							class="album">
 							<img [src]="album.picture || '/assets/app-icon-text.png'" />
 							<div class="column-details">
 								<div class="title">{{ album.name }}</div>
