@@ -10,7 +10,7 @@ Auddly - Simple self hosted music streaming server
 ---------------------------
 <img src="./preview.png">
 
-This is an installable PWA frontend for [Wellenline/waveline-server](https://github.com/Wellenline/waveline-server)
+This is an installable PWA frontend for [Wellenline/auddly-server](https://github.com/Wellenline/auddly-server)
 
 You can either build it yourself or use the hosted version located at https://music.auddly.app
 
