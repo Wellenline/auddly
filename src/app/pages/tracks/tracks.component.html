@@ -56,10 +56,6 @@
 		<div *ngIf="filter.playlist" (click)="onClearPlaylist()" class="filter">
 			{{ playlist?.name }} <i class="feather-x"></i>
 		</div>
-
-		<div *ngIf="filter.sort" (click)="onSort()" class="filter">
-			Sort <i class="feather-chevrons-down"></i>
-		</div>
 	</app-horizontal-scroll>
 </div>
 
