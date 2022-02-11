@@ -1,0 +1,63 @@
+<div
+	class="app-toolbar {{ transparent ? 'transparent' : '' }} {{ absolute ? 'absolute' : ''}}  {{ sticky ? 'sticky' : ''}} {{ static ? 'static' : '' }}">
+
+	<div *ngIf="back" class="back">
+		<ng-container [ngTemplateOutlet]="backTemplate ? backTemplate : basicBack">
+
+		</ng-container>
+
+		<ng-template #basicBack>
+
+			<div (click)="pop()">
+
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+					stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+					class="ai ai-ArrowLeft">
+					<path d="M11 5l-7 7 7 7" />
+					<path d="M4 12h16" />
+				</svg>
+
+			</div>
+		</ng-template>
+	</div>
+
+	<div class="title">
+		{{ title }}
+	</div>
+	<div class="actions" *ngIf="actions.length > 0 || actionTemplate">
+
+
+		<ng-container [ngTemplateOutlet]="actionTemplate ? actionTemplate : basic">
+
+		</ng-container>
+		<ng-template #basic>
+			<app-dropdown #dropdown [config]="{right: true}" [header]="headerTemplate">
+				<ng-template #headerTemplate let-item="item">
+					<div (click)="item.onToggle()" class="dropdown-action-item"><i>
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+								fill="currentColor" stroke-width="2" class="ai ai-MoreVerticalFill">
+								<path fill-rule="evenodd" clip-rule="evenodd" d="M12 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z" />
+								<path fill-rule="evenodd" clip-rule="evenodd" d="M12 10a2 2 0 1 1 0 4 2 2 0 0 1 0-4z" />
+								<path fill-rule="evenodd" clip-rule="evenodd" d="M12 18a2 2 0 1 1 0 4 2 2 0 0 1 0-4z" />
+							</svg>
+						</i></div>
+				</ng-template>
+
+				<div class="dropdown-action-list">
+					<ng-container *ngFor="let action of actions">
+						{{ action.route }}
+						<a *ngIf="action.route" routerLink="{{action.route}}" [queryParams]="action.queryParams">
+							{{ action.title }}
+						</a>
+
+						<a *ngIf="action.action" (click)="action.action(action.params)">
+							{{ action.title }}
+						</a>
+					</ng-container>
+				</div>
+			</app-dropdown>
+		</ng-template>
+	</div>
+
+</div>
+<div *ngIf="!static && !sticky && filler" class="filler"></div>

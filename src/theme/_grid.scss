@@ -1,4 +1,35 @@
-// Grid mixin
+/*.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-gap: 1rem;
+
+    @media (max-width: 350px) {
+        grid-gap: 0rem;
+    }
+}
+*/
+$columns: 12;
+$base-gutter: 1rem;
+
+@function bp($bp) {
+    @return map-get($breakpoints, $bp);
+}
+
+$breakpoint-m: 48em;
+$breakpoints: (na: 0px,
+    // For BS grid
+    xs: 320px,
+    // Smartphone
+    sm: 600px,
+    // Tablets
+    md: 900px,
+    // Tablets Landscape and small desktops
+    lg: 1200px,
+    // Desktops
+    xl: 1800px,
+    // Large Desktop
+);
+
 @mixin gridset($bp) {
 
     @for $i from 1 through $columns {
@@ -11,7 +42,7 @@
         flex: 1;
         min-width: 1px;
     }
-    
+
     .width-auto\@#{$bp} {
         width: auto !important;
     }
@@ -24,15 +55,11 @@
 
     @media (min-width: bp(sm)) {
         display: flex;
-        flex-wrap: wrap;
         box-sizing: border-box;
-        margin-left: -($base-gutter/2);
-        margin-right: -($base-gutter/2);
+        gap: 1rem;
 
         >* {
             box-sizing: border-box;
-            padding-left: $base-gutter/2;
-            padding-right: $base-gutter/2;
         }
     }
 
@@ -43,15 +70,9 @@
     }
 
     &.collapse {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
+        gap: 0;
 
-        >* {
-            padding-left: 0 !important;
-            padding-right: 0 !important;
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-        }
+        >* {}
     }
 }
 

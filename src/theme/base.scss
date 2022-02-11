@@ -1,7 +1,135 @@
-$base-gutter: 2em;
-$columns: 12;
+@import "./_normalize.scss";
+@import "./_form.scss";
+@import "./_grid.scss";
+@import "./_dialog.scss";
+@import "./_button.scss";
+@import "./_render.scss";
+@import "./_modal.scss";
+@import "./_panel.scss";
 
-$base-border-radius: 5px;
+.relative {
+    position: relative;
+}
+
+.mx-auto {
+    margin: 0 auto;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-white {
+    color: white;
+}
+
+.text-black {
+    color: black;
+}
+
+.text-primary {
+    color: var(--primary);
+}
+
+.text-info {
+    color: var(--info);
+}
+
+.text-success {
+    color: var(--success);
+}
+
+.text-warning {
+    color: var(--warning);
+}
+
+.text-danger {
+    color: var(--danger);
+}
+
+.text-meta {
+    color: var(--gray-500);
+    font-size: 0.94rem;
+    line-height: 1.5;
+
+}
+
+.text-lead {
+    color: var(--foreground-color);
+    font-size: 1.17rem;
+    line-height: 1;
+
+}
+
+.divider {
+    height: 1px;
+    background-color: var(--border-primary);
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    &.no-margin {
+        margin: 0;
+    }
+}
+
+@for $i from 0 to 5 {
+    .p-#{$i* 10} {
+        padding: $i * 10px;
+    }
+
+    .m-#{$i* 10} {
+        margin: $i * 10px;
+    }
+
+    .p-#{$i* 10} {
+        padding: $i * 10px;
+    }
+
+    .p-t-#{$i* 10} {
+        padding-top: $i * 10px;
+    }
+
+    .p-b-#{$i* 10} {
+        padding-bottom: $i * 10px;
+    }
+
+    .p-l-#{$i* 10} {
+        padding-left: $i * 10px;
+    }
+
+    .p-r-#{$i* 10} {
+        padding-right: $i * 10px;
+    }
+
+    .m-#{$i* 10} {
+        margin: $i * 10px;
+    }
+
+    .m-t-#{$i* 10} {
+        margin-top: $i * 10px;
+    }
+
+    .m-b-#{$i* 10} {
+        margin-bottom: $i * 10px;
+    }
+
+    .m-l-#{$i* 10} {
+        margin-left: $i * 10px;
+    }
+
+    .m-r-#{$i* 10} {
+        margin-right: $i * 10px;
+    }
+}
+
 
 @function bp($bp) {
     @return map-get($breakpoints, $bp);
@@ -21,32 +149,86 @@ $breakpoints: (na: 0px,
     // Large Desktop
 );
 
-$text-dark: #363636 !default;
-$text-light: #ffffff !default;
-$text-lead-size: 1.17em;
 
-$text-meta-color: #7e7e7e;
-$text-meta-size: 0.94rem;
+@mixin min($bp, $max: "null", $device: "screen") {
+    @if $max=="null" {
+        @media only #{$device} and (min-width: #{$bp}) {
+            @content;
+        }
+    }
+
+    @else {
+        @media only #{$device} and (min-width: #{$bp}) and (max-width: #{$max}) {
+            @content;
+        }
+    }
+}
+
+@function container($container-size, $true-val: false) {
+    @return map-get($container-sizes, $container-size);
+}
+
+$container-sizes: (xs: map-get($breakpoints, xs) - 20px,
+
+    sm: map-get($breakpoints, sm) - 30px,
+    md: map-get($breakpoints, md) - 40px,
+    lg: map-get($breakpoints, lg) - 50px,
+    xl: map-get($breakpoints, xl) - 400px);
 
 
-$default: #fff; // efefef
-$primary: #4657fd;
-$info: #11abfe;
-$success: #00d090;
-$warning: #f1c90b;
-$danger: #e74b3c;
-$invert: #2f2e35;
+.mx-auto {
+    margin: 0 auto;
+}
 
 
-@import "./_normalize.scss";
-@import "./_util.scss";
-@import "./_grid.scss";
-@import "./_button.scss";
-@import "./_panel.scss";
-@import "./_tooltip.scss";
-@import "./_form.scss";
-@import "./_switch.scss";
-@import "./_table.scss";
-@import "./_modal.scss";
-@import "./_loading.scss";
-@import "./_badge.scss"; 
+
+.container {
+    padding-right: 1rem;
+    padding-left: 1rem;
+
+    &:not(.is-fluid) {
+        margin: 0 auto;
+
+        @each $bp,
+        $container-size in $container-sizes {
+            @include min(#{bp(#{$bp})
+        }
+
+        ) {
+            width: 100% !important;
+            max-width: container(#{$bp});
+        }
+    }
+}
+
+&.is-fluid {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 20px;
+}
+
+}
+
+
+.flex {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+
+    gap: 1rem;
+
+    &.column {
+        flex-direction: column;
+    }
+
+    &.center .right,
+    &.right {
+        margin-left: auto;
+        justify-content: flex-end;
+    }
+
+    &.left {
+        margin-right: auto;
+        justify-content: flex-start;
+    }
+}

@@ -44,6 +44,10 @@ const routes: Routes = [
 			{ path: "queue", component: QueueComponent, canActivate: [AuthGuard] },
 			{ path: "playing", component: NowPlayingComponent, canActivate: [AuthGuard] },
 
+
+			{ path: "music", loadChildren: () => import("./modules/music/music.module").then(m => m.MusicModule) },
+
+
 		]
 	},
 

@@ -1,118 +1,29 @@
-@mixin panel-generator($background, $color) {
-    background: $background;
-    color: $color;
-    padding: 15px;
-    display: block;
-    border-radius: $base-border-radius;
-    transition: all .4s ease-in-out;
-    outline: none;
-
-    @if $background==#fff {
-        border: 1px solid darken($background, 5);
-    }
-
-    text-decoration: none;
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p {
-        color: $color;
-        margin: 0;
-    }
-
-    .text-lead {
-        color: $color !important;
-    }
-
-    .text-meta {
-        color: $color !important;
-        opacity: 0.6;
-    }
-
-
-    &.hover {
-        cursor: pointer;
-
-        &:hover {
-            color: $color;
-            background-color: darken($background, 5);
-
-            @if $background==#fff {
-                background-color: $background;
-
-                border: 1px solid darken($background, 20);
-            }
-        }
-
-        &.shadow {
-            box-shadow: 0 2px 8px 6px rgb(17 17 18 / 4%), 0 1px 1px rgba(19, 20, 20, 0.02);
-        }
-
-
-    }
-
-}
-
 .panel {
-    @include panel-generator(#fff, $text-dark);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    padding: 15px;
+    margin: 15px 0;
+
+    i {
+        font-size: 1.5rem;
+        margin-right: 15px;
+    }
 
     &.default {
-        @include panel-generator($default, $text-dark);
+        background: var(--border-primary);
 
-    }
-
-    &.primary {
-        @include panel-generator($primary, $text-light);
-    }
-
-    &.success {
-        @include panel-generator($success, $text-light);
-    }
-
-    &.danger {
-        @include panel-generator($danger, $text-light);
     }
 
     &.warning {
-        @include panel-generator($warning, $text-light);
+        background: #f19292;
+        color: black;
     }
 
-    &.info {
-        @include panel-generator($info, $text-light);
+    &.success {
+        background: #92f19f;
+        color: black;
     }
 
-    &.invert {
-        @include panel-generator($invert, $text-light);
-    }
-
-    &.border {
-        border: 1px solid #eee;
-    }
-
-    &.shade {
-        background-color: #f9f9f9;
-    }
-
-    &.shadow {
-        box-shadow: 0 2px 4px rgba(17, 17, 18, .02), 0 1px 1px rgba(19, 20, 20, .02);
-    }
-
-    /* &.invert {
-        color: white;
-        background-color: black;
-
-        &.hover {
-            &:hover {
-                color: black;
-                background-color: white;
-                box-shadow: 0 2px 8px 6px rgb(17 17 18 / 4%),
-                    0 1px 1px rgba(19, 20, 20, 0.02);
-            }
-
-        }
-    }*/
 }

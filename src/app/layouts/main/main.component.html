@@ -1,4 +1,119 @@
 <div class="app">
+	<div class="app-navigation">
+
+		<div class="logo"><img src="/assets/app-icon.png"></div>
+
+		<div appRipple routerLink="/music" [routerLinkActive]="['active']">
+			<div class="icon">
+				<i class="ph-headphones"></i>
+
+
+			</div>
+			<div class="text">
+				Music
+			</div>
+		</div>
+
+		<div appRipple routerLink="/products" [routerLinkActive]="['active']">
+			<div class="icon">
+				<i class="ph-shopping-cart-simple"></i>
+
+
+			</div>
+			<div class="text">
+				Products
+			</div>
+		</div>
+
+		<div appRipple routerLink="/orders" [routerLinkActive]="['active']">
+			<div class="icon">
+				<i class="ph-bag"></i>
+
+			</div>
+			<div class="text">
+				Orders
+			</div>
+		</div>
+
+		<div appRipple routerLink="/designer" [routerLinkActive]="['active']">
+			<div class="icon">
+				<i class="ph-diamonds-four"></i>
+			</div>
+			<div class="text">
+				Designer
+			</div>
+		</div>
+
+		<div appRipple routerLink="/settings" [routerLinkActive]="['active']">
+			<div class="icon">
+				<i class="ph-gear-six"></i>
+
+
+			</div>
+			<div class="text">
+				Settings
+			</div>
+		</div>
+
+
+		<div style="margin-top: auto;" appRipple [dropdownPosition]="{
+			originX: 'end',
+			originY: 'bottom',
+			overlayX: 'end',
+			overlayY: 'top',
+			offsetY: 0,
+			offsetX: 0
+		}" [dropdownTriggerFor]="dropdown">
+			<div class="icon">
+				<i class="ph-user-circle"></i>
+			</div>
+			<app-dropdown #dropdown>
+				<div (click)="theme.onToggle()" class="dropdown-item">
+					<app-theme-toggle style="display: none;" #theme></app-theme-toggle>
+					{{ theme.themeService.theme === 'dark' ? 'Light' : 'Dark' }}
+
+					<i *ngIf="theme.themeService.theme === 'dark'" class="ph-sun-dim"></i>
+					<i *ngIf="theme.themeService.theme !== 'dark'" class="ph-moon"></i>
+				</div>
+				<div class="dropdown-item">Help & Support <i class="ph-lifebuoy"></i>
+
+				</div>
+				<div class="divider no-margin"></div>
+
+				<div class="dropdown-item">Notifications <i class="ph-bell"></i>
+
+				</div>
+
+				<div class="dropdown-item">Logout <i class="ph-sign-out"></i>
+				</div>
+			</app-dropdown>
+
+		</div>
+
+		<!--nav appRipple routerLink="/settings" [routerLinkActive]="['active']">
+			<div class="icon">
+				<akar-icon name="gear" size="24"></akar-icon>
+
+			</div>
+			<div class="text">
+				Settings
+
+			</div>
+		</nav-->
+
+	</div>
+
+	<div class="app-content">
+		<router-outlet></router-outlet>?
+	</div>
+	<div class="app-player">
+		<app-player></app-player>
+
+	</div>
+</div>
+
+
+<!--div class="app">
 	<div class="app-content">
 		<div class="container mx-auto">
 			<router-outlet></router-outlet>
@@ -45,9 +160,4 @@
 	</div>
 
 
-</div>
-
-<app-notify></app-notify>
-<app-dialog></app-dialog>
-
-<app-tooltip></app-tooltip>
+</div-->

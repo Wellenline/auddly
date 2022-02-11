@@ -1,0 +1,14 @@
+.theme {
+    svg {
+        width: 20px;
+        color: #94949f;
+        fill: transparent;
+        transition: 0.5s;
+        cursor: pointer;
+
+        &.active {
+            fill: #ffce45;
+            stroke: #ffce45;
+        }
+    }
+}

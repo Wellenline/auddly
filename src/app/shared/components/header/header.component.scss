@@ -1,0 +1,68 @@
+.app-toolbar {
+    position: fixed;
+    background-color: var(--background-primary);
+    // box-shadow: 0 2px 4px rgb(0 0 0 / 6%);
+    top: 0;
+    width: 100%;
+    left: 0;
+    right: 0;
+    height: 60px;
+    z-index: 6;
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 3px 3px 0 rgb(0 0 0 / 5%), 0 5px 15px 0 rgb(0 0 0 / 5%);
+    align-items: center;
+
+    &.transparent {
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+    &.static {
+        position: static;
+    }
+
+    &.absolute {
+        position: absolute;
+        top: 0px;
+    }
+
+    &.sticky {
+        position: sticky;
+        top: 0px;
+    }
+
+    .back {
+        padding: 15px;
+        background-color: transparent;
+        border: none;
+        color: var(--text-primary);
+        display: flex;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        div {
+            display: grid;
+            place-content: center;
+        }
+    }
+
+    .title {
+        font-size: 1.2rem;
+        padding: 15px;
+        flex-grow: 1;
+    }
+
+    .actions {
+        padding: 15px;
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+.filler {
+    padding-top: 60px;
+}

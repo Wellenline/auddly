@@ -1,127 +1,132 @@
-/*.button {
-    background: white;
-    padding: 15px;
+button {
+    /*border: none;
+    appearance: none;
+    border-radius: .75rem;
+    border-width: 2px;
+    font-size: .85rem;
+    padding: .75rem;
+    background: none;
+
+    align-items: center;
+    display: inline-flex;
+    font-weight: 700;
+    justify-content: center;
+    line-height: 1;
+    text-decoration: none;
+    transition-duration: .15s;
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    white-space: nowrap;
+    height: 2.75rem;
+    color: var(--text-primary);
     position: relative;
-    border: 2px solid #f4f4f4;
-    border-radius: $base-border-radius;
-    transition: all .4s ease-in-out;
-    outline: none;
-    box-shadow: 0 2px 4px rgba(17, 17, 18, .02), 0 1px 1px rgba(19, 20, 20, .02);
+    overflow: hidden;*/
 
-    &:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-    }
-
-    &:hover:not(:disabled) {
-        border: 2px solid black;
-        cursor: pointer;
-    }
-
-    &.block {
-        width: 100%;
-        display: block;
-    }
-
-    &.primary {
-        background-color: aqua;
-    }
-
-    &.invert {
-        background-color: black;
-        color: white;
-        border: 2px solid black;
-
-        &:hover {
-            background-color: lighten($color: #000000, $amount: 6.8);
-            border: 2px solid lighten($color: #000000, $amount: 6.8);
-
-
-        }
-    }
-
-
-}*/
-
-@mixin button-base {
-    font-family: inherit;
-    font-size: inherit;
-    padding: 15px;
-
-    border: none;
-    outline: none;
-    border-radius: $base-border-radius;
-    text-decoration: none !important;
- transition: transform .4s ease-in-out;
-    box-shadow: 0 2px 4px rgba(17, 17, 18, .04), 0 1px 1px rgba(19, 20, 20, .06);
-
-    &:active {
-        transform: translateY(2px);
-    }
-}
-
-@mixin button-generator($background, $color) {
-    @include button-base();
-
-    color: $color;
-    background-color: $background;
-    border: 1px solid transparent;
+    transition-duration: .15s;
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    font: inherit;
+    line-height: 1;
+    background-color: var(--white);
+    border: 2px solid var(--black);
+    color: var(--black);
+    padding: 0.5em 1em;
+    border-radius: 6px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    min-height: 44px;
+    // font-size: .85rem;
 
     &:hover {
+        background-color: var(--black);
+        color: var(--white);
         cursor: pointer;
-        color: $color;
-        background-color: darken($background, 5);
     }
 
-    &:disabled {
-        background-color: lighten($background, 20);
-        cursor: not-allowed;
-        // opacity: .5;
+    i {
+        font-size: 1.5rem;
     }
 
-    &.block {
-        width: 100%;
-    }
-
-    &.outline {
-        background-color: white;
-        color: $background;
-        border-color: $background;
+    &.transparent {
+        background-color: transparent;
+        border-color: transparent;
 
         &:hover {
-
-            border-color: darken($background, 5) !important;
-
+            background-color: var(--black);
+            color: var(--white);
         }
-    }
-}
-
-.button {
-    @include button-generator($default, $text-dark);
-
-    &.primary {
-        @include button-generator($primary, $text-light);
-    }
-
-    &.success {
-        @include button-generator($success, $text-light);
     }
 
     &.danger {
-        @include button-generator($danger, $text-light);
+        border-color: #f19292;
+        color: #ff5252;
+
+        &:hover {
+            background-color: #ff5252;
+            color: white;
+        }
     }
 
-    &.warning {
-        @include button-generator($warning, $text-light);
+    /* &.primary {
+        background-color: var(--black);
+        border-color: var(--black);
+        color: var(--white);
+
+        &:focus,
+        &:hover {
+            color: #faf594;
+            background-color: #0d0d0d !important;
+        }
+    }*/
+
+    /*
+    svg {
+        fill: var(--text-primary);
     }
 
-    &.info {
-        @include button-generator($info, $text-light);
+    i {
+        font-size: 1.5rem;
     }
 
-    &.invert {
-        @include button-generator($invert, $text-light);
+    &:focus,
+    &:hover {
+        background-color: var(--background-tertiary);
+        cursor: pointer;
+    }
+
+    akar-icon {
+        margin-left: 10px;
+    }
+
+    &.primary {
+        background-color: var(--accent-primary);
+        border-color: var(--accent-primary);
+        color: white;
+
+        svg {
+            fill: white;
+        }
+
+        &:focus,
+        &:hover {
+            color: #faf594;
+            background-color: #0d0d0d !important;
+        }
+    }
+
+    &.transparent {
+        background-color: none;
+
+        &:hover {
+            background-color: var(--background-tertiary);
+        }
     }
 
 
+    &+button {
+        margin-left: 10px;
+    }*/
 }

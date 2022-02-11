@@ -1,0 +1,47 @@
+.toast {
+    //  position: fixed;
+    margin-bottom: calc(10px + env(safe-area-inset-bottom));
+
+    border-radius: 5px;
+    width: calc(100vw - 30px);
+    margin: 0px 15px;
+    min-width: 20%;
+    z-index: 99999;
+    transform-origin: center center;
+
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: row;
+
+    width: calc(100% - 30px);
+
+    margin-bottom: calc(10px + env(safe-area-inset-bottom));
+
+    @media screen and (min-width: 930px) {
+        z-index: 9999;
+
+        width: auto;
+        //left: 50%;
+        // transform: translate(-50%, -10px);
+    }
+
+    &-text {
+        flex-grow: 1;
+        padding: 15px;
+    }
+
+    &-action {
+        padding: 15px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    &.success {
+        background-color: rgb(0, 173, 72);
+    }
+
+    &.danger {
+        background-color: rgb(173, 35, 0);
+    }
+}

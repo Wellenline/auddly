@@ -5,77 +5,78 @@
 
 :root,
 html[data-theme="light"] {
-	--accent-color: #3ec7c2;
+    --accent-color: #3ec7c2;
 
-	--swiper-theme-color: #ffffff !important;
-	--cropper-outline-color: rgba(0, 0, 0, 0.8);
-	--cropper-overlay-color: black;
+    --swiper-theme-color: #ffffff !important;
+    --cropper-outline-color: rgba(0, 0, 0, 0.8);
+    --cropper-overlay-color: black;
 
-	--background-color: #fff;
-	--background-color-2: #f2f2f2;
-	--background-color-3: #e9e9e9;
-	--background-color-4: #f9f9f9;
-	--background-color-5: #fbfbfb;
-	--input-color: #181818;
+    --background-color: #fff;
+    --background-color-2: #f2f2f2;
+    --background-color-3: #e9e9e9;
+    --background-color-4: #f9f9f9;
+    --background-color-5: #fbfbfb;
+    --input-color: #181818;
 
-	--border-color: #eee;
-	--highlight-color: #2d63e9;
+    --border-color: #eee;
+    --highlight-color: #2d63e9;
 
-	--foreground-color: #181818;
-	--menu-add-color: #000;
+    --foreground-color: #181818;
+    --menu-add-color: #000;
 
-	--dark-color: #181818;
-	--logo-filter: inherit;
-	--glass: 250, 250, 250;
-	--glass-opacity: 0.8;
+    --dark-color: #181818;
+    --logo-filter: inherit;
+    --glass: 250, 250, 250;
+    --glass-opacity: 0.8;
 }
 
 html[data-theme="dark"] {
-	--accent-color: #3ec7c2;
+    --accent-color: #3ec7c2;
 
-	--swiper-theme-color: #ffffff !important;
-	--cropper-outline-color: rgba(0, 0, 0, 0.8);
-	--cropper-overlay-color: black;
+    --swiper-theme-color: #ffffff !important;
+    --cropper-outline-color: rgba(0, 0, 0, 0.8);
+    --cropper-overlay-color: black;
 
-	--background-color: #111;
-	--background-color-2: #1c1c1c;
-	--background-color-3: #303030;
-	--background-color-4: #222222;
-	--background-color-5: #222222;
+    --background-color: #000;
+    --background-color-2: #0e0e0e;
+    --background-color-3: #181818;
+    --background-color-4: #202020;
+    --background-color-5: #222222;
 
-	--border-color: #303030;
-	--highlight-color: #2d63e9;
-	--input-color: #fff;
+    --border-color: #201f1f;
+    --highlight-color: #2d63e9;
+    --input-color: #fff;
 
-	--foreground-color: #f7f7f9;
-	--menu-add-color: #303030;
+    --foreground-color: #f7f7f9;
+    --menu-add-color: #303030;
 
-	--dark-color: #181818;
-	--logo-filter: brightness(0) invert(1);
+    --dark-color: #181818;
+    --logo-filter: brightness(0) invert(1);
 
-	--shade-loading: grayscale(2.8) brightness(0.12);
-	--glass: 24, 24, 24;
-	--glass-opacity: 0.9;
+    --shade-loading: grayscale(2.8) brightness(0.12);
+    --glass: 24, 24, 24;
+    --glass-opacity: 0.9;
 }
 
 *,
 *::before,
 *::after {
-	box-sizing: border-box;
-	-webkit-tap-highlight-color: transparent;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 ::-webkit-scrollbar {
-	width: 0px;
-	height: 0px;
-	background: rgb(24, 24, 24);
+    width: 0px;
+    height: 0px;
+    background: rgb(24, 24, 24);
 }
+
 /*
 ::-webkit-scrollbar-track {
 	background: #f1f1f1;
@@ -92,70 +93,72 @@ html[data-theme="dark"] {
 input,
 input:before,
 input:after {
-	-webkit-user-select: initial;
-	-khtml-user-select: initial;
-	-moz-user-select: initial;
-	-ms-user-select: initial;
-	user-select: initial;
-}
-html,
-body {
-	margin: 0;
-	background-color: var(--background-color);
+    -webkit-user-select: initial;
+    -khtml-user-select: initial;
+    -moz-user-select: initial;
+    -ms-user-select: initial;
+    user-select: initial;
 }
 
-@import "./assets/feather.css";
+html,
+body {
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--foreground-color);
+}
 
 :not(input):not(textarea),
 :not(input):not(textarea)::after,
 :not(input):not(textarea)::before {
-	-webkit-user-select: none;
-	user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 input,
 button,
 textarea,
 :focus {
-	outline: none; // You should add some other style for :focus to help UX/a11y
+    outline: none; // You should add some other style for :focus to help UX/a11y
 }
 
 input,
 select,
 textarea {
-	//background-color: var(--background-color-2) !important;
-	//color: var(--foreground-color) !important;
-	//box-shadow: none !important;
-	//border: 1px solid var(--border-color) !important;
+    //background-color: var(--background-color-2) !important;
+    //color: var(--foreground-color) !important;
+    //box-shadow: none !important;
+    //border: 1px solid var(--border-color) !important;
 }
+
 * {
-	&:focus {
-		outline: none;
-	}
+    &:focus {
+        outline: none;
+    }
 }
 
 a {
-	color: #333;
-	text-decoration: none;
-	// border-bottom: 1px dashed;
+    color: #333;
+    text-decoration: none;
+    // border-bottom: 1px dashed;
 
-	&:focus,
-	&:hover {
-		color: black;
-		cursor: pointer;
-		text-decoration: none;
-	}
+    &:focus,
+    &:hover {
+        color: black;
+        cursor: pointer;
+        text-decoration: none;
+    }
 }
 
 .lazyload {
-	transition: opacity 1s;
-	opacity: 0;
-	object-fit: cover;
+    transition: opacity 1s;
+    opacity: 0;
+    object-fit: cover;
 }
 
 .ng-lazyloaded {
-	opacity: 1;
+    opacity: 1;
 }
+
 /*
 .overflow-text {
 	position: relative;
@@ -181,72 +184,78 @@ a {
 }*/
 
 .dropdown-action-item {
-	font-size: 1.2rem;
-	padding: 5px;
-	border-radius: 5px;
-	display: flex;
-	align-items: center;
-	&:hover {
-		background-color: var(--accent-color);
-		color: white;
-		cursor: pointer;
-	}
+    font-size: 1.2rem;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        background-color: var(--accent-color);
+        color: white;
+        cursor: pointer;
+    }
 }
 
 .dropup-content {
-	background-color: rgba(0, 0, 0, 0.8) !important;
-	backdrop-filter: blur(50px) !important;
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: blur(50px) !important;
 }
 
 .dropdown-action-list {
-	display: flex;
-	flex-direction: column;
-	box-shadow: rgba(17, 17, 18, 0.04) 0 2px 4px, rgba(19, 20, 20, 0.06) 0 1px 1px;
-	a {
-		color: white;
-		&:first-of-type {
-			border-top-left-radius: 5px;
-			border-top-right-radius: 5px;
-		}
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(17, 17, 18, 0.04) 0 2px 4px, rgba(19, 20, 20, 0.06) 0 1px 1px;
 
-		&:last-of-type {
-			border-bottom-left-radius: 5px;
-			border-bottom-right-radius: 5px;
-		}
-		padding: 15px;
-		// white-space: nowrap;
+    a {
+        color: white;
 
-		&:hover {
-			background-color: var(--accent-color);
+        &:first-of-type {
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
 
-			color: #fff;
-			cursor: pointer;
-		}
+        &:last-of-type {
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
 
-		i {
-			text-align: right;
-			float: right;
-		}
-	}
+        padding: 15px;
+        // white-space: nowrap;
+
+        &:hover {
+            background-color: var(--accent-color);
+
+            color: #fff;
+            cursor: pointer;
+        }
+
+        i {
+            text-align: right;
+            float: right;
+        }
+    }
 }
 
 .highlight {
-	font-size: 2.7rem;
-	color: var(--foreground-color);
-	font-weight: 600;
-	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-	margin-bottom: 10px;
+    font-size: 2.7rem;
+    color: var(--foreground-color);
+    font-weight: 600;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 10px;
 }
+
 .container {
-	padding-left: 0px !important;
-	padding-right: 0px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
 }
+
 @media all and (max-width: 1000px) {
-	.container {
-		padding-left: 0px !important;
-		padding-right: 0px !important;
-		min-width: 100% !important;
-		max-width: 100% !important;
-		width: 100% !important;
-	}
+    .container {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        width: 100% !important;
+    }
 }

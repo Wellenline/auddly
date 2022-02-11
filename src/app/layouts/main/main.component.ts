@@ -11,16 +11,28 @@ import { ThemeService } from "src/app/services/theme.service";
 })
 export class MainComponent implements OnInit {
 
-	constructor(private themeService: ThemeService) { }
-	ngOnInit() {
-		const color = localStorage.getItem("accent-color");
-		if (color) {
-			document.documentElement.style.setProperty("--accent-color", color);
-		}
-	}
-	@HostListener("document:keypress", ["$event"])
-	handleKeyboardEvent(event: KeyboardEvent) {
-		//
+	constructor(private router: Router) { }
+
+	ngOnInit(): void {
 	}
 
+
+	public theme() {
+		const currentTheme = document.documentElement.getAttribute("data-theme");
+		let targetTheme = "light";
+
+		if (currentTheme === "light") {
+			targetTheme = "dark";
+		}
+
+		document.documentElement.setAttribute("data-theme", targetTheme);
+	}
+	ngAfterViewInit() {
+
+	}
+
+	public onLogout() {
+		// this.authService.clear();
+		this.router.navigate(["/login"]);
+	}
 }

@@ -77,7 +77,7 @@ export class HammerConfig extends HammerGestureConfig {
 		BrowserModule,
 		HttpClientModule,
 		ReactiveFormsModule,
-		SharedModule,
+		// SharedModule,
 		FormsModule,
 		CommonModule,
 		SwiperModule,
