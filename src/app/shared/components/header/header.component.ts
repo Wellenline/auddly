@@ -1,5 +1,5 @@
 import { Location } from "@angular/common";
-import { Component, ElementRef, Input, OnInit } from "@angular/core";
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
 @Component({
 	selector: "app-header",
@@ -20,6 +20,8 @@ export class HeaderComponent implements OnInit {
 	@Input() actions: any[] = [];
 	@Input() public actionTemplate: ElementRef | any;
 	@Input() public backTemplate: ElementRef | any;
+	@Input() backPreventDefault = false;
+	@Output() onClose = new EventEmitter();
 
 	constructor(private location: Location) { }
 
@@ -28,6 +30,9 @@ export class HeaderComponent implements OnInit {
 
 
 	public pop() {
+		if (this.backPreventDefault) {
+			return this.onClose.emit();
+		}
 		this.location.back();
 	}
 

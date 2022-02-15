@@ -10,7 +10,7 @@ export class ThemeService {
 	constructor(private meta: Meta) {
 		if (this.theme) {
 			document.documentElement.setAttribute("data-theme", this.theme);
-			this.meta.updateTag({ name: 'theme-color', content: this.theme === "dark" ? "#000000" : "#ffffff" });
+			this.meta.updateTag({ name: "theme-color", content: this.theme === "dark" ? "#000000" : "#ffffff" });
 
 		}
 	}
@@ -27,7 +27,7 @@ export class ThemeService {
 		localStorage.setItem("theme", targetTheme);
 
 		this.theme = targetTheme;
-		this.meta.updateTag({ name: 'theme-color', content: targetTheme === "dark" ? "#000000" : "#ffffff" });
+		this.meta.updateTag({ name: "theme-color", content: targetTheme === "dark" ? "#000000" : "#ffffff" });
 
 		if ((window as any).nsWebViewBridge) {
 			(window as any).nsWebViewBridge.emit("theme", { color: this.theme === "dark" ? "#1a1a1a" : "#ffffff" });

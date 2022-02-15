@@ -1,16 +1,17 @@
 .app-toolbar {
     position: fixed;
-    background-color: var(--background-primary);
+    background-color: var(--background-color);
     // box-shadow: 0 2px 4px rgb(0 0 0 / 6%);
     top: 0;
     width: 100%;
     left: 0;
     right: 0;
-    height: 60px;
+    height: calc(env(safe-area-inset-top) + 60px);
     z-index: 6;
     color: var(--text-primary);
     display: flex;
     flex-direction: row;
+    padding-top: env(safe-area-inset-top);
     box-shadow: 0 3px 3px 0 rgb(0 0 0 / 5%), 0 5px 15px 0 rgb(0 0 0 / 5%);
     align-items: center;
 
@@ -52,7 +53,7 @@
 
     .title {
         font-size: 1.2rem;
-        padding: 15px;
+        padding: 0px 5px;
         flex-grow: 1;
     }
 
@@ -64,5 +65,5 @@
 }
 
 .filler {
-    padding-top: 60px;
+    padding-top: calc(env(safe-area-inset-top) + 60px);
 }

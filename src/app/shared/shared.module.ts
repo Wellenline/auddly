@@ -21,6 +21,9 @@ import { AvatarComponent } from "./components/avatar/avatar.component";
 import { LazyLoadImageModule } from "ng-lazyload-image";
 import { CdkTreeModule } from "@angular/cdk/tree";;
 import { TagInputComponent } from "./components/tag-input/tag-input.component";
+import { InfiniteScrollComponent } from "./components/infinite-scroll/infinite-scroll.component";
+import { SizePipe } from "./pipes/custom/size.pipe";
+import { FormatSecondsPipe } from "./pipes/custom/format-seconds.pipe";
 
 
 
@@ -37,9 +40,11 @@ import { TagInputComponent } from "./components/tag-input/tag-input.component";
 		ThemeToggleComponent,
 		HeaderComponent,
 		ModalComponent,
-
+		SizePipe,
+		FormatSecondsPipe,
 		AvatarComponent,
-		TagInputComponent
+		TagInputComponent,
+		InfiniteScrollComponent
 
 	],
 	imports: [
@@ -77,7 +82,11 @@ import { TagInputComponent } from "./components/tag-input/tag-input.component";
 		ModalComponent,
 		AvatarComponent,
 		LazyLoadImageModule,
-		TagInputComponent
+		TagInputComponent,
+		InfiniteScrollComponent,
+		SizePipe,
+		FormatSecondsPipe,
+
 
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]

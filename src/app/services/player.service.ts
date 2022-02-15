@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { InterfaceService } from "../modules/shared/services/interface.service";
 import { HttpService } from "./http.service";
 
 export interface ITrack {
@@ -45,7 +44,7 @@ export class PlayerService {
 	public repeat = localStorage.getItem("repeat") === "true";
 	public loop = false;
 
-	constructor(private httpService: HttpService, private interfaceService: InterfaceService) {
+	constructor(private httpService: HttpService) {
 		this.audio = new Audio();
 
 		this.audio.addEventListener("timeupdate", this._onProgress.bind(this));
@@ -271,7 +270,7 @@ export class PlayerService {
 	public onAddToPlaylist(track: ITrack) {
 		console.log(track.playlists);
 		this.httpService.get(`/playlists`).subscribe((response: { playlists: [{ name: any, _id: number }] }) => {
-			this.interfaceService.dialog.show({
+			/*this.interfaceService.dialog.show({
 				items: response.playlists.map((playlist) => playlist.name),
 				type: "picker",
 				title: "Playlist",
@@ -287,12 +286,12 @@ export class PlayerService {
 						}
 					}
 				},
-			});
+			});*/
 		});
 	}
 
 	public onRemoveFromPlaylist(track: ITrack) {
-		this.interfaceService.dialog.show({
+		/*this.interfaceService.dialog.show({
 			items: track.playlists.map((playlist) => playlist.name),
 			type: "picker",
 			title: "Playlist",
@@ -305,7 +304,7 @@ export class PlayerService {
 
 				}
 			},
-		});
+		});*/
 	}
 
 
@@ -313,14 +312,14 @@ export class PlayerService {
 		this.httpService.post(`/playlists/${playlist._id}`, {
 			track: track._id,
 		}).subscribe((response) => {
-			this.interfaceService.notify(`${track.name} added to ${playlist.name}`);
+			// this.interfaceService.notify(`${track.name} added to ${playlist.name}`);
 			track.playlists.push(playlist);
 		});
 	}
 
 	private _removeFromPlaylist(track, playlist, index) {
 		this.httpService.delete(`/playlists/${playlist._id}/${track._id}`).subscribe((response) => {
-			this.interfaceService.notify(`${track.name} removed from ${playlist.name}`);
+			// this.interfaceService.notify(`${track.name} removed from ${playlist.name}`);
 			if (index > -1) {
 				track.playlists.splice(index, 1);
 			}

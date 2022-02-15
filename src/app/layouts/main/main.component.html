@@ -3,48 +3,53 @@
 
 		<div class="logo"><img src="/assets/app-icon.png"></div>
 
-		<div appRipple routerLink="/music" [routerLinkActive]="['active']">
+		<div appRipple routerLink="/music/search" [routerLinkActive]="['active']">
 			<div class="icon">
-				<i class="ph-headphones"></i>
+				<i class="ph-magnifying-glass"></i>
 
 
 			</div>
 			<div class="text">
-				Music
+				Search
 			</div>
 		</div>
 
-		<div appRipple routerLink="/products" [routerLinkActive]="['active']">
+		<div appRipple routerLink="/music/albums" [routerLinkActive]="['active']">
 			<div class="icon">
-				<i class="ph-shopping-cart-simple"></i>
+				<i class="ph-disc"></i>
+
 
 
 			</div>
 			<div class="text">
-				Products
+				Albums
 			</div>
 		</div>
 
-		<div appRipple routerLink="/orders" [routerLinkActive]="['active']">
+		<div appRipple routerLink="/music/artists" [routerLinkActive]="['active']">
 			<div class="icon">
-				<i class="ph-bag"></i>
+				<i class="ph-squares-four"></i>
 
 			</div>
 			<div class="text">
-				Orders
+				Artists
 			</div>
 		</div>
 
-		<div appRipple routerLink="/designer" [routerLinkActive]="['active']">
+		<div appRipple routerLink="/music/tracks" [routerLinkActive]="['active']">
 			<div class="icon">
-				<i class="ph-diamonds-four"></i>
+				<i class="ph-music-note-simple"></i>
+
+
+
+
 			</div>
 			<div class="text">
-				Designer
+				Tracks
 			</div>
 		</div>
 
-		<div appRipple routerLink="/settings" [routerLinkActive]="['active']">
+		<!--div appRipple routerLink="/settings" [routerLinkActive]="['active']">
 			<div class="icon">
 				<i class="ph-gear-six"></i>
 
@@ -53,7 +58,7 @@
 			<div class="text">
 				Settings
 			</div>
-		</div>
+		</div-->
 
 
 		<div style="margin-top: auto;" appRipple [dropdownPosition]="{
@@ -74,6 +79,10 @@
 
 					<i *ngIf="theme.themeService.theme === 'dark'" class="ph-sun-dim"></i>
 					<i *ngIf="theme.themeService.theme !== 'dark'" class="ph-moon"></i>
+				</div>
+
+				<div routerLink="/settings" class="dropdown-item">Settings <i class="ph-gear-six"></i>
+
 				</div>
 				<div class="dropdown-item">Help & Support <i class="ph-lifebuoy"></i>
 

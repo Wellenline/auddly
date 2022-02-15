@@ -1,0 +1,1 @@
+{"ast":null,"code":"export default function setTransition(duration, byController) {\n  var swiper = this;\n\n  if (!swiper.params.cssMode) {\n    swiper.$wrapperEl.transition(duration);\n  }\n\n  swiper.emit('setTransition', duration, byController);\n}","map":null,"metadata":{},"sourceType":"module"}

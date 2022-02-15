@@ -1,0 +1,1 @@
+{"ast":null,"code":"export default function unsetGrabCursor() {\n  var swiper = this;\n\n  if (swiper.support.touch || swiper.params.watchOverflow && swiper.isLocked || swiper.params.cssMode) {\n    return;\n  }\n\n  swiper.el.style.cursor = '';\n}","map":null,"metadata":{},"sourceType":"module"}

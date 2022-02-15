@@ -1,0 +1,42 @@
+<div appRipple class="track {{ playerService.$track.getValue()._id === track._id ? 'active' : '' }}">
+	<div *ngIf="options.picture" class="track-image">
+		<img class="lazyload" [lazyLoad]="track?.album?.picture || '/assets/app-icon-text.png'" />
+	</div>
+
+	<div class="track-details" (click)="onPlay($event)">
+		<h3>{{ track.name }}</h3>
+		<p>{{ track.artist }}</p>
+	</div>
+	<div data-tooltip="Lossless" *ngIf="track.lossless" class="track-feature">
+		<i class="ph-headphones"></i>
+	</div>
+	<div class="track-duration">
+		{{track.duration | formatSeconds}}
+	</div>
+
+	<div *ngIf="options.actions" class="track-actions">
+		<div appRipple [dropdownTriggerFor]="dropdown">
+
+			<i class="ph-dots-three-vertical"></i>
+		</div>
+	</div>
+</div>
+
+<app-dropdown #dropdown>
+	<div class="dropdown-item" (click)="onPlaylist()">Add to playlist</div>
+	<div class="dropdown-item" (click)="onQueue()">Add to queue</div>
+
+	<div class="dropdown-item" (click)="onArtist(track?.album?.artist?._id)">More
+		from artist</div>
+	<div class="dropdown-item" (click)="onAlbum(track?.album?._id)">Go to album</div>
+	<div class="dropdown-item" (click)="onAlbum(track?.album?._id)">Download</div>
+
+	<!--a class="dropdown-item" target="_blank" href="{{httpService.API_ENDPOINT}}/tracks/play/{{ track._id }}"
+		download="{{track.name}}.mp3">Download</a-->
+
+	<div class="dropdown-item" *ngIf="track?.playlists?.length > 0" (click)="onRemoveFromPlaylist()">Remove
+		from playlist</div>
+
+
+
+</app-dropdown>

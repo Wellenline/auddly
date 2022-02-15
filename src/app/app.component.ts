@@ -1,7 +1,7 @@
 import { Component, HostListener } from "@angular/core";
+import { ThemeService } from "./core/services/theme.service";
+import { UpdateService } from "./core/services/update.service";
 import { PlayerService } from "./services/player.service";
-import { ThemeService } from "./services/theme.service";
-import { UpdateService } from "./services/update.service";
 
 @Component({
 	selector: "app-root",
@@ -13,5 +13,15 @@ export class AppComponent {
 	ngOnInit() {
 
 
+	}
+
+	ngAfterViewInit() {
+		const appHeight = () => {
+			const doc = document.documentElement;
+			doc.style.setProperty("--app-height", `${window.innerHeight}px`);
+		};
+		appHeight();
+		window.addEventListener("resize", appHeight);
+		window.addEventListener("orientationchange", appHeight);
 	}
 }

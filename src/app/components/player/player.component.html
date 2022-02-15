@@ -1,6 +1,5 @@
 <div *ngIf="track" class="player" (swipe)="onSwipe($event)">
-	<div class="player-metadata" [routerLinkActive]="['active']"
-		[routerLink]="['/', { outlets: { modal: ['modal','playing'] } }]" queryParamsHandling="merge">
+	<div class="player-metadata" (click)="onPlaying()" queryParamsHandling="merge">
 		<div class="player-metadata-image">
 			<img style="width: 40px;" [src]="track?.album?.picture || '/assets/app-icon-text.png'" />
 		</div>

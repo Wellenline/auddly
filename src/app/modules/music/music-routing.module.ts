@@ -6,6 +6,7 @@ import { AlbumsComponent } from "./pages/albums/albums.component";
 import { ArtistsComponent } from "./pages/artists/artists.component";
 import { PlaylistsComponent } from "./pages/playlists/playlists.component";
 import { SearchComponent } from "./pages/search/search.component";
+import { TracksComponent } from "./pages/tracks/tracks.component";
 
 const routes: Routes = [{
 	path: "", component: MusicComponent, children: [
@@ -21,6 +22,14 @@ const routes: Routes = [{
 		{
 			path: "albums",
 			component: AlbumsComponent
+		},
+		{
+			path: "tracks",
+			component: TracksComponent
+		},
+		{
+			path: "search",
+			component: SearchComponent
 		},
 		{
 			path: "artists",

@@ -3,7 +3,6 @@ import { ITrack, PlayerService } from "src/app/services/player.service";
 import { Location } from "@angular/common";
 import { SwiperComponent } from "swiper/angular";
 import { debounce } from "src/app/utils";
-import { InterfaceService } from "src/app/modules/shared/services/interface.service";
 import { SwiperOptions } from "swiper";
 
 @Component({
@@ -40,7 +39,7 @@ export class QueueComponent implements OnInit {
 	public buffering = false;
 	public buffer = 0;
 	@ViewChild("swiper") swiper: SwiperComponent;
-	constructor(public playerService: PlayerService, private interfaceService: InterfaceService, private location: Location) { }
+	constructor(public playerService: PlayerService, private location: Location) { }
 
 	ngOnInit(): void {
 		this.playerService.$playing.subscribe((playing) => {
@@ -138,9 +137,9 @@ export class QueueComponent implements OnInit {
 		e.stopPropagation();
 		this.playerService.onLike(this.track._id).subscribe(() => {
 			this.track.liked = !this.track.liked;
-			this.interfaceService.notify(`${this.track.name} ${this.track.liked ? "added to favourites" : "removed from favourites"}`, {
+			/*this.interfaceService.notify(`${this.track.name} ${this.track.liked ? "added to favourites" : "removed from favourites"}`, {
 				timeout: 3000,
-			});
+			});*/
 		});
 	}
 

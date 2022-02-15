@@ -1,0 +1,41 @@
+.albums {
+    margin-bottom: 20px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+    height: 100vh;
+
+    // grid-row-gap: 25px;
+    // animation: slideY 0.6s both;
+
+    //display: none;
+    @media screen and (max-width: 1212px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media screen and (max-width: 930px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .album {
+        img {
+
+            object-fit: cover;
+            aspect-ratio: 1;
+            border-radius: 15px;
+        }
+
+        h3 {
+            margin: 0px;
+        }
+
+        p {
+            margin: 0px;
+        }
+    }
+
+
+
+}

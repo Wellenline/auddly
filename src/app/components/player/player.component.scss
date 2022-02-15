@@ -1,90 +1,95 @@
 .player {
-	position: relative;
-	// padding: 15px;
-	display: grid;
-	grid-template-columns: 1fr auto auto;
-	color: var(--foreground-color);
-	&-metadata {
-		padding: 10px;
-		display: grid;
-		grid-template-columns: auto 1fr;
-		overflow: hidden;
-		touch-action: none;
-		white-space: nowrap;
-		text-overflow: ellipsis;
+    position: relative;
+    // padding: 15px;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    color: var(--foreground-color);
 
-		&-image {
-			display: grid;
-			place-items: center;
-			margin-right: 15px;
-			width: 40px;
-			height: 40px;
-			border-radius: 5px;
-			img {
-				border-radius: 50%;
-				width: 40px;
-				height: 40px;
-				object-fit: cover;
-			}
-		}
+    &-metadata {
+        padding: 10px;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        overflow: hidden;
+        touch-action: none;
+        white-space: nowrap;
+        text-overflow: ellipsis;
 
-		&-details {
-			display: grid;
-			align-items: center;
-			&-artist {
-				font-size: 12px;
-				opacity: 0.6;
-				padding-top: 5px;
-				padding-bottom: 0px;
-			}
+        &-image {
+            display: grid;
+            place-items: center;
+            margin-right: 15px;
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
 
-			&-name {
-				opacity: 0.8;
+            img {
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                object-fit: cover;
+            }
+        }
 
-				margin-top: -5px;
-				font-size: 14px;
-			}
-		}
-	}
+        &-details {
+            display: grid;
+            align-items: center;
 
-	&-actions {
-		padding: 10px;
+            &-artist {
+                font-size: 12px;
+                opacity: 0.6;
+                padding-top: 5px;
+                padding-bottom: 0px;
+            }
 
-		&-action {
-			background-color: var(--background-color-3);
-			height: 40px;
-			width: 40px;
-			border-radius: 50%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			position: relative;
-			span {
-				font-size: 1.7rem;
-			}
+            &-name {
+                opacity: 0.8;
 
-			svg {
-				position: absolute;
-				left: 0;
-				top: 0;
-				transform: rotate(-90deg);
-				.progress-ring {
-					stroke: var(--accent-color);
-					transition: stroke-dashoffset 1s linear;
-					/*stroke-dashoffset: 0;
+                margin-top: -5px;
+                font-size: 14px;
+            }
+        }
+    }
+
+    &-actions {
+        padding: 10px;
+
+        &-action {
+            background-color: var(--background-color-3);
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+
+            span {
+                font-size: 1.7rem;
+            }
+
+            svg {
+                position: absolute;
+                left: 0;
+                top: 0;
+                transform: rotate(-90deg);
+
+                .progress-ring {
+                    stroke: var(--accent-color);
+                    transition: stroke-dashoffset 1s linear;
+                    /*stroke-dashoffset: 0;
 					transition: stroke-dashoffset 1s linear;
 					stroke: #666;
 					stroke-width: 2;*/
-				}
-			}
-		}
-	}
+                }
+            }
+        }
+    }
 }
 
 .slider {
-	position: absolute;
-	padding-left: 15px;
-	padding-right: 15px;
-	bottom: 0;
-	width: 100%;
+    position: absolute;
+    padding-left: 15px;
+    padding-right: 15px;
+    bottom: 0;
+    width: 100%;
 }

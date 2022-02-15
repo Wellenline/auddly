@@ -3,8 +3,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { fromEvent } from "rxjs/internal/observable/fromEvent";
 import { debounceTime, map, startWith } from "rxjs/operators";
-import { BottomSheetConfig } from "src/app/modules/shared/interfaces/bottom-sheet";
-import { InterfaceService } from "src/app/modules/shared/services/interface.service";
 import { HttpService } from "src/app/services/http.service";
 import { PlayerService } from "src/app/services/player.service";
 
@@ -29,12 +27,11 @@ export class TracksComponent implements OnInit {
 	public genre: { name?: string, _id?: number } = {};
 	public playlist: { name?: string, _id?: number } = {};
 	hostHeight$: Observable<number>;
-	public options: BottomSheetConfig = {
+	public options = {
 		maxHeight: "80vh"
 	};
 	public filter: { limit?: number, liked?: boolean, playlist?: number, genre?: number, sort?: string } = { sort: "-created_at", limit: 50, };
 	constructor(private httpService: HttpService,
-		private interfaceService: InterfaceService,
 		private host: ElementRef,
 		private playerService: PlayerService, private route: ActivatedRoute, private router: Router) { }
 
@@ -89,7 +86,7 @@ export class TracksComponent implements OnInit {
 
 	public onLimit() {
 		const options = [50, 100, 150, 200, 250, 300, 500, 1000];
-		this.interfaceService.dialog.show({
+		/*this.interfaceService.dialog.show({
 			items: options,
 			type: "picker",
 			title: "Limit",
@@ -113,11 +110,11 @@ export class TracksComponent implements OnInit {
 
 				}
 			},
-		});
+		});*/
 	}
 
 	public onPlaylist() {
-		this.interfaceService.dialog.show({
+		/*this.interfaceService.dialog.show({
 			items: this.playlists.map((playlist) => playlist.name),
 			type: "picker",
 			title: "Playlist",
@@ -138,11 +135,11 @@ export class TracksComponent implements OnInit {
 
 				}
 			},
-		});
+		});*/
 	}
 
 	public onGenre() {
-		this.interfaceService.dialog.show({
+		/*this.interfaceService.dialog.show({
 			items: this.genres.map((genre) => genre.name),
 			type: "picker",
 			title: "Genre",
@@ -163,7 +160,7 @@ export class TracksComponent implements OnInit {
 
 				}
 			},
-		});
+		});*/
 	}
 
 	public onClearGenre() {

@@ -3,6 +3,9 @@ import { HttpService } from "src/app/services/http.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { SwiperOptions } from "swiper";
 import { PlayerService } from "src/app/services/player.service";
+import { ModalComponent } from "src/app/shared/components/modal/modal.component";
+import { ModalService } from "src/app/shared/components/modal/modal.service";
+import { AlbumComponent } from "../album/album.component";
 
 @Component({
 	selector: "app-artist",
@@ -53,16 +56,18 @@ export class ArtistComponent implements OnInit {
 		},
 	};
 	public loading = true;
-	constructor(private httpService: HttpService, private playerService: PlayerService, private router: Router, private route: ActivatedRoute) { }
+	constructor(private httpService: HttpService, private modalService: ModalService, public modalComponent: ModalComponent, private playerService: PlayerService, private router: Router, private route: ActivatedRoute) { }
 
 	public ngOnInit(): void {
+		this.getData(this.modalComponent.params.artist);
 
-		this.route.params.subscribe((params) => {
-			this.getArtist(params.id);
-			this.getAlbums(params.id);
-			this.getPopular(params.id);
-		});
 
+	}
+
+	public getData(id: string) {
+		this.getArtist(id);
+		this.getAlbums(id);
+		this.getPopular(id);
 	}
 
 	public getArtist(id: string) {
@@ -128,5 +133,23 @@ export class ArtistComponent implements OnInit {
 			}
 		});
 		// [routerLink]="['/search', {outlets: {modal: [null]}}]" [queryParams]="{ q: similar }"
+	}
+
+	public onAlbum(album) {
+		this.modalService.show({
+			component: AlbumComponent,
+			class: "fullscreen",
+			params: {
+				album: album
+			},
+			callback: () => {
+				this.router.navigate([], {
+					queryParams: {
+						'album': null,
+					},
+					queryParamsHandling: 'merge'
+				});
+			}
+		});
 	}
 }

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export default function onClick(e) {\n  var swiper = this;\n\n  if (!swiper.allowClick) {\n    if (swiper.params.preventClicks) e.preventDefault();\n\n    if (swiper.params.preventClicksPropagation && swiper.animating) {\n      e.stopPropagation();\n      e.stopImmediatePropagation();\n    }\n  }\n}","map":null,"metadata":{},"sourceType":"module"}

@@ -1,1 +1,18 @@
-<p>artists works!</p>
+<app-header [sticky]="true" [transparent]="true" title="Albums">
+	<div header-title>
+		<h3>Artists</h3>
+	</div>
+</app-header>
+<app-infinite-scroll (scrolled)="onScroll()">
+
+	<div class="albums">
+		<div class="album" *ngFor="let album of artists" (click)="onArtist(album._id)">
+			<img class="lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
+
+			<div class="album-info">
+				<h3>{{ album.name }}</h3>
+
+			</div>
+		</div>
+	</div>
+</app-infinite-scroll>

@@ -34,7 +34,7 @@ $breakpoints: (na: 0px,
 
     @for $i from 1 through $columns {
         .width-#{$i}\@#{$bp} {
-            max-width: percentage($i/$columns);
+            max-width: calc($i / $columns)
         }
     }
 

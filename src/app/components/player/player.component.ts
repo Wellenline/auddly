@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { PlayerService, ITrack } from "src/app/services/player.service";
 import { HttpService } from "src/app/services/http.service";
-import { InterfaceService } from "src/app/modules/shared/services/interface.service";
+import { ModalService } from "src/app/shared/components/modal/modal.service";
+import { NowPlayingComponent } from "src/app/pages/now-playing/now-playing.component";
 
 @Component({
 	selector: "app-player",
@@ -18,7 +19,7 @@ export class PlayerComponent implements OnInit {
 	public volumeControls = false;
 	public radialProgress = 0;
 	public circumference = 0;
-	constructor(public playerService: PlayerService, private interfaceService: InterfaceService) { }
+	constructor(public playerService: PlayerService, private modalService: ModalService) { }
 
 	public ngOnInit(): void {
 		const r = 19;
@@ -53,13 +54,20 @@ export class PlayerComponent implements OnInit {
 		this.playerService.onAddToPlaylist(this.track);
 	}
 
+
+	public onPlaying() {
+		this.modalService.show({
+			component: NowPlayingComponent,
+			class: "fullscreen",
+		});
+	}
 	public onLike(e) {
 		e.stopPropagation();
 		this.playerService.onLike(this.track._id).subscribe(() => {
 			this.track.liked = !this.track.liked;
-			this.interfaceService.notify(`${this.track.name} ${this.track.liked ? "added to favourites" : "removed from favourites"}`, {
+			/*this.interfaceService.notify(`${this.track.name} ${this.track.liked ? "added to favourites" : "removed from favourites"}`, {
 				timeout: 3000,
-			});
+			});*/
 		});
 	}
 

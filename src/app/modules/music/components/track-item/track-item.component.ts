@@ -1,0 +1,119 @@
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { ITrack, PlayerService } from "src/app/services/player.service";
+import { ModalService } from "src/app/shared/components/modal/modal.service";
+import { AlbumComponent } from "../album/album.component";
+import { ArtistComponent } from "../artist/artist.component";
+
+@Component({
+	selector: "app-track-item",
+	templateUrl: "./track-item.component.html",
+	styleUrls: ["./track-item.component.scss"]
+})
+export class TrackItemComponent implements OnInit {
+	@Input() public track: ITrack = {};
+	@Input() public options = {
+		picture: true,
+		actions: true,
+	};
+
+	@Output() public reload = new EventEmitter();
+	constructor(public playerService: PlayerService, private modalService: ModalService) { }
+
+	ngOnInit(): void {
+	}
+
+	public onPlay(e) {
+		console.log("Adding single track", this.track);
+		this.playerService.onPlay(this.track);
+	}
+
+	public onPlaylist() {
+		// todo
+		/*this.httpService.get(`/playlists`).subscribe((response: { playlists: [{ name: any, id: number }] }) => {
+			this.interfaceService.dialog.show({
+				items: response.playlists.map((playlist) => playlist.name),
+				type: "picker",
+				title: "Playlist",
+				message: "Choose the playlist you wish to add the track",
+				closed: (index) => {
+					if (index !== false && index !== undefined) {
+						const playlist = response.playlists[index];
+						if (this.track.playlists.findIndex((p) => p._id === playlist._id) === -1) {
+							this._addToPlaylist(playlist);
+						}
+
+					}
+				},
+			});
+		});*/
+		this.playerService.onAddToPlaylist(this.track);
+
+	}
+
+	public onRemoveFromPlaylist() {
+		this.playerService.onRemoveFromPlaylist(this.track);
+
+		/*this.interfaceService.dialog.show({
+			items: this.track.playlists.map((playlist) => playlist.name),
+			type: "picker",
+			title: "Playlist",
+			message: "Choose the playlist you wish to remove the track from",
+			closed: (index) => {
+				console.log(index);
+				if (index !== false && index !== undefined) {
+					const playlist = this.track.playlists[index];
+					this._removeFromPlaylist(playlist, index);
+
+				}
+			},
+		});*/
+	}
+
+	public onQueue() {
+		if (!this.playerService.$playing.getValue()) {
+			this.playerService.onPlay(this.track);
+		} else {
+			this.playerService.queue([this.track]);
+		}
+	}
+
+	private _addToPlaylist(playlist) {
+		/*this.httpService.post(`/playlists/${playlist._id}`, {
+			track: this.track._id,
+		}).subscribe((response) => {
+			//this.interfaceService.notify(`${this.track.name} added to ${playlist.name}`);
+			this.track.playlists.push(playlist);
+		});*/
+	}
+
+	private _removeFromPlaylist(playlist, index) {
+		/*this.httpService.delete(`/playlists/${playlist._id}/${this.track._id}`).subscribe((response) => {
+			//this.interfaceService.notify(`${this.track.name} removed from ${playlist.name}`);
+			if (index > -1) {
+				this.track.playlists.splice(index, 1);
+			}
+			this.reload.emit(true);
+		});*/
+	}
+
+	public onArtist(id: string) {
+		this.modalService.show({
+			component: ArtistComponent,
+			class: "fullscreen",
+			params: {
+				id,
+			}
+		});
+	}
+
+	public onAlbum(id: string) {
+		this.modalService.show({
+			component: AlbumComponent,
+			class: "fullscreen",
+			params: {
+				id,
+			}
+		});
+	}
+
+}

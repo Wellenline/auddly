@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { InterfaceService } from "src/app/modules/shared/services/interface.service";
 import { HttpService } from "src/app/services/http.service";
 
 @Component({
@@ -31,7 +30,7 @@ export class LibraryComponent implements OnInit {
 	}
 	public loading = true;
 	public height = 0;
-	constructor(private httpService: HttpService, private interfaceService: InterfaceService, private router: Router, private route: ActivatedRoute) { }
+	constructor(private httpService: HttpService, private router: Router, private route: ActivatedRoute) { }
 
 	public onScroll() {
 		if (this.tab === 1) {
@@ -144,7 +143,7 @@ export class LibraryComponent implements OnInit {
 	}
 
 	public onCreate() {
-		this.interfaceService.dialog.show({
+		/*this.interfaceService.dialog.show({
 			title: "Playlist Name",
 			message: `Please enter a playlist name`,
 			type: "prompt",
@@ -159,11 +158,11 @@ export class LibraryComponent implements OnInit {
 					});
 				}
 			},
-		});
+		});*/
 	}
 
 	public onEdit(playlist) {
-		this.interfaceService.dialog.show({
+		/*this.interfaceService.dialog.show({
 			title: "Playlist Name",
 			message: `Please enter a playlist name`,
 			type: "prompt",
@@ -174,11 +173,11 @@ export class LibraryComponent implements OnInit {
 					this._onUpdatePlaylist(playlist._id, value);
 				}
 			},
-		});
+		});*/
 	}
 
 	public onDelete(playlist) {
-		this.interfaceService.dialog.show({
+		/*this.interfaceService.dialog.show({
 			title: "Confirm",
 			message: `Are you sure you wish to delete ${playlist.name} playlist?`,
 			type: "confirm",
@@ -189,12 +188,12 @@ export class LibraryComponent implements OnInit {
 					this._onDeletePlaylist(playlist._id);
 				}
 			},
-		});
+		});*/
 	}
 
 	private _onDeletePlaylist(id: number) {
 		this.httpService.delete(`/playlists/${id}`).subscribe((response) => {
-			this.interfaceService.notify("Playlist deleted");
+			// this.interfaceService.notify("Playlist deleted");
 			this.fetchPlaylists();
 		});
 	}
@@ -203,7 +202,7 @@ export class LibraryComponent implements OnInit {
 		this.httpService.put(`/playlists/${id}`, {
 			name,
 		}).subscribe((response) => {
-			this.interfaceService.notify("Playlist updated!");
+			// this.interfaceService.notify("Playlist updated!");
 			this.fetchPlaylists();
 		});
 	}

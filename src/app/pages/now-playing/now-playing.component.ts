@@ -1,8 +1,5 @@
 import { Location } from "@angular/common";
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { BottomSheetComponent } from "src/app/modules/shared/components/bottom-sheet/bottom-sheet.component";
-import { BottomSheetConfig } from "src/app/modules/shared/interfaces/bottom-sheet";
-import { InterfaceService } from "src/app/modules/shared/services/interface.service";
 import { ITrack, PlayerService } from "src/app/services/player.service";
 import { SwiperOptions } from "swiper";
 import { SwiperComponent } from "swiper/angular";
@@ -34,13 +31,13 @@ export class NowPlayingComponent implements OnInit {
 	public duration = 0;
 	public loading = false;
 	@ViewChild("swiper") swiper: SwiperComponent;
-	@ViewChild("bottomSheet") bottomSheet: BottomSheetComponent;
+	@ViewChild("bottomSheet") bottomSheet;
 	@ViewChild("scroll") virtualScroll: VirtualScrollerComponent;
-	public options: BottomSheetConfig = {
+	public options = {
 		maxHeight: "80vh"
 	};
 	private destroy = new Subject();
-	constructor(public playerService: PlayerService, private interfaceService: InterfaceService, private location: Location,
+	constructor(public playerService: PlayerService, private location: Location,
 		private router: Router,
 		// private modal: ModalPageComponent,
 	) { }
@@ -132,9 +129,9 @@ export class NowPlayingComponent implements OnInit {
 	public onLike(e) {
 		this.playerService.onLike(this.track._id).subscribe(() => {
 			this.track.liked = !this.track.liked;
-			this.interfaceService.notify(`${this.track.name} ${this.track.liked ? "added to favourites" : "removed from favourites"}`, {
+			/*this.interfaceService.notify(`${this.track.name} ${this.track.liked ? "added to favourites" : "removed from favourites"}`, {
 				timeout: 3000,
-			});
+			});*/
 		});
 	}
 

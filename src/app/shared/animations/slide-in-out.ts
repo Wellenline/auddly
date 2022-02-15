@@ -16,4 +16,4 @@ export const slideInOutAnimation = trigger("slideInOut", [
 			bottom: "-100px"
 		}))
 	])
-])
+]);

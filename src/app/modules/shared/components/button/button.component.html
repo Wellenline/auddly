@@ -1,7 +1,0 @@
-<button [disabled]="disabled" #button
-	class="relative {{ class ? 'class' : 'button' }} {{ block ? 'block' : ''}} {{ invert ? 'invert' : '' }}">
-
-	<ng-content></ng-content>
-
-	<app-loading [loading]="loading"></app-loading>
-</button>

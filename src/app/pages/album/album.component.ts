@@ -2,13 +2,20 @@ import { Component, OnInit } from "@angular/core";
 import { HttpService } from "src/app/services/http.service";
 import { PlayerService, ITrack } from "src/app/services/player.service";
 import { ActivatedRoute } from "@angular/router";
-import { InterfaceService } from "src/app/modules/shared/services/interface.service";
 import { SwiperOptions } from "swiper";
+import { ModalComponent } from "src/app/shared/components/modal/modal.component";
+import { ModalService } from "src/app/shared/components/modal/modal.service";
+import { ArtistComponent } from "../artist/artist.component";
+import { MusicService } from "src/app/core/services/music.service";
+import { ToastService } from "src/app/shared/components/toast/toast.service";
 
 @Component({
 	selector: "app-album",
 	templateUrl: "./album.component.html",
 	styleUrls: ["./album.component.scss"],
+	host: {
+		class: "modal-content",
+	}
 })
 export class AlbumComponent implements OnInit {
 	public album: any = {};
@@ -50,19 +57,26 @@ export class AlbumComponent implements OnInit {
 	};
 	constructor(private httpService: HttpService,
 		private playerService: PlayerService,
-		private route: ActivatedRoute,
-		private interfaceService: InterfaceService) { }
+		private route: ActivatedRoute, private toastService: ToastService, private musicService: MusicService, private modalService: ModalService, public modalComponent: ModalComponent) { }
 
 	public ngOnInit(): void {
-		this.route.params.subscribe((params) => {
+		/*this.route.params.subscribe((params) => {
 			this.albums = [];
 			this.getTracks(params.id);
 			this.getAlbum(params.id);
-		});
+		});*/
+
+		this.albums = [];
+		this.getAlbum(this.modalComponent.params.album);
 	}
 
 	public getTracks(id: string) {
-		this.httpService.get(`/tracks?album=${id}&skip=0&limit=1500`).subscribe((response: { tracks: ITrack[] }) => {
+		this.tracks = [];
+		this.musicService.getTracks({
+			album: id,
+			skip: 0,
+			limit: 1000,
+		}).subscribe((response: { tracks: ITrack[] }) => {
 			this.tracks = response.tracks;
 
 			this.tracks.map((track) => {
@@ -81,16 +95,31 @@ export class AlbumComponent implements OnInit {
 		} else {
 			this.playerService.queue(this.tracks);
 		}
-
-		this.interfaceService.notify(`${this.tracks.length} tracks added to queue`, {
+		this.toastService.show({
+			message: `${this.tracks.length} tracks added to queue`,
+		});
+		/*this.interfaceService.notify(`${this.tracks.length} tracks added to queue`, {
 			timeout: 3000,
+		});*/
+	}
+
+	public onArtist(id: string) {
+		this.modalService.show({
+			component: ArtistComponent,
+			class: "fullscreen",
+			params: {
+				artist: id,
+			}
 		});
 	}
 
 	public getAlbum(id: string) {
 		this.loading = true;
+		this.tracks = [];
+		this.albums = [];
 		this.httpService.get(`/albums/${id}`).subscribe((response: any) => {
 			this.album = response;
+			this.getTracks(id);
 
 			this.getAlbums(this.album.artist._id);
 

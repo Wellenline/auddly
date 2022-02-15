@@ -33,8 +33,10 @@ export class ModalService {
 
 		let overlayRef = this.overlay.create({
 			hasBackdrop: true,
+			disposeOnNavigation: true,
 			backdropClass: "modal",
 			panelClass: "modal-window",
+			scrollStrategy: this.overlay.scrollStrategies.block(),
 			positionStrategy // config?.overlayConfig?.positionStrategy || positionStrategy,
 
 			// scrollStrategy: this.overlay.scrollStrategies.reposition()
@@ -43,6 +45,7 @@ export class ModalService {
 			//.centerHorizontally().bottom(),
 		});
 
+		history.pushState(null, "modalOpened");
 
 		const destroy = (data?: any) => {
 			overlayRef.detach()

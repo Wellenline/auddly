@@ -1,10 +1,10 @@
 .modal {
     position: relative;
     overflow: auto;
-    min-width: 430px;
+    // min-width: 430px;
     // width: 430px;
     border: 1px solid var(--border-primary);
-    background: var(--white);
+    background: var(--background-color);
     // padding: 20px;
     margin: 15px;
     border-radius: 10px;
@@ -29,6 +29,29 @@
             margin: 0px;
             height: 100% !important;
             max-width: 100vw;
+
+
+        }
+    }
+
+    &.fullscreen {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        border-radius: 0px;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        // overflow: auto;
+        margin: 0px;
+
+        @media all and (max-width: 1000px) {
+            min-width: 100% !important;
+            margin: 0px;
+            height: 100% !important;
+            max-width: 100vw;
+
 
         }
     }

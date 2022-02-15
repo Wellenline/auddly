@@ -25,7 +25,6 @@ import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
 import { VirtualScrollerModule } from "ngx-virtual-scroller";
 import { MainComponent } from "./layouts/main/main.component";
-import { SharedModule } from "./modules/shared/shared.module";
 import { SwiperModule } from "swiper/angular";
 import { LibraryComponent } from "./pages/library/library.component";
 import { DragScrollModule } from "ngx-drag-scroll";
@@ -40,6 +39,7 @@ import { ModalContainerComponent } from "./layouts/modal-container/modal-contain
 
 import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from "@angular/platform-browser";
 import * as Hammer from "hammerjs";
+import { SharedModule } from "./shared/shared.module";
 
 SwiperCore.use([Virtual, EffectCoverflow, Lazy]);
 @Injectable()
@@ -78,6 +78,7 @@ export class HammerConfig extends HammerGestureConfig {
 		HttpClientModule,
 		ReactiveFormsModule,
 		// SharedModule,
+		SharedModule,
 		FormsModule,
 		CommonModule,
 		SwiperModule,

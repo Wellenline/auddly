@@ -1,0 +1,71 @@
+.track {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 5px;
+
+    &-image {
+        padding-left: 10px;
+        display: grid;
+
+        img {
+            width: 30px;
+            height: 30px;
+            object-fit: cover;
+            // border-radius: 50%;
+            border-radius: 15px;
+            box-shadow: 0 2px 4px rgb(0 0 0 / 6%);
+        }
+    }
+
+    &-details {
+        flex-grow: 1;
+        padding: 10px 0px;
+
+        h3 {
+            font-size: 1rem;
+            margin: 0px;
+        }
+
+        p {
+            margin: 0px;
+            font-size: .9rem;
+            opacity: 0.8;
+        }
+    }
+
+    &-duration {
+        // font-size: 12px;
+
+    }
+
+    &-features {}
+
+    &-actions {
+        font-size: 2rem;
+        padding-right: 10px;
+
+        >div {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: grid;
+            place-content: center;
+        }
+    }
+
+    &.active {
+        background-color: var(--accent-color); //rgb(255 255 255 / 6%);
+
+        color: #fff !important;
+
+        box-shadow: 1px 2px 18px rgba(0, 0, 0, 0.1);
+
+        // backdrop-filter: blur(10px);
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}

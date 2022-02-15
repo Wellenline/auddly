@@ -1,0 +1,47 @@
+<app-header [back]="true" (onClose)="modal.onClose()" [backPreventDefault]="true" [sticky]="true" [transparent]="true">
+</app-header>
+
+<div class="container">
+
+	<div class="album">
+		<div class="album-header">
+			<div class="image">
+				<img class="lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
+			</div>
+
+			<div class="details">
+				<h1>{{ album.name }}</h1>
+				<p (click)="onArtist(album?.artist?._id)">
+					by {{ album?.artist?.name }}
+				</p>
+
+				<button appRipple (click)="onPlayAlbum()">
+					Play {{ tracks.length }} songs
+				</button>
+			</div>
+		</div>
+
+		<div class="album-tracks">
+			<app-track-item [track]="track" *ngFor="let track of tracks"></app-track-item>
+		</div>
+
+		<ng-container *ngIf="albums.length > 0">
+			<h3>More by {{ album.artist.name }}</h3>
+			<div class="album-albums">
+				<ng-container *ngFor="let album of albums; ">
+					<div appRipple (click)="getAlbum(album._id)" class="album">
+						<img [src]="album.picture || '/assets/app-icon-text.png'" />
+						<div class="column-details">
+							<div class="title">{{ album.name }}</div>
+							<div class="subtitle">{{ album.artist.name }}</div>
+						</div>
+					</div>
+				</ng-container>
+			</div>
+		</ng-container>
+	</div>
+
+	<app-loading [loading]="loading"></app-loading>
+
+
+</div>

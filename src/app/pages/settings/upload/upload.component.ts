@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { InterfaceService } from 'src/app/modules/shared/services/interface.service';
 import { HttpService } from 'src/app/services/http.service';
 import { UploadService } from 'src/app/services/upload.service';
 
@@ -11,7 +10,7 @@ import { UploadService } from 'src/app/services/upload.service';
 export class UploadComponent implements OnInit {
 	public files = [];
 	public queue = [];
-	constructor(private uploadService: UploadService, private interfaceService: InterfaceService) { }
+	constructor(private uploadService: UploadService) { }
 
 	ngOnInit(): void {
 		this.uploadService.$queue.subscribe((queue) => {
@@ -65,7 +64,7 @@ export class UploadComponent implements OnInit {
 			console.log(response);
 
 			if (response.length === 0) {
-				this.interfaceService.notify("No new files found for upload");
+				// this.interfaceService.notify("No new files found for upload");
 
 				return;
 			}
@@ -85,7 +84,7 @@ export class UploadComponent implements OnInit {
 
 			this.uploadService.upload().then(() => {
 				console.log("Done uploading");
-				this.interfaceService.notify("Done uploading!");
+				// this.interfaceService.notify("Done uploading!");
 			}).catch((err) => {
 				console.log("Failed to upload", err);
 			});

@@ -1,4 +1,0 @@
-<div [ngStyle]="{ top: tooltip?.dimensions?.y - (tooltip?.dimensions?.height + 20)  + 'px', left: tooltip?.dimensions?.x + 'px' }"
-	class="tooltip {{tooltip ? 'visible' : ''}}">
-	<div *ngFor="let content of tooltip.content" [innerHTML]="content"></div>
-</div>

@@ -1,0 +1,43 @@
+<app-header [sticky]="true">
+	<div header-title>
+		<h3>Tracks</h3>
+	</div>
+
+	<div header-actions>
+		<div appRipple [dropdownTriggerFor]="dropdown">
+			<div class="icon">
+				<i class="ph-user-circle"></i>
+			</div>
+			<app-dropdown #dropdown>
+				<!--div (click)="theme.onToggle()" class="dropdown-item">
+					<app-theme-toggle style="display: none;" #theme></app-theme-toggle>
+					{{ theme.themeService.theme === 'dark' ? 'Light' : 'Dark' }}
+
+					<i *ngIf="theme.themeService.theme === 'dark'" class="ph-sun-dim"></i>
+					<i *ngIf="theme.themeService.theme !== 'dark'" class="ph-moon"></i>
+				</div-->
+				<div class="dropdown-item" (click)="onSort('name')">Sort by name</div>
+				<div class="dropdown-item" (click)="onSort('created_at')">Sort by date</div>
+
+				<div class="divider no-margin"></div>
+				<div class="dropdown-item" (click)="onLiked()">Liked</div>
+				<div class="dropdown-item" (click)="onGenre()">Genre</div>
+				<div class="dropdown-item" (click)="onPlaylist()">Playlist</div>
+				<div class="dropdown-item" (click)="onLimit()">{{ pagination.limit }}</div>
+
+
+			</app-dropdown>
+
+		</div>
+	</div>
+</app-header>
+
+
+<virtual-scroller [checkResizeInterval]="200" (vsEnd)="onScroll($event)" #scroll [items]="tracks"
+	[ngStyle]="{'height.px': (hostHeight$ | async)- 105 }">
+
+
+	<div *ngFor="let track of scroll.viewPortItems; ">
+		<app-track-item [track]="track"></app-track-item>
+	</div>
+</virtual-scroller>

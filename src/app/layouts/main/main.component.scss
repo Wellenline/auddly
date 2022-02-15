@@ -160,7 +160,15 @@
             }
 
             @media all and (max-width: 1000px) {
+                &:hover {
+                    .text {
+                        display: none;
+                    }
+
+                }
+
                 .text {
+                    display: none;
                     position: absolute;
                     background: #131313 !important;
                     white-space: nowrap;
@@ -212,14 +220,45 @@
     &-content {
         margin-left: 80px;
         width: calc(100vw - 80px);
-        padding-left: 1rem;
-        padding-right: 1rem;
+        // padding-left: 1rem;
+        //padding-right: 1rem;
 
         @media all and (max-width: 1000px) {
             width: 100%;
             margin-left: 0;
+            padding: 0px;
+            // padding-top: env(safe-area-inset-top);
+
             padding-bottom: 80px;
         }
+    }
+
+    &-player {
+        @media all and (max-width: 1000px) {
+            bottom: calc(env(safe-area-inset-bottom) + 60px);
+            left: 0px;
+            margin: 0px;
+            box-shadow: none;
+            border-radius: 0px 0px 0px;
+            background: var(--background-color);
+            border-top: 1px solid var(--border-color);
+            z-index: 7;
+        }
+
+        // background-color: var(--accent-color);
+
+        position: fixed;
+        bottom: 0px;
+        z-index: 999999;
+        box-shadow: 0 3px 3px 0 rgb(0 0 0 / 5%),
+        0 5px 15px 0 rgb(0 0 0 / 5%);
+
+        left: auto;
+        background-color: var(--background-color-2);
+        min-width: 300px;
+        right: 0px;
+        margin: 20px;
+        border-radius: 20px;
     }
 }
 
