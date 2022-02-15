@@ -141,13 +141,18 @@ export class TracksComponent implements OnInit {
 		});
 	}
 
-	public onScroll(e) {
-		if (this.tracks.length > 0 && e.endIndex === this.tracks.length - 1) {
+	public onScroll() {
+		/*if (this.tracks.length > 0 && e.endIndex === this.tracks.length - 1) {
 			if (this.tracks.length !== this.pagination.total) {
 				this.pagination.skip += this.pagination.limit;
 				this.fetchTracks();
 			}
+		}*/
+		if (this.tracks.length !== this.pagination.total) {
+			this.pagination.skip += this.pagination.limit;
+			this.fetchTracks();
 		}
+
 	}
 
 	private fetchTracks(reset: boolean = false) {

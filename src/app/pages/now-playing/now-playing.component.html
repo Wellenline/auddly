@@ -90,10 +90,7 @@
 			</div-->
 		</div>
 
-		<div class="player-controls">
-
-
-
+		<div class="player-queue">
 			<div class="queue">
 				<div class="playing-header-playing" (click)="bottomSheet.toggle()">
 					<div class="title">{{ tracks.length }}</div>
@@ -109,7 +106,14 @@
 					</div>
 				</div>
 			</div>
-			<virtual-scroller #scroll [items]="tracks" [enableUnequalChildrenSizes]="true" [checkResizeInterval]="0">
+
+
+			<app-track-item [track]="track" *ngFor="let track of tracks">
+			</app-track-item>
+
+
+
+			<!--virtual-scroller #scroll [items]="tracks" [enableUnequalChildrenSizes]="true" [checkResizeInterval]="0">
 
 				<app-loading [loading]="loading"></app-loading>
 				<div #container>
@@ -119,7 +123,8 @@
 					</app-track-list>
 
 				</div>
-			</virtual-scroller>
+			</virtual-scroller-->
+
 		</div>
 	</div>
 

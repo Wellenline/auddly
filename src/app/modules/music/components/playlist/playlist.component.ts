@@ -38,20 +38,8 @@ export class PlaylistComponent implements OnInit {
 		if (this.modalComponent.params.action === "add") {
 			return this.onAddToPlayist(playlist);
 		}
-
-		return this.onRemoveFromPlaylist(playlist);
 	}
 
-	onRemoveFromPlaylist(playlist) {
-		if (this.modalComponent.params.id) {
-			this.musicService.removeTrackFromPlaylist(playlist._id, this.modalComponent.params.id).subscribe((response: { playlist: any }) => {
-				this.modalComponent.onClose(playlist);
-			}, (err) => {
-				alert(err);
-			});
-		}
-		// this.invites.push({});
-	}
 
 
 	onAddToPlayist(playlist) {
@@ -68,8 +56,12 @@ export class PlaylistComponent implements OnInit {
 	onCreate() {
 		const name = prompt("Enter playlist name");
 		if (name) {
-			this.musicService.createPlaylist({ name }).subscribe((response) => {
-				this.playlists.push(response);
+			this.musicService.createPlaylist({ name }).subscribe((playlist) => {
+				this.playlists.push(playlist);
+				if (this.modalComponent.params.action === "create") {
+					this.modalComponent.onClose(playlist);
+
+				}
 			}, (err) => {
 				alert(err);
 			});

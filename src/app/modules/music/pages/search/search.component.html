@@ -1,115 +1,91 @@
-<app-header title="Search">
-	<div header-title>
-		<input (keyup)="onSearch($event)" [(ngModel)]="search" autocomplete="off" class="search-input" type="text"
-			placeholder="Search Music, Albums, Tracks" />
-	</div>
-</app-header>
+<div class="search-toolbar">
+	<input (keyup)="onSearch($event)" [(ngModel)]="search" autocomplete="off" class="search-input" type="text"
+		placeholder="Search Music, Albums, Tracks" />
+</div>
 
 
-<section class="app-route">
-	<div class="inner-content">
+
+<div class="container">
+	<ng-container *ngIf="playlists.length > 0">
+
+		<h3>Playlists</h3>
+
+		<div class="playlists">
+			<div (click)="onAddPlaylist()" class="playlist">Manage Playlists</div>
+			<ng-container *ngFor="let playlist of playlists">
+
+				<div class="playlist" routerLink="/music/tracks" [queryParams]="{playlist: playlist._id}">
+					{{ playlist.name }}</div>
+			</ng-container>
+
+		</div>
 
 
-		<ng-container *ngIf="playlists.length > 0">
-
-			<h3>Playlists</h3>
-
-			<div class="playlists">
-				<ng-container *ngFor="let playlist of playlists">
-					<div *ngIf="playlist._id === 'FAVOURITES'" class="playlist" [routerLink]="['music', 'tracks']"
-						[queryParams]="{liked: 'true'}">
-						{{ playlist.name }}</div>
-
-					<div *ngIf="playlist._id !== 'FAVOURITES'" class="playlist" routerLink="/music/tracks"
-						[queryParams]="{playlist: playlist._id}">
-						{{ playlist.name }}</div>
-				</ng-container>
-
-			</div>
-
-
-		</ng-container>
+	</ng-container>
 
 
 
 
-		<ng-container *ngIf="result.artists.length > 0">
+	<ng-container *ngIf="result.artists.length > 0">
 
-			<h3 routerLink="/library?tab=artists">Artists</h3>
-			<div class="artists">
-				<ng-container *ngFor="let artist of result.artists; ">
-					<div (click)="onArtist(artist._id)" class="artist">
-						<img class="lazyload" [lazyLoad]="artist.picture || '/assets/app-icon-text.png'" />
-						<div class="column-details">
-							<div class="title">{{ artist.name }}</div>
-						</div>
+		<h3 routerLink="/library?tab=artists">Artists</h3>
+		<div class="artists">
+			<ng-container *ngFor="let artist of result.artists; ">
+				<div (click)="onArtist(artist._id)" class="artist">
+					<img class="lazyload" [lazyLoad]="artist.picture || '/assets/app-icon-text.png'" />
+					<div class="column-details">
+						<div class="title">{{ artist.name }}</div>
 					</div>
-				</ng-container>
-			</div>
+				</div>
+			</ng-container>
+		</div>
 
 
 
-		</ng-container>
+	</ng-container>
 
-		<ng-container *ngIf="loading.albums">
-		</ng-container>
+	<ng-container *ngIf="loading.albums">
+	</ng-container>
 
-		<ng-container *ngIf="result.albums.length > 0">
+	<ng-container *ngIf="result.albums.length > 0">
 
-			<h3 routerLink="/library?tab=albums">Albums</h3>
-			<!--div class="scrollable">
-				<app-horizontal-scroll>
-					<ng-container *ngFor="let album of result.albums; ">
-						<div routerLink="/library/albums/{{ album._id }}" class="image-element">
-							<img class="lazyload" [lazyLoad]="album.picture" />
+		<h3 routerLink="/library?tab=albums">Albums</h3>
+		<div class="albums">
 
-							<div class="column-details">
-								<div class="title">{{ album.name }}</div>
-								<div class="subtitle">{{ album.artist.name }}</div>
-							</div>
-						</div>
-					</ng-container>
-				</app-horizontal-scroll>
-			</div-->
-			<div class="albums">
-
-				<ng-container *ngFor="let album of result.albums; ">
-					<div (click)="onAlbum(album._id)" class="album">
-						<img class="lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
-						<div class="column-details">
-							<div class="title">{{ album.name }}</div>
-							<div class="subtitle">{{ album.artist.name }}</div>
-						</div>
+			<ng-container *ngFor="let album of result.albums; ">
+				<div (click)="onAlbum(album._id)" class="album">
+					<img class="lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
+					<div class="column-details">
+						<div class="title">{{ album.name }}</div>
+						<div class="subtitle">{{ album.artist.name }}</div>
 					</div>
-				</ng-container>
-
-			</div>
-		</ng-container>
-
-
-		<ng-container *ngIf="result.tracks.length > 0">
-
-
-			<div class="title-action">
-				<h3>Tracks</h3>
-
-				<div class="float-right">
-
-
-					<div (click)="onPlayTracks()" class="play-button">
-						Play</div>
 				</div>
+			</ng-container>
+
+		</div>
+	</ng-container>
+
+
+	<ng-container *ngIf="result.tracks.length > 0">
+
+
+		<div class="title-action">
+			<h3>Tracks</h3>
+
+			<div class="float-right">
+
+
+				<div (click)="onPlayTracks()" class="play-button">
+					Play</div>
 			</div>
+		</div>
 
-			<div class="grid ">
-				<div class="width-4@lg width-6@md width-6@sm" *ngFor="let track of result.tracks">
-					<app-track-item [track]="track"></app-track-item>
-				</div>
+		<div class="grid ">
+			<div class="width-4@lg width-6@md width-6@sm" *ngFor="let track of result.tracks">
+				<app-track-item [track]="track"></app-track-item>
 			</div>
+		</div>
 
-		</ng-container>
-	</div>
+	</ng-container>
 
-	<!--app-player></app-player-->
-
-</section>
+</div>

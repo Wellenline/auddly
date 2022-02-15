@@ -24,6 +24,7 @@ import { TagInputComponent } from "./components/tag-input/tag-input.component";
 import { InfiniteScrollComponent } from "./components/infinite-scroll/infinite-scroll.component";
 import { SizePipe } from "./pipes/custom/size.pipe";
 import { FormatSecondsPipe } from "./pipes/custom/format-seconds.pipe";
+import { SliderComponent } from "./components/slider/slider.component";
 
 
 
@@ -44,7 +45,8 @@ import { FormatSecondsPipe } from "./pipes/custom/format-seconds.pipe";
 		FormatSecondsPipe,
 		AvatarComponent,
 		TagInputComponent,
-		InfiniteScrollComponent
+		InfiniteScrollComponent,
+		SliderComponent
 
 	],
 	imports: [
@@ -86,7 +88,7 @@ import { FormatSecondsPipe } from "./pipes/custom/format-seconds.pipe";
 		InfiniteScrollComponent,
 		SizePipe,
 		FormatSecondsPipe,
-
+		SliderComponent
 
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]

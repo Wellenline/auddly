@@ -5,8 +5,7 @@
 
 	<div header-actions appRipple class="icon" [dropdownTriggerFor]="dropdown">
 
-
-		<i class="ph-sliders-horizontal"></i>
+		<i class="ph-funnel"></i>
 		<app-dropdown #dropdown>
 			<div class="dropdown-item" (click)="onSort('name')">Sort by name</div>
 			<div class="dropdown-item" (click)="onSort('created_at')">Sort by date</div>
@@ -46,14 +45,16 @@
 		</select>
 	</div>
 </div>
-
-<virtual-scroller [checkResizeInterval]="200" (vsEnd)="onScroll($event)" #scroll [items]="tracks"
+<app-infinite-scroll (scrolled)="onScroll()">
+	<app-track-item [track]="track" *ngFor="let track of tracks; "></app-track-item>
+</app-infinite-scroll>
+<!--virtual-scroller [checkResizeInterval]="200" (vsEnd)="onScroll($event)" #scroll [items]="tracks"
 	[ngStyle]="{'height.px': (hostHeight$ | async)- 105 }">
 
 
 	<div *ngFor="let track of scroll.viewPortItems; ">
-		<app-track-item [track]="track"></app-track-item>
+		<app-track-item  [track]="track"></app-track-item>
 	</div>
-</virtual-scroller>
+</virtual-scroller-->
 
 <app-loading [loading]="loading"></app-loading>

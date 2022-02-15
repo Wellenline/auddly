@@ -7,6 +7,7 @@ import { debounce } from "src/app/utils";
 import { ModalService } from 'src/app/shared/components/modal/modal.service';
 import { AlbumComponent } from '../../components/album/album.component';
 import { ArtistComponent } from '../../components/artist/artist.component';
+import { PlaylistComponent } from '../../components/playlist/playlist.component';
 
 @Component({
 	selector: 'app-search',
@@ -174,11 +175,24 @@ export class SearchComponent implements OnInit {
 		this.loading.playlists = true;
 
 		this.httpService.get(`/playlists`).subscribe((response: any) => {
-			this.playlists = [{ name: "Favorites", id: "FAVOURITES" }].concat(response.playlists);
+			this.playlists = [{ name: "Favorites", _id: "FAVOURITES" }].concat(response.playlists);
 		}, (err) => {
 			console.log(err);
 		}).add(() => {
 			this.loading.playlists = false;
+		});
+	}
+
+	public onAddPlaylist() {
+		this.modalService.show({
+			component: PlaylistComponent,
+			params: {
+				action: "create"
+			},
+			callback: (playlist) => {
+				this.fetchPlaylists();
+			}
+
 		});
 	}
 }

@@ -20,7 +20,6 @@ import { FormatSecondsPipe } from "./pipes/format-seconds.pipe";
 import { SettingsComponent } from "./pages/settings/settings.component";
 import { PlayerService } from "./services/player.service";
 import { SizePipe } from "./pipes/size.pipe";
-import { SliderComponent } from "./components/slider/slider.component";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
 import { VirtualScrollerModule } from "ngx-virtual-scroller";
@@ -63,7 +62,6 @@ export class HammerConfig extends HammerGestureConfig {
 		FormatSecondsPipe,
 		SettingsComponent,
 		SizePipe,
-		SliderComponent,
 		MainComponent,
 		LibraryComponent,
 		AuthComponent,

@@ -28,9 +28,9 @@ export class ThemeService {
 
 		this.theme = targetTheme;
 		this.meta.updateTag({ name: "theme-color", content: targetTheme === "dark" ? "#000000" : "#ffffff" });
-
-		if ((window as any).nsWebViewBridge) {
-			(window as any).nsWebViewBridge.emit("theme", { color: this.theme === "dark" ? "#1a1a1a" : "#ffffff" });
-		}
+		this.meta.updateTag({
+			name: "apple-mobile-web-app-status-bar-style",
+			content: targetTheme === "dark" ? "black-translucent" : "default"
+		})
 	}
 }

@@ -16,11 +16,19 @@ export class AppComponent {
 	}
 
 	ngAfterViewInit() {
+		let prev = 0;
 		const appHeight = () => {
-			const doc = document.documentElement;
-			doc.style.setProperty("--app-height", `${window.innerHeight}px`);
+			if (prev !== window.innerHeight) {
+				prev = window.innerHeight;
+				const doc = document.documentElement;
+				doc.style.setProperty("--app-height", `${window.innerHeight}px`);
+			}
 		};
-		appHeight();
+
+		setInterval(() => {
+			appHeight();
+		}, 100);
+
 		window.addEventListener("resize", appHeight);
 		window.addEventListener("orientationchange", appHeight);
 	}

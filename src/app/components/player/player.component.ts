@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { PlayerService, ITrack } from "src/app/services/player.service";
 import { HttpService } from "src/app/services/http.service";
 import { ModalService } from "src/app/shared/components/modal/modal.service";
-import { NowPlayingComponent } from "src/app/pages/now-playing/now-playing.component";
+import { NowPlaylingComponent } from "src/app/modules/music/components/now-playling/now-playling.component";
 
 @Component({
 	selector: "app-player",
@@ -57,7 +57,7 @@ export class PlayerComponent implements OnInit {
 
 	public onPlaying() {
 		this.modalService.show({
-			component: NowPlayingComponent,
+			component: NowPlaylingComponent,
 			class: "fullscreen",
 		});
 	}
