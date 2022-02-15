@@ -4,6 +4,9 @@ import { HttpService } from 'src/app/services/http.service';
 import { PlayerService } from 'src/app/services/player.service';
 import { SwiperOptions } from 'swiper';
 import { debounce } from "src/app/utils";
+import { ModalService } from 'src/app/shared/components/modal/modal.service';
+import { AlbumComponent } from '../../components/album/album.component';
+import { ArtistComponent } from '../../components/artist/artist.component';
 
 @Component({
 	selector: 'app-search',
@@ -59,7 +62,7 @@ export class SearchComponent implements OnInit {
 		tracks: true,
 		playlists: true,
 	};
-	constructor(private httpService: HttpService, private playerService: PlayerService, private router: Router, private route: ActivatedRoute) { }
+	constructor(private httpService: HttpService, private modalService: ModalService, private playerService: PlayerService, private router: Router, private route: ActivatedRoute) { }
 
 	public ngOnInit(): void {
 		this.route.queryParams.subscribe((params) => {
@@ -73,6 +76,25 @@ export class SearchComponent implements OnInit {
 				this.fetchPlaylists();
 			}
 
+		});
+	}
+	public onArtist(id: string) {
+		this.modalService.show({
+			component: ArtistComponent,
+			class: "fullscreen",
+			params: {
+				id,
+			}
+		});
+	}
+
+	public onAlbum(id: string) {
+		this.modalService.show({
+			component: AlbumComponent,
+			class: "fullscreen",
+			params: {
+				id,
+			}
 		});
 	}
 

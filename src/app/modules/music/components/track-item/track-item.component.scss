@@ -11,6 +11,7 @@
 
         img {
             width: 30px;
+            min-width: 30px;
             height: 30px;
             object-fit: cover;
             // border-radius: 50%;
@@ -22,6 +23,11 @@
     &-details {
         flex-grow: 1;
         padding: 10px 0px;
+        white-space: nowrap;
+        // overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+        overflow-y: auto;
 
         h3 {
             font-size: 1rem;
@@ -44,12 +50,12 @@
 
     &-actions {
         font-size: 2rem;
-        padding-right: 10px;
+        padding-right: 5px;
 
         >div {
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             display: grid;
             place-content: center;
         }

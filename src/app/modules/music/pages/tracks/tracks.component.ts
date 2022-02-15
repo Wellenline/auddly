@@ -2,8 +2,11 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, fromEvent } from 'rxjs';
 import { startWith, debounceTime, map } from 'rxjs/operators';
+import { MusicService } from 'src/app/core/services/music.service';
 import { HttpService } from 'src/app/services/http.service';
 import { PlayerService } from 'src/app/services/player.service';
+import { ModalService } from 'src/app/shared/components/modal/modal.service';
+import { PlaylistComponent } from '../../components/playlist/playlist.component';
 
 @Component({
 	selector: 'app-tracks',
@@ -30,10 +33,13 @@ export class TracksComponent implements OnInit {
 	public options = {
 		maxHeight: "80vh"
 	};
-	public filter: { limit?: number, liked?: boolean, playlist?: number, genre?: number, sort?: string } = { sort: "-created_at", limit: 50, };
+	public filter: { limit?: string, liked?: boolean, playlist?: string, genre?: string, sort?: string } = { sort: "-created_at", limit: "50", playlist: "", genre: "" };
+	public limits = [10, 20, 30, 50, 100, 150, 200, 250, 300, 500, 1000];
+
 	constructor(private httpService: HttpService,
 		private host: ElementRef,
-		private playerService: PlayerService, private route: ActivatedRoute, private router: Router) { }
+		private playerService: PlayerService,
+		private musicService: MusicService, private modalService: ModalService, private route: ActivatedRoute, private router: Router) { }
 
 	public ngOnInit(): void {
 		this.hostHeight$ = fromEvent(window, "resize").pipe(
@@ -43,13 +49,32 @@ export class TracksComponent implements OnInit {
 		);
 		this.route.queryParams.subscribe((params) => {
 			if (this.filter !== params) {
-				this.filter = { ...params };
+				this.filter = { ... this.filter, ...params };
 				this.fetchTracks(true);
 			}
 		});
 		this.getGenres();
 		this.getPlaylists();
 
+	}
+
+	public onFilter() {
+		const queryParams: any = {};
+
+		Object.keys(this.filter).map((key) => {
+			if (this.filter[key] !== "" && this.filter[key] !== undefined) {
+				queryParams[key] = this.filter[key];
+			} else {
+				queryParams[key] = null;
+			}
+		});
+
+		console.log(queryParams);
+		this.router.navigate(["."], {
+			relativeTo: this.route,
+			queryParams,
+			queryParamsHandling: "merge",
+		});
 	}
 
 
@@ -65,55 +90,16 @@ export class TracksComponent implements OnInit {
 		this.filter.sort = this.filter.sort?.includes(key) ?
 			(this.filter.sort.startsWith("-") ? this.filter.sort.replace("-", "") : `-${key}`) : key;
 
-		this.router.navigate(["."], {
-			relativeTo: this.route,
-			queryParams: {
-				sort: this.filter.sort,
-			}, queryParamsHandling: "merge",
-		});
-	}
-
-	public onLiked() {
-		this.router.navigate(["."], {
-			relativeTo: this.route,
-			queryParams: {
-				liked: this.filter.liked ? null : true,
-			}, queryParamsHandling: "merge",
-		});
-		// this.fetchTracks(true);
-
-	}
-
-	public onLimit() {
-		const options = [50, 100, 150, 200, 250, 300, 500, 1000];
-		/*this.interfaceService.dialog.show({
-			items: options,
-			type: "picker",
-			title: "Limit",
-			message: "Choose how many tracks would you like to load with a single request",
-			closed: (index) => {
-				if (index !== false) {
-					this.router.navigate(["/tracks"], {
-						relativeTo: this.route,
-						queryParams: {
-							limit: options[index],
-						}, queryParamsHandling: "merge",
-					});
-
-				} else {
-					this.router.navigate(["/tracks"], {
-						relativeTo: this.route,
-						queryParams: {
-							limit: null,
-						}, queryParamsHandling: "merge",
-					});
-
-				}
-			},
-		});*/
+		this.onFilter();
 	}
 
 	public onPlaylist() {
+		this.modalService.show({
+			component: PlaylistComponent,
+			params: {
+				playlists: this.playlists,
+			}
+		});
 		/*this.interfaceService.dialog.show({
 			items: this.playlists.map((playlist) => playlist.name),
 			type: "picker",
@@ -138,50 +124,6 @@ export class TracksComponent implements OnInit {
 		});*/
 	}
 
-	public onGenre() {
-		/*this.interfaceService.dialog.show({
-			items: this.genres.map((genre) => genre.name),
-			type: "picker",
-			title: "Genre",
-			message: "Choose a genre to filter",
-			closed: (index) => {
-				if (index !== false) {
-					const { _id, name } = this.genres[index];
-					this.genre = {
-						_id,
-						name
-					};
-					this.router.navigate(["/tracks"], {
-						relativeTo: this.route,
-						queryParams: {
-							genre: _id,
-						}, queryParamsHandling: "merge",
-					});
-
-				}
-			},
-		});*/
-	}
-
-	public onClearGenre() {
-		this.router.navigate(["/tracks"], {
-			relativeTo: this.route,
-			queryParams: {
-				genre: null,
-			}, queryParamsHandling: "merge",
-		});
-	}
-
-	public onClearPlaylist() {
-		this.router.navigate(["/tracks"], {
-			relativeTo: this.route,
-			queryParams: {
-				playlist: null,
-			}, queryParamsHandling: "merge",
-		});
-
-	}
-
 
 	public getGenres() {
 		this.httpService.get(`/genres`).subscribe((response: any[]) => {
@@ -195,11 +137,7 @@ export class TracksComponent implements OnInit {
 
 	public getPlaylists() {
 		this.httpService.get(`/playlists`).subscribe((response: { playlists: [] }) => {
-			this.playlists = response.playlists;
-			console.log(this.playlists);
-			if (this.filter.playlist) {
-				this.playlist = this.playlists.find((playlist) => playlist._id === this.filter.playlist);
-			}
+			this.playlists = [{ name: "Favorites", _id: "FAVOURITES" }].concat(response.playlists);
 		});
 	}
 
@@ -222,10 +160,21 @@ export class TracksComponent implements OnInit {
 			this.pagination.limit = this.filter.limit ? Number(this.filter.limit) : 50;
 
 		}
+		const additionalParams = JSON.parse(JSON.stringify(this.filter));
 
-		const query = Object.keys(this.filter).filter((k) => k !== "limit").map(k => `${encodeURIComponent(k)}=${encodeURIComponent(this.filter[k])}`).join("&");
 
-		this.httpService.get(`/tracks?skip=${this.pagination.skip}&limit=${this.pagination.limit}&${query}`).subscribe((response: any) => {
+		if (additionalParams.playlist && additionalParams.playlist !== "") {
+			if (additionalParams.playlist === "FAVOURITES") {
+				delete additionalParams.playlist;
+				additionalParams.liked = true;
+			}
+		}
+
+		this.musicService.getTracks({
+			skip: this.pagination.skip,
+			limit: this.pagination.limit,
+			...additionalParams,
+		}).subscribe((response: any) => {
 			this.tracks = this.tracks.concat(response.tracks);
 			this.pagination.total = response.total;
 			this.loading = false;

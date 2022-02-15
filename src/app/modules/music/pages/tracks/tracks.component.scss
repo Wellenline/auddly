@@ -2,6 +2,52 @@
     display: block;
 }
 
+.icon {
+    font-size: 2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+}
+
+.filters {
+    padding: 10px 5px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    overflow: auto;
+    gap: 1rem;
+    // background-color: red;
+
+    .filter {
+        flex-grow: 1;
+        flex-basis: 0;
+
+        &.small {
+            flex-grow: 0;
+            flex-basis: auto;
+        }
+
+        select {
+            background-color: transparent;
+            border: none;
+            appearance: none;
+            width: 100%;
+            padding: 6px 10px;
+            color: var(--text-color);
+            border: 2px solid var(--text-color);
+            border-radius: 15px;
+            appearance: none;
+        }
+
+        label {
+            margin: 0px;
+        }
+    }
+}
+
+/*
 .filters {
     background-color: var(--background-color);
     border-radius: 0px;
@@ -54,9 +100,10 @@
             margin-left: 10px;
         }
     }
-}
+}*/
 
 virtual-scroller {
-    height: 100vh;
+    height: var(--app-height);
     width: 100%;
+    padding-bottom: 80px;
 }

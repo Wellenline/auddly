@@ -16,11 +16,11 @@
 
 			<div class="playlists">
 				<ng-container *ngFor="let playlist of playlists">
-					<div *ngIf="playlist._id === 'FAVOURITES'" class="playlist" routerLink="/tracks"
-						[queryParams]="{liked: true}">
+					<div *ngIf="playlist._id === 'FAVOURITES'" class="playlist" [routerLink]="['music', 'tracks']"
+						[queryParams]="{liked: 'true'}">
 						{{ playlist.name }}</div>
 
-					<div *ngIf="playlist._id !== 'FAVOURITES'" class="playlist" routerLink="/tracks"
+					<div *ngIf="playlist._id !== 'FAVOURITES'" class="playlist" routerLink="/music/tracks"
 						[queryParams]="{playlist: playlist._id}">
 						{{ playlist.name }}</div>
 				</ng-container>
@@ -38,7 +38,7 @@
 			<h3 routerLink="/library?tab=artists">Artists</h3>
 			<div class="artists">
 				<ng-container *ngFor="let artist of result.artists; ">
-					<div [routerLink]="['/', { outlets: { modal: ['modal','artists', artist._id] } }]" class="artist">
+					<div (click)="onArtist(artist._id)" class="artist">
 						<img class="lazyload" [lazyLoad]="artist.picture || '/assets/app-icon-text.png'" />
 						<div class="column-details">
 							<div class="title">{{ artist.name }}</div>
@@ -74,7 +74,7 @@
 			<div class="albums">
 
 				<ng-container *ngFor="let album of result.albums; ">
-					<div [routerLink]="['/', { outlets: { modal: ['modal','albums', album._id] } }]" class="album">
+					<div (click)="onAlbum(album._id)" class="album">
 						<img class="lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
 						<div class="column-details">
 							<div class="title">{{ album.name }}</div>
@@ -103,7 +103,7 @@
 
 			<div class="grid ">
 				<div class="width-4@lg width-6@md width-6@sm" *ngFor="let track of result.tracks">
-					<app-track-list [track]="track"></app-track-list>
+					<app-track-item [track]="track"></app-track-item>
 				</div>
 			</div>
 

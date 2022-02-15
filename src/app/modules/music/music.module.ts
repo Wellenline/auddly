@@ -16,10 +16,11 @@ import { ArtistComponent } from './components/artist/artist.component';
 import { AlbumComponent } from './components/album/album.component';
 import { QueueComponent } from './components/queue/queue.component';
 import { NowPlaylingComponent } from './components/now-playling/now-playling.component';
+import { PlaylistComponent } from './components/playlist/playlist.component';
 
 
 @NgModule({
-	declarations: [MusicComponent, SearchComponent, AlbumsComponent, ArtistsComponent, PlaylistsComponent, TracksComponent, TrackListComponent, TrackItemComponent, ArtistComponent, AlbumComponent, QueueComponent, NowPlaylingComponent],
+	declarations: [MusicComponent, SearchComponent, AlbumsComponent, ArtistsComponent, PlaylistsComponent, TracksComponent, TrackListComponent, TrackItemComponent, ArtistComponent, AlbumComponent, QueueComponent, NowPlaylingComponent, PlaylistComponent],
 	imports: [
 		CommonModule,
 		SharedModule,

@@ -3,12 +3,19 @@
     overflow: auto;
     // min-width: 430px;
     // width: 430px;
-    border: 1px solid var(--border-primary);
+    border: 1px solid var(--border-color);
     background: var(--background-color);
     // padding: 20px;
     margin: 15px;
+    min-width: 400px;
     border-radius: 10px;
     box-shadow: rgb(0 0 0 / 10%) 0px 5px 10px 0px;
+
+    @media all and (max-width: 1000px) {
+        min-width: calc(100% - 1px);
+        margin: 1px;
+        width: calc(100vw - 30px);
+    }
 
 
 
@@ -45,6 +52,7 @@
         height: 100%;
         // overflow: auto;
         margin: 0px;
+        border: none;
 
         @media all and (max-width: 1000px) {
             min-width: 100% !important;
