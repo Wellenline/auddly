@@ -1,5 +1,5 @@
 <div
-	class="app-toolbar {{ transparent ? 'transparent' : '' }} {{ absolute ? 'absolute' : ''}}  {{ sticky ? 'sticky' : ''}} {{ static ? 'static' : '' }}">
+	class="app-toolbar {{ transparent ? 'transparent' : '' }} {{ iosFix ? 'ios-fix' : ''}} {{ absolute ? 'absolute' : ''}}  {{ sticky ? 'sticky' : ''}} {{ static ? 'static' : '' }}">
 
 	<div *ngIf="back" class="back">
 		<ng-container [ngTemplateOutlet]="backTemplate ? backTemplate : basicBack">

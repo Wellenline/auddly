@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
 	@Input() filler: boolean = true;
 
 	@Input() title: string;
+	@Input() iosFix: boolean = true;
 
 	@Input() actions: any[] = [];
 	@Input() public actionTemplate: ElementRef | any;

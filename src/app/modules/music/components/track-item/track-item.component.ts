@@ -1,8 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { MusicService } from "src/app/core/services/music.service";
 import { ITrack, PlayerService } from "src/app/services/player.service";
 import { ModalService } from "src/app/shared/components/modal/modal.service";
+import { ToastService } from "src/app/shared/components/toast/toast.service";
 import { AlbumComponent } from "../album/album.component";
 import { ArtistComponent } from "../artist/artist.component";
+import { PlaylistComponent } from "../playlist/playlist.component";
 
 @Component({
 	selector: "app-track-item",
@@ -17,9 +21,20 @@ export class TrackItemComponent implements OnInit {
 	};
 
 	@Output() public reload = new EventEmitter();
-	constructor(public playerService: PlayerService, private modalService: ModalService) { }
+	public inPlaylist = false;
+	constructor(public playerService: PlayerService, private route: ActivatedRoute,
+		private musicService: MusicService, private toastService: ToastService, private modalService: ModalService) { }
 
 	ngOnInit(): void {
+
+		// check if track has the playlist
+		if (this.route.snapshot.queryParams.playlist && this.track.playlists.length > 0) {
+			const inPlaylist = this.track.playlists.find((p) => p._id === this.route.snapshot.queryParams.playlist);
+			if (inPlaylist) {
+				this.inPlaylist = true;
+			}
+		}
+
 	}
 
 	public onPlay(e) {
@@ -28,45 +43,25 @@ export class TrackItemComponent implements OnInit {
 	}
 
 	public onPlaylist() {
-		// todo
-		/*this.httpService.get(`/playlists`).subscribe((response: { playlists: [{ name: any, id: number }] }) => {
-			this.interfaceService.dialog.show({
-				items: response.playlists.map((playlist) => playlist.name),
-				type: "picker",
-				title: "Playlist",
-				message: "Choose the playlist you wish to add the track",
-				closed: (index) => {
-					if (index !== false && index !== undefined) {
-						const playlist = response.playlists[index];
-						if (this.track.playlists.findIndex((p) => p._id === playlist._id) === -1) {
-							this._addToPlaylist(playlist);
-						}
-
-					}
-				},
-			});
-		});*/
-		this.playerService.onAddToPlaylist(this.track);
-
+		this.modalService.show({
+			component: PlaylistComponent,
+			params: {
+				id: this.track._id,
+				action: "add",
+			},
+			callback: (playlist) => {
+				this.track.playlists.push(playlist);
+				this.toastService.show({
+					message: `${this.track.name} added to ${playlist.name}`,
+				});
+			}
+		});
 	}
 
 	public onRemoveFromPlaylist() {
-		this.playerService.onRemoveFromPlaylist(this.track);
-
-		/*this.interfaceService.dialog.show({
-			items: this.track.playlists.map((playlist) => playlist.name),
-			type: "picker",
-			title: "Playlist",
-			message: "Choose the playlist you wish to remove the track from",
-			closed: (index) => {
-				console.log(index);
-				if (index !== false && index !== undefined) {
-					const playlist = this.track.playlists[index];
-					this._removeFromPlaylist(playlist, index);
-
-				}
-			},
-		});*/
+		this.musicService.removeTrackFromPlaylist(this.track._id, this.route.snapshot.queryParams.playlist).subscribe(() => {
+			this.reload.emit();
+		});
 	}
 
 	public onQueue() {
@@ -75,25 +70,6 @@ export class TrackItemComponent implements OnInit {
 		} else {
 			this.playerService.queue([this.track]);
 		}
-	}
-
-	private _addToPlaylist(playlist) {
-		/*this.httpService.post(`/playlists/${playlist._id}`, {
-			track: this.track._id,
-		}).subscribe((response) => {
-			//this.interfaceService.notify(`${this.track.name} added to ${playlist.name}`);
-			this.track.playlists.push(playlist);
-		});*/
-	}
-
-	private _removeFromPlaylist(playlist, index) {
-		/*this.httpService.delete(`/playlists/${playlist._id}/${this.track._id}`).subscribe((response) => {
-			//this.interfaceService.notify(`${this.track.name} removed from ${playlist.name}`);
-			if (index > -1) {
-				this.track.playlists.splice(index, 1);
-			}
-			this.reload.emit(true);
-		});*/
 	}
 
 	public onArtist(id: string) {

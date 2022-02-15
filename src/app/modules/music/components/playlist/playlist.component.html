@@ -1,71 +1,29 @@
-<app-header [transparent]="true" [backTemplate]="back" [back]="true" [sticky]="true">
+<app-header [iosFix]="false" [transparent]="true" [back]="true" [sticky]="true">
 
 
 
-	<ng-template #back>
-
-		<div (click)="modalComponent.onClose()">
-
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-				stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-				class="ai ai-ArrowLeft">
-				<path d="M11 5l-7 7 7 7" />
-				<path d="M4 12h16" />
-			</svg>
-
-		</div>
-	</ng-template>
 
 </app-header>
 
 <div class="modal-body">
 
-	<h1>Invite</h1>
-	<div class="text-meta">Send invitation links to team members</div>
+	<h1>Playlists</h1>
+	<div class="text-meta">Manage your playlists</div>
 
-
-
-
-
-
-	<form (ngSubmit)="onSend()" ngNativeValidate>
-
-		<div class="invites">
-
-
-			<!--div class="invite" *ngFor="let invite of invites; let i = index;">
-
-				<div class="invite-email">
-					<input required="true" class="input" type="email" name="email" placeholder="Email"
-						[(ngModel)]="invite.email" />
-				</div>
-				<div class="invite-role">
-					<select class="select">
-						<option *ngFor="let role of roles">{{ role.name }}</option>
-					</select>
-				</div>
-
-				<div (click)="onRemoveInvite(i)" class="invite-action">
-					<i class="ph-x"></i>
-
-
-				</div>
-			</div-->
-		</div>
-
-
-		<div class="invite-footer">
-			<div class="action">
-				<div (click)="onAdd()" class="add-invite">
-					Add new member <i class="feather feather-plus"></i>
-				</div>
+	<div class="playlists">
+		<div class="playlist" *ngFor="let playlist of playlists">
+			<div appRipple (click)="onHandleAction(playlist)" class="playlist-name">
+				{{ playlist.name }}
 			</div>
-
-			<button class="primary">Send Invites <i class="ph-paper-plane-right"></i>
-			</button>
+			<div class="playlist-actions">
+				<button (click)="onEdit(playlist)"><i class="ph-pencil-simple"></i></button>
+				<button (click)="onDelete(playlist)"><i class="ph-trash-simple"></i></button>
+			</div>
 		</div>
-
-	</form>
+	</div>
+	<div (click)="onCreate()" class="add-playlist">
+		Create new playlist <i class="ph-plus"></i>
+	</div>
 
 	<app-loading [loading]="loading"></app-loading>
 </div>

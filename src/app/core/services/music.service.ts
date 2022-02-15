@@ -15,9 +15,6 @@ export class MusicService {
 
 	constructor(private http: HttpService) { }
 
-	public getPlaylists() {
-		return this.http.get(`/playlists`);
-	}
 
 	public getArtists(params: {}) {
 		return this.http.get(`/artists?${Object.keys(params).map(key => key + "=" + params[key]).join("&")}`);
@@ -52,4 +49,27 @@ export class MusicService {
 		return this.http.get(`/search?q=${query}`);
 	}
 
+	public getPlaylists() {
+		return this.http.get(`/playlists`);
+	}
+
+	public createPlaylist(data: {}) {
+		return this.http.post(`/playlists`, data);
+	}
+
+	public updatePlaylist(id: string, data: {}) {
+		return this.http.put(`/playlists/${id}`, data);
+	}
+
+	public deletePlaylist(id: string) {
+		return this.http.delete(`/playlists/${id}`);
+	}
+
+	public addTrackToPlaylist(playlist: string, track: string) {
+		return this.http.post(`/playlists/${playlist}`, { track });
+	}
+
+	public removeTrackFromPlaylist(playlist: string, track: string) {
+		return this.http.delete(`/playlists/${playlist}/${track}`);
+	}
 }

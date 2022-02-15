@@ -34,7 +34,7 @@
 	<!--a class="dropdown-item" target="_blank" href="{{httpService.API_ENDPOINT}}/tracks/play/{{ track._id }}"
 		download="{{track.name}}.mp3">Download</a-->
 
-	<div class="dropdown-item" *ngIf="track?.playlists?.length > 0" (click)="onRemoveFromPlaylist()">Remove
+	<div class="dropdown-item" *ngIf="inPlaylist" (click)="onRemoveFromPlaylist()">Remove
 		from playlist</div>
 
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { MusicService } from "src/app/core/services/music.service";
 import { ModalComponent } from "src/app/shared/components/modal/modal.component";
 
 @Component({
@@ -8,29 +9,96 @@ import { ModalComponent } from "src/app/shared/components/modal/modal.component"
 })
 export class PlaylistComponent implements OnInit {
 
-	public invites: any = [{}];
+	public playlists = [];
 
-	public loading = false;
+	public loading = true;
 
 	public error: string;
 	public roles = [];
-	constructor(public modalComponent: ModalComponent) { }
+	constructor(public modalComponent: ModalComponent, private musicService: MusicService) { }
 
 
 	ngOnInit(): void {
-		this.getRoles();
+		this.getPlaylists();
 	}
 
-	getRoles() {
-
+	getPlaylists() {
+		this.musicService.getPlaylists().subscribe((response: { playlists: [] }) => {
+			this.playlists = response.playlists;
+		}).add(() => {
+			this.loading = false;
+		});
 	}
 
-	onAdd() {
-		this.invites.push({});
+	onHandleAction(playlist) {
+		if (!this.modalComponent.params.id) {
+			return;
+		}
+
+		if (this.modalComponent.params.action === "add") {
+			return this.onAddToPlayist(playlist);
+		}
+
+		return this.onRemoveFromPlaylist(playlist);
+	}
+
+	onRemoveFromPlaylist(playlist) {
+		if (this.modalComponent.params.id) {
+			this.musicService.removeTrackFromPlaylist(playlist._id, this.modalComponent.params.id).subscribe((response: { playlist: any }) => {
+				this.modalComponent.onClose(playlist);
+			}, (err) => {
+				alert(err);
+			});
+		}
+		// this.invites.push({});
+	}
+
+
+	onAddToPlayist(playlist) {
+		if (this.modalComponent.params.id) {
+			this.musicService.addTrackToPlaylist(playlist._id, this.modalComponent.params.id).subscribe((response: { playlist: any }) => {
+				this.modalComponent.onClose(playlist);
+			}, (err) => {
+				alert(err);
+			});
+		}
+		// this.invites.push({});
+	}
+
+	onCreate() {
+		const name = prompt("Enter playlist name");
+		if (name) {
+			this.musicService.createPlaylist({ name }).subscribe((response) => {
+				this.playlists.push(response);
+			}, (err) => {
+				alert(err);
+			});
+		}
+	}
+
+	onEdit(playlist) {
+		const name = prompt("Enter new name", playlist.name);
+		if (name) {
+			this.musicService.updatePlaylist(playlist._id, { name }).subscribe((response: { playlist: any }) => {
+				playlist.name = name;
+			}, (err) => {
+				alert(err);
+			});
+		}
+	}
+
+	onDelete(playlist) {
+		if (confirm("Are you sure you want to delete this playlist?")) {
+			this.musicService.deletePlaylist(playlist._id).subscribe((response: { playlist: any }) => {
+				this.playlists = this.playlists.filter(p => p._id !== playlist._id);
+			}, (err) => {
+				alert(err);
+			});
+		}
 	}
 
 	onRemoveInvite(index) {
-		this.invites.splice(index, 1);
+		// this.invites.splice(index, 1);
 	}
 
 	onSend() {
