@@ -1,142 +1,69 @@
-<app-header [back]="true"></app-header>
+<app-header [filler]="false" [transparent]="true" [back]="true">
+	<div header-actions>Clear Queue</div>
+</app-header>
 
 
-<div class="container mx-auto">
+<div class="player">
+	<div class="image">
+		<img (swipe)="onSwipe($event)" [src]="track?.album?.picture || '/assets/app-icon-text.png'" />
+	</div>
+	<div class="details">
+		<div>
+			<h1>{{ track.name }}</h1>
+			<p>{{ track.artist }}</p>
+		</div>
+		<button appRipple (click)="onLike()" class="small {{ track.liked ? 'active' : '' }}"><i class="ph-heart"></i>
 
-	<div class="player">
-		<div class="player-box">
-			<div class="image">
-				<img (swipe)="onSwipe($event)" [src]="track?.album?.picture || '/assets/app-icon-text.png'" />
-			</div>
-			<div class="details">
-				<div>
-					<h1>{{ track.name }}</h1>
-					<p>{{ track.artist }}</p>
-				</div>
-				<button appRipple (click)="onLike()" class="small {{ track.liked ? 'active' : '' }}"><i
-						class="ph-heart"></i>
+		</button>
+	</div>
 
-				</button>
-			</div>
+	<div class="progress">
+		<div class="time">
+			{{ currentTime | formatSeconds }}
+		</div>
 
-			<div class="progress">
-				<div class="time">
-					{{ currentTime | formatSeconds }}
-				</div>
-
-				<div class="slider">
-					<app-slider [seekable]="!(buffering && playing)" [options]="{vertical: false, autoSize: false}"
-						[buffer]="buffer" [value]="progress" (valueChange)="onProgress($event)">
-					</app-slider>
+		<div class="slider">
+			<app-slider [seekable]="!(buffering && playing)" [options]="{vertical: false, autoSize: false}"
+				[buffer]="buffer" [value]="progress" (valueChange)="onProgress($event)">
+			</app-slider>
 
 
-					<app-loading [loading]="buffering && playing"></app-loading>
-				</div>
+			<app-loading [loading]="buffering && playing"></app-loading>
+		</div>
 
-				<div class="time">
-					{{ (track.duration || 0) | formatSeconds }}
-				</div>
-			</div>
-
-			<div class="controls">
-				<button appRipple (click)="playerService.onShuffle()"
-					class="small {{ playerService.shuffle ? 'active' : '' }}">
-					<i class="ph-shuffle-simple"></i>
-
-				</button>
-				<button appRipple [disabled]="playerService.isFirst" (click)="playerService.onPrev()">
-					<i class="ph-skip-back"></i>
-				</button>
-				<button appRipple class="playback" (click)="playerService.onPlayback()">
-					<i class="ph-{{playing ? 'pause' : 'play' }}"></i>
-				</button>
-				<button appRipple [disabled]="playerService.isLast" (click)="playerService.onNext()">
-					<i class="ph-skip-forward"></i>
-				</button>
-				<button appRipple (click)="playerService.onRepeat()"
-					class="small {{ playerService.repeat ? 'active' : '' }}"><i class="ph-repeat"></i>
-
-				</button>
-
-			</div>
-
+		<div class="time">
+			{{ (track.duration || 0) | formatSeconds }}
 		</div>
 	</div>
 
+	<div class="controls">
+		<button appRipple (click)="playerService.onShuffle()" class="small {{ playerService.shuffle ? 'active' : '' }}">
+			<i class="ph-shuffle-simple"></i>
 
-	<div class="player">
-		<div class="player-content">
-			<div class="image">
-				<img (swipe)="onSwipe($event)" [src]="track?.album?.picture || '/assets/app-icon-text.png'" />
-			</div>
-			<div class="details">
-				<h1>{{ track.name }}</h1>
-				<p>{{ track.artist }}</p>
-			</div>
+		</button>
+		<button appRipple [disabled]="playerService.isFirst" (click)="playerService.onPrev()">
+			<i class="ph-skip-back"></i>
+		</button>
+		<button appRipple class="playback" (click)="playerService.onPlayback()">
+			<i class="ph-{{playing ? 'pause' : 'play' }}"></i>
+		</button>
+		<button appRipple [disabled]="playerService.isLast" (click)="playerService.onNext()">
+			<i class="ph-skip-forward"></i>
+		</button>
+		<button appRipple (click)="playerService.onRepeat()" class="small {{ playerService.repeat ? 'active' : '' }}"><i
+				class="ph-repeat"></i>
 
+		</button>
 
-			<div class="playing-progress">
-				<div class="playing-progress-slider">
-					<app-slider [seekable]="!(buffering && playing)" [options]="{vertical: false, autoSize: false}"
-						[buffer]="buffer" [value]="progress" (valueChange)="onProgress($event)">
-					</app-slider>
+	</div>
+	<div class="queue">
+		<app-track-item [options]="{picture: true, actions: false} " [track]="track" *ngFor="let track of tracks">
+		</app-track-item>
 
+	</div>
+</div>
 
-					<app-loading [loading]="buffering && playing"></app-loading>
-				</div>
-				<div class="playing-progress-time">
-					<div class="current">
-						{{currentTime | formatSeconds}}
-
-					</div>
-
-					<div class="total">
-						{{(track.duration || 0) | formatSeconds}}
-					</div>
-				</div>
-			</div>
-
-			<div class="playing-controls">
-				<div (click)="playerService.onShuffle()"
-					class="playing-controls-control shuffle {{ playerService.shuffle ? 'active' : '' }}">
-					<span class="material-icons-round ">
-						shuffle
-					</span>
-				</div>
-				<div class="playing-controls-control grow">
-
-					<div (click)="playerService.onPrev()" class=" skip {{ playerService.isFirst ? 'disabled': '' }}">
-						<i class="ph-skip-back"></i>
-
-
-					</div>
-
-					<div (click)="playerService.onPlayback()" class=" playback">
-
-						<i class="ph-{{playing ? 'pause' : 'play' }}"></i>
-
-
-
-					</div>
-
-					<div (click)="playerService.onNext()" class="skip {{ playerService.isLast ? 'disabled': '' }}">
-						<i class="ph-skip-forward"></i>
-
-
-
-					</div>
-
-				</div>
-
-				<div (click)="playerService.onRepeat()"
-					class="playing-controls-control repeat {{ playerService.repeat ? 'active' : '' }}">
-					<span class="material-icons-round">
-						repeat
-					</span>
-				</div>
-			</div>
-
-			<!--div class="playing-volume">
+<!--div class="playing-volume">
 				<div class="playing-volume-controls">
 					<div class="playing-volume-controls-level">
 						<i *ngIf="volume === 0" class="feather-volume-x"></i>
@@ -151,43 +78,3 @@
 					</div>
 				</div>
 			</div-->
-		</div>
-
-		<div class="player-queue">
-			<div class="queue">
-				<div class="playing-header-playing">
-					<div class="title">{{ tracks.length }}</div>
-					<div class="subtitle">Songs in queue</div>
-				</div>
-
-				<div (click)="onClear()" class="playing-header-action">
-					<div class="playing-header-action-item">
-
-						<i class="feather feather-trash"></i>
-
-
-					</div>
-				</div>
-			</div>
-
-
-			<app-track-item [track]="track" *ngFor="let track of tracks">
-			</app-track-item>
-
-
-
-			<!--virtual-scroller #scroll [items]="tracks" [enableUnequalChildrenSizes]="true" [checkResizeInterval]="0">
-
-				<app-loading [loading]="loading"></app-loading>
-				<div #container>
-
-					<app-track-list [options]="{ picture: true, actions: false}" [track]="track"
-						*ngFor="let track of scroll.viewPortItems">
-					</app-track-list>
-
-				</div>
-			</virtual-scroller-->
-
-		</div>
-	</div>
-</div>
