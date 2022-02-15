@@ -1,1 +1,0 @@
-{"ast":null,"code":"export default function removeAllSlides() {\n  var swiper = this;\n  var slidesIndexes = [];\n\n  for (var i = 0; i < swiper.slides.length; i += 1) {\n    slidesIndexes.push(i);\n  }\n\n  swiper.removeSlide(slidesIndexes);\n}","map":null,"metadata":{},"sourceType":"module"}

@@ -1,1 +1,0 @@
-{"ast":null,"code":"export default function updateSlidesOffset() {\n  var swiper = this;\n  var slides = swiper.slides;\n\n  for (var i = 0; i < slides.length; i += 1) {\n    slides[i].swiperSlideOffset = swiper.isHorizontal() ? slides[i].offsetLeft : slides[i].offsetTop;\n  }\n}","map":null,"metadata":{},"sourceType":"module"}

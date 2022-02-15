@@ -1,1 +1,0 @@
-{"ast":null,"code":"export default function removeClasses() {\n  var swiper = this;\n  var $el = swiper.$el,\n      classNames = swiper.classNames;\n  $el.removeClass(classNames.join(' '));\n  swiper.emitContainerClasses();\n}","map":null,"metadata":{},"sourceType":"module"}

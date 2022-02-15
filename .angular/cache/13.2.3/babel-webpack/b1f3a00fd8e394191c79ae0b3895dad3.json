@@ -1,1 +1,0 @@
-{"ast":null,"code":"export default function maxTranslate() {\n  return -this.snapGrid[this.snapGrid.length - 1];\n}","map":null,"metadata":{},"sourceType":"module"}
