@@ -1,6 +1,23 @@
+.icon {
+    font-size: 2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
 .albums {
     margin-bottom: 20px;
-
+    height: calc(var(--app-height) - 60px);
+    overflow: auto;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-column-gap: 15px;
@@ -16,14 +33,48 @@
     }
 
     @media screen and (max-width: 930px) {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         padding: 0 1rem;
+        height: calc(var(--app-height) - env(safe-area-inset-bottom) - 140px);
+
+    }
+
+    &.list {
+        display: flex;
+        flex-direction: column;
+
+        .album {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            gap: 1rem;
+
+            img {
+                width: 60px;
+                height: 60px;
+
+            }
+
+            .album-info {
+                flex-grow: 1;
+
+                h3 {
+                    font-size: 14px;
+                }
+
+                p {
+                    opacity: 0.8;
+                }
+
+            }
+
+        }
     }
 
     .album {
 
         img {
-
+            //  min-height: 300px;
             object-fit: cover;
             aspect-ratio: 1;
             // height: 350px;

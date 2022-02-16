@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Subject } from 'rxjs/internal/Subject';
-import { takeUntil } from 'rxjs/operators';
-import { ITrack, PlayerService } from 'src/app/services/player.service';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
+import { ITrack, PlayerService } from "src/app/core/services/player.service";
 
 @Component({
-	selector: 'app-now-playling',
-	templateUrl: './now-playling.component.html',
-	styleUrls: ['./now-playling.component.scss']
+	selector: "app-now-playling",
+	templateUrl: "./now-playling.component.html",
+	styleUrls: ["./now-playling.component.scss"]
 })
 export class NowPlaylingComponent implements OnInit {
-	public tracks = [];
+	public tracks: ITrack[] = [];
 	public track: ITrack = {};
 	public progress = 0;
 	public volume = (parseFloat(localStorage.getItem("volume")) || 1) * 100;
@@ -87,14 +87,6 @@ export class NowPlaylingComponent implements OnInit {
 
 	public onClear() {
 		this.playerService.clear();
-	}
-
-	public onClose() {
-		// this.modal.close();
-	}
-
-	public onPlaylist() {
-		this.playerService.onAddToPlaylist(this.track);
 	}
 
 	public onVolume(e: number) {

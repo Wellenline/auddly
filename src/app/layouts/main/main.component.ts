@@ -1,7 +1,6 @@
 import { Component, HostListener, OnInit } from "@angular/core";
 import { NavigationEnd, Router, RouterEvent } from "@angular/router";
 import { filter } from "rxjs/operators";
-import { ITrack, PlayerService } from "src/app/services/player.service";
 
 @Component({
 	selector: "app-main",

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { MusicService } from "src/app/core/services/music.service";
-import { ITrack, PlayerService } from "src/app/services/player.service";
+import { ITrack, PlayerService } from "src/app/core/services/player.service";
 import { ModalService } from "src/app/shared/components/modal/modal.service";
 import { ToastService } from "src/app/shared/components/toast/toast.service";
 import { AlbumComponent } from "../album/album.component";

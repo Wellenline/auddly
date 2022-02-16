@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-import { PlayerService, ITrack } from "src/app/services/player.service";
-import { HttpService } from "src/app/services/http.service";
 import { ModalService } from "src/app/shared/components/modal/modal.service";
 import { NowPlaylingComponent } from "src/app/modules/music/components/now-playling/now-playling.component";
+import { ITrack, PlayerService } from "src/app/core/services/player.service";
 
 @Component({
 	selector: "app-player",
@@ -48,10 +47,6 @@ export class PlayerComponent implements OnInit {
 		this.playerService.$track.subscribe((track) => {
 			this.track = track;
 		});
-	}
-
-	public onPlaylist() {
-		this.playerService.onAddToPlaylist(this.track);
 	}
 
 

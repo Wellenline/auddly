@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { HttpService } from 'src/app/services/http.service';
-import { PlayerService } from 'src/app/services/player.service';
-import { SwiperOptions } from 'swiper';
+
 import { debounce } from "src/app/utils";
 import { ModalService } from 'src/app/shared/components/modal/modal.service';
 import { AlbumComponent } from '../../components/album/album.component';
 import { ArtistComponent } from '../../components/artist/artist.component';
 import { PlaylistComponent } from '../../components/playlist/playlist.component';
+import { HttpService } from 'src/app/core/services/http.service';
+import { PlayerService } from 'src/app/core/services/player.service';
 
 @Component({
 	selector: 'app-search',
@@ -23,40 +23,7 @@ export class SearchComponent implements OnInit {
 	public playlists = [];
 
 	public search: string;
-	public config: SwiperOptions = {
-		slidesOffsetBefore: 15,
-		slidesOffsetAfter: 15,
-		navigation: false,
-		pagination: false,
-		slidesPerView: "auto",
 
-		/*breakpoints: {
-			0: {
-				slidesPerView: 3,
-				spaceBetween: 20
-			},
-			// when window width is >= 320px
-			320: {
-				slidesPerView: 2,
-				spaceBetween: 20
-			},
-			// when window width is >= 480px
-			480: {
-				slidesPerView: 3,
-				spaceBetween: 30
-			},
-			// when window width is >= 640px
-			640: {
-				slidesPerView: 4,
-				spaceBetween: 40
-			},
-			1024: {
-				slidesPerView: 4,
-				spaceBetween: 40
-			},
-
-		},*/
-	};
 	public loading = {
 		albums: true,
 		artists: true,

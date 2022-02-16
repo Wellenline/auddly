@@ -1,0 +1,138 @@
+.qr-code {
+    height: 400px;
+}
+
+.app-logo {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    text-align: center;
+
+    img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+}
+
+.bubbles {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+
+    .bubble {
+        height: 100%;
+        flex-grow: 1;
+        flex-basis: 0;
+
+        background-color: var(--background-color-2);
+        color: var(--foreground-color);
+        // border: 1px solid var(--border-color);
+        border-radius: 5px;
+        // box-shadow: rgba(17, 17, 18, 0.04) 0 2px 4px, rgba(19, 20, 20, 0.06) 0 1px 1px;
+
+        padding: 20px;
+        text-align: center;
+
+        &:last-of-type {
+            margin-right: 15px;
+        }
+
+        &:first-of-type {
+            margin-left: 15px;
+        }
+
+        h1 {
+            font-family: "Open Sans", sans-serif;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            margin: 0px;
+        }
+
+        p {
+            margin: 0px;
+            font-family: "Open Sans", sans-serif;
+
+            // text-transform: uppercase;
+            font-size: 11px;
+            font-weight: 500;
+            opacity: 0.7;
+        }
+
+        &+.bubble {
+            margin-left: 15px;
+        }
+    }
+}
+
+h3 {
+    padding-left: 10px;
+    color: var(--foreground-color);
+    font-family: "Open Sans", sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1rem;
+}
+
+.title-action {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+
+    h3 {
+        flex-grow: 1;
+    }
+
+    .float-right {
+        padding-right: 10px;
+    }
+}
+
+.theme {
+    padding-left: 15px;
+
+    .color-block {
+        &:first-of-type {
+            // background: blue !important;
+            margin-left: 15px;
+        }
+
+        &:last-of-type {
+            // background: red !important;
+            margin-right: 15px;
+        }
+
+        box-shadow: rgba(17, 17, 18, 0.04) 0 2px 4px,
+        rgba(19, 20, 20, 0.06) 0 1px 1px;
+
+        display: inline-block;
+        padding: 10px;
+        border-radius: 5px;
+        color: white;
+
+        &+.color-block {
+            margin-left: 10px;
+        }
+    }
+}
+
+.list {
+    &-item {
+        padding: 15px;
+        border-bottom: 1px solid var(--border-color);
+
+        .text-lead {
+            color: var(--foreground-color);
+            font-size: 1rem;
+            opacity: 0.6;
+        }
+
+        .text-meta {
+            color: var(--foreground-color);
+            margin-top: 5px;
+            font-size: 14px;
+        }
+    }
+}

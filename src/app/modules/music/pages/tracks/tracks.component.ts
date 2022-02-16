@@ -2,9 +2,9 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, fromEvent } from 'rxjs';
 import { startWith, debounceTime, map } from 'rxjs/operators';
+import { HttpService } from 'src/app/core/services/http.service';
 import { MusicService } from 'src/app/core/services/music.service';
-import { HttpService } from 'src/app/services/http.service';
-import { PlayerService } from 'src/app/services/player.service';
+import { PlayerService } from 'src/app/core/services/player.service';
 import { ModalService } from 'src/app/shared/components/modal/modal.service';
 import { PlaylistComponent } from '../../components/playlist/playlist.component';
 

@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, 
 
 @Component({
 	selector: "app-infinite-scroll",
-	template: `<ng-content></ng-content><div #anchor></div>`,
+	template: `<ng-content></ng-content><div #anchor>Anchor</div>`,
 	styleUrls: ["./infinite-scroll.component.scss"],
 })
 export class InfiniteScrollComponent implements OnInit, OnDestroy {
@@ -21,7 +21,7 @@ export class InfiniteScrollComponent implements OnInit, OnDestroy {
 
 	public ngOnInit() {
 		if (isPlatformBrowser(this.platformId)) {
-
+			console.log(this.isHostScrollable());
 			const options = {
 				root: this.isHostScrollable() ? this.host.nativeElement : null,
 				...this.options,

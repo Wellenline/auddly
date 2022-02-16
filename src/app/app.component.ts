@@ -1,7 +1,6 @@
 import { Component, HostListener } from "@angular/core";
 import { ThemeService } from "./core/services/theme.service";
 import { UpdateService } from "./core/services/update.service";
-import { PlayerService } from "./services/player.service";
 
 @Component({
 	selector: "app-root",

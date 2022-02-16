@@ -1,19 +1,42 @@
-<app-header [sticky]="true" [transparent]="true">
+<app-header [sticky]="true" title="Albums">
 	<div header-title>
 		<h3>Albums</h3>
 	</div>
-</app-header>
-<app-infinite-scroll (scrolled)="onScroll()">
+	<div header-actions class="actions">
 
-	<div class="albums">
-		<div appRipple class="album" *ngFor="let album of albums" (click)="onAlbum(album._id)">
-			<img class="lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
+		<div (click)="grid = !grid" appRipple class="icon">
 
-			<div class="album-info">
-				<h3>{{ album.name }}</h3>
-				<p>{{ album.artist.name }}</p>
 
-			</div>
+			<i *ngIf="grid" class="ph-squares-four"></i>
+			<i *ngIf="!grid" class="ph-list"></i>
+
+		</div>
+
+		<div appRipple class="icon" [dropdownTriggerFor]="dropdown">
+
+
+			<i class="ph-funnel"></i>
+			<app-dropdown #dropdown>
+				<div class="dropdown-item" (click)="onSort('name')">Sort by name</div>
+				<div class="dropdown-item" (click)="onSort('created_at')">Sort by date</div>
+			</app-dropdown>
 		</div>
 	</div>
-</app-infinite-scroll>
+</app-header>
+
+
+
+<div *ngIf="albums.length > 0" appInfiniteScroll [scrollPercent]="70" [immediateCallback]="true"
+	[scrollCallback]="scrollCallback" class="albums {{ grid ? '' : 'list' }}">
+
+	<div appRipple class="album" *ngFor="let album of albums" (click)="onAlbum(album._id)">
+		<img class="lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
+
+		<div class="album-info">
+			<h3>{{ album.name }}</h3>
+			<p>{{ album.artist.name }}</p>
+
+		</div>
+	</div>
+</div>
+<!--app-infinite-scroll (scrolled)="onScroll()"></app-infinite-scroll-->

@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MusicService } from "src/app/core/services/music.service";
-import { PlayerService } from "src/app/services/player.service";
+import { PlayerService } from "src/app/core/services/player.service";
 import { ModalComponent } from "src/app/shared/components/modal/modal.component";
 import { ModalService } from "src/app/shared/components/modal/modal.service";
 import { ToastService } from "src/app/shared/components/toast/toast.service";

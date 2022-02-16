@@ -2,10 +2,7 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;800&display=swap");
 
-
 @import "~@angular/cdk/overlay-prebuilt.css";
-
-@import "~swiper/swiper-bundle";
 
 @import "./theme/base.scss";
 
@@ -15,8 +12,8 @@ html[data-theme="light"] {
 
     --background-color: #fff;
     --background-color-2: #f2f2f2;
-    --background-color-3: #fff;
-    --background-color-4: #f9f9f9;
+    --background-color-3: #f9f9f9;
+    --background-color-4: #fff;
     --background-color-5: #fbfbfb;
     --input-color: #181818;
 
@@ -34,8 +31,8 @@ html[data-theme="dark"] {
 
     --background-color: #000;
     --background-color-2: #0e0e0e;
-    --background-color-3: #181818;
-    --background-color-4: #202020;
+    --background-color-3: #202020;
+    --background-color-4: #181818;
     --background-color-5: #222222;
 
     --border-color: #201f1f;
