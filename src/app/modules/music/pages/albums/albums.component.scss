@@ -72,6 +72,8 @@
     }
 
     .album {
+        transition: all ease-in-out .3s;
+
         .image {
             // background-color: blue;
             aspect-ratio: 1;
@@ -87,6 +89,8 @@
 
                 transition: all ease-in-out .3s;
 
+                // filter: brightness(0.5) grayscale(.4);
+
             }
         }
 
@@ -100,10 +104,15 @@
         }
 
         &:hover {
-            img {
-                filter: grayscale(0%) brightness(100%);
+            cursor: pointer;
 
+            .image {
+                img {
+                    filter: grayscale(0) brightness(1);
+
+                }
             }
+
         }
     }
 

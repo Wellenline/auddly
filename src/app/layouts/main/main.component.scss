@@ -212,7 +212,7 @@
             box-shadow: none;
             border-radius: 0px 0px 0px;
             background: #0e0e0e;
-            border-top: 1px solid var(--border-color);
+            //  border-top: 1px solid var(--border-color);
             color: white;
             z-index: 7;
         }
@@ -226,7 +226,7 @@
         0 5px 15px 0 rgb(0 0 0 / 5%);
 
         left: auto;
-        background-color: var(--background-color-2);
+        background-color: var(--background-color-4);
         min-width: 300px;
         right: 0px;
         margin: 20px;

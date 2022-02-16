@@ -34,6 +34,17 @@
             display: grid;
             align-items: center;
 
+            h3 {
+                font-size: 14px;
+                margin: 0px;
+            }
+
+            p {
+                margin: 0px;
+                font-size: .7rem;
+                opacity: 0.8;
+            }
+
             &-artist {
                 font-size: 12px;
                 opacity: 0.6;
@@ -54,7 +65,7 @@
         padding: 10px;
 
         &-action {
-            background-color: #000;
+            background-color: transparent;
             height: 40px;
             width: 40px;
             border-radius: 50%;

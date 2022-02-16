@@ -26,6 +26,7 @@ import { SizePipe } from "./pipes/custom/size.pipe";
 import { FormatSecondsPipe } from "./pipes/custom/format-seconds.pipe";
 import { SliderComponent } from "./components/slider/slider.component";
 import { InfiniteScrollDirective } from './directives/infinite-scroll.directive';
+import { DragScrollDirective } from './directives/drag-scroll.directive';
 
 
 
@@ -48,7 +49,8 @@ import { InfiniteScrollDirective } from './directives/infinite-scroll.directive'
 		TagInputComponent,
 		InfiniteScrollComponent,
 		SliderComponent,
-		InfiniteScrollDirective
+		InfiniteScrollDirective,
+		DragScrollDirective
 
 	],
 	imports: [
@@ -91,7 +93,8 @@ import { InfiniteScrollDirective } from './directives/infinite-scroll.directive'
 		SizePipe,
 		FormatSecondsPipe,
 		SliderComponent,
-		InfiniteScrollDirective
+		InfiniteScrollDirective,
+		DragScrollDirective
 
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]
