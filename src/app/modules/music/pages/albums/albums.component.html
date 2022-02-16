@@ -30,7 +30,10 @@
 	[scrollCallback]="scrollCallback" class="albums {{ grid ? '' : 'list' }}">
 
 	<div appRipple class="album" *ngFor="let album of albums" (click)="onAlbum(album._id)">
-		<img class="lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
+		<div class="image">
+			<img class="lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
+
+		</div>
 
 		<div class="album-info">
 			<h3>{{ album.name }}</h3>

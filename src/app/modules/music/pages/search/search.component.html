@@ -11,10 +11,10 @@
 		<h3>Playlists</h3>
 
 		<div class="playlists">
-			<div (click)="onAddPlaylist()" class="playlist">Manage Playlists</div>
+			<div appRipple (click)="onAddPlaylist()" class="playlist">Manage Playlists</div>
 			<ng-container *ngFor="let playlist of playlists">
 
-				<div class="playlist" routerLink="/music/tracks" [queryParams]="{playlist: playlist._id}">
+				<div appRipple class="playlist" routerLink="/music/tracks" [queryParams]="{playlist: playlist._id}">
 					{{ playlist.name }}</div>
 			</ng-container>
 

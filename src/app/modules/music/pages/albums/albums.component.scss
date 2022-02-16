@@ -72,19 +72,24 @@
     }
 
     .album {
-
-        img {
-            //  min-height: 300px;
-            object-fit: cover;
+        .image {
+            // background-color: blue;
             aspect-ratio: 1;
-            // height: 350px;
 
-            border-radius: 15px;
-            // filter: grayscale(100%) brightness(50%);
+            img {
+                //  min-height: 300px;
+                object-fit: cover;
+                aspect-ratio: 1;
+                // height: 350px;
 
-            transition: all ease-in-out .3s;
+                border-radius: 15px;
+                // filter: grayscale(100%) brightness(50%);
 
+                transition: all ease-in-out .3s;
+
+            }
         }
+
 
         h3 {
             margin: 0px;

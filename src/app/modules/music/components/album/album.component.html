@@ -22,7 +22,8 @@
 		</div>
 
 		<div class="album-tracks">
-			<app-track-item [track]="track" *ngFor="let track of tracks"></app-track-item>
+			<app-track-item [options]="{actions: true, picture: false }" [track]="track" *ngFor="let track of tracks">
+			</app-track-item>
 		</div>
 
 		<ng-container *ngIf="albums.length > 0">

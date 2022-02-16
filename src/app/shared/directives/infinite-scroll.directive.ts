@@ -54,13 +54,7 @@ export class InfiniteScrollDirective {
 	}
 
 	private registerScrollEvent() {
-
 		this.scrollEvent$ = fromEvent(this.elm.nativeElement, "scroll");
-
-		this.scrollEvent$.subscribe((s) => {
-			console.log("Scrolling down", s);
-		});
-
 	}
 
 	private streamScrollEvents() {

@@ -1,45 +1,64 @@
+.icon {
+    font-size: 2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
 .player {
 
-    display: grid;
-    grid-template-areas: "image queue"
-        "details  queue"
-        "progress  queue"
-        "controls  queue";
-
-    grid-template-rows: 1fr auto auto auto;
-    grid-template-columns: 1fr 1fr;
-    overflow-x: hidden;
-    gap: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     // overflow-y: auto;
 
+    display: grid;
+    place-content: center;
+    height: 100vh;
+
     @media all and (max-width: 1000px) {
-        max-width: auto;
-        margin: 0px;
-        min-height: -webkit-fill-available;
-
-        grid-template-areas: "image"
-            "details"
-            "progress"
-            "controls"
-            "queue";
-        grid-template-rows: auto auto auto auto auto;
-        grid-template-columns: 1fr;
 
 
-        .controls {
-            //position: sticky;
-            //top: calc(env(safe-area-inset-top) + 60px);
 
-            padding: 5px 1rem;
-            border-radius: 15px;
-            z-index: 6;
-            background-color: var(--background-color);
+        .details {
+            padding: 0 1rem;
+        }
+
+        .progress {
+            padding: 0 1rem;
         }
 
         .queue {
             overflow: hidden !important;
             height: auto !important;
+            width: 100%;
+            flex-grow: 0 !important;
+            flex-basis: auto !important;
         }
+
+        .player-details {
+            justify-content: initial;
+            flex-grow: 0 !important;
+            flex-basis: auto !important;
+        }
+
+    }
+
+    &-details {
+        grid-area: player-details;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1rem;
 
 
     }
@@ -48,6 +67,8 @@
         grid-area: image;
         display: grid;
         place-content: center;
+        aspect-ratio: 1;
+        margin: 15px;
 
         img {
             width: 100%;
@@ -64,7 +85,6 @@
 
         display: flex;
         flex-direction: row;
-        padding: 0 1rem;
 
         >div {
             flex-grow: 1;
@@ -82,6 +102,7 @@
         button {
             height: 40px;
             width: 40px;
+            min-height: 40px;
             min-width: 40px;
             border-radius: 50%;
             display: grid;
@@ -102,7 +123,6 @@
         gap: 1rem;
         align-items: center;
         margin-top: 1rem;
-        padding: 0 1rem;
 
         .time {
             opacity: 0.5;
@@ -111,16 +131,13 @@
     }
 
     .controls {
-        grid-area: controls;
-
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        display: flex;
+        flex-direction: row;
         gap: 1rem;
         align-items: center;
         justify-content: center;
         justify-items: center;
-        margin: 1rem 0px;
-        padding: 0 1rem;
+        margin-bottom: 1rem;
 
         button {
             height: 60px;
@@ -161,6 +178,9 @@
         height: 100vh;
         // max-height: 100vh;
         max-width: 100vw;
+        width: 100%;
+        flex-grow: 1;
+        flex-basis: 0;
     }
 
 }

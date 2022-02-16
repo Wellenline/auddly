@@ -3,6 +3,8 @@ import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 import { ITrack, PlayerService } from "src/app/core/services/player.service";
+import { ModalService } from "src/app/shared/components/modal/modal.service";
+import { QueueComponent } from "../queue/queue.component";
 
 @Component({
 	selector: "app-now-playling",
@@ -27,6 +29,7 @@ export class NowPlaylingComponent implements OnInit {
 	private destroy = new Subject();
 	constructor(public playerService: PlayerService,
 		private router: Router,
+		private modalService: ModalService,
 		// private modal: ModalPageComponent,
 	) { }
 
@@ -85,9 +88,6 @@ export class NowPlaylingComponent implements OnInit {
 	}
 
 
-	public onClear() {
-		this.playerService.clear();
-	}
 
 	public onVolume(e: number) {
 		const value = 100 - (e * 100);
@@ -122,6 +122,11 @@ export class NowPlaylingComponent implements OnInit {
 	}
 
 	public onQueue() {
+		this.modalService.show({
+			component: QueueComponent,
+			class: "right",
+			position: "right",
+		});
 		// this.virtualScroll.scrollToIndex(this.playerService.index);
 
 	}

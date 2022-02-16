@@ -1,1 +1,16 @@
-<p>queue works!</p>
+<app-header [sticky]="true" [transparent]="false" (onClose)="modal.onClose()" [backPreventDefault]="true" [back]="true">
+	<div class="actions" header-actions>
+		<div class="icon" (click)="onClear()">
+			Clear
+
+		</div>
+
+	</div>
+</app-header>
+<div class="queue" cdkDropList (cdkDropListDropped)="drop($event)">
+
+	<h1>Queue</h1>
+
+	<app-track-item [options]="{picture: true, actions: false} " [track]="track" *ngFor="let track of tracks" cdkDrag>
+	</app-track-item>
+</div>
