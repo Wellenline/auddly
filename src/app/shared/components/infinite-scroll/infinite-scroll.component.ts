@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, 
 
 @Component({
 	selector: "app-infinite-scroll",
-	template: `<ng-content></ng-content><div #anchor>Anchor</div>`,
+	template: `<ng-content></ng-content><div #anchor></div>`,
 	styleUrls: ["./infinite-scroll.component.scss"],
 })
 export class InfiniteScrollComponent implements OnInit, OnDestroy {

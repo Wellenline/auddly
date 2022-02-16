@@ -54,6 +54,9 @@
         margin: 0px;
         border: none;
 
+        padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
+
+
         @media all and (max-width: 1000px) {
             min-width: 100% !important;
             margin: 0px;
