@@ -61,8 +61,8 @@ import { DragScrollDirective } from './directives/drag-scroll.directive';
 		TextFieldModule,
 		DragDropModule,
 		OverlayModule,
-		ScrollingModule,
 		CdkTreeModule,
+		ScrollingModule,
 		FormsModule,
 		ReactiveFormsModule,
 		LazyLoadImageModule,
@@ -75,6 +75,7 @@ import { DragScrollDirective } from './directives/drag-scroll.directive';
 
 		ReactiveFormsModule,
 		RippleDirective,
+		ScrollingModule,
 		DragDropModule,
 		DragDropDirective,
 		ContenteditableDirective,

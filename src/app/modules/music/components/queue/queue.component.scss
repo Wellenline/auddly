@@ -2,8 +2,14 @@
     h1 {
         margin: 1rem 1rem;
     }
-}
 
+    min-height: var(--app-height);
+
+    .example-viewport {
+        height: var(--app-height);
+        width: 100%;
+    }
+}
 
 .cdk-drag-preview {
     // box-sizing: border-box;

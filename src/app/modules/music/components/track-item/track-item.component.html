@@ -22,6 +22,12 @@
 
 		</div>
 	</div>
+
+	<div *ngIf="options.drag" class="track-actions">
+		<ng-content select="[track-drag]"></ng-content>
+
+
+	</div>
 </div>
 
 <app-dropdown #dropdown>

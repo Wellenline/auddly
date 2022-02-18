@@ -11,6 +11,7 @@ import { environment } from "../environments/environment";
 import { MainComponent } from "./layouts/main/main.component";
 import { AuthInterceptor } from "./core/interceptors/auth.interceptor";
 import { SharedModule } from "./shared/shared.module";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 
 
@@ -23,6 +24,7 @@ import { SharedModule } from "./shared/shared.module";
 
 	imports: [
 		BrowserModule,
+		BrowserAnimationsModule,
 		SharedModule,
 		CommonModule,
 		AppRoutingModule,

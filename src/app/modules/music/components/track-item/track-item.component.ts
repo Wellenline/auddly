@@ -18,6 +18,7 @@ export class TrackItemComponent implements OnInit {
 	@Input() public options = {
 		picture: true,
 		actions: true,
+		drag: false,
 	};
 
 	@Output() public reload = new EventEmitter();

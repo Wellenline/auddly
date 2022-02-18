@@ -2,11 +2,16 @@ import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { ModalService } from "src/app/shared/components/modal/modal.service";
 import { NowPlaylingComponent } from "src/app/modules/music/components/now-playling/now-playling.component";
 import { ITrack, PlayerService } from "src/app/core/services/player.service";
+import { QueueComponent } from "src/app/modules/music/components/queue/queue.component";
+import { slideUpDownAnimation } from "src/app/shared/animations/slide-up-down";
+import { takeUntil } from "rxjs/operators";
+import { Subject } from "rxjs";
 
 @Component({
 	selector: "app-player",
 	templateUrl: "./player.component.html",
 	styleUrls: ["./player.component.scss"],
+	animations: [slideUpDownAnimation]
 })
 export class PlayerComponent implements OnInit {
 	public progress = 0;
@@ -18,6 +23,18 @@ export class PlayerComponent implements OnInit {
 	public volumeControls = false;
 	public radialProgress = 0;
 	public circumference = 0;
+	public hidden = false;
+
+
+	public lyrics = false;
+	public buffering = false;
+	public buffer = 0;
+	public duration = 0;
+	public loading = false;
+
+	public controls = false;
+	private destroy = new Subject();
+
 	constructor(public playerService: PlayerService, private modalService: ModalService) { }
 
 	public ngOnInit(): void {
@@ -25,7 +42,7 @@ export class PlayerComponent implements OnInit {
 		const circumference = Math.PI * (r * 2);
 		this.circumference = circumference;
 
-		this.playerService.$playing.subscribe((playing) => {
+		/*this.playerService.$playing.subscribe((playing) => {
 			this.playing = playing;
 		});
 
@@ -46,14 +63,51 @@ export class PlayerComponent implements OnInit {
 
 		this.playerService.$track.subscribe((track) => {
 			this.track = track;
+		});*/
+
+		this.playerService.$playing.pipe(takeUntil(this.destroy)).subscribe((playing) => {
+			this.playing = playing;
+		});
+
+		this.playerService.$buffering.pipe(takeUntil(this.destroy)).subscribe((buffering) => {
+			this.buffering = buffering;
+		});
+
+
+		this.playerService.$buffer.pipe(takeUntil(this.destroy)).subscribe((buffer) => {
+			this.buffer = buffer;
+		});
+
+
+		this.playerService.$volume.pipe(takeUntil(this.destroy)).subscribe((volume) => {
+			this.volume = volume * 100;
+		});
+		this.playerService.$progress.pipe(takeUntil(this.destroy)).subscribe((num) => {
+			this.progress = num;
+			this.currentTime = this.playerService.audio.currentTime;
+		});
+
+
+		this.playerService.$track.pipe(takeUntil(this.destroy)).subscribe((track) => {
+			this.track = track;
+			if (this.track.progress) {
+				this.progress = this.track.progress;
+			}
+			this.lyrics = false;
 		});
 	}
 
 
 	public onPlaying() {
+		this.hidden = true;
 		this.modalService.show({
-			component: NowPlaylingComponent,
-			class: "fullscreen",
+			component: QueueComponent,
+			// class: "fullscreen",
+			class: "right",
+			position: "right",
+			callback: () => {
+				this.hidden = false;
+			}
 		});
 	}
 	public onLike(e) {
@@ -102,4 +156,9 @@ export class PlayerComponent implements OnInit {
 		}
 
 	}
+
+	ngOnDestroy() {
+		this.destroy.next();
+	}
+
 }

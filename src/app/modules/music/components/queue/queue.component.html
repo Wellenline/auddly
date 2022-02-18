@@ -1,4 +1,4 @@
-<app-header [sticky]="true" [transparent]="false" (onClose)="modal.onClose()" [backPreventDefault]="true" [back]="true">
+<app-header [sticky]="true" [transparent]="true" (onClose)="modal.onClose()" [backPreventDefault]="true" [back]="true">
 	<div class="actions" header-actions>
 		<div class="icon" (click)="onClear()">
 			Clear
@@ -9,8 +9,8 @@
 </app-header>
 <div class="queue" cdkDropList (cdkDropListDropped)="drop($event)">
 
-	<h1>Queue</h1>
 
-	<app-track-item [options]="{picture: true, actions: false} " [track]="track" *ngFor="let track of tracks" cdkDrag>
+	<app-track-item [track]="track" *ngFor="let track of tracks">
+
 	</app-track-item>
 </div>
