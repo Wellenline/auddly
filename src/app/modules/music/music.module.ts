@@ -11,7 +11,6 @@ import { TracksComponent } from "./pages/tracks/tracks.component";
 import { TrackItemComponent } from "./components/track-item/track-item.component";
 import { ArtistComponent } from "./components/artist/artist.component";
 import { AlbumComponent } from "./components/album/album.component";
-import { QueueComponent } from "./components/queue/queue.component";
 import { NowPlaylingComponent } from "./components/now-playling/now-playling.component";
 import { PlaylistComponent } from "./components/playlist/playlist.component";
 
@@ -26,7 +25,6 @@ import { PlaylistComponent } from "./components/playlist/playlist.component";
 		TrackItemComponent,
 		ArtistComponent,
 		AlbumComponent,
-		QueueComponent,
 		NowPlaylingComponent,
 		PlaylistComponent],
 	imports: [

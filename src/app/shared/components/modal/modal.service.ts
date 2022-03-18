@@ -1,12 +1,12 @@
-import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
-import { ComponentPortal, ComponentType } from '@angular/cdk/portal';
-import { Injectable, InjectionToken, Injector } from '@angular/core';
-import { Observable, Subject, Subscriber } from 'rxjs';
-import { IModalConfig } from './modal-config';
-import { ModalComponent } from './modal.component';
+import { Overlay, OverlayConfig } from "@angular/cdk/overlay";
+import { ComponentPortal, ComponentType } from "@angular/cdk/portal";
+import { Injectable, InjectionToken, Injector } from "@angular/core";
+import { Observable, Subject, Subscriber } from "rxjs";
+import { IModalConfig } from "./modal-config";
+import { ModalComponent } from "./modal.component";
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: "root"
 })
 export class ModalService {
 	constructor(private overlay: Overlay) { }
@@ -14,8 +14,8 @@ export class ModalService {
 	show(config: IModalConfig) {
 		const center = this.overlay.position()
 			.global().centerVertically().centerHorizontally();
-		const left = this.overlay.position().global().left('0');
-		const right = this.overlay.position().global().right('0');
+		const left = this.overlay.position().global().left("0");
+		const right = this.overlay.position().global().right("0");
 		const bottom = this.overlay.position().global().centerHorizontally().bottom();
 
 		let positionStrategy = center;
@@ -29,31 +29,32 @@ export class ModalService {
 			positionStrategy = bottom;
 		}
 
-
-
-		let overlayRef = this.overlay.create({
+		console.log(config.class);
+		const overlayRef = this.overlay.create({
 			hasBackdrop: true,
 			disposeOnNavigation: true,
-			backdropClass: "modal",
-			panelClass: "modal-window",
-			scrollStrategy: this.overlay.scrollStrategies.block(),
-			positionStrategy // config?.overlayConfig?.positionStrategy || positionStrategy,
 
+			backdropClass: "modal-backdrop",
+			panelClass: config.class || "modal-panel",
+			positionStrategy, // config?.overlayConfig?.positionStrategy || positionStrategy,
+			scrollStrategy: this.overlay.scrollStrategies.block(),
 			// scrollStrategy: this.overlay.scrollStrategies.reposition()
-			//scrollStrategy: this.overlay.scrollStrategies.close(),
+			// scrollStrategy: this.overlay.scrollStrategies.close(),
 			// positionStrategy: this.overlay.position().global()
-			//.centerHorizontally().bottom(),
+			// .centerHorizontally().bottom(),
 		});
 
 		history.pushState(null, "modalOpened");
 
+
+
 		const destroy = (data?: any) => {
-			overlayRef.detach()
+			overlayRef.detach();
 			overlayRef.dispose();
 			if (config.callback) {
 				config.callback(data);
 			}
-		}
+		};
 
 
 
@@ -69,8 +70,8 @@ export class ModalService {
 				},
 			]
 		});
-		let portal = new ComponentPortal(ModalComponent, null, inject);
-		overlayRef.attach(portal)
+		const portal = new ComponentPortal(ModalComponent, null, inject);
+		overlayRef.attach(portal);
 
 
 		overlayRef.backdropClick().subscribe(() => {
@@ -85,5 +86,5 @@ export class ModalService {
 	}
 }
 
-export const ModalRef = new InjectionToken<{}>('ModalRef');
-export const ModalConfig = new InjectionToken<{}>('ModalConfig');
+export const ModalRef = new InjectionToken<{}>("ModalRef");
+export const ModalConfig = new InjectionToken<{}>("ModalConfig");

@@ -4,7 +4,7 @@ export function debounce(delay: number = 300): MethodDecorator {
 
 		const original = descriptor.value;
 
-		descriptor.value = function (...args) {
+		descriptor.value = function (...args: any) {
 			clearTimeout(timeout);
 			timeout = setTimeout(() => original.apply(this, args), delay);
 		};
@@ -12,11 +12,11 @@ export function debounce(delay: number = 300): MethodDecorator {
 		return descriptor;
 	};
 }
-export const getBoolean = (key, def?: boolean): boolean => {
+export const getBoolean = (key: any, def?: boolean): boolean => {
 	const value = localStorage.getItem(`BOOL_${key}`);
 	return value !== null ? JSON.parse(value) : def;
 };
 
-export const setBoolean = (key, value: boolean) => {
+export const setBoolean = (key: any, value: boolean) => {
 	localStorage.setItem(`BOOL_${key}`, JSON.stringify(value));
 };

@@ -1,13 +1,13 @@
-import { Overlay, OverlayRef } from '@angular/cdk/overlay';
-import { Component, Inject, OnInit } from '@angular/core';
-import { slideInOutAnimation } from '../../animations/slide-in-out';
-import { IToastConfig } from './toast-config';
-import { ToastConfig, ToastRef } from './toast.service';
+import { Overlay, OverlayRef } from "@angular/cdk/overlay";
+import { Component, Inject, OnInit } from "@angular/core";
+import { slideInOutAnimation } from "../../animations/slide-in-out";
+import { IToastConfig } from "./toast-config";
+import { ToastConfig, ToastRef } from "./toast.service";
 
 @Component({
-	selector: 'app-toast',
-	templateUrl: './toast.component.html',
-	styleUrls: ['./toast.component.scss'],
+	selector: "app-toast",
+	templateUrl: "./toast.component.html",
+	styleUrls: ["./toast.component.scss"],
 	animations: [slideInOutAnimation]
 })
 export class ToastComponent implements OnInit {
@@ -22,7 +22,7 @@ export class ToastComponent implements OnInit {
 
 		this._timeout = setTimeout(() => {
 			this.onClose();
-		}, this.toast.duration || 3000)
+		}, this.toast.duration || 3000);
 	}
 
 	public onAction() {

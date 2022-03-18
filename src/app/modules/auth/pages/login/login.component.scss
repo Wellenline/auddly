@@ -1,5 +1,5 @@
 .connect {
-    background-color: #3ec7c2;
+    background-color: #000;
     width: 100vw;
     height: 100vh;
 
@@ -25,7 +25,7 @@
 
         .highlight-text {
             font-size: 2.7rem;
-            color: black;
+            color: white;
             font-weight: 800;
             font-family: "Open Sans", sans-serif;
             margin-bottom: 20px;
@@ -48,50 +48,50 @@
                 padding: 20px;
                 background-color: transparent;
                 width: 100%;
-                border-bottom: 2px solid black;
+                border-bottom: 2px solid white;
                 // box-shadow: rgb(17 17 18 / 4%) 0 2px 4px, rgb(19 20 20 / 6%) 0 1px 1px !important;
-                color: black;
+                color: white;
                 transition: all ease-in-out 0.4s;
 
                 &:hover,
                 &:focus {
-                    background-color: #000;
+                    background-color: white;
+                    color: black;
+
+                    &::placeholder {
+                        color: black;
+                    }
+                }
+
+                &::placeholder {
                     color: white;
+                }
+            }
+        }
 
-&::placeholder {
-    color: white;
-}
-}
+        .submit {
+            position: relative;
+        }
 
-&::placeholder {
-    color: black;
-}
-}
-}
+        button {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 13px;
 
-.submit {
-    position: relative;
-}
+            width: 100%;
+            border-radius: 0px;
+            position: relative;
+            text-transform: uppercase;
+            font-weight: 600;
 
-button {
-    background-color: transparent;
-    border: 2px solid #000;
-    color: black;
-    padding: 13px;
-
-    width: 100%;
-    border-radius: 0px;
-    position: relative;
-    text-transform: uppercase;
-    font-weight: 600;
-
-    &:hover {
-        cursor: pointer;
+            &:hover {
+                cursor: pointer;
+            }
+        }
     }
-}
-}
 
-.panel {
-    border: none;
-}
+    .panel {
+        border: none;
+    }
 }

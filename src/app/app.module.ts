@@ -5,10 +5,8 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { CommonModule } from "@angular/common";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { PlayerComponent } from "./components/player/player.component";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../environments/environment";
-import { MainComponent } from "./layouts/main/main.component";
 import { AuthInterceptor } from "./core/interceptors/auth.interceptor";
 import { SharedModule } from "./shared/shared.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -17,9 +15,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
 	declarations: [
-		AppComponent,
-		PlayerComponent,
-		MainComponent,
+		AppComponent
 	],
 
 	imports: [

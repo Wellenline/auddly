@@ -1,3 +1,147 @@
+.playing {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    max-width: 400px;
+    // padding: 1rem;
+
+    &-queue {
+        padding: 1rem;
+
+        .queue {
+            display: block;
+            height: 100%;
+            width: 100%;
+            overflow: auto;
+        }
+
+    }
+
+    &-details {
+        padding: 1rem;
+        border-radius: 15px;
+
+        .image {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 15px;
+                aspect-ratio: 1;
+
+                object-fit: cover;
+            }
+        }
+
+        .details {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 1rem;
+            max-width: 400px;
+
+            .image {
+                flex-grow: 0;
+
+            }
+
+            >div {
+
+                flex-grow: 1;
+
+                h1 {
+                    line-height: 1.2;
+                    margin: 0px;
+                    font-size: 1.2rem;
+                }
+
+                p {
+                    margin: 0px;
+                }
+            }
+
+            button {
+                height: 40px;
+                width: 40px;
+                min-height: 40px;
+                min-width: 40px;
+                border-radius: 50%;
+                display: grid;
+                place-content: center;
+
+                &.active {
+                    color: red;
+                }
+            }
+
+        }
+
+        .progress {
+            grid-area: progress;
+            position: relative;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 1rem;
+            align-items: center;
+            margin: 1rem 0px;
+
+            .time {
+                opacity: 0.5;
+                font-size: 0.8rem;
+            }
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+            justify-items: center;
+
+            button {
+                height: 60px;
+                width: 60px;
+                border-radius: 50%;
+                display: grid;
+                place-content: center;
+
+                &.playback {
+                    background-color: var(--background-color-3);
+                    height: 60px;
+                    width: 60px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                &.small {
+                    font-size: 14px !important;
+                    opacity: 0.6;
+
+
+                }
+
+
+
+                &.active {
+                    opacity: 1;
+                    color: var(--accent-color);
+                }
+            }
+        }
+
+
+    }
+}
+
+
 .icon {
     font-size: 2rem;
     width: 40px;
@@ -15,8 +159,6 @@
 }
 
 .player {
-
-    display: flex;
     flex-direction: row;
     align-items: center;
     // overflow-y: auto;
@@ -25,33 +167,6 @@
     place-content: center;
     height: 100vh;
 
-    @media all and (max-width: 1000px) {
-
-
-
-        .details {
-            padding: 0 1rem;
-        }
-
-        .progress {
-            padding: 0 1rem;
-        }
-
-        .queue {
-            overflow: hidden !important;
-            height: auto !important;
-            width: 100%;
-            flex-grow: 0 !important;
-            flex-basis: auto !important;
-        }
-
-        .player-details {
-            justify-content: initial;
-            flex-grow: 0 !important;
-            flex-basis: auto !important;
-        }
-
-    }
 
     &-details {
         grid-area: player-details;

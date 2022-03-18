@@ -1,28 +1,20 @@
-import { Overlay, OverlayConfig } from '@angular/cdk/overlay';
-import { ComponentPortal } from '@angular/cdk/portal';
-import { Injectable, InjectionToken, Injector } from '@angular/core';
-import { IToastConfig } from './toast-config';
-import { ToastComponent } from './toast.component';
+import { Overlay, OverlayConfig } from "@angular/cdk/overlay";
+import { ComponentPortal } from "@angular/cdk/portal";
+import { Injectable, InjectionToken, Injector } from "@angular/core";
+import { IToastConfig } from "./toast-config";
+import { ToastComponent } from "./toast.component";
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: "root"
 })
 export class ToastService {
 	constructor(private overlay: Overlay) { }
 
 	show(data: IToastConfig) {
-		/*const config = new OverlayConfig();
-		const positionStrategy = this.overlay.position()
-			.global().centerVertically().centerHorizontally();
-		config.positionStrategy = positionStrategy;*/
-		let overlayRef = this.overlay.create({
-			//hasBackdrop: true,
-			//backdropClass: "cdk-overlay-backdrop",
-			//scrollStrategy: this.overlay.scrollStrategies.close(),
+		const overlayRef = this.overlay.create({
 			positionStrategy: this.overlay.position().global()
 				.centerHorizontally().bottom(),
 		});
-		console.log("HERE")
 		const inject = Injector.create({
 			providers: [
 				{
@@ -34,10 +26,9 @@ export class ToastService {
 					useValue: data
 				}
 			]
-		})
-		console.log(inject.get<string>(ToastRef))
-		let partal = new ComponentPortal(ToastComponent, null, inject);
-		overlayRef.attach(partal)
+		});
+		const portal = new ComponentPortal(ToastComponent, null, inject);
+		overlayRef.attach(portal);
 		/*setTimeout(() => {
 			overlayRef.detach()
 			overlayRef.dispose();
@@ -45,5 +36,5 @@ export class ToastService {
 	}
 }
 
-export const ToastRef = new InjectionToken<{}>('ToastRef');
-export const ToastConfig = new InjectionToken<{}>('ToastConfig');
+export const ToastRef = new InjectionToken<{}>("ToastRef");
+export const ToastConfig = new InjectionToken<{}>("ToastConfig");

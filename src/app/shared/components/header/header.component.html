@@ -1,26 +1,7 @@
-<div
-	class="app-toolbar {{ transparent ? 'transparent' : '' }} {{ iosFix ? 'ios-fix' : ''}} {{ absolute ? 'absolute' : ''}}  {{ sticky ? 'sticky' : ''}} {{ static ? 'static' : '' }}">
-
+<div class="header ">
 	<div *ngIf="back" class="back">
-		<ng-container [ngTemplateOutlet]="backTemplate ? backTemplate : basicBack">
-
-		</ng-container>
-
-		<ng-template #basicBack>
-
-			<div (click)="pop()">
-
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-					stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-					class="ai ai-ArrowLeft">
-					<path d="M11 5l-7 7 7 7" />
-					<path d="M4 12h16" />
-				</svg>
-
-			</div>
-		</ng-template>
+		<ng-content select="[header-back]"></ng-content>
 	</div>
-
 	<div class="title">
 		<ng-content select="[header-title]"></ng-content>
 
@@ -29,6 +10,5 @@
 		<ng-content select="[header-actions]"></ng-content>
 
 	</div>
-
 </div>
-<div *ngIf="!static && !sticky && filler" class="filler"></div>
+<div class="header-fill"></div>

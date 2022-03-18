@@ -4,17 +4,17 @@ import {
 	Input,
 	OnDestroy,
 	ViewContainerRef
-} from '@angular/core';
+} from "@angular/core";
 
-import { Overlay, OverlayRef } from '@angular/cdk/overlay';
-import { TemplatePortal } from '@angular/cdk/portal';
-import { merge, Observable, Subscription } from 'rxjs';
-import { DropdownComponent } from '../components/dropdown/dropdown.component';
+import { Overlay, OverlayRef } from "@angular/cdk/overlay";
+import { TemplatePortal } from "@angular/cdk/portal";
+import { merge, Observable, Subscription } from "rxjs";
+import { DropdownComponent } from "../components/dropdown/dropdown.component";
 
 @Directive({
-	selector: '[dropdownTriggerFor]',
+	selector: "[dropdownTriggerFor]",
 	host: {
-		'(click)': 'toggleDropdown()'
+		"(click)": "toggleDropdown()"
 	}
 })
 export class DropdownTriggerForDirective implements OnDestroy {
@@ -22,12 +22,12 @@ export class DropdownTriggerForDirective implements OnDestroy {
 	private overlayRef: OverlayRef;
 	private dropdownClosingActionsSub = Subscription.EMPTY;
 
-	@Input('dropdownTriggerFor') public dropdownPanel: DropdownComponent;
-	@Input('dropdownPosition') public position: any = {
-		originX: 'end',
-		originY: 'bottom',
-		overlayX: 'end',
-		overlayY: 'top',
+	@Input("dropdownTriggerFor") public dropdownPanel: DropdownComponent;
+	@Input("dropdownPosition") public position: any = {
+		originX: "end",
+		originY: "bottom",
+		overlayX: "end",
+		overlayY: "top",
 		offsetY: 8,
 		offsetX: 0,
 	};
@@ -46,7 +46,7 @@ export class DropdownTriggerForDirective implements OnDestroy {
 		this.isDropdownOpen = true;
 		this.overlayRef = this.overlay.create({
 			hasBackdrop: true,
-			backdropClass: 'cdk-overlay-transparent-backdrop',
+			backdropClass: "cdk-overlay-transparent-backdrop",
 			scrollStrategy: this.overlay.scrollStrategies.close(),
 			positionStrategy: this.overlay
 				.position()

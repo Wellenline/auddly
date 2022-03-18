@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { CdkVirtualScrollViewport } from "@angular/cdk/scrolling";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 import { ITrack, PlayerService } from "src/app/core/services/player.service";
 import { ModalService } from "src/app/shared/components/modal/modal.service";
-import { QueueComponent } from "../queue/queue.component";
 
 @Component({
 	selector: "app-now-playling",
@@ -26,6 +26,8 @@ export class NowPlaylingComponent implements OnInit {
 	public options = {
 		maxHeight: "80vh"
 	};
+	@ViewChild("scroller") virtualScroll: CdkVirtualScrollViewport;
+
 	private destroy = new Subject();
 	constructor(public playerService: PlayerService,
 		private router: Router,
@@ -69,10 +71,14 @@ export class NowPlaylingComponent implements OnInit {
 
 		this.playerService.$track.pipe(takeUntil(this.destroy)).subscribe((track) => {
 			this.track = track;
+
 			if (this.track.progress) {
 				this.progress = this.track.progress;
 			}
-			this.lyrics = false;
+			setTimeout(() => {
+				this.virtualScroll.scrollToIndex(this.playerService.index, "smooth");
+
+			}, 700);
 		});
 
 	}
@@ -121,13 +127,13 @@ export class NowPlaylingComponent implements OnInit {
 
 	}
 
-	public onQueue() {
-		this.modalService.show({
-			component: QueueComponent,
-			class: "right",
-			position: "right",
-		});
-		// this.virtualScroll.scrollToIndex(this.playerService.index);
+
+	ngAfterViewInit() {
+
+		setTimeout(() => {
+			this.virtualScroll.scrollToIndex(this.playerService.index, "smooth");
+
+		}, 700);
 
 	}
 

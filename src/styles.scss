@@ -1,6 +1,7 @@
 @use '@angular/cdk';
 
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;700;800;900&display=swap');
+;
 
 @import "~@angular/cdk/overlay-prebuilt.css";
 
@@ -8,7 +9,7 @@
 
 :root,
 html[data-theme="light"] {
-    --accent-color: #3ec7c2;
+    --accent-color: #000;
 
     --background-color: #fff;
     --background-color-2: #f2f2f2;
@@ -27,13 +28,14 @@ html[data-theme="light"] {
 }
 
 html[data-theme="dark"] {
-    --accent-color: #3ec7c2;
+    --accent-color: #fff;
 
     --background-color: #000;
     --background-color-2: #0e0e0e;
     --background-color-3: #202020;
     --background-color-4: #181818;
     --background-color-5: #222222;
+    --background-color-6: #191919;
 
     --border-color: #201f1f;
     --highlight-color: #2d63e9;
@@ -62,27 +64,32 @@ html[data-theme="dark"] {
     touch-action: manipulation;
 }
 
+
 ::-webkit-scrollbar {
     width: 0px;
     height: 0px;
     background: rgb(24, 24, 24);
 }
 
-/*
-::-webkit-scrollbar-track {
-	background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-	background: #888;
-}
-
-::-webkit-scrollbar-thumb:hover {
-	background: #555;
-}*/
 ::-webkit-scrollbar {
     display: none; // Safari and Chrome
 }
+
+/*
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+*/
 
 input,
 input:before,
@@ -96,7 +103,6 @@ input:after {
 
 html,
 body {
-    margin: 0;
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.5;
@@ -105,7 +111,7 @@ body {
     min-height: 100%;
     width: 100%;
     height: 100%;
-    height: var(--app-height);
+    // height: var(--app-height);
     // min-height: calc(100% + env(safe-area-inset-top));
     padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
 }
@@ -137,6 +143,9 @@ textarea {
     &:focus {
         outline: none;
     }
+
+    font-family: 'Inter',
+    sans-serif;
 }
 
 a {

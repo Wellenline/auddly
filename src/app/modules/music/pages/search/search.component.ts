@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
 
 import { debounce } from "src/app/utils";
-import { ModalService } from 'src/app/shared/components/modal/modal.service';
-import { AlbumComponent } from '../../components/album/album.component';
-import { ArtistComponent } from '../../components/artist/artist.component';
-import { PlaylistComponent } from '../../components/playlist/playlist.component';
-import { HttpService } from 'src/app/core/services/http.service';
-import { PlayerService } from 'src/app/core/services/player.service';
+import { ModalService } from "src/app/shared/components/modal/modal.service";
+import { AlbumComponent } from "../../components/album/album.component";
+import { ArtistComponent } from "../../components/artist/artist.component";
+import { PlaylistComponent } from "../../components/playlist/playlist.component";
+import { HttpService } from "src/app/core/services/http.service";
+import { PlayerService } from "src/app/core/services/player.service";
 
 @Component({
-	selector: 'app-search',
-	templateUrl: './search.component.html',
-	styleUrls: ['./search.component.scss']
+	selector: "app-search",
+	templateUrl: "./search.component.html",
+	styleUrls: ["./search.component.scss"]
 })
 export class SearchComponent implements OnInit {
 	public result = {

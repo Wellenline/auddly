@@ -1,6 +1,6 @@
-<app-header [sticky]="true" [filler]="false" title="Albums">
+<app-header [absolute]="true" title="Albums">
 	<div header-title>
-		<h3>Albums</h3>
+		Albums
 	</div>
 	<div header-actions class="actions">
 
@@ -29,17 +29,14 @@
 <div *ngIf="albums.length > 0" appInfiniteScroll [scrollPercent]="70" [immediateCallback]="true"
 	[scrollCallback]="scrollCallback" class="albums {{ grid ? '' : 'list' }}">
 
-	<div appRipple class="album" *ngFor="let album of albums" (click)="onAlbum(album._id)">
-		<div class="image">
+
+	<ng-container *ngFor="let album of albums; ">
+		<div appRipple (click)="onAlbum(album._id)" class="album">
 			<img class="lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
-
+			<div class="column-details">
+				<div class="title">{{ album.name }}</div>
+				<div class="subtitle">{{ album.artist.name }}</div>
+			</div>
 		</div>
-
-		<div class="album-info">
-			<h3>{{ album.name }}</h3>
-			<p>{{ album.artist.name }}</p>
-
-		</div>
-	</div>
+	</ng-container>
 </div>
-<!--app-infinite-scroll (scrolled)="onScroll()"></app-infinite-scroll-->

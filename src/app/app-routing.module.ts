@@ -1,33 +1,17 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AuthGuard } from "./core/guards/auth.guard";
-import { MainComponent } from "./layouts/main/main.component";
 
 const routes: Routes = [
-	/*{
-		path: "auth",
-		component: AuthComponent,
-		children: [
-			{ path: "", redirectTo: "connect", pathMatch: "full" },
-			{ path: "connect", component: ConnectComponent, },
+	{ path: "", redirectTo: "music", pathMatch: "full" },
 
-		]
-	},*/
 	{ path: "auth", loadChildren: () => import("./modules/auth/auth.module").then(m => m.AuthModule) },
 
-	{
 
-		path: "",
-		component: MainComponent, canActivate: [AuthGuard],
-		children: [
+	{ path: "music", canActivate: [AuthGuard], loadChildren: () => import("./modules/music/music.module").then(m => m.MusicModule) },
 
-			{ path: "", redirectTo: "music", pathMatch: "full" },
+	{ path: "settings", canActivate: [AuthGuard], loadChildren: () => import("./modules/settings/settings.module").then(m => m.SettingsModule) },
 
-			{ path: "music", loadChildren: () => import("./modules/music/music.module").then(m => m.MusicModule) },
-
-			{ path: "settings", loadChildren: () => import("./modules/settings/settings.module").then(m => m.SettingsModule) },
-		]
-	},
 
 ];
 

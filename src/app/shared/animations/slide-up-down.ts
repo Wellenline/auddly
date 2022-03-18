@@ -17,6 +17,6 @@ export const slideUpDownAnimation = trigger("slideUpDown", [
 			opacity: 0,
 			bottom: "-100px"
 		}))*/
-		animate("260ms ease-in-out", style({ transform: "translateY(100%)" })),
+		animate("260ms ease-in-out", style({ transform: "translateY(555px)" })),
 	])
 ]);

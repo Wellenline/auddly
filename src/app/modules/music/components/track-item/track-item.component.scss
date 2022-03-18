@@ -1,14 +1,13 @@
 .track {
-    display: flex;
-    flex-direction: row;
+    display: grid;
     align-items: center;
     gap: 1rem;
     border-radius: 5px;
-    padding: 0px 1rem;
+    grid-template-columns: auto 1fr auto;
     // padding-right: 1rem;
 
     &-image {
-
+        padding-left: 15px;
         display: grid;
 
         img {
@@ -32,7 +31,7 @@
         overflow-y: auto;
 
         h3 {
-            font-size: 14px;
+            font-size: 1rem;
             margin: 0px;
         }
 
@@ -54,6 +53,10 @@
         font-size: 1.5rem;
         padding-right: 5px;
 
+        i {
+            font-size: 2rem;
+        }
+
         >div {
             border-radius: 50%;
             width: 30px;
@@ -66,7 +69,7 @@
     &.active {
         background-color: var(--accent-color); //rgb(255 255 255 / 6%);
 
-        color: #fff !important;
+        color: var(--background-color) !important;
 
         box-shadow: 1px 2px 18px rgba(0, 0, 0, 0.1);
 

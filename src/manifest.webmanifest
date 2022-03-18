@@ -1,8 +1,8 @@
 {
 	"name": "Auddly",
 	"short_name": "Auddly",
-	"theme_color": "#3ec7c2",
-	"background_color": "#3ec7c2",
+	"theme_color": "#000000",
+	"background_color": "#000000",
 	"display": "standalone",
 	"scope": "./",
 	"start_url": "./",

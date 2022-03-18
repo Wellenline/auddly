@@ -1,4 +1,5 @@
 :host {
+    height: 100%;
     display: block;
 }
 
@@ -11,11 +12,18 @@
     place-content: center;
 }
 
+.queue {
+    display: block;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+
 .filters {
     padding: 10px 5px;
-    display: flex;
     flex-direction: row;
-    width: 100%;
+    width: auto;
+    display: inline-flex;
     overflow: auto;
     gap: 1rem;
     // background-color: red;

@@ -1,16 +1,16 @@
-import { trigger, transition, query, style, group, animate, animateChild } from '@angular/animations';
-import { OverlayRef } from '@angular/cdk/overlay';
-import { CdkPortalOutlet, ComponentPortal, ComponentType, Portal, PortalOutlet } from '@angular/cdk/portal';
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { Subject } from 'rxjs';
-import { slideUpDownAnimation } from '../../animations/slide-up-down';
-import { IModalConfig } from './modal-config';
-import { ModalConfig, ModalRef } from './modal.service';
+import { trigger, transition, query, style, group, animate, animateChild } from "@angular/animations";
+import { OverlayRef } from "@angular/cdk/overlay";
+import { CdkPortalOutlet, ComponentPortal, ComponentType, Portal, PortalOutlet } from "@angular/cdk/portal";
+import { Component, Inject, OnInit, ViewChild } from "@angular/core";
+import { Subject } from "rxjs";
+import { slideUpDownAnimation } from "../../animations/slide-up-down";
+import { IModalConfig } from "./modal-config";
+import { ModalConfig, ModalRef } from "./modal.service";
 
 @Component({
-	selector: 'app-modal',
-	templateUrl: './modal.component.html',
-	styleUrls: ['./modal.component.scss'],
+	selector: "app-modal",
+	templateUrl: "./modal.component.html",
+	styleUrls: ["./modal.component.scss"],
 	animations: [slideUpDownAnimation]
 })
 export class ModalComponent implements OnInit {

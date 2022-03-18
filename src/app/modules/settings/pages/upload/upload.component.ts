@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { UploadService } from "src/app/core/services/upload.service";
+import { ModalComponent } from "src/app/shared/components/modal/modal.component";
 
 @Component({
 	selector: "app-upload",
@@ -10,7 +11,7 @@ export class UploadComponent implements OnInit {
 
 	public files = [];
 	public queue = [];
-	constructor(private uploadService: UploadService) { }
+	constructor(private uploadService: UploadService, public modal: ModalComponent) { }
 
 	ngOnInit(): void {
 		this.uploadService.$queue.subscribe((queue) => {

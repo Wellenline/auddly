@@ -133,3 +133,23 @@
         }
     }
 }
+
+.tracks {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+    padding: 1rem;
+
+    //display: none;
+    @media screen and (max-width: 1212px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media screen and (max-width: 930px) {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+
+    }
+
+    .track {}
+}

@@ -1,1 +1,70 @@
-<router-outlet></router-outlet>
+<div class="app">
+	<div class="app-navigation">
+		<div class="logo">
+			<h3>Auddly.</h3>
+		</div>
+		<div class="app-navigation-item" appRipple routerLink="/music/search" [routerLinkActive]="['active']">
+			<div class="icon">
+				<i class="ph-magnifying-glass"></i>
+
+
+			</div>
+			<div class="text">
+				Search
+			</div>
+		</div>
+
+		<div class="app-navigation-item" appRipple routerLink="/music/albums" [routerLinkActive]="['active']">
+			<div class="icon">
+				<i class="ph-folder"></i>
+
+			</div>
+			<div class="text">
+				Albums
+			</div>
+		</div>
+
+		<div class="app-navigation-item" appRipple routerLink="/music/artists" [routerLinkActive]="['active']">
+			<div class="icon">
+				<i class="ph-folder"></i>
+
+			</div>
+			<div class="text">
+				Artists
+			</div>
+		</div>
+
+
+
+		<div class="app-navigation-item" appRipple routerLink="/music/tracks" [routerLinkActive]="['active']">
+			<div class="icon">
+				<i class="ph-music-notes-simple"></i>
+
+
+
+			</div>
+			<div class="text">
+				Tracks
+			</div>
+		</div>
+
+		<div class="app-navigation-item" style="margin-top: auto;" appRipple [routerLinkActive]="['active']"
+			(click)="openSettings()">
+			<div class="icon">
+				<i class="ph-gear-six"></i>
+			</div>
+			<div class="text">
+				Settings
+			</div>
+
+		</div>
+	</div>
+
+	<div class="app-content">
+		<router-outlet></router-outlet>
+	</div>
+
+	<div class="app-player">
+		<app-now-playling></app-now-playling>
+	</div>
+</div>

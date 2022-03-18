@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MusicService } from 'src/app/core/services/music.service';
-import { ModalService } from 'src/app/shared/components/modal/modal.service';
-import { ArtistComponent } from '../../components/artist/artist.component';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { MusicService } from "src/app/core/services/music.service";
+import { ModalService } from "src/app/shared/components/modal/modal.service";
+import { ArtistComponent } from "../../components/artist/artist.component";
 
 @Component({
-	selector: 'app-artists',
-	templateUrl: './artists.component.html',
-	styleUrls: ['./artists.component.scss']
+	selector: "app-artists",
+	templateUrl: "./artists.component.html",
+	styleUrls: ["./artists.component.scss"]
 })
 export class ArtistsComponent implements OnInit {
 	public artists = [];

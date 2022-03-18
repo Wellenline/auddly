@@ -4,9 +4,9 @@ import { Subject } from "rxjs";
 
 export interface IModalConfig {
 
-	params?: any,
-	component: ComponentType<any>,
-	callback?: (data?: any) => void,
+	params?: any;
+	component: ComponentType<any>;
+	callback?: (data?: any) => void;
 	class?: string;
 	position?: string | "center" | "left" | "right";
 

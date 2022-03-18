@@ -1,15 +1,13 @@
 <div appRipple class="track {{ playerService.$track.getValue()._id === track._id ? 'active' : '' }}">
-	<div *ngIf="options.picture" class="track-image">
-		<img class="lazyload" [lazyLoad]="track?.album?.picture || '/assets/app-icon-text.png'" />
+	<div class="track-image">
+		<img *ngIf="options.picture" [src]="track?.album?.picture || '/assets/app-icon-text.png'" />
 	</div>
 
 	<div class="track-details" (click)="onPlay($event)">
 		<h3>{{ track.name }}</h3>
 		<p>{{ track.artist }}</p>
 	</div>
-	<div data-tooltip="Lossless" *ngIf="track.lossless" class="track-feature">
-		<i class="ph-headphones"></i>
-	</div>
+
 	<!--div class="track-duration">
 		{{track.duration | formatSeconds}}
 	</div-->
@@ -17,17 +15,11 @@
 	<div *ngIf="options.actions" class="track-actions">
 		<div appRipple [dropdownTriggerFor]="dropdown">
 
-			<i class="ph-caret-down"></i>
-
+			<i class="ph-dots-three-vertical"></i>
 
 		</div>
 	</div>
 
-	<div *ngIf="options.drag" class="track-actions">
-		<ng-content select="[track-drag]"></ng-content>
-
-
-	</div>
 </div>
 
 <app-dropdown #dropdown>

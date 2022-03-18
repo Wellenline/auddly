@@ -2,6 +2,9 @@
     border: 2px dashed var(--border-color);
     padding: 15px;
     border-radius: 0px;
+    height: 100%;
+    display: grid;
+    place-content: center;
 
     h3 {
         text-align: center;

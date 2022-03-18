@@ -1,7 +1,12 @@
-<app-header title="Settings">
-
-	<a header-actions (click)="onDisconnect()">Disconnect</a>
-
+<app-header [back]="true">
+	<div header-back (click)="modal.onClose()">
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+			stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+			class="ai ai-ArrowLeft">
+			<path d="M11 5l-7 7 7 7" />
+			<path d="M4 12h16" />
+		</svg>
+	</div>
 </app-header>
 
 <div class="app-logo">
@@ -90,7 +95,7 @@
 		<div class="text-meta">{{ server.version }}</div>
 	</div>
 
-	<div routerLink="/settings/upload" class="list-item">
+	<div (click)="onUpload()" class="list-item">
 		<div class="text-lead">Upload</div>
 	</div>
 </div>

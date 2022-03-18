@@ -54,7 +54,8 @@ export class InfiniteScrollDirective {
 	}
 
 	private registerScrollEvent() {
-		this.scrollEvent$ = fromEvent(this.elm.nativeElement, "scroll");
+		const rootContainer = document.getElementsByClassName("app-content")[0];
+		this.scrollEvent$ = fromEvent(rootContainer, "scroll");
 	}
 
 	private streamScrollEvents() {

@@ -1,6 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpService } from "src/app/core/services/http.service";
 import { AuthService } from "src/app/core/services/auth.service";
+import { ModalComponent } from "src/app/shared/components/modal/modal.component";
+import { ModalService } from "src/app/shared/components/modal/modal.service";
+import { UploadComponent } from "../upload/upload.component";
 
 @Component({
 	selector: "app-details",
@@ -13,7 +16,7 @@ export class DetailsComponent implements OnInit {
 	public loading = true;
 	public colors = ["#3ec7c2", "#0fdbff", "#4caf50", "#3c91ff", "#7fcd91", "#fe346e", "#381460", "#ffa41b", "#9399ff", "#21bf73", "#C1935B", "#F0050E"];
 	public api_key = localStorage.getItem("key");
-	constructor(public httpService: HttpService, private authService: AuthService) { }
+	constructor(public httpService: HttpService, private modalService: ModalService, public modal: ModalComponent, private authService: AuthService) { }
 
 	ngOnInit(): void {
 		this.fetchServerInfo();
@@ -41,6 +44,12 @@ export class DetailsComponent implements OnInit {
 	public onDisconnect() {
 		this.authService.disconnect();
 		location.reload();
+	}
+
+	public onUpload() {
+		this.modalService.show({
+			component: UploadComponent,
+		});
 	}
 
 }
