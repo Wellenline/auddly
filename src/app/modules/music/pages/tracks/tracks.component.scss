@@ -26,7 +26,8 @@
     display: inline-flex;
     overflow: auto;
     gap: 1rem;
-    // background-color: red;
+
+
 
     .filter {
         flex-grow: 1;
@@ -52,5 +53,11 @@
         label {
             margin: 0px;
         }
+    }
+
+    // background-color: red;
+    @media screen and (max-width: 1000px) {
+        flex-direction: column;
+        padding: 15px;
     }
 }

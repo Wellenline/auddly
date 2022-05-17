@@ -63,17 +63,15 @@ export class PlayerService {
 		});
 		this.audio.addEventListener("ended", this._onAudioEnded.bind(this));
 		this.audio.volume = parseFloat(localStorage.getItem("volume")) || 1;
-		if ("mediaSession" in navigator) {
-			(navigator as any).mediaSession.setActionHandler("play", this.onPlayback.bind(this));
-			(navigator as any).mediaSession.setActionHandler("pause", this.onPlayback.bind(this));
-			(navigator as any).mediaSession.setActionHandler("previoustrack", this.onPrev.bind(this));
-			(navigator as any).mediaSession.setActionHandler("nexttrack", this.onNext.bind(this));
-			(navigator as any).mediaSession.setActionHandler("seekto", this.onSeek.bind(this));
-		}
 		if (this.$track.getValue()._id) {
 			this.setupAudioPlayer(this.$track.getValue(), false);
-
 		}
+
+		navigator.mediaSession.setActionHandler("play", this.onPlayback.bind(this));
+		navigator.mediaSession.setActionHandler("pause", this.onPlayback.bind(this));
+		navigator.mediaSession.setActionHandler("previoustrack", this.onPrev.bind(this));
+		navigator.mediaSession.setActionHandler("nexttrack", this.onNext.bind(this));
+		navigator.mediaSession.setActionHandler("seekto", this.onSeek.bind(this));
 	}
 
 	/**

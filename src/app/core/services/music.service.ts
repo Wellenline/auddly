@@ -15,7 +15,9 @@ export class MusicService {
 
 	constructor(private http: HttpService) { }
 
-
+	@Cacheable({
+		storageStrategy: LocalStorageStrategy,
+	})
 	public getArtists(params: {}) {
 		return this.http.get(`/artists?${Object.keys(params).map(key => key + "=" + params[key]).join("&")}`);
 	}
@@ -27,6 +29,9 @@ export class MusicService {
 		return this.http.get(`/artists/${id}`);
 	}
 
+	@Cacheable({
+		storageStrategy: LocalStorageStrategy,
+	})
 	public getAlbums(params: {}) {
 		return this.http.get(`/albums?${Object.keys(params).map(key => key + "=" + params[key]).join("&")}`);
 	}

@@ -20,6 +20,9 @@ import { LazyLoadImageModule } from "ng-lazyload-image";
 import { SizePipe } from "./pipes/custom/size.pipe";
 import { FormatSecondsPipe } from "./pipes/custom/format-seconds.pipe";
 import { SliderComponent } from "./components/slider/slider.component";
+import { LayoutModule } from '@angular/cdk/layout';
+import { SidebarComponent } from "./components/sidebar/sidebar.component";
+import { SidebarTriggerForDirective } from "./directives/sidebar-trigger-for.directive";
 
 
 
@@ -38,7 +41,9 @@ import { SliderComponent } from "./components/slider/slider.component";
 		FormatSecondsPipe,
 		SliderComponent,
 		InfiniteScrollDirective,
-		DragScrollDirective
+		DragScrollDirective,
+		SidebarComponent,
+		SidebarTriggerForDirective
 
 	],
 	imports: [
@@ -46,6 +51,7 @@ import { SliderComponent } from "./components/slider/slider.component";
 		RouterModule,
 		PortalModule,
 		HttpClientModule,
+		LayoutModule,
 		TextFieldModule,
 		DragDropModule,
 		OverlayModule,
@@ -72,10 +78,13 @@ import { SliderComponent } from "./components/slider/slider.component";
 		ModalComponent,
 		LazyLoadImageModule,
 		SizePipe,
+		LayoutModule,
 		FormatSecondsPipe,
 		SliderComponent,
 		InfiniteScrollDirective,
-		DragScrollDirective
+		DragScrollDirective,
+		SidebarComponent,
+		SidebarTriggerForDirective
 
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]
