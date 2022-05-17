@@ -3,6 +3,13 @@
     display: grid;
     grid-template-rows: auto 1fr auto;
     max-width: 400px;
+    margin: 0 auto;
+    padding-bottom: env(safe-area-inset-bottom);
+
+    @media screen and (max-width: 1000px) {
+        max-width: 100%;
+    }
+
     // padding: 1rem;
 
     &-queue {
@@ -21,6 +28,20 @@
         padding: 1rem;
         border-radius: 15px;
 
+        @media screen and (max-width: 1000px) {
+            display: grid;
+            column-gap: 1rem;
+            grid-template-columns: auto 1fr;
+            grid-template-rows: auto 1fr auto;
+        }
+
+
+        &-player {
+            padding: 1rem;
+            border-radius: 15px;
+
+        }
+
         .image {
             display: flex;
             flex-direction: column;
@@ -33,8 +54,15 @@
                 height: 100%;
                 border-radius: 15px;
                 aspect-ratio: 1;
-
                 object-fit: cover;
+
+                @media screen and (max-width: 1000px) {
+
+                    width: 50px;
+                    height: 50px;
+
+
+                }
             }
         }
 
@@ -44,6 +72,11 @@
             align-items: center;
             gap: 1rem;
             max-width: 400px;
+
+            @media screen and (max-width: 1000px) {
+                max-width: 100%;
+
+            }
 
             .image {
                 flex-grow: 0;
@@ -90,6 +123,12 @@
             align-items: center;
             margin: 1rem 0px;
 
+            @media screen and (max-width: 1000px) {
+
+                grid-row: 3;
+                grid-column: 1/3;
+            }
+
             .time {
                 opacity: 0.5;
                 font-size: 0.8rem;
@@ -104,6 +143,12 @@
             align-items: center;
             justify-content: center;
             justify-items: center;
+
+            @media screen and (max-width: 1000px) {
+
+                grid-row: 2;
+                grid-column: 1/3;
+            }
 
             button {
                 height: 60px;
@@ -140,164 +185,4 @@
 
 
     }
-}
-
-
-.icon {
-    font-size: 2rem;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: grid;
-    place-content: center;
-}
-
-.actions {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-}
-
-.player {
-    flex-direction: row;
-    align-items: center;
-    // overflow-y: auto;
-
-    display: grid;
-    place-content: center;
-    height: 100vh;
-
-
-    &-details {
-        grid-area: player-details;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 1rem;
-
-
-    }
-
-    .image {
-        grid-area: image;
-        display: grid;
-        place-content: center;
-        aspect-ratio: 1;
-        margin: 15px;
-
-        img {
-            width: 100%;
-            height: 100%;
-            border-radius: 15px;
-            aspect-ratio: 1;
-            max-width: 500px;
-            max-height: 500px;
-            object-fit: cover;
-        }
-    }
-
-    .details {
-        grid-area: details;
-
-        display: flex;
-        flex-direction: row;
-
-        >div {
-            flex-grow: 1;
-
-            h1 {
-                line-height: 1.2;
-                margin: 0px;
-            }
-
-            p {
-                margin: 0px;
-            }
-        }
-
-        button {
-            height: 40px;
-            width: 40px;
-            min-height: 40px;
-            min-width: 40px;
-            border-radius: 50%;
-            display: grid;
-            place-content: center;
-
-            &.active {
-                color: red;
-            }
-        }
-
-    }
-
-    .progress {
-        grid-area: progress;
-
-        display: grid;
-        grid-template-columns: auto 1fr auto;
-        gap: 1rem;
-        align-items: center;
-        margin-top: 1rem;
-
-        .time {
-            opacity: 0.5;
-            font-size: 0.8rem;
-        }
-    }
-
-    .controls {
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-        align-items: center;
-        justify-content: center;
-        justify-items: center;
-        margin-bottom: 1rem;
-
-        button {
-            height: 60px;
-            width: 60px;
-            border-radius: 50%;
-            display: grid;
-            place-content: center;
-
-            &.playback {
-                background-color: var(--background-color-3);
-                height: 60px;
-                width: 60px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            &.small {
-                font-size: 14px !important;
-                opacity: 0.6;
-
-
-            }
-
-
-
-            &.active {
-                opacity: 1;
-                color: var(--accent-color);
-            }
-        }
-    }
-
-    .queue {
-        grid-area: queue;
-        overflow: auto;
-        height: 100vh;
-        // max-height: 100vh;
-        max-width: 100vw;
-        width: 100%;
-        flex-grow: 1;
-        flex-basis: 0;
-    }
-
 }

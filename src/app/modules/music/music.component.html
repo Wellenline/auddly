@@ -24,7 +24,7 @@
 			</div>
 		</div>
 
-		<div class="app-navigation-item" appRipple routerLink="/music/artists" [routerLinkActive]="['active']">
+		<div class="app-navigation-item" appRipple (click)="openQueue()" [routerLinkActive]="['active']">
 			<div class="icon">
 				<i class="ph-folder"></i>
 
