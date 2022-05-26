@@ -13,7 +13,9 @@ import { ArtistComponent } from "./components/artist/artist.component";
 import { AlbumComponent } from "./components/album/album.component";
 import { NowPlaylingComponent } from "./components/now-playling/now-playling.component";
 import { PlaylistComponent } from "./components/playlist/playlist.component";
-import { PlaylistsModule } from "../playlists/playlists.module";
+import { PlaylistsComponent } from "./pages/playlists/playlists.component";
+import { PlaylistFormComponent } from "./components/playlist-form/playlist-form.component";
+import { PlaylistItemsComponent } from "./components/playlist-items/playlist-items.component";
 
 
 @NgModule({
@@ -28,10 +30,12 @@ import { PlaylistsModule } from "../playlists/playlists.module";
 		AlbumComponent,
 		NowPlaylingComponent,
 		PlaylistComponent,
+		PlaylistsComponent,
+		PlaylistFormComponent,
+		PlaylistItemsComponent,
 	],
 	imports: [
 		CommonModule,
-		PlaylistsModule,
 		SharedModule,
 		MusicRoutingModule
 	]

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Subject } from "rxjs";
+import { BehaviorSubject, map, Subject } from "rxjs";
 import { Cacheable, LocalStorageStrategy } from "ts-cacheable";
 import { HttpService } from "./http.service";
 
@@ -20,16 +20,32 @@ export class PlaylistService {
 		return this.http.get(`/playlists`);
 	}
 
+	public getPlaylist(id: string) {
+		return this.http.get(`/playlists/${id}`);
+	}
+
 	public create(data: {}) {
-		return this.http.post(`/playlists`, data);
+		return this.http.post(`/playlists`, data).pipe(map(
+			(response: any) => {
+				PlaylistService.$cacheBuster.next(true);
+				return response;
+			}));
 	}
 
 	public update(id: string, data: {}) {
-		return this.http.put(`/playlists/${id}`, data);
+		return this.http.put(`/playlists/${id}`, data).pipe(map(
+			(response: any) => {
+				PlaylistService.$cacheBuster.next(true);
+				return response;
+			}));
 	}
 
 	public delete(id: string) {
-		return this.http.delete(`/playlists/${id}`);
+		return this.http.delete(`/playlists/${id}`).pipe(map(
+			(response: any) => {
+				PlaylistService.$cacheBuster.next(true);
+				return response;
+			}));
 	}
 
 	public addTrack(playlist: string, track: string) {

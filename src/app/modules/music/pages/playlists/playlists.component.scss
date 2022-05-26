@@ -1,5 +1,5 @@
 .playlists {
-    margin: 15px 0px;
+    margin: 1rem;
     border: 1px solid var(--border-color);
     border-radius: 15px;
 
@@ -20,6 +20,9 @@
             gap: 5px;
             align-items: center;
 
+            button {
+                border: none;
+            }
 
         }
 

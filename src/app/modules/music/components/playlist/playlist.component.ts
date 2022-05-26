@@ -1,6 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { MusicService } from "src/app/core/services/music.service";
+import { ITrack, PlayerService } from "src/app/core/services/player.service";
+import { PlaylistService } from "src/app/core/services/playlist.service";
 import { ModalComponent } from "src/app/shared/components/modal/modal.component";
+import { ModalService } from "src/app/shared/components/modal/modal.service";
+import { ToastService } from "src/app/shared/components/toast/toast.service";
+import { ArtistComponent } from "../artist/artist.component";
+import { PlaylistFormComponent } from "../playlist-form/playlist-form.component";
 
 @Component({
 	selector: "app-playlist",
@@ -9,102 +15,90 @@ import { ModalComponent } from "src/app/shared/components/modal/modal.component"
 })
 export class PlaylistComponent implements OnInit {
 
-	public playlists = [];
-
+	public playlist: {
+		name?: string;
+		_id?: string;
+		tracks?: ITrack[];
+		picture?: string;
+		created_by?: {
+			first_name?: string,
+			last_name?: string,
+		}
+	} = {};
+	public tracks: ITrack[] = [];
 	public loading = true;
+	public albums = [];
 
-	public error: string;
-	public roles = [];
-	constructor(public modalComponent: ModalComponent, private musicService: MusicService) { }
-
+	constructor(public modal: ModalComponent,
+		private playerService: PlayerService,
+		private toastService: ToastService,
+		private musicService: MusicService,
+		private playlistService: PlaylistService,
+		private modalService: ModalService) { }
 
 	ngOnInit(): void {
-		this.getPlaylists();
+		console.log(this.modal.params);
+		this.getPlaylist(this.modal.params.id);
 	}
-
-	getPlaylists() {
-		this.musicService.getPlaylists().subscribe((response: { data: [] }) => {
-			this.playlists = response.data;
-		}).add(() => {
-			this.loading = false;
+	public getPlaylist(id: string) {
+		this.tracks = [];
+		this.loading = false;
+		this.playlistService.getPlaylist(id).subscribe((response: { tracks: ITrack[] }) => {
+			this.playlist = response;
+			if (this.playlist.tracks.length > 0 && !this.playlist.picture) {
+				this.playlist.picture = this.playlist.tracks[0].album.picture;
+			}
+		}, (err) => {
+			console.log("Failed to load tracks", err);
 		});
 	}
 
-	onHandleAction(playlist) {
-		if (!this.modalComponent.params.id) {
-			return;
-		}
-
-		if (this.modalComponent.params.action === "add") {
-			return this.onAddToPlayist(playlist);
-		}
-	}
-
-
-
-	onAddToPlayist(playlist) {
-		if (this.modalComponent.params.id) {
-			this.musicService.addTrackToPlaylist(playlist._id, this.modalComponent.params.id).subscribe((response: { playlist: any }) => {
-				this.modalComponent.onClose(playlist);
-			}, (err) => {
-				alert(err);
-			});
-		}
-		// this.invites.push({});
-	}
-
-	onCreate() {
-		const name = prompt("Enter playlist name");
-		if (name) {
-			this.musicService.createPlaylist({ name }).subscribe((playlist) => {
-				this.playlists.push(playlist);
-				if (this.modalComponent.params.action === "create") {
-					this.modalComponent.onClose(playlist);
-
+	public onEdit(playlist) {
+		this.modalService.show({
+			component: PlaylistFormComponent,
+			params: {
+				playlist: {
+					_id: playlist._id,
+					name: playlist.name,
 				}
-			}, (err) => {
-				alert(err);
-			});
+			},
+			callback: (response: any) => {
+				if (response) {
+					this.getPlaylist(this.playlist._id);
+				}
+			}
+		});
+	}
+
+	public onPlay() {
+		if (!this.playerService.$playing.getValue()) {
+			this.playerService.onPlay(...this.playlist.tracks);
+		} else {
+			this.playerService.queue(this.playlist.tracks);
 		}
-	}
-
-	onEdit(playlist) {
-		const name = prompt("Enter new name", playlist.name);
-		if (name) {
-			this.musicService.updatePlaylist(playlist._id, { name }).subscribe((response: { playlist: any }) => {
-				playlist.name = name;
-			}, (err) => {
-				alert(err);
-			});
-		}
-	}
-
-	onDelete(playlist) {
-		if (confirm("Are you sure you want to delete this playlist?")) {
-			this.musicService.deletePlaylist(playlist._id).subscribe((response: { playlist: any }) => {
-				this.playlists = this.playlists.filter(p => p._id !== playlist._id);
-			}, (err) => {
-				alert(err);
-			});
-		}
-	}
-
-	onRemoveInvite(index) {
-		// this.invites.splice(index, 1);
-	}
-
-	onSend() {
-		// todo
-
+		this.toastService.show({
+			message: `${this.playlist.tracks.length} tracks added to queue`,
+		});
 
 	}
 
-	onClose() {
-		// reset invites
-		this.modalComponent.onClose();
-
-
+	public onProfile(id: string) {
+		// todo: open profile modal
 	}
 
+	public onRemove(track: ITrack) {
+		console.log("Event Tirggered")
+		this.playlistService.removeTrack(this.playlist._id, track._id).subscribe({
+			next: (response: any) => {
+				this.playlist.tracks = this.playlist.tracks.filter(t => t._id !== track._id);
+				this.toastService.show({
+					message: `${track.name} removed from the playlist!`,
+				});
+			},
+			error: (err) => {
+				console.log(err);
+			}
+		});
+	}
 
 }

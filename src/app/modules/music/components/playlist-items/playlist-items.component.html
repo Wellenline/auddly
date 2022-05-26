@@ -1,0 +1,34 @@
+<app-header [back]="true">
+	<div header-back (click)="modalComponent.onClose()">
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+			stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+			class="ai ai-ArrowLeft">
+			<path d="M11 5l-7 7 7 7" />
+			<path d="M4 12h16" />
+		</svg>
+	</div>
+	<div header-title>
+
+	</div>
+
+</app-header>
+
+<div class="modal-body">
+
+	<h1>Playlists</h1>
+	<div class="text-meta">Manage your playlists</div>
+
+	<div class="playlists">
+		<div class="playlist" *ngFor="let playlist of playlists">
+			<div appRipple (click)="onAdd(playlist)" class="playlist-name">
+				{{ playlist.name }}
+			</div>
+
+		</div>
+	</div>
+	<div (click)="onCreate()" class="text-center m-t-20 m-b-20 add-playlist">
+		Create new playlist <i class="ph-plus"></i>
+	</div>
+
+	<app-loading [loading]="loading"></app-loading>
+</div>

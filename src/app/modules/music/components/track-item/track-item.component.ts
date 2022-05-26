@@ -2,11 +2,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { MusicService } from "src/app/core/services/music.service";
 import { ITrack, PlayerService } from "src/app/core/services/player.service";
-import { AddToPlaylistComponent } from "src/app/modules/playlists/components/add-to-playlist/add-to-playlist.component";
+import { PlaylistService } from "src/app/core/services/playlist.service";
 import { ModalService } from "src/app/shared/components/modal/modal.service";
 import { ToastService } from "src/app/shared/components/toast/toast.service";
 import { AlbumComponent } from "../album/album.component";
 import { ArtistComponent } from "../artist/artist.component";
+import { PlaylistItemsComponent } from "../playlist-items/playlist-items.component";
 import { PlaylistComponent } from "../playlist/playlist.component";
 
 @Component({
@@ -16,26 +17,24 @@ import { PlaylistComponent } from "../playlist/playlist.component";
 })
 export class TrackItemComponent implements OnInit {
 	@Input() public track: ITrack = {};
-	@Input() public options = {
-		picture: true,
-		actions: true,
-		drag: false,
-	};
+	@Input() public options: {
+		actions: boolean;
+		picture: boolean;
+		playlist?: boolean;
+		drag: boolean;
+	} = {
+			picture: true,
+			actions: true,
+			drag: false,
+		};
 
 	@Output() public reload = new EventEmitter();
-	public inPlaylist = false;
+	@Output() public onRemoveFromPlaylist = new EventEmitter();
+
 	constructor(public playerService: PlayerService, private route: ActivatedRoute,
-		private musicService: MusicService, private toastService: ToastService, private modalService: ModalService) { }
+		private musicService: MusicService, private playlistService: PlaylistService, private toastService: ToastService, private modalService: ModalService) { }
 
 	ngOnInit(): void {
-
-		// check if track has the playlist
-		if (this.route.snapshot.queryParams.playlist && this.track.playlists.length > 0) {
-			const inPlaylist = this.track.playlists.find((p) => p._id === this.route.snapshot.queryParams.playlist);
-			if (inPlaylist) {
-				this.inPlaylist = true;
-			}
-		}
 
 	}
 
@@ -46,7 +45,7 @@ export class TrackItemComponent implements OnInit {
 
 	public onPlaylist() {
 		this.modalService.show({
-			component: AddToPlaylistComponent,
+			component: PlaylistItemsComponent,
 			params: {
 				id: this.track._id,
 				action: "add",
@@ -60,11 +59,6 @@ export class TrackItemComponent implements OnInit {
 		});
 	}
 
-	public onRemoveFromPlaylist() {
-		this.musicService.removeTrackFromPlaylist(this.track._id, this.route.snapshot.queryParams.playlist).subscribe(() => {
-			this.reload.emit();
-		});
-	}
 
 	public onQueue() {
 		if (!this.playerService.$playing.getValue()) {

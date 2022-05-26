@@ -18,11 +18,12 @@ const routes: Routes = [
 			pathMatch: "full"
 
 		},
+
 		{ path: "music", loadChildren: () => import("./modules/music/music.module").then(m => m.MusicModule) },
 
-		{ path: "playlists", loadChildren: () => import("./modules/playlists/playlists.module").then(m => m.PlaylistsModule) },
 
-		{ path: "settings", loadChildren: () => import("./modules/settings/settings.module").then(m => m.SettingsModule) }
+		{ path: "settings", loadChildren: () => import("./modules/settings/settings.module").then(m => m.SettingsModule) },
+
 		],
 	},
 

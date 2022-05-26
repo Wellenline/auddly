@@ -5,14 +5,15 @@ import { ModalService } from 'src/app/shared/components/modal/modal.service';
 import { PlaylistFormComponent } from '../playlist-form/playlist-form.component';
 
 @Component({
-	selector: 'app-add-to-playlist',
-	templateUrl: './add-to-playlist.component.html',
-	styleUrls: ['./add-to-playlist.component.scss']
+	selector: 'app-playlist-items',
+	templateUrl: './playlist-items.component.html',
+	styleUrls: ['./playlist-items.component.scss']
 })
-export class AddToPlaylistComponent implements OnInit {
+export class PlaylistItemsComponent implements OnInit {
+
 	public playlists = [];
 	public loading = false;
-	constructor(public playlistService: PlaylistService, private modalService: ModalService, private modalComponent: ModalComponent) { }
+	constructor(public playlistService: PlaylistService, private modalService: ModalService, public modalComponent: ModalComponent) { }
 
 	ngOnInit(): void {
 		this.playlistService.getPlaylists().subscribe((response: { data: [] }) => {
@@ -48,5 +49,7 @@ export class AddToPlaylistComponent implements OnInit {
 			}
 		});
 	}
+
+
 
 }

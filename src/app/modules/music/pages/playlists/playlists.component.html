@@ -13,8 +13,9 @@
 
 <div class="playlists">
 	<div class="playlist" *ngFor="let playlist of playlists">
-		<div appRipple class="playlist-name">
-			{{ playlist.name }}
+		<div appRipple (click)="onPlaylist(playlist._id)" class="playlist-name">
+			{{ playlist._id}}
+			{{ playlist.name }} <small>({{ playlist.tracks.length || 0}} Tracks)</small>
 		</div>
 		<div class="playlist-actions">
 			<button (click)="onEdit(playlist)"><i class="ph-pencil-simple"></i></button>
@@ -22,3 +23,10 @@
 		</div>
 	</div>
 </div>
+
+<app-header [absolute]="true" title="Albums">
+	<div header-title>
+		Albums
+	</div>
+
+</app-header>
