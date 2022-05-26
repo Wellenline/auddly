@@ -50,7 +50,7 @@ export class MusicComponent implements OnInit {
 	openSettings() {
 		this.modalService.show({
 			component: DetailsComponent,
-
+			class: "fullscreen"
 		});
 	}
 

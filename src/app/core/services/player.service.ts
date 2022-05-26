@@ -186,7 +186,7 @@ export class PlayerService {
 	}
 
 	public setupAudioPlayer(track: ITrack, autoPlay: boolean = true) {
-		this.audio.src = track.source;
+		this.audio.src = `${track.source}`;
 		this.audio.crossOrigin = "anonymous";
 		// this.audio.load();
 		if (autoPlay) {
@@ -195,25 +195,25 @@ export class PlayerService {
 		}
 
 
-		if ("mediaSession" in navigator) {
-			(navigator as any).mediaSession.setPositionState(null);
-			// @ts-ignore
-			(navigator as any).mediaSession.metadata = new MediaMetadata({
-				title: track.name,
-				artist: track.artist,
-				album: track.album.name,
-				artwork: [
-					{ src: track.album.picture, sizes: "96x96", type: "image/png" },
-					{ src: track.album.picture, sizes: "128x128", type: "image/png" },
-					{ src: track.album.picture, sizes: "192x192", type: "image/png" },
-					{ src: track.album.picture, sizes: "256x256", type: "image/png" },
-					{ src: track.album.picture, sizes: "384x384", type: "image/png" },
-					{ src: track.album.picture, sizes: "512x512", type: "image/png" },
-				],
-			});
+		//if ("mediaSession" in navigator) {
+		(navigator as any).mediaSession.setPositionState(null);
+		// @ts-ignore
+		(navigator as any).mediaSession.metadata = new MediaMetadata({
+			title: track.name,
+			artist: track.artist,
+			album: track.album.name,
+			artwork: [
+				{ src: track.album.picture, sizes: "96x96", type: "image/png" },
+				{ src: track.album.picture, sizes: "128x128", type: "image/png" },
+				{ src: track.album.picture, sizes: "192x192", type: "image/png" },
+				{ src: track.album.picture, sizes: "256x256", type: "image/png" },
+				{ src: track.album.picture, sizes: "384x384", type: "image/png" },
+				{ src: track.album.picture, sizes: "512x512", type: "image/png" },
+			],
+		});
 
 
-		}
+		//}
 
 	}
 

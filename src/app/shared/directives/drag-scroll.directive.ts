@@ -13,8 +13,8 @@ export class DragScrollDirective {
 
 	@HostListener("mousedown", ["$event"])
 	public onStartDragging(e) {
-		//e.preventDefault();
-		//e.stopPropagation();
+		e.preventDefault();
+		e.stopPropagation();
 		this.mouseDown = true;
 		this.startX = e.clientX;
 		this.scrollLeft = this.element.nativeElement.scrollLeft;
@@ -23,15 +23,15 @@ export class DragScrollDirective {
 	@HostListener("mouseleave", ["$event"])
 	@HostListener("mouseup", ["$event"])
 	public onStopDragging(e) {
-		//e.preventDefault();
-		//e.stopPropagation();
+		e.preventDefault();
+		e.stopPropagation();
 		this.mouseDown = false;
 	}
 
 	@HostListener("mousemove", ["$event"])
 	public onDragging(e) {
 		e.preventDefault();
-		//e.stopPropagation();
+		e.stopPropagation();
 		if (!this.mouseDown) {
 			return;
 		}

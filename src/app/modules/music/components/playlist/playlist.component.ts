@@ -23,8 +23,8 @@ export class PlaylistComponent implements OnInit {
 	}
 
 	getPlaylists() {
-		this.musicService.getPlaylists().subscribe((response: { playlists: [] }) => {
-			this.playlists = response.playlists;
+		this.musicService.getPlaylists().subscribe((response: { data: [] }) => {
+			this.playlists = response.data;
 		}).add(() => {
 			this.loading = false;
 		});

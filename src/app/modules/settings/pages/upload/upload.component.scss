@@ -20,6 +20,8 @@
     .files {
         display: flex;
         flex-direction: column;
+        overflow: auto;
+        max-height: 50vh;
 
         .file {
             position: relative;
@@ -27,12 +29,15 @@
             flex-direction: row;
             color: var(--foreground-color);
             background-color: var(--background-color-2);
+            border-radius: 50px;
 
             .progress {
                 height: 100%;
                 width: 50px;
                 position: absolute;
-                background-color: var(--accent-color);
+                background-color: var(--highlight-color);
+                transition: all ease-in-out .3s;
+                border-radius: 50px;
             }
 
             &+.file {

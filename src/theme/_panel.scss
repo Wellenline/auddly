@@ -17,13 +17,23 @@
     }
 
     &.warning {
-        background: #f19292;
-        color: black;
+        background: #ff6969;
+        color: white;
     }
 
     &.success {
         background: #92f19f;
         color: black;
+    }
+
+    &.info {
+        background: #3049d1;
+        color: white;
+    }
+
+    button {
+        background-color: white;
+        color: var(--accent-color);
     }
 
 }

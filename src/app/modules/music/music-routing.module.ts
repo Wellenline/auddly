@@ -32,7 +32,8 @@ const routes: Routes = [{
 		{
 			path: "artists",
 			component: ArtistsComponent
-		}
+		},
+
 	]
 }];
 

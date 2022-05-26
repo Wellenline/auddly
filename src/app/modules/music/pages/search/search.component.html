@@ -1,3 +1,14 @@
+<div class="user">
+	<div class="name">
+		<h1>Search</h1>
+	</div>
+
+	<div routerLink="/settings" class="user-settings" appRipple>
+		<i class="ph-gear-six"></i>
+	</div>
+</div>
+
+
 <div class="search-toolbar">
 	<input (keyup)="onSearch($event)" [(ngModel)]="search" autocomplete="off" class="search-input" type="text"
 		placeholder="Search Music, Albums, Tracks" />
@@ -10,7 +21,7 @@
 	<h3>Playlists</h3>
 
 	<div class="playlists">
-		<div appRipple (click)="onAddPlaylist()" class="playlist">Manage Playlists</div>
+		<div appRipple routerLink="/music/playlists" class="playlist">Manage Playlists</div>
 		<ng-container *ngFor="let playlist of playlists">
 
 			<div appRipple class="playlist" routerLink="/music/tracks" [queryParams]="{playlist: playlist._id}">
@@ -28,7 +39,7 @@
 <ng-container *ngIf="result.artists.length > 0">
 
 	<h3 routerLink="/library?tab=artists">Artists</h3>
-	<div class="artists">
+	<div appDragScroll class="artists">
 		<ng-container *ngFor="let artist of result.artists; ">
 			<div (click)="onArtist(artist._id)" class="artist">
 				<img class="lazyload" [lazyLoad]="artist.picture || '/assets/app-icon-text.png'" />

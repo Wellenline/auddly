@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { MusicService } from "src/app/core/services/music.service";
 import { ModalService } from "src/app/shared/components/modal/modal.service";
@@ -57,7 +58,7 @@ export class AlbumsComponent implements OnInit {
 			sort: this.sort,
 		}).pipe(
 			map((res: any) => {
-				this.albums = this.albums.concat(res.albums);
+				this.albums = this.albums.concat(res.data);
 				this.pagination.total = res.total;
 				if (this.pagination.total) {
 					this.pagination.total = res.total;
@@ -71,7 +72,7 @@ export class AlbumsComponent implements OnInit {
 		console.log("onScroll(), triggered");
 		if (this.albums.length !== this.pagination.total) {
 			this.pagination.skip += this.pagination.limit;
-			return this.getAlbums();
+			return this.getAlbums()
 		}
 
 	}

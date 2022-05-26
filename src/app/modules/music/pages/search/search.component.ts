@@ -105,7 +105,7 @@ export class SearchComponent implements OnInit {
 
 	public fetchArtists() {
 		this.loading.artists = true;
-		this.httpService.get(`/artists/random?total=20`).subscribe((response: any) => {
+		this.httpService.get(`/artists/random?total=50`).subscribe((response: any) => {
 			this.result.artists = response;
 		}, (err) => {
 			console.log(err);
@@ -142,7 +142,7 @@ export class SearchComponent implements OnInit {
 		this.loading.playlists = true;
 
 		this.httpService.get(`/playlists`).subscribe((response: any) => {
-			this.playlists = [{ name: "Favorites", _id: "FAVOURITES" }].concat(response.playlists);
+			this.playlists = [{ name: "Favorites", _id: "FAVOURITES" }].concat(response.data);
 		}, (err) => {
 			console.log(err);
 		}).add(() => {

@@ -125,8 +125,8 @@ export class TracksComponent implements OnInit {
 
 
 	public getGenres() {
-		this.httpService.get(`/genres`).subscribe((response: any[]) => {
-			this.genres = response;
+		this.httpService.get(`/genres`).subscribe((response: any) => {
+			this.genres = response.data;
 
 			if (this.filter.genre) {
 				this.genre = this.genres.find((genre) => genre._id === this.filter.genre);
@@ -135,8 +135,8 @@ export class TracksComponent implements OnInit {
 	}
 
 	public getPlaylists() {
-		this.httpService.get(`/playlists`).subscribe((response: { playlists: [] }) => {
-			this.playlists = [{ name: "Favorites", _id: "FAVOURITES" }].concat(response.playlists);
+		this.httpService.get(`/playlists`).subscribe((response: { data: [] }) => {
+			this.playlists = [{ name: "Favorites", _id: "FAVOURITES" }].concat(response.data);
 		});
 	}
 
@@ -172,7 +172,7 @@ export class TracksComponent implements OnInit {
 			...additionalParams,
 		}).pipe(
 			map((res: any) => {
-				this.tracks = this.tracks.concat(res.tracks);
+				this.tracks = this.tracks.concat(res.data);
 				this.pagination.total = res.total;
 				if (this.pagination.total) {
 					this.pagination.total = res.total;
@@ -182,42 +182,5 @@ export class TracksComponent implements OnInit {
 			}));
 
 		// });
-	}
-
-	private fetchTracks(reset: boolean = false) {
-		this.loading = true;
-
-		if (reset) {
-			this.tracks = [];
-			this.pagination.total = 0;
-			this.pagination.skip = 0;
-			this.pagination.limit = this.filter.limit ? Number(this.filter.limit) : 50;
-
-		}
-		const additionalParams = JSON.parse(JSON.stringify(this.filter));
-
-
-		if (additionalParams.playlist && additionalParams.playlist !== "") {
-			if (additionalParams.playlist === "FAVOURITES") {
-				delete additionalParams.playlist;
-				additionalParams.liked = true;
-			}
-		}
-
-		this.musicService.getTracks({
-			skip: this.pagination.skip,
-			limit: this.pagination.limit,
-			...additionalParams,
-		}).subscribe((response: any) => {
-			this.tracks = this.tracks.concat(response.tracks);
-			this.pagination.total = response.total;
-			this.loading = false;
-		}, (err) => {
-			console.log(err);
-		});
-	}
-
-	trackBy(index: number, el: any): number {
-		return el._id;
 	}
 }

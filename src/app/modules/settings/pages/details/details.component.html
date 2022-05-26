@@ -1,5 +1,5 @@
 <app-header [back]="true">
-	<div header-back (click)="modal.onClose()">
+	<div (click)="onBack()" header-back>
 		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
 			stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
 			class="ai ai-ArrowLeft">
@@ -7,6 +7,10 @@
 			<path d="M4 12h16" />
 		</svg>
 	</div>
+	<div header-title>
+		Settings
+	</div>
+
 </app-header>
 
 <div class="app-logo">
@@ -94,7 +98,9 @@
 		<div class="text-lead">Version</div>
 		<div class="text-meta">{{ server.version }}</div>
 	</div>
-
+	<div routerLink="./users" class="list-item">
+		<div class="text-lead">Users</div>
+	</div>
 	<div (click)="onUpload()" class="list-item">
 		<div class="text-lead">Upload</div>
 	</div>

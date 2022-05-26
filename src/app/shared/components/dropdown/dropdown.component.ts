@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from "@angular/core";
 
 @Component({
 	selector: "app-dropdown",
@@ -8,10 +8,17 @@ import { Component, EventEmitter, OnInit, Output, TemplateRef, ViewChild } from 
 export class DropdownComponent implements OnInit {
 	@ViewChild(TemplateRef) templateRef: TemplateRef<any>;
 	@Output() closed = new EventEmitter<void>();
+	@Input() closeOnClick = true;
 
 	constructor() { }
 
 	ngOnInit(): void {
+	}
+
+	public onClick() {
+		if (this.closeOnClick) {
+			this.closed.emit();
+		}
 	}
 
 }

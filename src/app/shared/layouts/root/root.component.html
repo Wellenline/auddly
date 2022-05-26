@@ -1,0 +1,119 @@
+<div class="app">
+	<div class="app-navigation">
+		<div class="logo">
+			<h3>Auddly.</h3>
+		</div>
+		<div class="app-navigation-item" appRipple routerLink="/music/search" [routerLinkActive]="['active']">
+			<div class="icon">
+				<i class="ph-magnifying-glass"></i>
+
+
+			</div>
+			<div class="text">
+				Search
+			</div>
+		</div>
+		<div class="app-navigation-item" appRipple routerLink="/playlists" [routerLinkActive]="['active']">
+			<div class="icon">
+				<i class="ph-music-notes-simple"></i>
+
+
+
+			</div>
+			<div class="text">
+				Playlists
+			</div>
+		</div>
+
+		<div class="app-navigation-item" appRipple routerLink="/music/albums" [routerLinkActive]="['active']">
+			<div class="icon">
+				<i class="ph-disc"></i>
+
+			</div>
+			<div class="text">
+				Albums
+			</div>
+		</div>
+
+		<div class="app-navigation-item" appRipple routerLink="/music/artists" [routerLinkActive]="['active']">
+			<div class="icon">
+				<i class="ph-folder"></i>
+
+			</div>
+			<div class="text">
+				Artists
+			</div>
+		</div>
+
+
+
+		<div class="app-navigation-item" appRipple routerLink="/music/tracks" [routerLinkActive]="['active']">
+			<div class="icon">
+				<i class="ph-music-notes-simple"></i>
+
+
+
+			</div>
+			<div class="text">
+				Tracks
+			</div>
+		</div>
+
+		<div class="app-navigation-item" style="margin-top: auto;" appRipple [dropdownPosition]="{
+			originX: 'end',
+			originY: 'bottom',
+			overlayX: 'end',
+			overlayY: 'top',
+			offsetY: 0,
+			offsetX: 0
+		}" [dropdownTriggerFor]="dropdown">
+			<div class="icon">
+				<i class="ph-user-circle"></i>
+			</div>
+			<div class="text">
+				Settings
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="app-content">
+		<router-outlet></router-outlet>
+	</div>
+
+	<div class="app-player">
+		<app-now-playling></app-now-playling>
+
+	</div>
+</div>
+<app-dropdown #dropdown>
+
+	<div class="dropdown-item" appRipple routerLink="/settings" [routerLinkActive]="['active']">
+		Settings
+		<i class="ph-gear-six"></i>
+
+
+	</div>
+	<div class="divider no-margin"></div>
+
+	<div (click)="theme.onToggle()" class="dropdown-item">
+		<app-theme-toggle style="display: none;" #theme></app-theme-toggle>
+		{{ theme.themeService.theme === 'dark' ? 'Light' : 'Dark' }}
+
+		<i *ngIf="theme.themeService.theme === 'dark'" class="ph-sun-dim"></i>
+		<i *ngIf="theme.themeService.theme !== 'dark'" class="ph-moon"></i>
+	</div>
+
+	<!--div (click)="onLogout()" class="dropdown-item">Help & Support <i class="ph-lifebuoy"></i>
+
+	</div-->
+	<div class="divider no-margin"></div>
+
+	<!--div (click)=" onLogout()" class="dropdown-item">Notifications <i class="ph-bell"></i>
+
+	</div-->
+
+	<div class="dropdown-item">Logout <i class="ph-sign-out"></i>
+	</div>
+</app-dropdown>

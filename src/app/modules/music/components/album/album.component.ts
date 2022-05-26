@@ -33,8 +33,8 @@ export class AlbumComponent implements OnInit {
 			album: id,
 			skip: 0,
 			limit: 1000,
-		}).subscribe((response: { tracks: ITrack[] }) => {
-			this.tracks = response.tracks;
+		}).subscribe((response: { data: ITrack[] }) => {
+			this.tracks = response.data;
 		}, (err) => {
 			console.log("Failed to load tracks", err);
 		});
@@ -86,7 +86,7 @@ export class AlbumComponent implements OnInit {
 		this.musicService.getAlbums({
 			artist: id
 		}).subscribe((response: any) => {
-			this.albums = response.albums.filter((album) => album._id !== this.album._id);
+			this.albums = response.data.filter((album) => album._id !== this.album._id);
 		}, (err) => {
 			console.log(err);
 		}).add(() => {

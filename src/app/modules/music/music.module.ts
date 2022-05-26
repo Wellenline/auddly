@@ -13,6 +13,7 @@ import { ArtistComponent } from "./components/artist/artist.component";
 import { AlbumComponent } from "./components/album/album.component";
 import { NowPlaylingComponent } from "./components/now-playling/now-playling.component";
 import { PlaylistComponent } from "./components/playlist/playlist.component";
+import { PlaylistsModule } from "../playlists/playlists.module";
 
 
 @NgModule({
@@ -26,9 +27,11 @@ import { PlaylistComponent } from "./components/playlist/playlist.component";
 		ArtistComponent,
 		AlbumComponent,
 		NowPlaylingComponent,
-		PlaylistComponent],
+		PlaylistComponent,
+	],
 	imports: [
 		CommonModule,
+		PlaylistsModule,
 		SharedModule,
 		MusicRoutingModule
 	]

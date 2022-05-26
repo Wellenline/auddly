@@ -33,7 +33,7 @@
     transition: border .1s linear, box-shadow .1s linear;
     appearance: none;
     width: 100%;
-    border: 1px solid var(--border-primary);
+    border: 1px solid var(--border-color);
     background-color: transparent;
 
     &:hover:not([focus]):not([state="disabled"]) {

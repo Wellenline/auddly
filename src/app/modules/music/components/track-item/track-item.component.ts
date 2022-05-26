@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { MusicService } from "src/app/core/services/music.service";
 import { ITrack, PlayerService } from "src/app/core/services/player.service";
+import { AddToPlaylistComponent } from "src/app/modules/playlists/components/add-to-playlist/add-to-playlist.component";
 import { ModalService } from "src/app/shared/components/modal/modal.service";
 import { ToastService } from "src/app/shared/components/toast/toast.service";
 import { AlbumComponent } from "../album/album.component";
@@ -45,7 +46,7 @@ export class TrackItemComponent implements OnInit {
 
 	public onPlaylist() {
 		this.modalService.show({
-			component: PlaylistComponent,
+			component: AddToPlaylistComponent,
 			params: {
 				id: this.track._id,
 				action: "add",

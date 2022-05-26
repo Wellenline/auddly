@@ -45,6 +45,7 @@ export class UploadService {
 			const formData = new FormData();
 
 			const parts: string[] = file.name.split(this.separator);
+			console.log(parts, parts.length - 1);
 			const name = parts[parts.length - 1];
 
 			let filePath = file.webkitRelativePath || (file as File).name;

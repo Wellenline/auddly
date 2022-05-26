@@ -8,7 +8,7 @@ import { throwError } from "rxjs";
 })
 export class HttpService {
 	public API_ENDPOINT = localStorage.getItem("api"); // environment.api;
-	public API_KEY = localStorage.getItem("key");
+	public ACCESS_TOKEN: string;
 	constructor(private http: HttpClient) { }
 
 	public get(path: any, skipBase?: boolean) {
@@ -25,10 +25,8 @@ export class HttpService {
 	public upload(path: any, data: any, progress = false) {
 		if (progress) {
 			// const headers = this.headers();
-			const headers = new HttpHeaders({ "ngsw-bypass": "", ...this.headers() });
-
 			return this.http.post(`${this.API_ENDPOINT}${path}`, data, {
-				headers,
+				headers: this.headers(),
 				reportProgress: true,
 				observe: "events",
 				responseType: "json",
@@ -57,9 +55,12 @@ export class HttpService {
 	}
 
 	private headers() {
-		const headers = {};
-		if (this.API_KEY) {
-			headers["x-api-key"] = this.API_KEY;
+		const headers = new HttpHeaders();
+		headers.set("Accept", "application/json");
+		headers.set("ngsw-bypass", "");
+
+		if (this.ACCESS_TOKEN) {
+			headers.set("Authorization", `Bearer ${this.ACCESS_TOKEN}`);
 		}
 
 		return headers;

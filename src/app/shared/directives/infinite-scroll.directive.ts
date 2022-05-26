@@ -76,7 +76,7 @@ export class InfiniteScrollDirective {
 		if (this.immediateCallback) {
 			this.requestOnScroll$ = this.requestOnScroll$.pipe(
 				startWith([DEFAULT_SCROLL_POSITION, DEFAULT_SCROLL_POSITION])
-			);
+			) as Observable<[ScrollPosition, ScrollPosition]>;
 		}
 
 		this.requestOnScroll$.pipe(

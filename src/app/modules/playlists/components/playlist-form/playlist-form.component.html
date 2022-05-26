@@ -1,0 +1,42 @@
+<app-header [back]="true">
+	<div header-back (click)="modalComponent.onClose()">
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+			stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+			class="ai ai-ArrowLeft">
+			<path d="M11 5l-7 7 7 7" />
+			<path d="M4 12h16" />
+		</svg>
+	</div>
+	<div header-title>
+
+	</div>
+
+</app-header>
+<div class="modal-body">
+
+
+	<h1>Playlist Settings
+
+	</h1>
+	<p>Manage your playlist settings
+
+	</p>
+
+
+	<form (ngSubmit)="onSave()" ngNativeValidate>
+		{{ error }}
+		<div class="form-item">
+			<label>Name</label>
+			<input required type="text" name="name" [(ngModel)]="playlist.name" class="input"
+				placeholder="My Cool Playlist" />
+		</div>
+
+		<div class="flex right">
+			<button class="button">Save <i class="ph-arrow-right"></i>
+			</button>
+
+		</div>
+
+	</form>
+
+</div>

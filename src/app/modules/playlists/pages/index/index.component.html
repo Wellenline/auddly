@@ -1,0 +1,24 @@
+<app-header [sticky]="true" [transparent]="true">
+	<div header-title>
+		Playlists
+	</div>
+	<div header-actions class="actions">
+
+		<div appRipple class="icon">
+			<i class="ph-plus"></i>
+
+		</div>
+	</div>
+</app-header>
+
+<div class="playlists">
+	<div class="playlist" *ngFor="let playlist of playlists">
+		<div appRipple class="playlist-name">
+			{{ playlist.name }}
+		</div>
+		<div class="playlist-actions">
+			<button (click)="onEdit(playlist)"><i class="ph-pencil-simple"></i></button>
+			<button (click)="onDelete(playlist)"><i class="ph-trash-simple"></i></button>
+		</div>
+	</div>
+</div>

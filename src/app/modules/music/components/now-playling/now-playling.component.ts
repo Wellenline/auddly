@@ -138,7 +138,7 @@ export class NowPlaylingComponent implements OnInit {
 	}
 
 	ngOnDestroy() {
-		this.destroy.next();
+		this.destroy.next(true);
 	}
 
 

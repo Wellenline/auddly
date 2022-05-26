@@ -55,7 +55,7 @@ export class ArtistComponent implements OnInit {
 		this.musicService.getAlbums({
 			artist: id,
 		}).subscribe((response: any) => {
-			this.albums = response.albums;
+			this.albums = response.data;
 		}, (err) => {
 			console.log(err);
 		}).add(() => {
@@ -70,7 +70,7 @@ export class ArtistComponent implements OnInit {
 			artist: id,
 			limit: 10,
 		}).subscribe((response: any) => {
-			this.tracks = response.tracks;
+			this.tracks = response.data;
 		}, (err) => {
 			console.log(err);
 		}).add(() => {

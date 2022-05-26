@@ -22,7 +22,8 @@ html[data-theme="light"] {
     --highlight-color: #2d63e9;
 
     --text-color: #181818;
-
+    --black: black;
+    --white: white;
     --ripple-color: rgba(0, 0, 0, 0.2);
 
 }
@@ -42,6 +43,8 @@ html[data-theme="dark"] {
     --input-color: #fff;
 
     --text-color: #f7f7f9;
+    --black: white;
+    --white: black;
 
     --ripple-color: rgba(255, 255, 255, 0.7);
 
