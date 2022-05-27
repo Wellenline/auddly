@@ -9,7 +9,7 @@ export class DropdownComponent implements OnInit {
 	@ViewChild(TemplateRef) templateRef: TemplateRef<any>;
 	@Output() closed = new EventEmitter<void>();
 	@Input() closeOnClick = true;
-
+	@Input() ignoreStyle = false;
 	constructor() { }
 
 	ngOnInit(): void {

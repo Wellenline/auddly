@@ -1,0 +1,68 @@
+:host {
+    height: 100%;
+    display: block;
+
+}
+
+.icon {
+    font-size: 2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+}
+
+.queue {
+    display: block;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+
+.filters {
+    padding: 10px 5px;
+    flex-direction: row;
+    width: auto;
+    display: inline-flex;
+    overflow: auto;
+    gap: 1rem;
+
+
+
+    .filter {
+        flex-grow: 1;
+        flex-basis: 0;
+
+        &.small {
+            flex-grow: 0;
+            flex-basis: auto;
+        }
+
+        select {
+            background-color: transparent;
+            border: none;
+            appearance: none;
+            width: 100%;
+            padding: 6px 10px;
+            color: var(--text-color);
+            border: 2px solid var(--text-color);
+            border-radius: 15px;
+            appearance: none;
+        }
+
+        label {
+            margin: 0px;
+        }
+    }
+
+    // background-color: red;
+    @media screen and (max-width: 1000px) {
+        flex-direction: column;
+        padding: 15px;
+    }
+}
+
+.tracks {
+    margin: 0 1rem;
+}

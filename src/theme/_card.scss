@@ -1,0 +1,22 @@
+.card {
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    transition: 0.25s ease;
+
+    //background-color: var(--background-color-4);
+
+    border: 1px solid var(--border-color);
+    box-shadow: rgb(17 17 18 / 4%) 0 2px 4px, rgb(19 20 20 / 6%) 0 1px 1px;
+
+    &.no-padding {
+        padding: 0px;
+    }
+
+    &.no-shadow {
+        box-shadow: none;
+    }
+}

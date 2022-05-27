@@ -1,0 +1,100 @@
+.table {
+    border-collapse: collapse;
+    font-size: 0.9em;
+    width: 100%;
+
+    @media (max-width: 1000px) {
+        font-size: 1rem;
+    }
+
+    thead {
+        tr {
+
+
+            // background-color: var(--background-color-6);
+            color: var(--text-color);
+            text-align: left;
+
+            border-bottom: 2px solid var(--border-color);
+
+            @media (max-width: 1000px) {
+
+                position: absolute !important;
+                top: 0;
+                width: 1px !important;
+                height: 1px !important;
+                padding: 0 !important;
+                overflow: hidden !important;
+                clip: rect(1px, 1px, 1px, 1px) !important;
+                border: 0 !important;
+            }
+        }
+    }
+
+    th,
+    td {
+        padding: 1rem;
+        line-height: 1.25;
+
+    }
+
+
+
+    tbody {
+        tr {
+            border-bottom: 1px solid var(--border-color);
+
+            &:nth-of-type(even) {
+                // background-color: var(--background-color-2);
+            }
+
+
+            &:last-of-type {
+                border-bottom: none;
+            }
+
+
+
+            &:hover {
+                background-color: var(--background-color-7);
+                transition: hover ease-in-out .3s;
+
+            }
+        }
+
+        @media (max-width: 1000px) {
+            display: block;
+
+            tr {
+                display: block;
+                // border-radius: 15px;
+
+
+
+                td {
+                    display: block;
+                    padding: 5px;
+                    padding-left: 1rem;
+                    padding-top: 1rem;
+                    padding-bottom: 1rem;
+
+
+                    &[data-heading]::before {
+                        font-size: 12px;
+                        color: #808080;
+                        text-transform: uppercase;
+                        font-weight: unset !important;
+                        margin-bottom: 13px;
+                        min-width: 98px;
+                        display: block;
+                        content: attr(data-heading);
+                    }
+
+                }
+            }
+        }
+
+    }
+
+
+}

@@ -23,7 +23,7 @@ import { SliderComponent } from "./components/slider/slider.component";
 import { LayoutModule } from "@angular/cdk/layout";
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { SidebarTriggerForDirective } from "./directives/sidebar-trigger-for.directive";
-import { RootComponent } from "./layouts/root/root.component";
+import { AvatarComponent } from "./components/avatar/avatar.component";
 
 
 
@@ -45,7 +45,7 @@ import { RootComponent } from "./layouts/root/root.component";
 		DragScrollDirective,
 		SidebarComponent,
 		SidebarTriggerForDirective,
-		RootComponent
+		AvatarComponent,
 
 	],
 	imports: [
@@ -87,7 +87,7 @@ import { RootComponent } from "./layouts/root/root.component";
 		DragScrollDirective,
 		SidebarComponent,
 		SidebarTriggerForDirective,
-		RootComponent,
+		AvatarComponent,
 
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]

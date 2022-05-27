@@ -1,0 +1,62 @@
+.card {
+    margin: 0 1rem;
+}
+
+.table {
+    a {
+        text-decoration: none;
+
+        .text-meta {
+            font-size: 12px;
+        }
+    }
+}
+
+.members {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+
+    .member {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-radius: 5px;
+        transition: all ease-in-out 0.2s;
+
+        .picture {
+            padding: 15px;
+            justify-content: center;
+            margin-right: -15px;
+
+        }
+
+        .name {
+            flex-grow: 1;
+            padding: 15px;
+
+        }
+
+        .role {
+            padding: 15px;
+
+        }
+
+        .actions {
+            padding: 15px;
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+
+            i {
+                font-size: 1.5rem;
+            }
+        }
+
+        &:hover {
+            // box-shadow: 0 5px 15px 0px rgb(0 0 0 / 20%);
+            background-color: var(--border-primary);
+            // cursor: pointer;
+        }
+    }
+}

@@ -1,0 +1,57 @@
+<app-header [sticky]="true" [transparent]="true">
+	<div header-title>
+		Users
+	</div>
+	<div header-actions class="actions">
+
+
+		<button (click)="onCreate()" class="button">
+			Add User <i class="ph-user-plus"></i>
+
+
+		</button>
+	</div>
+</app-header>
+
+
+<div class="card no-padding m-t-20">
+
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					Name
+				</th>
+				<th>
+					Role
+				</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let user of users.data">
+				<td class="cell" data-heading="Name">
+					<a style="display: flex; flex-direction: row; align-items:center; gap: 1rem;" routerLink="."
+						[queryParams]="{ id: user._id }">
+						<app-avatar [picture]="user.picture" [name]="user.first_name" [width]="50" [height]="50">
+						</app-avatar>
+						<div>
+							{{ user.first_name }} {{ user.last_name }}
+							<div class="text-meta">{{ user.updated_at | date: 'medium' }}</div>
+						</div>
+
+					</a>
+
+				</td>
+				<td class="cell" data-heading="Role">
+					<div class="badge info">{{ user?.role?.name }}
+					</div>
+				</td>
+			</tr>
+
+		</tbody>
+	</table>
+</div>
+
+<app-loading [absolute]="true" [loading]="loading"></app-loading>

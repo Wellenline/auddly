@@ -1,0 +1,78 @@
+<app-header [back]="true">
+	<div header-back (click)="modalComponent.onClose()">
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+			stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+			class="ai ai-ArrowLeft">
+			<path d="M11 5l-7 7 7 7" />
+			<path d="M4 12h16" />
+		</svg>
+	</div>
+	<div header-title>
+
+	</div>
+
+</app-header>
+
+<div class="modal-body">
+
+	<form (ngSubmit)="onSave()" ngNativeValidate>
+
+
+		{{ error }}
+
+		<div class="picture">
+			<div class="form-item">
+				<div class="picture" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
+
+
+					<input hidden type="file" accept="image/*" #fileInput (change)="uploadFile($event)">
+
+
+					<app-loading [loading]="uploading"></app-loading>
+
+					<!--object data="{{ user.picture || '/assets/default.png' }}">
+						<img src="/assets/default.png" />
+					</object-->
+					<img [src]="user.picture || '/assets/default.png'" />
+
+				</div>
+
+			</div>
+		</div>
+		<div class="grid">
+			<div class="width-6@md width-6@sm width-12@xs">
+				<div class="form-item">
+					<label>First name</label>
+
+					<input required autocomplete="off" class="input" [(ngModel)]="user.first_name" type="text"
+						name="first_name" placeholder="First name" />
+				</div>
+			</div>
+
+			<div class="width-6@md width-6@sm width-12@xs">
+				<div class="form-item">
+					<label>Last name</label>
+
+					<input required autocomplete="off" class="input" [(ngModel)]="user.last_name" type="text"
+						name="last_name" placeholder="last name" />
+				</div>
+			</div>
+		</div>
+
+
+		<div class="form-item">
+			<label>Role</label>
+
+			<select class="select" name="role" [(ngModel)]="user.role">
+				<option *ngFor="let role of roles" [value]="role?._id">{{ role?.name }}</option>
+			</select>
+
+		</div>
+
+		<div class="flex right">
+			<a>Delete account</a>
+			<button class="button">Save
+			</button>
+		</div>
+	</form>
+</div>

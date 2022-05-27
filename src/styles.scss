@@ -164,6 +164,71 @@ a {
     }
 }
 
+.toolbar {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem 0;
+    align-items: center;
+
+    @media all and (max-width: 1000px) {
+        flex-direction: column;
+        align-items: flex-start;
+
+
+    }
+
+    .title {
+        flex-grow: 1;
+
+        @media all and (max-width: 1000px) {
+            margin-bottom: 15px;
+
+
+        }
+
+        h1 {
+            margin: 0;
+            line-height: 1.2;
+            //font-weight: 500;
+            font-size: 1.4rem;
+        }
+
+        p {
+            margin: 0px;
+
+        }
+    }
+
+    .actions {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+}
+
+p {
+    // color: #7c7c7c;
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+
+    text-decoration: underline;
+
+
+    &:focus,
+    &:hover {
+        color: var(--text-action);
+        cursor: pointer;
+        // text-decoration: none;
+    }
+}
 
 .transformer {
     -webkit-tap-highlight-color: transparent;

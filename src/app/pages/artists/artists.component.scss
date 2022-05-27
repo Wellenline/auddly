@@ -1,0 +1,130 @@
+.icon {
+    font-size: 2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+.albums {
+    /// height: calc(var(--app-height) - 60px);
+    // overflow: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    // min-height: var(--app-height);
+    padding: 1rem;
+    // grid-row-gap: 25px;
+    // animation: slideY 0.6s both;
+    transition: all ease-in-out .3s;
+
+    //display: none;
+    @media screen and (max-width: 1212px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media screen and (max-width: 930px) {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 1rem;
+
+        // padding-bottom: calc(env(safe-area-inset-bottom) + 140px);
+
+    }
+
+    &.list {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        .album {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            gap: 1rem;
+
+            img {
+                width: 60px;
+                height: 60px;
+
+            }
+
+            .album-info {
+                flex-grow: 1;
+
+                h3 {
+                    font-size: 14px;
+                }
+
+                p {
+                    opacity: 0.8;
+                }
+
+            }
+
+        }
+    }
+
+    .album {
+        transition: all ease-in-out .3s;
+        display: grid;
+        place-content: center;
+
+        img {
+            aspect-ratio: 1;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: rgba(17, 17, 18, 0.04) 0 2px 4px, rgba(19, 20, 20, 0.06) 0 1px 1px;
+            width: 100%;
+        }
+
+        .column-details {
+            margin-top: 10px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            text-align: left;
+            max-width: 200px;
+            font-size: 14px;
+
+            .title {
+                color: var(--text-color);
+                font-size: 1rem;
+                font-weight: bold;
+            }
+
+            .subtitle {
+                opacity: 0.7;
+                font-size: 12px;
+            }
+        }
+
+        h3 {
+            padding-left: 10px;
+            color: var(--foreground-color);
+            font-family: "Open Sans", sans-serif;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 1rem;
+            margin-top: 50px;
+        }
+
+        &:hover {
+            cursor: pointer;
+            transform: translateY(-5px);
+        }
+
+    }
+
+
+
+}

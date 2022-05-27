@@ -43,6 +43,7 @@ export class PlayerService {
 	public shuffle = localStorage.getItem("shuffle") === "true";
 	public repeat = localStorage.getItem("repeat") === "true";
 	public loop = false;
+	public $queueVisible = new BehaviorSubject<boolean>(localStorage.getItem("queue-visible") === "true");
 
 	constructor(private httpService: HttpService) {
 		this.audio = new Audio();
@@ -116,6 +117,12 @@ export class PlayerService {
 		}
 	}
 
+	public onToggleQueue() {
+		this.$queueVisible.next(!this.$queueVisible.getValue());
+		localStorage.setItem("queue-visible", this.$queueVisible.getValue().toString());
+	}
+
+
 	public onRepeat() {
 		this.repeat = !this.repeat;
 		localStorage.setItem("repeat", this.repeat.toString());
@@ -177,10 +184,10 @@ export class PlayerService {
 		this.$progress.next(0);
 
 		this.$playing.next(true);
-		this.setupAudioPlayer(tracks[0]);
 		localStorage.setItem("track", JSON.stringify(tracks[0]));
 		this._onIncrement(this.$track.getValue());
 
+		this.setupAudioPlayer(tracks[0]);
 
 
 	}
@@ -197,18 +204,17 @@ export class PlayerService {
 
 		//if ("mediaSession" in navigator) {
 		(navigator as any).mediaSession.setPositionState(null);
-		// @ts-ignore
 		(navigator as any).mediaSession.metadata = new MediaMetadata({
 			title: track.name,
 			artist: track.artist,
 			album: track.album.name,
 			artwork: [
-				{ src: track.album.picture, sizes: "96x96", type: "image/png" },
+				/*{ src: track.album.picture, sizes: "96x96", type: "image/png" },
 				{ src: track.album.picture, sizes: "128x128", type: "image/png" },
 				{ src: track.album.picture, sizes: "192x192", type: "image/png" },
 				{ src: track.album.picture, sizes: "256x256", type: "image/png" },
-				{ src: track.album.picture, sizes: "384x384", type: "image/png" },
-				{ src: track.album.picture, sizes: "512x512", type: "image/png" },
+				{ src: track.album.picture, sizes: "384x384", type: "image/png" },*/
+				{ src: track.album.picture, type: "image/png" },
 			],
 		});
 

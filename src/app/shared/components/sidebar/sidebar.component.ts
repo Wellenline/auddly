@@ -19,4 +19,8 @@ export class SidebarComponent implements OnInit {
 	public open() {
 
 	}
+
+	public close() {
+		this.closed.emit();
+	}
 }
