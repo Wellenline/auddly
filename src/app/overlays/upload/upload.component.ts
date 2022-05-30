@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { UploadService } from "src/app/core/services/upload.service";
 import { ModalComponent } from "src/app/shared/components/modal/modal.component";
+import { ToastService } from "src/app/shared/components/toast/toast.service";
 
 @Component({
 	selector: "app-upload",
@@ -11,7 +12,7 @@ export class UploadComponent implements OnInit {
 
 	public files = [];
 	public queue = [];
-	constructor(private uploadService: UploadService,) { }
+	constructor(private uploadService: UploadService, private toastService: ToastService) { }
 
 	ngOnInit(): void {
 		this.uploadService.$queue.subscribe((queue) => {
@@ -85,7 +86,10 @@ export class UploadComponent implements OnInit {
 
 			this.uploadService.upload().then(() => {
 				console.log("Done uploading");
-				// this.interfaceService.notify("Done uploading!");
+				this.toastService.show({
+					message: "Done uploading"
+				});
+
 			}).catch((err) => {
 				console.log("Failed to upload", err);
 			});

@@ -23,6 +23,11 @@ export class RootComponent implements OnInit {
 		});
 	}
 
+	@HostListener("document:keydown.meta.i")
+	public onQueue() {
+		this.playerService.onToggleQueue();
+	}
+
 	ngAfterViewInit() {
 		this.playerService.setupAudio();
 
