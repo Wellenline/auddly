@@ -145,9 +145,10 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-            padding: 10px 0px;
+            padding: 15px 0px;
             position: relative;
             justify-content: center;
+            // padding: 15px;
 
             .icon {
                 display: grid;
@@ -225,17 +226,6 @@
                     display: none !important;
                 }
 
-                padding: 15px;
-                flex-grow: 0;
-                height: auto;
-
-                flex-basis: auto;
-                //border-left: 5px solid transparent;
-
-                &.active {
-                    border-bottom: 1px solid var(--accent-color);
-                }
-
             }
         }
     }
@@ -267,6 +257,7 @@
 
         &.visible {
             transform: translateX(0px);
+            border-left: 1px solid var(--border-color);
         }
 
         @media all and (max-width: 1000px) {
@@ -281,6 +272,7 @@
                 // transform: translateX(0vw);
                 width: 100vw;
                 height: 100%;
+                border-left: none;
                 transform: translateX(0px);
                 display: grid;
             }
