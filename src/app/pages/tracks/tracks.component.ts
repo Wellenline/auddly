@@ -33,7 +33,7 @@ export class TracksComponent implements OnInit {
 	public options = {
 		maxHeight: "80vh"
 	};
-	public filter: { limit?: string, liked?: boolean, playlist?: string, genre?: string, sort?: string } = { sort: "-created_at", limit: "50", playlist: "", genre: "" };
+	public filter: { limit?: string, liked?: boolean, genre?: string, sort?: string } = { sort: "-created_at", limit: "50", genre: "" };
 	public limits = [10, 20, 30, 50, 100, 150, 200, 250, 300, 500, 1000];
 	public scrollCallback: any;
 
@@ -50,7 +50,6 @@ export class TracksComponent implements OnInit {
 			}
 		});
 		this.getGenres();
-		this.getPlaylists();
 
 		this.scrollCallback = this.onScroll.bind(this);
 
@@ -92,36 +91,11 @@ export class TracksComponent implements OnInit {
 		this.onFilter();
 	}
 
-	public onPlaylist() {
-		this.modalService.show({
-			component: PlaylistComponent,
-			params: {
-				playlists: this.playlists,
-			}
-		});
-		/*this.interfaceService.dialog.show({
-			items: this.playlists.map((playlist) => playlist.name),
-			type: "picker",
-			title: "Playlist",
-			message: "Choose a playlist to filter",
-			closed: (index) => {
-				if (index !== false) {
-					const { _id, name } = this.playlists[index];
-					this.playlist = {
-						_id,
-						name
-					};
-					this.router.navigate(["/tracks"], {
-						relativeTo: this.route,
-						queryParams: {
-							playlist: _id,
-						}, queryParamsHandling: "merge",
-					});
-
-				}
-			},
-		});*/
+	public onLiked() {
+		this.filter.liked = !this.filter.liked;
+		this.onFilter();
 	}
+
 
 
 	public getGenres() {
@@ -131,12 +105,6 @@ export class TracksComponent implements OnInit {
 			if (this.filter.genre) {
 				this.genre = this.genres.find((genre) => genre._id === this.filter.genre);
 			}
-		});
-	}
-
-	public getPlaylists() {
-		this.httpService.get(`/playlists`).subscribe((response: { data: [] }) => {
-			this.playlists = [{ name: "Favorites", _id: "FAVOURITES" }].concat(response.data);
 		});
 	}
 
@@ -160,12 +128,7 @@ export class TracksComponent implements OnInit {
 
 		}
 		const additionalParams = JSON.parse(JSON.stringify(this.filter));
-		if (additionalParams.playlist && additionalParams.playlist !== "") {
-			if (additionalParams.playlist === "FAVOURITES") {
-				delete additionalParams.playlist;
-				additionalParams.liked = true;
-			}
-		}
+
 		return this.musicService.getTracks({
 			skip: this.pagination.skip,
 			limit: this.pagination.limit,

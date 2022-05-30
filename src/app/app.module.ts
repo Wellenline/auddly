@@ -29,7 +29,6 @@ import { PlaylistsComponent } from "./pages/playlists/playlists.component";
 import { SearchComponent } from "./overlays/search/search.component";
 import { TracksComponent } from "./pages/tracks/tracks.component";
 import { RootComponent } from "./layouts/root/root.component";
-import { AuthComponent } from "./layouts/auth/auth.component";
 
 
 
@@ -39,7 +38,6 @@ import { AuthComponent } from "./layouts/auth/auth.component";
 		UploadComponent, DetailsComponent, UsersComponent, UserFormComponent,
 		LoginComponent,
 		RootComponent,
-		AuthComponent,
 		SearchComponent,
 		AlbumsComponent,
 		ArtistsComponent,

@@ -10,6 +10,7 @@
 		<app-dropdown [closeOnClick]="false" #dropdown>
 			<div class="dropdown-item" (click)="onSort('name')">Sort by name</div>
 			<div class="dropdown-item" (click)="onSort('created_at')">Sort by date</div>
+			<div class="dropdown-item" (click)="onLiked()">Favourites</div>
 
 			<div class="filters">
 
@@ -19,15 +20,6 @@
 
 						<option value="">All</option>
 						<option *ngFor="let genre of genres" [value]="genre._id">{{ genre.name }}</option>
-					</select>
-				</div>
-				<div class="filter">
-					<label>Playlist</label>
-
-					<select [(ngModel)]="filter.playlist" (ngModelChange)="onFilter()">
-						<option value="">All</option>
-						<option *ngFor="let playlist of playlists" [value]="playlist._id">{{ playlist.name }}
-						</option>
 					</select>
 				</div>
 

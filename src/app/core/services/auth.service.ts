@@ -12,13 +12,9 @@ import { UserService } from "./user.service";
 	providedIn: "root"
 })
 export class AuthService {
-	public isAuthorized = new BehaviorSubject(false);
 	public $loggedIn = new BehaviorSubject(false);
 
-	public verified: boolean = false;
-
 	public id: string;
-	public account: string;
 	public scopes = [];
 
 	constructor(private httpService: HttpService, private userService: UserService) { }
@@ -69,7 +65,6 @@ export class AuthService {
 
 	public refreshAccessToken() {
 		return this.httpService.post(`/auth/refresh`, {
-			// client_id: environment.api.client_id,
 			access_token: localStorage.getItem("token"),
 			refresh_token: localStorage.getItem("refresh_token"),
 		});
@@ -82,18 +77,16 @@ export class AuthService {
 		localStorage.removeItem("api");
 		this.httpService.ACCESS_TOKEN = undefined;
 		this.httpService.API_ENDPOINT = undefined;
-		this.isAuthorized.next(false);
 		this.$loggedIn.next(false);
 	}
 
 	private _handleSuccessfulLogin(response: ILoginResponse) {
-		console.log("Response", response);
 		const validated = this.validate(response.access_token, {
 			refresh_token: response.refresh_token,
 		});
 
 		if (!validated) {
-			return throwError("Failed to set access token");
+			return throwError(() => new Error("Failed to set access token"));
 		}
 		return {
 			success: true,
