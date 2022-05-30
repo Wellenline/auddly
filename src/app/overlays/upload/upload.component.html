@@ -3,7 +3,7 @@
 
 	<input hidden type="file" #fileInput (change)="handleFiles($event.target.files)" webkitdirectory multiple>
 
-	<h3>Drag and drop files or select a directory to upload</h3>
+	<h3 *ngIf="queue.length === 0">Drag and drop files or select a directory to upload</h3>
 
 	<div *ngIf="queue.length > 0" class="files">
 		<ng-container *ngFor="let file of queue">
@@ -15,18 +15,6 @@
 
 				<div class="file-size">
 					{{ file.size | size }}
-				</div>
-
-				<div class="file-status">
-
-					<ng-container *ngIf="!file.done && (file.progress === 0 || !file.progress)">
-						<i class="feather-clock"></i>
-
-					</ng-container>
-
-					<ng-container *ngIf="file.done">
-						<i class="feather-check"></i>
-					</ng-container>
 				</div>
 			</div>
 
