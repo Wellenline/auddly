@@ -1,11 +1,11 @@
-<div class="header ">
+<div class="header {{ collapse ? 'collapse' : '' }}">
 	<div *ngIf="back" class="back">
 		<ng-content select="[header-back]"></ng-content>
 	</div>
-	<h1 class="title">
+	<div class="title">
 		<ng-content select="[header-title]"></ng-content>
 
-	</h1>
+	</div>
 	<div class="actions">
 		<ng-content select="[header-actions]"></ng-content>
 

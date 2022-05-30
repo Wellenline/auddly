@@ -21,6 +21,13 @@
         &-name {
             flex-grow: 1;
             padding: 15px;
+            color: var(--text-color);
+            font-size: 1rem;
+            font-weight: bold;
+
+            small {
+                font-weight: normal;
+            }
         }
 
         &-actions {

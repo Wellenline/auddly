@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, HostListener, OnInit } from "@angular/core";
 import { HttpService } from "src/app/core/services/http.service";
 import { MusicService } from "src/app/core/services/music.service";
 import { ModalService } from "src/app/shared/components/modal/modal.service";
@@ -6,7 +6,9 @@ import { AlbumComponent } from "../../overlays/album/album.component";
 import { ArtistComponent } from "../../overlays/artist/artist.component";
 import * as moment from "moment";
 import { ThemeService } from "src/app/core/services/theme.service";
+import { SearchComponent } from "../../overlays/search/search.component";
 declare const Chart;
+declare const ApexCharts;
 @Component({
 	selector: "app-dashboard",
 	templateUrl: "./dashboard.component.html",
@@ -19,7 +21,6 @@ export class DashboardComponent implements OnInit {
 
 
 	public maxDate = new Date();
-
 
 	public loading = true;
 
@@ -38,9 +39,20 @@ export class DashboardComponent implements OnInit {
 			next: (data: any) => {
 				this.data = data;
 				this.buildOrdersChart();
+				this.buildAlbumsChart();
+				this.buildTracksChart();
+
+
 			}
 
 		});
+	}
+
+	public onSearch() {
+		this.modalService.show({
+			component: SearchComponent,
+
+		})
 	}
 
 	getRecentAlbums() {
@@ -74,39 +86,168 @@ export class DashboardComponent implements OnInit {
 
 	ngAfterViewInit() {
 		this.getInsights();
+
+
+
+	}
+
+
+	public buildTracksChart() {
+		const ctx = document.getElementById("tracks");
+		const myChart = new Chart(ctx, {
+			type: "bar",
+			data: {
+				labels: this.data.tracks.map((track) => track.track.name),
+				datasets: [{
+					label: "# of Votes",
+					data: this.data.tracks.map((track) => track.playcount),
+					backgroundColor: "#03a9f4",
+					borderColor: "#03a9f4", borderRadius: 20,
+				}]
+			},
+			options: {
+				layout: {
+					autoPadding: false,
+				},
+				responsive: true,
+				maintainAspectRatio: true,
+				elements: {
+					point: {
+						radius: 6,
+						hitRadius: 6,
+						hoverRadius: 6,
+						fill: true
+					},
+
+				},
+				scales: {
+					y: {
+						beginAtZero: true
+					},
+					xAxis: {
+						display: false,
+						grid: {
+							display: false,
+						},
+						ticks: {
+							autoSkip: true,
+							maxTicksLimit: 7
+						},
+					},
+					yAxis: {
+						display: false,
+						ticks: {
+							beginAtZero: true,
+						},
+					}
+				},
+
+				plugins: {
+					legend: {
+						display: false,
+					},
+					tooltip: {
+						backgroundColor: "#131517",
+						displayColors: false,
+						bodyColor: "#fff",
+						titleColor: "#fff",
+						intersect: false,
+						padding: 10,
+						bodyFont: {
+							size: 16,
+						},
+						titleFont: {
+							size: 12,
+						},
+						callbacks: {
+							label: (tooltipItems, data) => {
+								console.log(tooltipItems);
+								return (tooltipItems.formattedValue) + " Streams";
+							}
+						}
+					}
+
+				},
+			}
+		});
+	}
+
+	public buildAlbumsChart() {
 		const ctx = document.getElementById("myChart");
 		const myChart = new Chart(ctx, {
 			type: "bar",
 			data: {
-				labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+				labels: this.data.albums.map((album) => album.album.name),
 				datasets: [{
 					label: "# of Votes",
-					data: [12, 19, 3, 5, 2, 3],
-					backgroundColor: [
-						"rgba(255, 99, 132, 0.2)",
-						"rgba(54, 162, 235, 0.2)",
-						"rgba(255, 206, 86, 0.2)",
-						"rgba(75, 192, 192, 0.2)",
-						"rgba(153, 102, 255, 0.2)",
-						"rgba(255, 159, 64, 0.2)"
-					],
-					borderColor: [
-						"rgba(255, 99, 132, 1)",
-						"rgba(54, 162, 235, 1)",
-						"rgba(255, 206, 86, 1)",
-						"rgba(75, 192, 192, 1)",
-						"rgba(153, 102, 255, 1)",
-						"rgba(255, 159, 64, 1)"
-					],
-					borderWidth: 1
+					data: this.data.albums.map((album) => album.playcount),
+					backgroundColor: "#03a9f4",
+					borderColor: "#03a9f4", borderRadius: 20,
 				}]
 			},
 			options: {
+				layout: {
+					autoPadding: false,
+				},
+				responsive: true,
+				maintainAspectRatio: true,
+				elements: {
+					point: {
+						radius: 6,
+						hitRadius: 6,
+						hoverRadius: 6,
+						fill: true
+					},
+
+				},
 				scales: {
 					y: {
 						beginAtZero: true
+					},
+					xAxis: {
+						display: false,
+						grid: {
+							display: false,
+						},
+						ticks: {
+							autoSkip: true,
+							maxTicksLimit: 7
+						},
+					},
+					yAxis: {
+						display: false,
+						ticks: {
+							beginAtZero: true,
+						},
 					}
-				}
+				},
+
+				plugins: {
+					legend: {
+						display: false,
+					},
+					tooltip: {
+						backgroundColor: "#131517",
+						displayColors: false,
+						bodyColor: "#fff",
+						titleColor: "#fff",
+						intersect: false,
+						padding: 10,
+						bodyFont: {
+							size: 16,
+						},
+						titleFont: {
+							size: 12,
+						},
+						callbacks: {
+							label: (tooltipItems, data) => {
+								console.log(tooltipItems);
+								return (tooltipItems.formattedValue) + " Streams";
+							}
+						}
+					}
+
+				},
 			}
 		});
 	}

@@ -1,113 +1,165 @@
-<app-header [sticky]="true" [transparent]="true" title="Albums">
-	<div header-title>
-		Hello #NAME#
+<div class="user">
+	<div class="name">
+		<h1>Dashboard</h1>
 	</div>
-	<div header-actions class="actions">
+
+	<div appRipple [dropdownPosition]="{
+		originX: 'end',
+		originY: 'bottom',
+		overlayX: 'end',
+		overlayY: 'top',
+		offsetY: 0,
+		offsetX: 0
+	}" [dropdownTriggerFor]="dropdown" class="user-settings" appRipple>
+		<i class="ph-gear-six"></i>
+	</div>
+
+	<app-dropdown #dropdown>
+
+		<div class="dropdown-item" appRipple routerLink="/settings" [routerLinkActive]="['active']">
+			Settings
+			<i class="ph-gear-six"></i>
 
 
-		<div class="user">
-			<div class="name">
-				<h1>Search</h1>
-			</div>
+		</div>
+		<div class="divider no-margin"></div>
 
-			<nav style="margin-left: auto;" appRipple [dropdownPosition]="{
-			originX: 'end',
-			originY: 'bottom',
-			overlayX: 'end',
-			overlayY: 'top',
-			offsetY: 0,
-			offsetX: 0
-		}" [dropdownTriggerFor]="dropdown">
-				<div class="icon">
-					<i class="ph-user-circle"></i>
-				</div>
-				<app-dropdown #dropdown>
+		<div (click)="theme.onToggle()" class="dropdown-item">
+			<app-theme-toggle style="display: none;" #theme></app-theme-toggle>
+			{{ theme.themeService.theme === 'dark' ? 'Light' : 'Dark' }}
 
-					<div class="dropdown-item" appRipple routerLink="/settings" [routerLinkActive]="['active']">
-						Settings
-						<i class="ph-gear-six"></i>
-
-
-					</div>
-					<div class="divider no-margin"></div>
-
-					<div (click)="theme.onToggle()" class="dropdown-item">
-						<app-theme-toggle style="display: none;" #theme></app-theme-toggle>
-						{{ theme.themeService.theme === 'dark' ? 'Light' : 'Dark' }}
-
-						<i *ngIf="theme.themeService.theme === 'dark'" class="ph-sun-dim"></i>
-						<i *ngIf="theme.themeService.theme !== 'dark'" class="ph-moon"></i>
-					</div>
-
-
-					<div class="divider no-margin"></div>
-
-
-					<div class="dropdown-item">Logout <i class="ph-sign-out"></i>
-					</div>
-				</app-dropdown>
-
-			</nav>
-			<div routerLink="/settings" class="user-settings" appRipple>
-				<i class="ph-gear-six"></i>
-			</div>
+			<i *ngIf="theme.themeService.theme === 'dark'" class="ph-sun-dim"></i>
+			<i *ngIf="theme.themeService.theme !== 'dark'" class="ph-moon"></i>
 		</div>
 
 
-		<div class="search-toolbar">
-			<input autocomplete="off" class="search-input" type="text" placeholder="Search Music, Albums, Tracks" />
+		<div class="divider no-margin"></div>
+
+
+		<div class="dropdown-item">Logout <i class="ph-sign-out"></i>
 		</div>
+	</app-dropdown>
+</div>
 
 
+<div class="search-toolbar">
+	<input (click)="onSearch()" autocomplete="off" class="search-input" type="text"
+		placeholder="Search Music, Albums, Tracks" />
+</div>
 
 
+<div class="bubbles">
+	<div class="bubble card">
+		<h1>{{ data?.server?.tracks || 0 }}</h1>
+		<p>Tracks</p>
 	</div>
-</app-header>
-<div class="card m-20">
-	<h3>Total Streams</h3>
-	<canvas style="max-height: 300px !important;" id="plays"></canvas>
+
+	<div class="bubble card">
+		<h1>{{ data?.server?.albums || 0 }}</h1>
+		<p>Albums</p>
+	</div>
+
+	<div class="bubble card">
+		<h1>{{ data?.server?.artists || 0 }}</h1>
+		<p>Artists</p>
+	</div>
 
 </div>
+
+
+<div class="rows">
+
+	<div class="card">
+		<h3>Total Streams</h3>
+		<canvas style="height: 300px; max-height: 300px !important;" id="plays"></canvas>
+
+	</div>
+
+
+
+
+</div>
+
+
+
 <div class="data">
+	<div class="card">
+		<h3>Most played artists</h3>
+
+		<div class="bub">
+			<div (click)="onArtist(artist._id)" class="bubble" *ngFor="let artist of data.artists">
+				<img [width]="100 - (100 / artist.playcount) || 50" [height]="100 - (100 / artist.playcount) || 50"
+					src="{{ artist.picture }}" />
+
+				<div class="text">{{ artist.name }}</div>
+			</div>
+		</div>
+
+	</div>
 	<div class="card">
 		<h3>Top 5 Albums</h3>
 		<div class="charts">
 
-			<canvas id="myChart" width="400" height="400"></canvas>
+			<canvas id="myChart"></canvas>
 
 			<div (click)="onAlbum(album.album._id)" class="bar" *ngFor="let album of data?.albums; let i = index;">
-				<div class="progress" [style.width]="i === 0 ? '100%' : (100 - (100 / album.playcount)) + '%'"></div>
+
 				<div class="label">{{ album?.album?.name }}</div>
 				<div class="count">{{ album.playcount }} Plays</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="card">
-		<h3>Top 5 Artists</h3>
-		<div class="charts">
 
-			<div (click)="onArtist(artist.artist._id)" class="bar" *ngFor="let artist of data?.artists; let i = index">
-				<div class="progress" [style.width]="i === 0 ? '100%' : (100 - (100 / artist.playcount)) + '%'"></div>
-
-				<div class="label">{{ artist?.artist?.name }}</div>
-				<div class="count">{{ artist.playcount }} Plays</div>
-			</div>
-		</div>
-	</div>
 
 	<div class="card">
 		<h3>Top 5 Tracks</h3>
 		<div class="charts">
+			<canvas id="tracks"></canvas>
+
 			<div class="bar" *ngFor="let track of data?.tracks; let i = index">
-				<div class="progress" [style.width]="i === 0 ? '100%' : (100 - (100 / track.playcount)) + '%'"></div>
 
 				<div class="label">{{ track?.track?.name }}</div>
-				<div class="count">{{ track.playcount }} Plays</div>
+				<div class="count">{{ track.playcount }} Streams</div>
 			</div>
 		</div>
 	</div>
+
+	<div class="card">
+		<h3>Server</h3>
+		<div class="list-item">
+			<div class="text-lead">Last Sync</div>
+			<div class="text-meta">{{data?.server?.last_scan | date: 'medium'}}</div>
+		</div>
+
+		<div class="list-item">
+			<div class="text-lead">Duration</div>
+			<div class="text-meta">{{data?.server?.seconds}}s</div>
+		</div>
+		<div class="list-item">
+			<div class="text-lead">Library Size</div>
+			<div class="text-meta">{{data?.server?.size | size}}</div>
+		</div>
+		<div class="list-item">
+			<div class="text-lead">Mount</div>
+			<div class="text-meta">{{data?.server?.mount}}</div>
+		</div>
+
+		<div class="list-item">
+			<div class="text-lead">Uptime</div>
+			<div class="text-meta">{{ data?.server?.uptime | formatSeconds }}</div>
+		</div>
+		<div class="list-item">
+			<div class="text-lead">Free Mem</div>
+			<div class="text-meta">{{ data?.server?.free_mem | size }}</div>
+		</div>
+		<div class="list-item">
+			<div class="text-lead">Server</div>
+			<div class="text-meta">CPU: {{ data?.server?.arch }}, Runtime: {{ data?.server?.node_version }}</div>
+		</div>
+		<div class="list-item">
+			<div class="text-lead">Version</div>
+			<div class="text-meta">{{ data?.server?.version }}</div>
+		</div>
+	</div>
 </div>
-<h1>ALBUMS</h1>
-<h3>Top 5 Albums last week</h3>
-<pre>{{ data | json }}</pre>

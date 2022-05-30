@@ -52,7 +52,7 @@
     width: calc(100% + 400px);
     height: 100%;
     position: fixed;
-    transition: transform ease-in-out .3s;
+    transition: all ease-in-out .3s;
     //padding-right: 400px;
     transform: translateX(0) scale(1);
     transform-origin: center right;

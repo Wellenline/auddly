@@ -1,5 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, HostListener, OnInit } from "@angular/core";
 import { PlayerService } from "src/app/core/services/player.service";
+import { SearchComponent } from "src/app/overlays/search/search.component";
+import { ModalService } from "src/app/shared/components/modal/modal.service";
 
 @Component({
 	selector: "app-root",
@@ -8,9 +10,17 @@ import { PlayerService } from "src/app/core/services/player.service";
 })
 export class RootComponent implements OnInit {
 
-	constructor(public playerService: PlayerService) { }
+	constructor(public playerService: PlayerService, private modalService: ModalService) { }
 
 	ngOnInit(): void {
+
+	}
+
+	@HostListener("document:keydown.meta.k")
+	public onSearch() {
+		this.modalService.show({
+			component: SearchComponent,
+		});
 	}
 
 }

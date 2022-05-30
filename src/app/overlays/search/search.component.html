@@ -1,25 +1,24 @@
 <div class="dashboard">
 
-	<div class="user">
-		<div class="name">
-			<h1>Search</h1>
+	<app-header [sticky]="false" [collapse]="true" [back]="true">
+		<div header-back (click)="modal.onClose()">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+				stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+				class="ai ai-ArrowLeft">
+				<path d="M11 5l-7 7 7 7" />
+				<path d="M4 12h16" />
+			</svg>
+		</div>
+		<div header-title>
+			<div class="search-toolbar">
+				<input #searchInput (keyup)="onSearch($event)" [(ngModel)]="search" autocomplete="off"
+					class="search-input" type="text" placeholder="Search Music, Albums, Tracks" />
+			</div>
+
 		</div>
 
-		<div routerLink="/settings" class="user-settings" appRipple>
-			<i class="ph-gear-six"></i>
-		</div>
-	</div>
 
-
-	<div class="search-toolbar">
-		<input (keyup)="onSearch($event)" [(ngModel)]="search" autocomplete="off" class="search-input" type="text"
-			placeholder="Search Music, Albums, Tracks" />
-	</div>
-
-
-
-
-
+	</app-header>
 
 
 	<ng-container *ngIf="result.artists.length > 0">

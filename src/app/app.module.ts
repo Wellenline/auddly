@@ -26,7 +26,7 @@ import { AlbumsComponent } from "./pages/albums/albums.component";
 import { ArtistsComponent } from "./pages/artists/artists.component";
 import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 import { PlaylistsComponent } from "./pages/playlists/playlists.component";
-import { SearchComponent } from "./pages/search/search.component";
+import { SearchComponent } from "./overlays/search/search.component";
 import { TracksComponent } from "./pages/tracks/tracks.component";
 import { RootComponent } from "./layouts/root/root.component";
 import { AuthComponent } from "./layouts/auth/auth.component";

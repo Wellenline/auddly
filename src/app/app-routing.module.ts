@@ -10,7 +10,6 @@ import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 import { DetailsComponent } from "./pages/details/details.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { PlaylistsComponent } from "./pages/playlists/playlists.component";
-import { SearchComponent } from "./pages/search/search.component";
 import { TracksComponent } from "./pages/tracks/tracks.component";
 import { UploadComponent } from "./overlays/upload/upload.component";
 import { UsersComponent } from "./pages/users/users.component";
@@ -45,11 +44,6 @@ const routes: Routes = [
 			pathMatch: "full"
 
 		},
-
-		{
-			path: "search",
-			component: SearchComponent
-		},
 		{
 			path: "dashboard",
 			component: DashboardComponent
@@ -77,7 +71,7 @@ const routes: Routes = [
 			component: NowPlaylingComponent
 		},
 		{
-			path: "settings/", component: DetailsComponent
+			path: "settings", component: DetailsComponent
 		},
 		{
 			path: "settings/upload", component: UploadComponent

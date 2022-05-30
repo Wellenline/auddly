@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
 
 	@Input() static: boolean = false;
 	@Input() filler: boolean = true;
+	@Input() collapse: boolean = false;
 
 	@Input() title: string;
 	@Input() iosFix: boolean = true;
