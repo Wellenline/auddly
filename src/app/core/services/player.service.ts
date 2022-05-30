@@ -45,8 +45,11 @@ export class PlayerService {
 	public repeat = localStorage.getItem("repeat") === "true";
 	public loop = false;
 	public $queueVisible = new BehaviorSubject<boolean>(localStorage.getItem("queue-visible") === "true");
-
+	public ready = false;
 	constructor(private httpService: HttpService, private title: Title) {
+	}
+
+	public setupAudio() {
 		this.audio = new Audio();
 
 		this.audio.addEventListener("timeupdate", this._onProgress.bind(this));
@@ -74,6 +77,8 @@ export class PlayerService {
 		navigator.mediaSession.setActionHandler("previoustrack", this.onPrev.bind(this));
 		navigator.mediaSession.setActionHandler("nexttrack", this.onNext.bind(this));
 		navigator.mediaSession.setActionHandler("seekto", this.onSeek.bind(this));
+
+
 	}
 
 	/**

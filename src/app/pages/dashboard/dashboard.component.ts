@@ -51,8 +51,7 @@ export class DashboardComponent implements OnInit {
 	public onSearch() {
 		this.modalService.show({
 			component: SearchComponent,
-
-		})
+		});
 	}
 
 	getRecentAlbums() {

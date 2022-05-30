@@ -11,7 +11,7 @@ export class UploadComponent implements OnInit {
 
 	public files = [];
 	public queue = [];
-	constructor(private uploadService: UploadService, public modal: ModalComponent) { }
+	constructor(private uploadService: UploadService,) { }
 
 	ngOnInit(): void {
 		this.uploadService.$queue.subscribe((queue) => {

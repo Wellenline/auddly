@@ -1,8 +1,8 @@
 .drop-area {
     border: 2px dashed var(--border-color);
     padding: 15px;
-    border-radius: 0px;
-    height: 100%;
+    border-radius: 15px;
+    // height: 100%;
     display: grid;
     place-content: center;
 
@@ -48,6 +48,8 @@
                 flex-grow: 1;
                 padding: 15px;
                 z-index: 2;
+                max-width: 150px;
+                white-space: nowrap;
             }
 
             &-size {

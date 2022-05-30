@@ -60,7 +60,9 @@ export class NowPlaylingComponent implements OnInit {
 		});
 		this.playerService.$progress.pipe(takeUntil(this.destroy)).subscribe((num) => {
 			this.progress = num;
-			this.currentTime = this.playerService.audio.currentTime;
+			if (this.playerService.audio) {
+				this.currentTime = this.playerService.audio.currentTime;
+			}
 		});
 
 		this.playerService.$queue.pipe(takeUntil(this.destroy)).subscribe((tracks) => {

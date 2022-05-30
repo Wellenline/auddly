@@ -23,4 +23,8 @@ export class RootComponent implements OnInit {
 		});
 	}
 
+	ngAfterViewInit() {
+		this.playerService.setupAudio();
+
+	}
 }
