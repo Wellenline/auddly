@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Title } from "@angular/platform-browser";
 import { BehaviorSubject } from "rxjs";
 import { HttpService } from "./http.service";
 
@@ -45,7 +46,7 @@ export class PlayerService {
 	public loop = false;
 	public $queueVisible = new BehaviorSubject<boolean>(localStorage.getItem("queue-visible") === "true");
 
-	constructor(private httpService: HttpService) {
+	constructor(private httpService: HttpService, private title: Title) {
 		this.audio = new Audio();
 
 		this.audio.addEventListener("timeupdate", this._onProgress.bind(this));
@@ -162,6 +163,8 @@ export class PlayerService {
 		this.audio.src = undefined;
 		this.$playing.next(false);
 		this.$progress.next(0);
+		this.title.setTitle(`Auddly Music`);
+
 
 	}
 
@@ -201,6 +204,7 @@ export class PlayerService {
 			this.$playing.next(true);
 		}
 
+		this.title.setTitle(`${track.name} - ${track.artist}`);
 
 		//if ("mediaSession" in navigator) {
 		(navigator as any).mediaSession.setPositionState(null);

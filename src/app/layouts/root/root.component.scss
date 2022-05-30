@@ -136,19 +136,19 @@
         }
 
         nav {
-            flex-grow: 1;
             // padding-bottom: calc(env(safe-area-inset-bottom) + 5px);
-            flex-basis: 0;
-
 
 
             display: flex;
             flex-direction: row;
             align-items: center;
-            padding: 15px 0px;
             position: relative;
             justify-content: center;
             // padding: 15px;
+            padding: 15px;
+            flex-grow: 0;
+            height: auto;
+            flex-basis: auto;
 
             .icon {
                 display: grid;
@@ -221,10 +221,14 @@
 
 
 
-            @media all and (min-width: 1000px) {
+            @media all and (max-width: 1000px) {
                 .text {
                     display: none !important;
                 }
+
+                flex-grow: 1;
+                flex-basis: 0;
+                padding: 15px 0px;
 
             }
         }
