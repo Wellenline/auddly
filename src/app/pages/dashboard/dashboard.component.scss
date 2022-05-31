@@ -26,6 +26,8 @@
 
 }
 
+
+
 .user {
 
     display: flex;
@@ -97,6 +99,7 @@
     grid-template-rows: masonry;
     /* this will do the magic */
     grid-gap: 10px;
+
 
     .bubble {
         position: relative;
@@ -173,12 +176,18 @@
 
 
 .bubbles {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     align-items: center;
-    flex-direction: row;
+
     width: 100%;
     gap: 1rem;
     padding: 0 1rem;
+
+
+    @media screen and (max-width: 1000px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
     .bubble {
 
@@ -267,13 +276,16 @@
     }
 }
 
-canvas#plays {
+canvas {
     max-width: 100%;
 }
 
 .list-item {
-    padding: 1rem;
-    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+
+    &+.list-item {
+        border-top: 1px solid var(--border-color);
+    }
 
     .text-lead {
         font-size: .9rem;

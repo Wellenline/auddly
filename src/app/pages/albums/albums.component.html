@@ -4,7 +4,7 @@
 	</div>
 	<div header-actions class="actions">
 
-		<div (click)="grid = !grid" appRipple class="icon">
+		<div (click)="grid = !grid" appRipple class="action">
 
 
 			<i *ngIf="grid" class="ph-squares-four"></i>
@@ -12,16 +12,16 @@
 
 		</div>
 
-		<div appRipple class="icon" [dropdownTriggerFor]="dropdown">
+		<div appRipple class="action" [dropdownTriggerFor]="dropdown">
 
 
 			<i class="ph-funnel"></i>
-			<app-dropdown #dropdown>
-				<div class="dropdown-item" (click)="onSort('name')">Sort by name</div>
-				<div class="dropdown-item" (click)="onSort('created_at')">Sort by date</div>
-			</app-dropdown>
 		</div>
 	</div>
+	<app-dropdown #dropdown>
+		<div class="dropdown-item" (click)="onSort('name')">Sort by name</div>
+		<div class="dropdown-item" (click)="onSort('created_at')">Sort by date</div>
+	</app-dropdown>
 </app-header>
 
 

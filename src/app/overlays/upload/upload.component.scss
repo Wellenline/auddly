@@ -3,6 +3,20 @@
     // height: 100%;
     display: grid;
     place-content: center;
+    padding: 1rem;
+
+    .placeholder {
+        text-align: center;
+
+        p,
+        h1 {
+            margin: 0px;
+        }
+
+        button {
+            margin: 2rem 0;
+        }
+    }
 
     h3 {
         text-align: center;
@@ -17,19 +31,36 @@
         display: flex;
         flex-direction: column;
         overflow: auto;
+
+        max-height: 50vh;
+        overflow: auto;
+        max-width: 460px;
         gap: 1rem;
 
         .file {
             position: relative;
             display: flex;
+            border-radius: 5px;
             padding: 15px;
 
             gap: 1rem;
             flex-direction: row;
             color: var(--foreground-color);
             background-color: var(--background-color-2);
-            border-radius: 50px;
+            // border-radius: px;
             overflow: hidden;
+
+            &.pending {
+                opacity: 0.6;
+            }
+
+            &.uploading {
+                color: white;
+            }
+
+            &.done {
+                opacity: 1;
+            }
 
             .progress {
                 height: 100%;
@@ -37,7 +68,7 @@
                 position: absolute;
                 background-color: var(--highlight-color);
                 transition: all ease-in-out .3s;
-                border-radius: 50px;
+                border-radius: 5px;
                 top: 0;
                 left: 0;
                 bottom: 0;

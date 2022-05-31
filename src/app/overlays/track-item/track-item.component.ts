@@ -51,10 +51,12 @@ export class TrackItemComponent implements OnInit {
 				action: "add",
 			},
 			callback: (playlist) => {
-				this.track.playlists.push(playlist);
-				this.toastService.show({
-					message: `${this.track.name} added to ${playlist.name}`,
-				});
+				if (playlist) {
+					this.toastService.show({
+						message: `${this.track.name} added to ${playlist.name}`,
+					});
+				}
+
 			}
 		});
 	}

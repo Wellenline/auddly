@@ -24,24 +24,25 @@ export class SearchComponent implements OnInit {
 
 	public search: string;
 
-	public loading = {
-		albums: true,
-		artists: true,
-		tracks: true,
-	};
+	public loading = false;
+	public full = false;
 	@ViewChild("searchInput") searchInput: ElementRef;
-	constructor(private httpService: HttpService, private modalService: ModalService, public modal: ModalComponent, private playerService: PlayerService, private router: Router, private route: ActivatedRoute) { }
+	constructor(private httpService: HttpService, private modalService: ModalService, public modal: ModalComponent, private playerService: PlayerService) { }
 
 	public ngOnInit(): void {
-		this.route.queryParams.subscribe((params) => {
-			if (params.q) {
-				this.search = params.q;
-				this.getSearchResults(params.q);
-			}
+		if (this.modal.params.q) {
+			this.search = this.modal.params.q;
+			this.getSearchResults(this.modal.params.q);
+		}
+	}
+	public toggleSize() {
+		this.full = !this.full;
 
-		});
-
-
+		if (this.full) {
+			this.modal.ref.addPanelClass("fullscreen");
+		} else {
+			this.modal.ref.removePanelClass("fullscreen");
+		}
 	}
 	public onArtist(id: string) {
 		this.modalService.show({
@@ -79,27 +80,20 @@ export class SearchComponent implements OnInit {
 		if (search.length < 3) {
 			return;
 		}
-		this.loading = {
-			artists: true,
-			albums: true,
-			tracks: true,
-		};
+		this.loading = true;
 		this.httpService.get(`/search?q=${search}`).subscribe((response: any) => {
-			console.log(response);
 			this.result = response;
 		}, (err) => {
 			console.log(err);
 		}).add(() => {
-			this.loading = {
-				artists: false,
-				albums: false,
-				tracks: false,
-			};
+			setTimeout(() => {
+				this.loading = false;
+
+			}, 500);
 		});
 	}
 
 	ngAfterViewInit() {
-
 		this.searchInput.nativeElement.focus();
 	}
 }

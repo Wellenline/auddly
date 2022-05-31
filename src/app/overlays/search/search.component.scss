@@ -1,31 +1,26 @@
-:host {
-    display: block;
-    max-width: 1024px;
+.dashboard {
+    max-width: 700px;
+    width: 700px;
+    max-height: 600px;
+    overflow: auto;
+
+    &.full {
+        height: 100%;
+        width: 100%;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+
+    @media screen and (max-width: 1000px) {
+        max-height: 100%;
+        max-width: 100%;
+
+    }
 }
 
-.user {
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0 1rem;
-
-    .name {
-        flex-grow: 1;
-    }
-
-    &-settings {
-        display: grid;
-        place-content: center;
-        width: 40px;
-        height: 40px;
-        background-color: var(--background-color-3);
-        border-radius: 50%;
-
-        i {
-            font-size: 1.5rem;
-        }
-    }
+.results {
+    position: relative;
 }
 
 .search-toolbar {
@@ -35,19 +30,42 @@
     background-color: var(--background-color);
     z-index: 7;
     padding-top: env(safe-area-inset-top);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+
+    .actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        .icon {
+            font-size: 2rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: grid;
+            place-content: center;
+        }
+    }
+
+
+
 }
 
 .search-input {
-    height: 50px;
+
     margin: 10px 0px;
-    font-size: 1rem;
+    font-size: 2rem;
+    font-weight: 600;
 
     &::placeholder {
-        color: var(--foreground-color);
+        color: rgba(102, 102, 102, 0.536);
     }
 
     padding: 0.8rem 1rem;
-    background-color: var(--background-color-3);
+    background-color: var(--background-color-2);
     border: 0;
     transition: color 0.3s ease-out,
     background-color 0.3s ease-out,
@@ -62,7 +80,7 @@
     &:focus {
         outline: none;
 
-        background-color: var(--background-color-3);
+        // background-color: var(--background-color-3);
         color: var(--foreground-color);
         // box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
     }
@@ -224,24 +242,9 @@ h3 {
 }
 
 .tracks {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(250px, 1fr));
-    grid-column-gap: 15px;
-    grid-row-gap: 15px;
-    // min-height: var(--app-height);
-    padding: 1rem;
-    // grid-row-gap: 25px;
-    animation: slideY 0.6s both;
-
-    //display: none;
-    @media screen and (max-width: 1212px) {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    @media screen and (max-width: 930px) {
-        grid-template-columns: repeat(1, minmax(0, 1fr));
-
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 
     .track {}
 }
@@ -294,69 +297,4 @@ h3 {
             margin-left: 15px;
         }
     }
-}
-
-.loading {
-    display: flex;
-    flex-direction: row;
-}
-
-.shine {
-    background: var(--background-color-4);
-    background-image: linear-gradient(to right,
-            var(--background-color-4) 0%,
-            var(--background-color-2) 20%,
-            var(--background-color-4) 40%,
-            var(--background-color-4) 100%);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    display: inline-block;
-    position: relative;
-
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite;
-    animation-name: placeholderShimmer;
-    animation-timing-function: linear;
-}
-
-box {
-    height: 200px;
-    width: 200px;
-}
-
-rect {
-    height: 40px;
-    width: 100px;
-}
-
-lines {
-    height: 10px;
-    margin-top: 10px;
-    width: 200px;
-    display: block !important;
-    margin-bottom: 10px;
-}
-
-.artists {
-    display: flex;
-
-    box {
-        margin-right: 15px;
-    }
-}
-
-@-webkit-keyframes placeholderShimmer {
-    0% {
-        background-position: -468px 0;
-    }
-
-    100% {
-        background-position: 468px 0;
-    }
-}
-
-drag-scroll {
-    height: 100%;
-    width: 500px;
 }

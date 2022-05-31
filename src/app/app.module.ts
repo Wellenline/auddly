@@ -11,7 +11,6 @@ import { AuthInterceptor } from "./core/interceptors/auth.interceptor";
 import { SharedModule } from "./shared/shared.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { UserFormComponent } from "./overlays/user-form/user-form.component";
-import { DetailsComponent } from "./pages/details/details.component";
 import { UploadComponent } from "./overlays/upload/upload.component";
 import { UsersComponent } from "./pages/users/users.component";
 import { LoginComponent } from "./pages/login/login.component";
@@ -35,7 +34,9 @@ import { RootComponent } from "./layouts/root/root.component";
 @NgModule({
 	declarations: [
 		AppComponent,
-		UploadComponent, DetailsComponent, UsersComponent, UserFormComponent,
+		UploadComponent,
+		UsersComponent,
+		UserFormComponent,
 		LoginComponent,
 		RootComponent,
 		SearchComponent,

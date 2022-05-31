@@ -1,42 +1,44 @@
 <app-header>
 	<div header-title>
 		Tracks
+	</div>
+
+	<div header-actions class="actions">
+		<div class="action" appRipple [dropdownTriggerFor]="dropdown">
+			<i class="ph-funnel"></i>
+		</div>
+
 
 	</div>
 
-	<div header-actions appRipple class="icon" [dropdownTriggerFor]="dropdown">
+	<app-dropdown [closeOnClick]="false" #dropdown>
+		<div class="dropdown-item" (click)="onSort('name')">Sort by name</div>
+		<div class="dropdown-item" (click)="onSort('created_at')">Sort by date</div>
+		<div class="dropdown-item" (click)="onLiked()">Favourites</div>
 
-		<i class="ph-funnel"></i>
-		<app-dropdown [closeOnClick]="false" #dropdown>
-			<div class="dropdown-item" (click)="onSort('name')">Sort by name</div>
-			<div class="dropdown-item" (click)="onSort('created_at')">Sort by date</div>
-			<div class="dropdown-item" (click)="onLiked()">Favourites</div>
+		<div class="filters">
 
-			<div class="filters">
+			<div class="filter">
+				<label>Genre</label>
+				<select [(ngModel)]="filter.genre" (ngModelChange)="onFilter()">
 
-				<div class="filter">
-					<label>Genre</label>
-					<select [(ngModel)]="filter.genre" (ngModelChange)="onFilter()">
-
-						<option value="">All</option>
-						<option *ngFor="let genre of genres" [value]="genre._id">{{ genre.name }}</option>
-					</select>
-				</div>
-
-
-				<div class="filter small">
-					<label>Limit</label>
-
-					<select [(ngModel)]="filter.limit" (ngModelChange)="onFilter()">
-						<option *ngFor="let limit of limits" [value]="limit">{{ limit }}</option>
-					</select>
-				</div>
-
-
+					<option value="">All</option>
+					<option *ngFor="let genre of genres" [value]="genre._id">{{ genre.name }}</option>
+				</select>
 			</div>
-		</app-dropdown>
 
-	</div>
+
+			<div class="filter small">
+				<label>Limit</label>
+
+				<select [(ngModel)]="filter.limit" (ngModelChange)="onFilter()">
+					<option *ngFor="let limit of limits" [value]="limit">{{ limit }}</option>
+				</select>
+			</div>
+
+
+		</div>
+	</app-dropdown>
 </app-header>
 
 

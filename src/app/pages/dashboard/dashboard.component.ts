@@ -7,6 +7,7 @@ import { ArtistComponent } from "../../overlays/artist/artist.component";
 import * as moment from "moment";
 import { ThemeService } from "src/app/core/services/theme.service";
 import { SearchComponent } from "../../overlays/search/search.component";
+import { UploadComponent } from "src/app/overlays/upload/upload.component";
 declare const Chart;
 declare const ApexCharts;
 @Component({
@@ -25,26 +26,19 @@ export class DashboardComponent implements OnInit {
 	public loading = true;
 
 	public charts: {
-		plays?: any,
+		streams?: any,
+		albums?: any,
+		tracks?: any,
 	} = {};
-	constructor(private httpService: HttpService, private musicService: MusicService, public theme: ThemeService, private modalService: ModalService) { }
+	constructor(private httpService: HttpService, public theme: ThemeService, private modalService: ModalService) { }
 
 	ngOnInit(): void {
 
-		this.getRecentAlbums();
 	}
 
-	getInsights() {
-		this.httpService.get(`/insights`).subscribe({
-			next: (data: any) => {
-				this.data = data;
-				this.buildOrdersChart();
-				this.buildAlbumsChart();
-				this.buildTracksChart();
-
-
-			}
-
+	public onUpload() {
+		this.modalService.show({
+			component: UploadComponent,
 		});
 	}
 
@@ -52,15 +46,6 @@ export class DashboardComponent implements OnInit {
 		this.modalService.show({
 			component: SearchComponent,
 		});
-	}
-
-	getRecentAlbums() {
-		this.musicService.getAlbums({ sort: "-created_at", limit: 5 }).subscribe({
-			next: (response: any) => {
-				this.albums = response.data;
-			}
-		});
-
 	}
 
 	public onAlbum(id: string) {
@@ -76,7 +61,7 @@ export class DashboardComponent implements OnInit {
 	public onArtist(id: string) {
 		this.modalService.show({
 			component: ArtistComponent,
-			// class: "fullscreen",
+			class: "fullscreen",
 			params: {
 				id
 			},
@@ -86,171 +71,48 @@ export class DashboardComponent implements OnInit {
 	ngAfterViewInit() {
 		this.getInsights();
 
-
-
 	}
 
 
 	public buildTracksChart() {
 		const ctx = document.getElementById("tracks");
-		const myChart = new Chart(ctx, {
-			type: "bar",
-			data: {
-				labels: this.data.tracks.map((track) => track.track.name),
-				datasets: [{
-					label: "# of Votes",
-					data: this.data.tracks.map((track) => track.playcount),
-					backgroundColor: "#03a9f4",
-					borderColor: "#03a9f4", borderRadius: 20,
-				}]
-			},
-			options: {
-				layout: {
-					autoPadding: false,
-				},
-				responsive: true,
-				maintainAspectRatio: true,
-				elements: {
-					point: {
-						radius: 6,
-						hitRadius: 6,
-						hoverRadius: 6,
-						fill: true
-					},
-
-				},
-				scales: {
-					y: {
-						beginAtZero: true
-					},
-					xAxis: {
-						display: false,
-						grid: {
-							display: false,
-						},
-						ticks: {
-							autoSkip: true,
-							maxTicksLimit: 7
-						},
-					},
-					yAxis: {
-						display: false,
-						ticks: {
-							beginAtZero: true,
-						},
-					}
-				},
-
-				plugins: {
-					legend: {
-						display: false,
-					},
-					tooltip: {
-						backgroundColor: "#131517",
-						displayColors: false,
-						bodyColor: "#fff",
-						titleColor: "#fff",
-						intersect: false,
-						padding: 10,
-						bodyFont: {
-							size: 16,
-						},
-						titleFont: {
-							size: 12,
-						},
-						callbacks: {
-							label: (tooltipItems, data) => {
-								console.log(tooltipItems);
-								return (tooltipItems.formattedValue) + " Streams";
-							}
-						}
-					}
-
-				},
-			}
-		});
+		const data = {
+			labels: this.data.tracks.map((track) => track.track.name),
+			datasets: [{
+				data: this.data.tracks.map((track) => track.playcount),
+				backgroundColor: "#03a9f4",
+				borderColor: "#03a9f4",
+				borderRadius: 20,
+			}]
+		};
+		if (this.charts.tracks) {
+			this.charts.tracks.data = data;
+			this.charts.tracks.update();
+			return;
+		}
+		this.charts.tracks = this._chartRenderer(ctx, "bar", data);
 	}
 
 	public buildAlbumsChart() {
-		const ctx = document.getElementById("myChart");
-		const myChart = new Chart(ctx, {
-			type: "bar",
-			data: {
-				labels: this.data.albums.map((album) => album.album.name),
-				datasets: [{
-					label: "# of Votes",
-					data: this.data.albums.map((album) => album.playcount),
-					backgroundColor: "#03a9f4",
-					borderColor: "#03a9f4", borderRadius: 20,
-				}]
-			},
-			options: {
-				layout: {
-					autoPadding: false,
-				},
-				responsive: true,
-				maintainAspectRatio: true,
-				elements: {
-					point: {
-						radius: 6,
-						hitRadius: 6,
-						hoverRadius: 6,
-						fill: true
-					},
+		const ctx = document.getElementById("albums");
+		const data = {
+			labels: this.data.albums.map((album) => album.album.name),
+			datasets: [{
+				data: this.data.albums.map((album) => album.playcount),
+				backgroundColor: "#03a9f4",
+				borderColor: "#03a9f4",
+				borderRadius: 20,
+			}]
+		};
+		if (this.charts.albums) {
+			this.charts.albums.data = data;
+			this.charts.albums.update();
+			return;
+		}
+		this.charts.albums = this._chartRenderer(ctx, "bar", data);
 
-				},
-				scales: {
-					y: {
-						beginAtZero: true
-					},
-					xAxis: {
-						display: false,
-						grid: {
-							display: false,
-						},
-						ticks: {
-							autoSkip: true,
-							maxTicksLimit: 7
-						},
-					},
-					yAxis: {
-						display: false,
-						ticks: {
-							beginAtZero: true,
-						},
-					}
-				},
-
-				plugins: {
-					legend: {
-						display: false,
-					},
-					tooltip: {
-						backgroundColor: "#131517",
-						displayColors: false,
-						bodyColor: "#fff",
-						titleColor: "#fff",
-						intersect: false,
-						padding: 10,
-						bodyFont: {
-							size: 16,
-						},
-						titleFont: {
-							size: 12,
-						},
-						callbacks: {
-							label: (tooltipItems, data) => {
-								console.log(tooltipItems);
-								return (tooltipItems.formattedValue) + " Streams";
-							}
-						}
-					}
-
-				},
-			}
-		});
 	}
-	public buildOrdersChart() {
+	public buildStreamsChart() {
 
 		const labels = this.data.plays.labels.map((l) => moment(l).format("MMM DD"));
 		const data = {
@@ -262,10 +124,9 @@ export class DashboardComponent implements OnInit {
 				data: this.data.plays.values
 			}]
 		};
-		if (this.charts.plays) {
-			this.charts.plays.data = data;
-			this.charts.plays.update();
-
+		if (this.charts.streams) {
+			this.charts.streams.data = data;
+			this.charts.streams.update();
 			return;
 		}
 		const config = {
@@ -323,8 +184,7 @@ export class DashboardComponent implements OnInit {
 							size: 12,
 						},
 						callbacks: {
-							label: (tooltipItems, data) => {
-								console.log(tooltipItems);
+							label: (tooltipItems) => {
 								return (tooltipItems.formattedValue) + " Streams";
 							}
 						}
@@ -335,9 +195,90 @@ export class DashboardComponent implements OnInit {
 			}
 		};
 
-		this.charts.plays = new Chart(
-			document.getElementById("plays"),
+		this.charts.streams = new Chart(
+			document.getElementById("streams"),
 			config
 		);
+	}
+
+	private getInsights() {
+		this.httpService.get(`/insights`).subscribe({
+			next: (data: any) => {
+				this.data = data;
+				this.buildStreamsChart();
+				this.buildAlbumsChart();
+				this.buildTracksChart();
+			}
+		});
+	}
+
+	private _chartRenderer(ctx: any, type: string, data: any) {
+		return new Chart(ctx, {
+			type,
+			data,
+			options: {
+				layout: {
+					autoPadding: false,
+				},
+				responsive: true,
+				maintainAspectRatio: true,
+				elements: {
+					point: {
+						radius: 6,
+						hitRadius: 6,
+						hoverRadius: 6,
+						fill: true
+					},
+
+				},
+				scales: {
+					y: {
+						beginAtZero: true
+					},
+					xAxis: {
+						display: false,
+						grid: {
+							display: false,
+						},
+						ticks: {
+							autoSkip: true,
+							maxTicksLimit: 7
+						},
+					},
+					yAxis: {
+						display: false,
+						ticks: {
+							beginAtZero: true,
+						},
+					}
+				},
+
+				plugins: {
+					legend: {
+						display: false,
+					},
+					tooltip: {
+						backgroundColor: "#131517",
+						displayColors: false,
+						bodyColor: "#fff",
+						titleColor: "#fff",
+						intersect: false,
+						padding: 10,
+						bodyFont: {
+							size: 16,
+						},
+						titleFont: {
+							size: 12,
+						},
+						callbacks: {
+							label: (tooltipItems) => {
+								return (tooltipItems.formattedValue) + " Streams";
+							}
+						}
+					}
+
+				},
+			}
+		});
 	}
 }

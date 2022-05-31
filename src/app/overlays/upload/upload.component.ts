@@ -12,7 +12,7 @@ export class UploadComponent implements OnInit {
 
 	public files = [];
 	public queue = [];
-	constructor(private uploadService: UploadService, private toastService: ToastService) { }
+	constructor(public modal: ModalComponent, private uploadService: UploadService, private toastService: ToastService) { }
 
 	ngOnInit(): void {
 		this.uploadService.$queue.subscribe((queue) => {
@@ -89,6 +89,8 @@ export class UploadComponent implements OnInit {
 				this.toastService.show({
 					message: "Done uploading"
 				});
+
+				this.modal.onClose();
 
 			}).catch((err) => {
 				console.log("Failed to upload", err);

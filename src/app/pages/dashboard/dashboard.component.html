@@ -1,28 +1,25 @@
-<div class="user">
-	<div class="name">
-		<h1>Dashboard</h1>
+<app-header [sticky]="false">
+
+	<div header-title>
+		Dashboard
 	</div>
 
-	<div appRipple [dropdownPosition]="{
-		originX: 'end',
-		originY: 'bottom',
-		overlayX: 'end',
-		overlayY: 'top',
-		offsetY: 0,
-		offsetX: 0
-	}" [dropdownTriggerFor]="dropdown" class="user-settings" appRipple>
-		<i class="ph-gear-six"></i>
-	</div>
-
-	<app-dropdown #dropdown>
-
-		<div class="dropdown-item" appRipple routerLink="/settings" [routerLinkActive]="['active']">
-			Settings
-			<i class="ph-gear-six"></i>
-
-
+	<div class="actions" header-actions>
+		<div class="action" (click)="onUpload()" appRipple>
+			<i class="ph-upload"></i>
 		</div>
-		<div class="divider no-margin"></div>
+		<div class="action" [dropdownPosition]="{
+			originX: 'end',
+			originY: 'bottom',
+			overlayX: 'end',
+			overlayY: 'top',
+			offsetY: 0,
+			offsetX: 0
+		}" [dropdownTriggerFor]="dropdown" appRipple>
+			<i class="ph-gear-six"></i>
+		</div>
+	</div>
+	<app-dropdown #dropdown>
 
 		<div (click)="theme.onToggle()" class="dropdown-item">
 			<app-theme-toggle style="display: none;" #theme></app-theme-toggle>
@@ -39,7 +36,7 @@
 		<div class="dropdown-item">Logout <i class="ph-sign-out"></i>
 		</div>
 	</app-dropdown>
-</div>
+</app-header>
 
 
 <div class="search-toolbar">
@@ -64,6 +61,10 @@
 		<p>Artists</p>
 	</div>
 
+	<div class="bubble card">
+		<h1>{{ data?.server?.size | size }}</h1>
+		<p>Size</p>
+	</div>
 </div>
 
 
@@ -71,7 +72,7 @@
 
 	<div class="card">
 		<h3>Total Streams</h3>
-		<canvas style="height: 300px; max-height: 300px !important;" id="plays"></canvas>
+		<canvas style="height: 300px; max-height: 300px !important;" id="streams"></canvas>
 
 	</div>
 
@@ -100,12 +101,12 @@
 		<h3>Top 5 Albums</h3>
 		<div class="charts">
 
-			<canvas id="myChart"></canvas>
+			<canvas id="albums"></canvas>
 
 			<div (click)="onAlbum(album.album._id)" class="bar" *ngFor="let album of data?.albums; let i = index;">
 
 				<div class="label">{{ album?.album?.name }}</div>
-				<div class="count">{{ album.playcount }} Plays</div>
+				<div class="count">{{ album.playcount }} Streams</div>
 			</div>
 		</div>
 	</div>
@@ -123,51 +124,5 @@
 				<div class="count">{{ track.playcount }} Streams</div>
 			</div>
 		</div>
-	</div>
-
-	<div class="card">
-		<h3>Server</h3>
-		<div class="list-item">
-			<div class="text-lead">Last Sync</div>
-			<div class="text-meta">{{data?.server?.last_scan | date: 'medium'}}</div>
-		</div>
-
-		<div class="list-item">
-			<div class="text-lead">Duration</div>
-			<div class="text-meta">{{data?.server?.seconds}}s</div>
-		</div>
-		<div class="list-item">
-			<div class="text-lead">Library Size</div>
-			<div class="text-meta">{{data?.server?.size | size}}</div>
-		</div>
-		<div class="list-item">
-			<div class="text-lead">Mount</div>
-			<div class="text-meta">{{data?.server?.mount}}</div>
-		</div>
-
-		<div class="list-item">
-			<div class="text-lead">Uptime</div>
-			<div class="text-meta">{{ data?.server?.uptime | formatSeconds }}</div>
-		</div>
-		<div class="list-item">
-			<div class="text-lead">Free Mem</div>
-			<div class="text-meta">{{ data?.server?.free_mem | size }}</div>
-		</div>
-		<div class="list-item">
-			<div class="text-lead">Server</div>
-			<div class="text-meta">CPU: {{ data?.server?.arch }}, Runtime: {{ data?.server?.node_version }}</div>
-		</div>
-		<div class="list-item">
-			<div class="text-lead">Version</div>
-			<div class="text-meta">{{ data?.server?.version }}</div>
-		</div>
-	</div>
-	<!--div class="card">
-		<h3>Users</h3>
-		<app-users></app-users>
-	</div-->
-	<div class="card">
-		<h3>Upload</h3>
-		<app-upload></app-upload>
 	</div>
 </div>

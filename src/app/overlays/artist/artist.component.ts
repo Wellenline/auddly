@@ -5,6 +5,7 @@ import { ModalComponent } from "src/app/shared/components/modal/modal.component"
 import { ModalService } from "src/app/shared/components/modal/modal.service";
 import { ToastService } from "src/app/shared/components/toast/toast.service";
 import { AlbumComponent } from "../album/album.component";
+import { SearchComponent } from "../search/search.component";
 
 @Component({
 	selector: "app-artist",
@@ -100,14 +101,12 @@ export class ArtistComponent implements OnInit {
 
 
 	public onSearch(similar) {
-		/*this.router.navigate(["", {
-			outlets: { modal: null, primary: "search" },
-		}], {
-			queryParams: {
-				q: similar,
+		this.modalService.show({
+			component: SearchComponent,
+			params: {
+				q: similar
 			}
-		});*/
-		// [routerLink]="['/search', {outlets: {modal: [null]}}]" [queryParams]="{ q: similar }"
+		});
 	}
 
 	public onAlbum(id: string) {
