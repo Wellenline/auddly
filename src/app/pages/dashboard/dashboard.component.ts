@@ -138,7 +138,7 @@ export class DashboardComponent implements OnInit {
 			return;
 		}
 		const config = {
-			type: "bar",
+			type: "line",
 			data,
 			options: {
 				layout: {
