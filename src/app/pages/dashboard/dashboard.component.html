@@ -20,7 +20,9 @@
 		</div>
 	</div>
 	<app-dropdown #dropdown>
-
+		<div (click)="playerService.onEndless()" class="dropdown-item">{{ (playerService.$endless | async) ? 'Disable' :
+			'Enable' }} Endless Mode
+		</div>
 		<div (click)="theme.onToggle()" class="dropdown-item">
 			<app-theme-toggle style="display: none;" #theme></app-theme-toggle>
 			{{ theme.themeService.theme === 'dark' ? 'Light' : 'Dark' }}

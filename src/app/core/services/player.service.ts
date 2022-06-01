@@ -38,6 +38,8 @@ export class PlayerService {
 
 	public $volume = new BehaviorSubject<number>(parseFloat(localStorage.getItem("volume")) || 100);
 	public $playing = new BehaviorSubject<boolean>(false);
+	public $endless = new BehaviorSubject<boolean>(localStorage.getItem("endless") === "true");
+
 
 	public audio: HTMLAudioElement;
 
@@ -46,6 +48,7 @@ export class PlayerService {
 	public loop = false;
 	public $queueVisible = new BehaviorSubject<boolean>(localStorage.getItem("queue-visible") === "true");
 	public ready = false;
+
 	constructor(private httpService: HttpService, private title: Title) {
 	}
 
@@ -128,6 +131,10 @@ export class PlayerService {
 		localStorage.setItem("queue-visible", this.$queueVisible.getValue().toString());
 	}
 
+	public onEndless() {
+		this.$endless.next(!this.$endless.getValue());
+		localStorage.setItem("endless", this.$endless.getValue().toString());
+	}
 
 	public onRepeat() {
 		this.repeat = !this.repeat;
@@ -197,6 +204,10 @@ export class PlayerService {
 
 		this.setupAudioPlayer(tracks[0]);
 
+
+		if (this.isLast && this.$endless.getValue()) {
+			this.getRandomTracks(5).subscribe((data: any) => this.queue(data));
+		}
 
 	}
 
@@ -280,6 +291,9 @@ export class PlayerService {
 		return this.httpService.get(`/tracks/like/${id}`);
 	}
 
+	public getRandomTracks(count: number) {
+		return this.httpService.get(`/tracks/random?total=${count}`);
+	}
 
 	private _onProgress() {
 		this.$buffering.next(this.audio.buffered.length === 0);

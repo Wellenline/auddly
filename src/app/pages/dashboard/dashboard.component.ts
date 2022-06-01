@@ -9,6 +9,7 @@ import { ThemeService } from "src/app/core/services/theme.service";
 import { SearchComponent } from "../../overlays/search/search.component";
 import { UploadComponent } from "src/app/overlays/upload/upload.component";
 import { AuthService } from "src/app/core/services/auth.service";
+import { PlayerService } from "src/app/core/services/player.service";
 declare const Chart;
 declare const ApexCharts;
 @Component({
@@ -31,7 +32,7 @@ export class DashboardComponent implements OnInit {
 		albums?: any,
 		tracks?: any,
 	} = {};
-	constructor(private httpService: HttpService, private authService: AuthService, public theme: ThemeService, private modalService: ModalService) { }
+	constructor(private httpService: HttpService, private authService: AuthService, public theme: ThemeService, public playerService: PlayerService, private modalService: ModalService) { }
 
 	ngOnInit(): void {
 
