@@ -89,7 +89,7 @@ export class DashboardComponent implements OnInit {
 				data: this.data.tracks.map((track) => track.playcount),
 				backgroundColor: "#3ec7c2",
 				borderColor: "#3ec7c2",
-				borderRadius: 20,
+				// borderRadius: 20,
 			}]
 		};
 		if (this.charts.tracks) {
@@ -108,7 +108,7 @@ export class DashboardComponent implements OnInit {
 				data: this.data.albums.map((album) => album.playcount),
 				backgroundColor: "#3ec7c2",
 				borderColor: "#3ec7c2",
-				borderRadius: 20,
+				// borderRadius: 20,
 			}]
 		};
 		if (this.charts.albums) {
@@ -127,7 +127,8 @@ export class DashboardComponent implements OnInit {
 			datasets: [{
 				label: "Streams",
 				backgroundColor: "#3ec7c2",
-				borderColor: "#3ec7c2", //borderRadius: 20,
+				borderColor: "#3ec7c2",
+				// borderRadius: 20,
 				data: this.data.plays.values
 			}]
 		};
@@ -137,7 +138,7 @@ export class DashboardComponent implements OnInit {
 			return;
 		}
 		const config = {
-			type: "line",
+			type: "bar",
 			data,
 			options: {
 				layout: {
