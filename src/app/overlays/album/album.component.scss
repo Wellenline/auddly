@@ -65,8 +65,15 @@
         flex-direction: row;
         overflow: auto;
         gap: 1rem;
+        scroll-snap-type: x mandatory;
+        scroll-padding: 0 24px;
+
+        overflow-x: scroll;
+        scroll-behavior: smooth;
 
         .album {
+            scroll-snap-align: start;
+
             &:first-of-type {
                 margin-left: 1rem;
             }

@@ -30,7 +30,6 @@ export class NowPlaylingComponent implements OnInit {
 		maxHeight: "80vh"
 	};
 
-	public visible = false;
 	@ViewChild("scroller") virtualScroll: CdkVirtualScrollViewport;
 
 	private destroy = new Subject();
@@ -83,9 +82,8 @@ export class NowPlaylingComponent implements OnInit {
 				this.progress = this.track.progress;
 			}
 			setTimeout(() => {
-				if (this.visible) {
-					this.virtualScroll.scrollToIndex(this.playerService.index, "smooth");
-				}
+				this.virtualScroll.scrollToIndex(this.playerService.index, "smooth");
+
 			}, 700);
 		});
 
@@ -139,9 +137,7 @@ export class NowPlaylingComponent implements OnInit {
 	ngAfterViewInit() {
 
 		setTimeout(() => {
-			if (this.visible) {
-				this.virtualScroll.scrollToIndex(this.playerService.index, "smooth");
-			}
+			this.virtualScroll.scrollToIndex(this.playerService.index, "smooth");
 		}, 700);
 
 	}
