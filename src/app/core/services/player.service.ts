@@ -106,8 +106,8 @@ export class PlayerService {
 	}
 
 	/**
- * Check if track is last in queue
- */
+	 * Check if track is first in queue
+	 */
 	public get isFirst() {
 		return this.index === 0;
 	}

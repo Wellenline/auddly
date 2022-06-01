@@ -87,8 +87,8 @@ export class DashboardComponent implements OnInit {
 			labels: this.data.tracks.map((track) => track.track.name),
 			datasets: [{
 				data: this.data.tracks.map((track) => track.playcount),
-				backgroundColor: "#03a9f4",
-				borderColor: "#03a9f4",
+				backgroundColor: "#3ec7c2",
+				borderColor: "#3ec7c2",
 				borderRadius: 20,
 			}]
 		};
@@ -106,8 +106,8 @@ export class DashboardComponent implements OnInit {
 			labels: this.data.albums.map((album) => album.album.name),
 			datasets: [{
 				data: this.data.albums.map((album) => album.playcount),
-				backgroundColor: "#03a9f4",
-				borderColor: "#03a9f4",
+				backgroundColor: "#3ec7c2",
+				borderColor: "#3ec7c2",
 				borderRadius: 20,
 			}]
 		};
@@ -126,8 +126,8 @@ export class DashboardComponent implements OnInit {
 			labels,
 			datasets: [{
 				label: "Streams",
-				backgroundColor: "#252424",
-				borderColor: "#666", borderRadius: 20,
+				backgroundColor: "#3ec7c2",
+				borderColor: "#3ec7c2", //borderRadius: 20,
 				data: this.data.plays.values
 			}]
 		};
@@ -137,12 +137,13 @@ export class DashboardComponent implements OnInit {
 			return;
 		}
 		const config = {
-			type: "bar",
+			type: "line",
 			data,
 			options: {
 				layout: {
 					autoPadding: false,
 				},
+
 				responsive: true,
 				maintainAspectRatio: true,
 				elements: {
@@ -152,6 +153,8 @@ export class DashboardComponent implements OnInit {
 						hoverRadius: 6,
 						fill: true
 					},
+
+
 
 				},
 

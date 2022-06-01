@@ -96,19 +96,6 @@
 
 <div class="data">
 	<div class="card">
-		<h3>Most played artists</h3>
-
-		<div class="bub">
-			<div (click)="onArtist(artist._id)" class="bubble" *ngFor="let artist of data.artists">
-				<img [width]="100 - (100 / artist.playcount) || 50" [height]="100 - (100 / artist.playcount) || 50"
-					src="{{ artist.picture }}" />
-
-				<div class="text">{{ artist.name }}</div>
-			</div>
-		</div>
-
-	</div>
-	<div class="card">
 		<h3>Top 5 Albums</h3>
 		<div class="charts">
 
@@ -123,7 +110,6 @@
 	</div>
 
 
-
 	<div class="card">
 		<h3>Top 5 Tracks</h3>
 		<div class="charts">
@@ -135,5 +121,19 @@
 				<div class="count">{{ track.playcount }} Streams</div>
 			</div>
 		</div>
+	</div>
+
+	<div class="card">
+		<h3>Most played artists</h3>
+
+		<div class="bub">
+			<div (click)="onArtist(artist._id)" class="bubble" *ngFor="let artist of data.artists">
+				<img [width]="100 - (100 / artist.playcount) || 50" [height]="100 - (100 / artist.playcount) || 50"
+					src="{{ artist.picture }}" />
+
+				<div class="text">{{ artist.name }}</div>
+			</div>
+		</div>
+
 	</div>
 </div>
