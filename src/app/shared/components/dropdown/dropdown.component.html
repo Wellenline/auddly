@@ -1,5 +1,5 @@
 <ng-template>
-	<div (click)="onClick()" class="{{ ignoreStyle ? '' : 'dropdown-content' }} ">
+	<div (click)="onClick()" [ngStyle]=" {'width.px': width}" class="{{ ignoreStyle ? '' : 'dropdown-content' }} ">
 		<ng-content></ng-content>
 	</div>
 </ng-template>

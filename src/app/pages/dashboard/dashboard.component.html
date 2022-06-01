@@ -19,9 +19,18 @@
 			<i class="ph-gear-six"></i>
 		</div>
 	</div>
-	<app-dropdown #dropdown>
-		<div (click)="playerService.onEndless()" class="dropdown-item">{{ (playerService.$endless | async) ? 'Disable' :
-			'Enable' }} Endless Mode
+	<app-dropdown #dropdown [width]="300">
+		<div (click)="playerService.onEndless()" class="dropdown-item">
+			<div>
+
+				{{ (playerService.$endless | async) ? 'Disable' :
+				'Enable' }} Endless Mode
+				<div><small>Continue playing random songs from your library once your queue reaches the end.</small>
+				</div>
+			</div>
+			<i class="ph-infinity"></i>
+
+
 		</div>
 		<div (click)="theme.onToggle()" class="dropdown-item">
 			<app-theme-toggle style="display: none;" #theme></app-theme-toggle>

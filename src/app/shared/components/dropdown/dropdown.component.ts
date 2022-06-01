@@ -10,6 +10,8 @@ export class DropdownComponent implements OnInit {
 	@Output() closed = new EventEmitter<void>();
 	@Input() closeOnClick = true;
 	@Input() ignoreStyle = false;
+	@Input() width = 224;
+
 	constructor() { }
 
 	ngOnInit(): void {
