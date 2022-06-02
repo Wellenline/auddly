@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
 	constructor(private httpService: HttpService, private authService: AuthService, public theme: ThemeService, public playerService: PlayerService, private modalService: ModalService) { }
 
 	ngOnInit(): void {
-		this.onUsers();
+		//this.onUsers();
 	}
 
 	public onUpload() {
