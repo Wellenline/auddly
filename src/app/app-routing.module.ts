@@ -9,8 +9,6 @@ import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { PlaylistsComponent } from "./pages/playlists/playlists.component";
 import { TracksComponent } from "./pages/tracks/tracks.component";
-import { UploadComponent } from "./overlays/upload/upload.component";
-import { UsersComponent } from "./pages/users/users.component";
 
 const routes: Routes = [
 	{ path: "", redirectTo: "/dashboard", pathMatch: "full" },

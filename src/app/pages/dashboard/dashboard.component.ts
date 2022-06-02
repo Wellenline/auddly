@@ -10,6 +10,7 @@ import { SearchComponent } from "../../overlays/search/search.component";
 import { UploadComponent } from "src/app/overlays/upload/upload.component";
 import { AuthService } from "src/app/core/services/auth.service";
 import { PlayerService } from "src/app/core/services/player.service";
+import { UsersComponent } from "../../overlays/users/users.component";
 declare const Chart;
 declare const ApexCharts;
 @Component({
@@ -35,12 +36,18 @@ export class DashboardComponent implements OnInit {
 	constructor(private httpService: HttpService, private authService: AuthService, public theme: ThemeService, public playerService: PlayerService, private modalService: ModalService) { }
 
 	ngOnInit(): void {
-
+		this.onUsers();
 	}
 
 	public onUpload() {
 		this.modalService.show({
 			component: UploadComponent,
+		});
+	}
+
+	public onUsers() {
+		this.modalService.show({
+			component: UsersComponent,
 		});
 	}
 

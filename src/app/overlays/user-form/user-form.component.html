@@ -20,23 +20,24 @@
 
 		{{ error }}
 
-		<div class="picture">
-			<div class="form-item">
-				<div class="picture" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
 
-
-					<input hidden type="file" accept="image/*" #fileInput (change)="uploadFile($event)">
-
-
-					<app-loading [loading]="uploading"></app-loading>
-
-					<img [src]="user.picture || '/assets/default.png'" />
-
-				</div>
-
-			</div>
-		</div>
 		<div class="grid">
+			<div class="width-6@md width-6@sm width-12@xs">
+				<div class="form-item">
+					<label>Email</label>
+
+					<input required autocomplete="off" class="input" [(ngModel)]="user.email" type="email" name="email"
+						placeholder="Email" />
+				</div>
+			</div>
+			<div *ngIf="!user._id" class="width-6@md width-6@sm width-12@xs">
+				<div class="form-item">
+					<label>Password</label>
+
+					<input required autocomplete="new-password" class="input" [(ngModel)]="user.password"
+						type="password" name="password" placeholder="Password" />
+				</div>
+			</div>
 			<div class="width-6@md width-6@sm width-12@xs">
 				<div class="form-item">
 					<label>First name</label>

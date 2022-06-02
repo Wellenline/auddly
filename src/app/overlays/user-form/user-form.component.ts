@@ -12,7 +12,6 @@ import { ModalComponent } from 'src/app/shared/components/modal/modal.component'
 export class UserFormComponent implements OnInit {
 	public user: any = {};
 	public loading = false;
-	public uploading = false;
 	public error: string;
 	public roles = [];
 	constructor(private httpService: HttpService, public modalComponent: ModalComponent, private route: ActivatedRoute) { }
@@ -20,12 +19,14 @@ export class UserFormComponent implements OnInit {
 	ngOnInit(): void {
 		// get user
 		if (this.modalComponent.params.id) {
-			this.getRoles();
 			this.getUser(this.modalComponent.params.id);
 		} else {
 			this.loading = false;
 			this.user = {};
 		}
+
+		this.getRoles();
+
 
 	}
 
@@ -41,34 +42,22 @@ export class UserFormComponent implements OnInit {
 		});
 	}
 
-	public uploadFile(event) {
-		const file = event.target.files[0];
-		if (this.uploading || !file) {
-			return;
-		}
-
-		this.uploading = true;
-		const mimeType = file.type;
-		if (mimeType.match(/image\/*/) === null) {
-			return;
-		}
-
-		const formData: FormData = new FormData();
-		formData.append("file", file, file.name);
-		formData.append("type", "image");
-		formData.append("folder", "profile-pictures");
-		console.log(file)
-
-		this.httpService.upload("/upload", formData).subscribe((response: any) => {
-			console.log(response);
-			this.user.picture = response.link;
-			this.uploading = false;
-		});
-	}
 
 	public onSave() {
 		this.error = "";
 		this.loading = true;
+
+		if (this.user._id) {
+			this._onUpdate();
+		}
+		else {
+			this._onCreate();
+		}
+	}
+
+
+	private _onUpdate() {
+
 		this.httpService.put(`/users/${this.user._id}`, this.user).subscribe((response) => {
 			this.modalComponent.onClose(response);
 		}, (err) => {
@@ -76,8 +65,14 @@ export class UserFormComponent implements OnInit {
 		}).add(() => this.loading = false);
 	}
 
-	onClose() {
-		// reset invites
-		this.modalComponent.onClose();
+	private _onCreate() {
+
+
+		this.httpService.post(`/users`, this.user).subscribe((response) => {
+			this.modalComponent.onClose(response);
+		}, (err) => {
+			this.error = err;
+		}).add(() => this.loading = false);
 	}
+
 }

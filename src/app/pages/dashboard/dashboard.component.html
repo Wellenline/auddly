@@ -5,9 +5,7 @@
 	</div>
 
 	<div class="actions" header-actions>
-		<div class="action" (click)="onUpload()" appRipple>
-			<i class="ph-upload"></i>
-		</div>
+
 		<div class="action" [dropdownPosition]="{
 			originX: 'end',
 			originY: 'bottom',
@@ -29,8 +27,16 @@
 				</div>
 			</div>
 			<i class="ph-infinity"></i>
+		</div>
 
+		<div class="dropdown-item" (click)="onUpload()" appRipple>
+			Upload
+			<i class="ph-upload"></i>
+		</div>
 
+		<div class="dropdown-item" (click)="onUsers()" appRipple>
+			Manage Listeners
+			<i class="ph-headphones"></i>
 		</div>
 		<div (click)="theme.onToggle()" class="dropdown-item">
 			<app-theme-toggle style="display: none;" #theme></app-theme-toggle>

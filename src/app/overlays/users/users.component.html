@@ -1,4 +1,12 @@
-<app-header [sticky]="true" [transparent]="true">
+<app-header [sticky]="true" [back]="true" [transparent]="true">
+	<div header-back (click)="modalComponent.onClose()">
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+			stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+			class="ai ai-ArrowLeft">
+			<path d="M11 5l-7 7 7 7" />
+			<path d="M4 12h16" />
+		</svg>
+	</div>
 	<div header-title>
 		Users
 	</div>
@@ -12,6 +20,8 @@
 		</button>
 	</div>
 </app-header>
+
+
 
 
 <div class="card no-padding m-t-20">
@@ -32,8 +42,7 @@
 		<tbody>
 			<tr *ngFor="let user of users.data">
 				<td class="cell" data-heading="Name">
-					<a style="display: flex; flex-direction: row; align-items:center; gap: 1rem;" routerLink="."
-						[queryParams]="{ id: user._id }">
+					<a (click)="onEditUser(user._id)">
 						<app-avatar [picture]="user.picture" [name]="user.first_name" [width]="50" [height]="50">
 						</app-avatar>
 						<div>

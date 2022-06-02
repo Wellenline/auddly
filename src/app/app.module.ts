@@ -12,7 +12,7 @@ import { SharedModule } from "./shared/shared.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { UserFormComponent } from "./overlays/user-form/user-form.component";
 import { UploadComponent } from "./overlays/upload/upload.component";
-import { UsersComponent } from "./pages/users/users.component";
+import { UsersComponent } from "./overlays/users/users.component";
 import { LoginComponent } from "./pages/login/login.component";
 import { AlbumComponent } from "./overlays/album/album.component";
 import { ArtistComponent } from "./overlays/artist/artist.component";
