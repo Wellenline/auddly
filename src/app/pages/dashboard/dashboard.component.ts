@@ -129,7 +129,7 @@ export class DashboardComponent implements OnInit {
 				backgroundColor: "#3ec7c2",
 				borderColor: "#3ec7c2",
 				// borderRadius: 20,
-				data: this.data.plays.values
+				data: this.data.plays.values,
 			}]
 		};
 		if (this.charts.streams) {
