@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { HttpService } from "src/app/core/services/http.service";
 import { AuthService } from "src/app/core/services/auth.service";
 
@@ -19,12 +19,20 @@ export class LoginComponent implements OnInit {
 	public loading = false;
 	public step = 0;
 	public error: string;
-	constructor(private authService: AuthService, private router: Router, private httpService: HttpService) { }
+	constructor(private authService: AuthService, private router: Router, private httpService: HttpService, private route: ActivatedRoute) { }
 
 	ngOnInit(): void {
 		if (this.connection.endpoint) {
 			this.step = 1;
 		}
+
+		this.route.queryParams.subscribe((params) => {
+			if (params.server) {
+				this.connection.endpoint = params.server;
+				this.connect();
+			}
+		});
+
 	}
 
 	public connect() {
