@@ -2,11 +2,16 @@
 
     // height: 100%;
     display: grid;
-    place-content: center;
     padding: 1rem;
 
     .placeholder {
+        display: grid;
+        place-content: center;
         text-align: center;
+        height: 150px;
+        border: 2px dashed var(--border-color);
+        width: 100%;
+        border-radius: 15px;
 
         p,
         h1 {
@@ -48,7 +53,6 @@
             color: var(--foreground-color);
             background-color: var(--background-color-2);
             // border-radius: px;
-            overflow: hidden;
 
             &.pending {
                 opacity: 0.6;

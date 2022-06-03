@@ -13,7 +13,6 @@ import { environment } from 'src/environments/environment';
 	styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-
 	public users = {
 		data: []
 	}
@@ -41,7 +40,7 @@ export class UsersComponent implements OnInit {
 
 					this.toastService.show({
 						message: "User updated",
-					})
+					});
 
 					this.getUsers();
 				}
@@ -49,20 +48,23 @@ export class UsersComponent implements OnInit {
 		})
 	}
 
-	onCreate() {
+	public onCreate() {
 		this.modalService.show({
 			component: UserFormComponent,
 			callback: (data) => {
 				if (data) {
 					this.toastService.show({
 						message: "User created",
-					})
+					});
+
+					this.getUsers();
+
 				}
 			}
 		});
 	}
 
-	getUsers() {
+	public getUsers() {
 		this.httpService.get(`/users`).subscribe((response: any) => {
 			this.users = response;
 		}).add(() => {
@@ -81,7 +83,5 @@ export class UsersComponent implements OnInit {
 			});
 		}
 	}
-
-
 }
 

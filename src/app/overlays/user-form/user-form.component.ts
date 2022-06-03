@@ -14,6 +14,7 @@ export class UserFormComponent implements OnInit {
 	public loading = false;
 	public error: string;
 	public roles = [];
+	public modifyPassword: boolean;
 	constructor(private httpService: HttpService, public modalComponent: ModalComponent, private route: ActivatedRoute) { }
 
 	ngOnInit(): void {
@@ -30,7 +31,7 @@ export class UserFormComponent implements OnInit {
 
 	}
 
-	getRoles() {
+	public getRoles() {
 		this.httpService.get(`/roles`).subscribe((response: any) => {
 			this.roles = response.data;
 		})
@@ -42,6 +43,13 @@ export class UserFormComponent implements OnInit {
 		});
 	}
 
+	public onDelete() {
+		if (confirm("Are you sure you want to delete this user?")) {
+			this.httpService.delete(`/users/${this.user._id}`).subscribe((response) => {
+				this.modalComponent.onClose(true);
+			});
+		}
+	}
 
 	public onSave() {
 		this.error = "";
@@ -59,7 +67,7 @@ export class UserFormComponent implements OnInit {
 	private _onUpdate() {
 
 		this.httpService.put(`/users/${this.user._id}`, this.user).subscribe((response) => {
-			this.modalComponent.onClose(response);
+			this.modalComponent.onClose(true);
 		}, (err) => {
 			this.error = err;
 		}).add(() => this.loading = false);
@@ -69,7 +77,7 @@ export class UserFormComponent implements OnInit {
 
 
 		this.httpService.post(`/users`, this.user).subscribe((response) => {
-			this.modalComponent.onClose(response);
+			this.modalComponent.onClose(true);
 		}, (err) => {
 			this.error = err;
 		}).add(() => this.loading = false);
