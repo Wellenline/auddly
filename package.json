@@ -20,7 +20,7 @@
     "@angular/cdk-experimental": "^11.2.11",
     "@angular/common": "~11.0.3",
     "@angular/compiler": "~11.0.3",
-    "@angular/core": "~11.0.3",
+    "@angular/core": "~11.0.5",
     "@angular/forms": "~11.0.3",
     "@angular/platform-browser": "~11.0.3",
     "@angular/platform-browser-dynamic": "~11.0.3",
