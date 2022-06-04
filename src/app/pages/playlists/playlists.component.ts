@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlaylistService } from 'src/app/core/services/playlist.service';
+import { PlaylistFormComponent } from 'src/app/overlays/playlist-form/playlist-form.component';
 import { ModalService } from 'src/app/shared/components/modal/modal.service';
 import { PlaylistComponent } from '../../overlays/playlist/playlist.component';
 
@@ -14,6 +15,9 @@ export class PlaylistsComponent implements OnInit {
 	constructor(public playlistService: PlaylistService, private modalService: ModalService) { }
 
 	ngOnInit(): void {
+		this.getPlaylists();
+	}
+	public getPlaylists() {
 		this.playlistService.getPlaylists().subscribe((response: { data: [] }) => {
 			this.playlists = response.data;
 		});
@@ -28,7 +32,14 @@ export class PlaylistsComponent implements OnInit {
 
 		});
 	}
-	public onEdit(playlist) {
+	public onCreate() {
+		this.modalService.show({
+			component: PlaylistFormComponent,
+			callback: (response: { data: any }) => {
+				this.getPlaylists();
+
+			},
+		})
 
 	}
 
