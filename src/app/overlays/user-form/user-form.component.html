@@ -62,7 +62,7 @@
 		<div class="form-item">
 			<label>Role</label>
 
-			<select class="select" name="role" [(ngModel)]="user.role">
+			<select required="true" class="select" name="role" [(ngModel)]="user.role">
 				<option *ngFor="let role of roles" [value]="role?._id">{{ role?.name }}</option>
 			</select>
 
