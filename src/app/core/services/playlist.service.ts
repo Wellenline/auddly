@@ -13,7 +13,7 @@ export class PlaylistService {
 	constructor(private http: HttpService) { }
 
 	@Cacheable({
-		storageStrategy: LocalStorageStrategy,
+		// storageStrategy: LocalStorageStrategy,
 		cacheBusterObserver: PlaylistService.$cacheBuster
 	})
 	public getPlaylists() {
