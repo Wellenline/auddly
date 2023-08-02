@@ -1,56 +1,64 @@
-<app-header [back]="true">
-	<div header-back (click)="modal.onClose()">
-		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-			stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-			class="ai ai-ArrowLeft">
-			<path d="M11 5l-7 7 7 7" />
-			<path d="M4 12h16" />
-		</svg>
-	</div>
-</app-header>
+<div class="sidebar" @slideRight *ngIf="modal.visible">
 
-<div class="container">
 
-	<div class="album">
-		<div class="album-header">
-			<div class="image">
-				<img [src]="album.picture || '/assets/app-icon-text.png'" />
+
+	<div appLoader [loading]="loading" class="sidebar-content no-padding">
+
+		<app-header [transparent]="true" [back]="true">
+			<div header-back (click)="modal.onClose()">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+					stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+					class="ai ai-ArrowLeft">
+					<path d="M11 5l-7 7 7 7" />
+					<path d="M4 12h16" />
+				</svg>
 			</div>
+		</app-header>
 
-			<div class="details">
-				<h1>{{ album.name }}</h1>
-				<p (click)="onArtist(album?.artist?._id)">
-					by {{ album?.artist?.name }}
-				</p>
 
-				<button appRipple (click)="onPlayAlbum()">
-					Play {{ tracks.length }} songs
-				</button>
-			</div>
-		</div>
 
-		<div class="album-tracks">
-			<app-track-item [options]="{actions: true, picture: false }" [track]="track" *ngFor="let track of tracks">
-			</app-track-item>
-		</div>
+		<div appLoader [loading]="loading" class="container">
 
-		<ng-container *ngIf="albums.length > 0">
-			<h3>More by {{ album.artist.name }}</h3>
-			<div appDragScroll class="album-albums">
-				<ng-container *ngFor="let album of albums; ">
-					<div appRipple (click)="getAlbum(album._id)" class="album">
+			<div class="album">
+				<div class="album-header">
+					<div class="image">
 						<img [src]="album.picture || '/assets/app-icon-text.png'" />
-						<div class="column-details">
-							<div class="title">{{ album.name }}</div>
-							<div class="subtitle">{{ album.artist.name }}</div>
-						</div>
+					</div>
+
+					<div class="details">
+						<h1>{{ album.name }}</h1>
+						<p (click)="onArtist(album?.artist?._id)">
+							by {{ album?.artist?.name }}
+						</p>
+
+						<button appRipple (click)="onPlayAlbum()">
+							Play {{ tracks.length }} songs
+						</button>
+					</div>
+				</div>
+
+				<div class="m-t-20">
+					<app-track-item [options]="{actions: true, picture: false }" [track]="track"
+						*ngFor="let track of tracks">
+					</app-track-item>
+				</div>
+				<ng-container *ngIf="albums.length > 0">
+					<h3>More by {{ album.artist.name }}</h3>
+					<div appDragScroll class="album-albums">
+						<ng-container *ngFor="let album of albums; ">
+							<div appRipple (click)="getAlbum(album._id)" class="album">
+								<img [src]="album.picture || '/assets/app-icon-text.png'" />
+								<div class="column-details">
+									<div class="title">{{ album.name }}</div>
+									<div class="subtitle">{{ album.artist.name }}</div>
+								</div>
+							</div>
+						</ng-container>
 					</div>
 				</ng-container>
 			</div>
-		</ng-container>
+
+
+		</div>
 	</div>
-
-	<app-loading [loading]="loading"></app-loading>
-
-
 </div>

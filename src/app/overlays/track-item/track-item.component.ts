@@ -9,6 +9,7 @@ import { AlbumComponent } from "../album/album.component";
 import { ArtistComponent } from "../artist/artist.component";
 import { PlaylistItemsComponent } from "../playlist-items/playlist-items.component";
 import { PlaylistComponent } from "../playlist/playlist.component";
+import { SidebarService } from "src/app/standalone/sidebar/sidebar.service";
 
 @Component({
 	selector: "app-track-item",
@@ -32,7 +33,7 @@ export class TrackItemComponent implements OnInit {
 	@Output() public onRemoveFromPlaylist = new EventEmitter();
 
 	constructor(public playerService: PlayerService, private route: ActivatedRoute,
-		private musicService: MusicService, private playlistService: PlaylistService, private toastService: ToastService, private modalService: ModalService) { }
+		private musicService: MusicService, private playlistService: PlaylistService, private toastService: ToastService, private modalService: SidebarService) { }
 
 	ngOnInit(): void {
 

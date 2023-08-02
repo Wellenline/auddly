@@ -45,6 +45,7 @@ export class RippleDirective {
 		}
 		this.hostEl.style.overflow = "hidden";
 		this.hostEl.style.position = "relative";
+		// this.hostEl.style.width = "100%";
 
 		if (this._timeout) {
 			clearTimeout(this._timeout);

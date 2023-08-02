@@ -1,0 +1,13 @@
+<div *ngIf="visible" @slideInOut class="toast {{ toast.type }}">
+	<div *ngIf="toast.icon" class="toast-icon">
+		<i class="ph {{toast.icon}}"></i>
+	</div>
+	<div (click)="onClose()" class="toast-text">
+		<h3>{{ toast.title }}</h3>
+		{{ toast.message }}
+	</div>
+
+	<button *ngIf="toast.action" appRipple (click)="onAction()" class="button block primary">
+		{{ toast.action }}
+	</button>
+</div>

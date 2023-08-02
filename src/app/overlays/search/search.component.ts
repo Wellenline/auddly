@@ -9,11 +9,16 @@ import { PlaylistComponent } from "../playlist/playlist.component";
 import { HttpService } from "src/app/core/services/http.service";
 import { PlayerService } from "src/app/core/services/player.service";
 import { ModalComponent } from "src/app/shared/components/modal/modal.component";
+import { SlideRight } from "src/app/animations/slide";
+import { SidebarService } from "src/app/standalone/sidebar/sidebar.service";
+import { SidebarComponent } from "src/app/standalone/sidebar/sidebar.component";
 
 @Component({
 	selector: "app-search",
 	templateUrl: "./search.component.html",
-	styleUrls: ["./search.component.scss"]
+	styleUrls: ["./search.component.scss"],
+	animations: [SlideRight]
+
 })
 export class SearchComponent implements OnInit {
 	public result = {
@@ -27,7 +32,7 @@ export class SearchComponent implements OnInit {
 	public loading = false;
 	public full = false;
 	@ViewChild("searchInput") searchInput: ElementRef;
-	constructor(private httpService: HttpService, private modalService: ModalService, public modal: ModalComponent, private playerService: PlayerService) { }
+	constructor(private httpService: HttpService, private modalService: SidebarService, public modal: SidebarComponent, private playerService: PlayerService) { }
 
 	public ngOnInit(): void {
 		if (this.modal.params.q) {

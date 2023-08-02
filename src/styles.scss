@@ -7,47 +7,64 @@
 
 @import "./theme/base.scss";
 
-:root,
+root,
 html[data-theme="light"] {
-    --accent-color: #3ec7c2;
+    --accent-color: #1e87f0; //#2f49d1;
 
-    --background-color: #fff;
-    --background-color-2: #f2f2f2;
+    //--accent-color: #000;
+    --white: #ffffff;
+    --black: #000000;
+
+    --background-color: #ffffff;
+    --background-color-2: #F4F6FA; //#fcfcfc;
     --background-color-3: #f9f9f9;
     --background-color-4: #fff;
-    --background-color-5: #fbfbfb;
+    --background-color-5: #fff;
+    --background-color-6: #efefef;
+    --background-color-7: #fafafa;
+    --background-color-8: #f1f5f8;
     --input-color: #181818;
 
-    --border-color: #eee;
+    --border-color: #eeeeee;
     --highlight-color: #2d63e9;
 
-    --text-color: #181818;
-    --black: black;
-    --white: white;
-    --ripple-color: rgba(0, 0, 0, 0.2);
+    --text-color: #131517;
 
+    --ripple-color: rgba(0, 0, 0, 0.2);
+    --hover-primary: #f6f6f6;
+    --box-shadow-card: transparent;
+
+
+
+    --syso-cart-toggle-position: absolute !important;
 }
 
 html[data-theme="dark"] {
-    --accent-color: #3ec7c2;
+    --accent-color: #1e87f0; //#2f49d1;
 
-    --background-color: #000;
+    // --accent-color: #8bc34a;
+    --white: #000000;
+    --black: #ffffff;
+    --background-color: #17181a;
     --background-color-2: #0e0e0e;
     --background-color-3: #202020;
-    --background-color-4: #181818;
-    --background-color-5: #222222;
-    --background-color-6: #191919;
+    --background-color-4: #17181a;
+    --background-color-5: #151617;
+    --background-color-6: #171717;
+    --background-color-7: #151617;
+    --background-color-8: #17181a;
 
-    --border-color: #201f1f;
+    --border-color: #26292c;
     --highlight-color: #2d63e9;
     --input-color: #fff;
-
     --text-color: #f7f7f9;
-    --black: white;
-    --white: black;
-
     --ripple-color: rgba(255, 255, 255, 0.7);
+    --hover-primary: #2e2e2e;
+    --box-shadow-card: var(--border-color);
 
+    ::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+    }
 }
 
 *,

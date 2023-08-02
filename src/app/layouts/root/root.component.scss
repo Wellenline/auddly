@@ -44,18 +44,17 @@
 .app {
     display: grid;
     // grid-template: 1fr auto / auto 1fr;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto 1fr;
+    grid-template-columns: auto 1fr auto;
+
+    grid-template-rows: 1fr auto;
     height: var(--app-height);
     padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
     overflow: hidden;
-    width: calc(100% + 400px);
+    width: 100%;
     height: 100%;
     position: fixed;
     transition: all ease-in-out .3s;
     //padding-right: 400px;
-    transform: translateX(0) scale(1);
-    transform-origin: center right;
 
     @media all and (max-width: 1000px) {
         width: 100%;
@@ -63,32 +62,38 @@
     }
 
 
-    &.queue {
-        transform: translateX(-400px);
-        //width: calc(100% - 800px);
-        padding-left: 400px;
+    &-controls {
+        grid-column-start: 2;
+
+        grid-row-start: 2;
+
+        &.queue {
+            transform: translateX(-400px);
+            //width: calc(100% - 800px);
+            padding-left: 400px;
 
 
-        @media all and (max-width: 1000px) {
-            transform: translateX(0);
+            @media all and (max-width: 1000px) {
+                transform: translateX(0);
 
-            width: 100%;
-            padding-left: 0;
+                width: 100%;
+                padding-left: 0;
+
+            }
 
         }
-
     }
 
     &-navigation {
 
         display: flex;
-        flex-direction: row;
-        height: 70px;
+        flex-direction: column;
+        width: 110px;
         // position: fixed;
         left: 0px;
         top: 0px;
-        width: 100%;
-        background-color: var(--white);
+        height: 100%;
+        background-color: var(--background-color-7);
         z-index: 99;
 
         align-items: center;
@@ -99,6 +104,8 @@
         position: sticky;
         top: 0px;
         border-bottom: 1px solid var(--border-color);
+        grid-column-start: 1;
+        grid-row-start: span 2;
 
         @media all and (max-width: 1000px) {
             position: fixed;
@@ -115,6 +122,13 @@
             justify-content: center;
             margin-bottom: 0;
             grid-column: 1 / span 2;
+
+            border: 1px solid var(--border-color);
+            border-top: transparent;
+
+            border-bottom-right-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+
 
             .logo {
                 display: none !important;
@@ -180,7 +194,7 @@
                 white-space: nowrap;
                 padding: 0.5rem 1rem;
                 border-radius: 6px;
-                top: 70px;
+                left: 70px;
                 color: white;
                 transform-origin: center left;
                 display: none;
@@ -194,13 +208,12 @@
                     height: 12px;
                     position: absolute;
                     background-color: #131313;
-                    top: -5px;
-                    left: 50%;
-                    transform: translateX(-50%) rotate(45deg);
+                    left: -5px;
+                    top: 50%;
+                    transform: translateY(-50%) rotate(45deg);
                     border-radius: 3px;
                 }
 
-                margin-top: 15px;
             }
 
             &:hover {
@@ -240,8 +253,24 @@
     &-content {
         overflow: auto;
         position: relative;
-        grid-row-start: 2;
+        grid-row-start: 1;
+        grid-column-start: 2;
 
+        &.queue {
+            transform: translateX(-400px);
+            //width: calc(100% - 800px);
+            padding-left: 400px;
+
+
+            @media all and (max-width: 1000px) {
+                transform: translateX(0);
+
+                width: 100%;
+                padding-left: 0;
+
+            }
+
+        }
 
         @media all and (max-width: 1000px) {
             width: 100%;
@@ -255,9 +284,11 @@
         z-index: 677;
         height: 100%;
         transform-origin: right;
-        grid-row-start: span 2;
-        // transform: translateX(100vw);
+        grid-column-start: 3;
+        transform: translateX(100vw);
         transition: transform ease-in-out .3s;
+        position: fixed;
+        right: 0;
 
         &.visible {
             transform: translateX(0px);

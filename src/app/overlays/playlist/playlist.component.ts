@@ -8,11 +8,15 @@ import { ModalService } from "src/app/shared/components/modal/modal.service";
 import { ToastService } from "src/app/shared/components/toast/toast.service";
 import { ArtistComponent } from "../artist/artist.component";
 import { PlaylistFormComponent } from "../playlist-form/playlist-form.component";
+import { SidebarComponent } from "src/app/standalone/sidebar/sidebar.component";
+import { SlideRight } from "src/app/animations/slide";
 
 @Component({
 	selector: "app-playlist",
 	templateUrl: "./playlist.component.html",
-	styleUrls: ["./playlist.component.scss"]
+	styleUrls: ["./playlist.component.scss"],
+	animations: [SlideRight]
+
 })
 export class PlaylistComponent implements OnInit {
 
@@ -30,7 +34,7 @@ export class PlaylistComponent implements OnInit {
 	public loading = true;
 	public albums = [];
 
-	constructor(public modal: ModalComponent,
+	constructor(public modal: SidebarComponent,
 		private playerService: PlayerService,
 		private toastService: ToastService,
 		private musicService: MusicService,
@@ -44,7 +48,7 @@ export class PlaylistComponent implements OnInit {
 	}
 	public getPlaylist(id: string) {
 		this.tracks = [];
-		this.loading = false;
+		this.loading = true;
 		this.playlistService.getPlaylist(id).subscribe((response: { tracks: ITrack[] }) => {
 			this.playlist = response;
 			if (this.playlist.tracks.length > 0 && !this.playlist.picture) {
@@ -52,7 +56,7 @@ export class PlaylistComponent implements OnInit {
 			}
 		}, (err) => {
 			console.log("Failed to load tracks", err);
-		});
+		}).add(() => this.loading = false);
 	}
 
 	public onEdit(playlist) {

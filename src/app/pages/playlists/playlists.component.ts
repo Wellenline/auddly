@@ -3,6 +3,7 @@ import { PlaylistService } from 'src/app/core/services/playlist.service';
 import { PlaylistFormComponent } from 'src/app/overlays/playlist-form/playlist-form.component';
 import { ModalService } from 'src/app/shared/components/modal/modal.service';
 import { PlaylistComponent } from '../../overlays/playlist/playlist.component';
+import { SidebarService } from 'src/app/standalone/sidebar/sidebar.service';
 
 @Component({
 	selector: 'app-playlists',
@@ -12,7 +13,7 @@ import { PlaylistComponent } from '../../overlays/playlist/playlist.component';
 export class PlaylistsComponent implements OnInit {
 
 	public playlists = [];
-	constructor(public playlistService: PlaylistService, private modalService: ModalService) { }
+	constructor(public playlistService: PlaylistService, private modalService: SidebarService) { }
 
 	ngOnInit(): void {
 		this.getPlaylists();

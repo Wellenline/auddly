@@ -11,6 +11,7 @@ import { UploadComponent } from "src/app/overlays/upload/upload.component";
 import { AuthService } from "src/app/core/services/auth.service";
 import { PlayerService } from "src/app/core/services/player.service";
 import { UsersComponent } from "../../overlays/users/users.component";
+import { SidebarService } from "src/app/standalone/sidebar/sidebar.service";
 declare const Chart;
 declare const ApexCharts;
 @Component({
@@ -33,7 +34,7 @@ export class DashboardComponent implements OnInit {
 		albums?: any,
 		tracks?: any,
 	} = {};
-	constructor(private httpService: HttpService, private authService: AuthService, public theme: ThemeService, public playerService: PlayerService, private modalService: ModalService) { }
+	constructor(private httpService: HttpService, private authService: AuthService, public theme: ThemeService, public playerService: PlayerService, private modalService: SidebarService) { }
 
 	ngOnInit(): void {
 		//this.onUsers();
@@ -94,8 +95,8 @@ export class DashboardComponent implements OnInit {
 			labels: this.data.tracks.map((track) => track.track.name),
 			datasets: [{
 				data: this.data.tracks.map((track) => track.playcount),
-				backgroundColor: "#3ec7c2",
-				borderColor: "#3ec7c2",
+				backgroundColor: "#1e87f0",
+				borderColor: "#1e87f0",
 				// borderRadius: 20,
 			}]
 		};
@@ -113,8 +114,8 @@ export class DashboardComponent implements OnInit {
 			labels: this.data.albums.map((album) => album.album.name),
 			datasets: [{
 				data: this.data.albums.map((album) => album.playcount),
-				backgroundColor: "#3ec7c2",
-				borderColor: "#3ec7c2",
+				backgroundColor: "#1e87f0",
+				borderColor: "#1e87f0",
 				// borderRadius: 20,
 			}]
 		};
@@ -133,8 +134,8 @@ export class DashboardComponent implements OnInit {
 			labels,
 			datasets: [{
 				label: "Streams",
-				backgroundColor: "#3ec7c2",
-				borderColor: "#3ec7c2",
+				backgroundColor: "#1e87f0",
+				borderColor: "#1e87f0",
 				// borderRadius: 20,
 				data: this.data.plays.values,
 			}]

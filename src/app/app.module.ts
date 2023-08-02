@@ -28,6 +28,7 @@ import { PlaylistsComponent } from "./pages/playlists/playlists.component";
 import { SearchComponent } from "./overlays/search/search.component";
 import { TracksComponent } from "./pages/tracks/tracks.component";
 import { RootComponent } from "./layouts/root/root.component";
+import { QueueComponent } from './overlays/queue/queue.component';
 
 
 
@@ -52,6 +53,7 @@ import { RootComponent } from "./layouts/root/root.component";
 		PlaylistFormComponent,
 		PlaylistItemsComponent,
 		DashboardComponent,
+  QueueComponent,
 	],
 
 	imports: [

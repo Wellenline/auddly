@@ -81,10 +81,7 @@ export class NowPlaylingComponent implements OnInit {
 			if (this.track.progress) {
 				this.progress = this.track.progress;
 			}
-			setTimeout(() => {
-				this.virtualScroll.scrollToIndex(this.playerService.index, "smooth");
 
-			}, 700);
 		});
 
 	}
@@ -135,11 +132,6 @@ export class NowPlaylingComponent implements OnInit {
 
 
 	ngAfterViewInit() {
-
-		setTimeout(() => {
-			this.virtualScroll.scrollToIndex(this.playerService.index, "smooth");
-		}, 700);
-
 	}
 
 	ngOnDestroy() {

@@ -1,45 +1,53 @@
-<app-header [back]="true">
-	<div header-back (click)="modal.onClose()">
-		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-			stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-			class="ai ai-ArrowLeft">
-			<path d="M11 5l-7 7 7 7" />
-			<path d="M4 12h16" />
-		</svg>
-	</div>
-	<div header-title>
-
-	</div>
-
-</app-header>
-<div class="drop-area" (click)="fileInput.click()" appDragDrop (onFileDropped)="handleFiles($event)">
+<div class="sidebar" @slideRight *ngIf="modal.visible">
 
 
-	<input hidden type="file" #fileInput (change)="handleFiles($event.target.files)" webkitdirectory multiple>
-	<div *ngIf="queue.length === 0" class="placeholder">
+	<app-header [back]="true">
+		<div header-back (click)="modal.onClose()">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+				stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+				class="ai ai-ArrowLeft">
+				<path d="M11 5l-7 7 7 7" />
+				<path d="M4 12h16" />
+			</svg>
+		</div>
+		<div header-title>
 
-		<h1>Upload</h1>
-		<p>Drag and drop files or select a directory to upload</p>
+		</div>
 
-	</div>
-	<h1 *ngIf="queue.length > 0">Uploading {{ queue.length }} files</h1>
-	<div *ngIf="queue.length > 0" class="files">
-		<ng-container *ngFor="let file of queue">
-			<div
-				class="file {{ file.progress === 100 ? 'done' : 'pending' }} {{ file.progress > 0 ? 'uploading' : '' }}">
-				<div class="progress" [ngStyle]="{'width.%': file.progress}"></div>
+	</app-header>
 
-				<div class="file-name">
-					<i *ngIf="file.progress === 100" class="ph-check"></i> {{ file.name }}
-				</div>
+	<div class="sidebar-content no-padding">
 
-				<div class="file-size">
-					{{ file.size | size }}
-				</div>
+		<div class="drop-area" (click)="fileInput.click()" appDragDrop (onFileDropped)="handleFiles($event)">
+
+
+			<input hidden type="file" #fileInput (change)="handleFiles($event.target.files)" webkitdirectory multiple>
+			<div *ngIf="queue.length === 0" class="placeholder">
+
+				<h1>Upload</h1>
+				<p>Drag and drop files or select a directory to upload</p>
 
 			</div>
+			<h1 *ngIf="queue.length > 0">Uploading {{ queue.length }} files</h1>
+			<div *ngIf="queue.length > 0" class="files">
+				<ng-container *ngFor="let file of queue">
+					<div
+						class="file {{ file.progress === 100 ? 'done' : 'pending' }} {{ file.progress > 0 ? 'uploading' : '' }}">
+						<div class="progress" [ngStyle]="{'width.%': file.progress}"></div>
 
-		</ng-container>
+						<div class="file-name">
+							<i *ngIf="file.progress === 100" class="ph-check"></i> {{ file.name }}
+						</div>
+
+						<div class="file-size">
+							{{ file.size | size }}
+						</div>
+
+					</div>
+
+				</ng-container>
+			</div>
+
+		</div>
 	</div>
-
 </div>

@@ -1,18 +1,22 @@
 import { Component, OnInit } from "@angular/core";
+import { SlideRight } from "src/app/animations/slide";
 import { UploadService } from "src/app/core/services/upload.service";
 import { ModalComponent } from "src/app/shared/components/modal/modal.component";
 import { ToastService } from "src/app/shared/components/toast/toast.service";
+import { SidebarComponent } from "src/app/standalone/sidebar/sidebar.component";
 
 @Component({
 	selector: "app-upload",
 	templateUrl: "./upload.component.html",
-	styleUrls: ["./upload.component.scss"]
+	styleUrls: ["./upload.component.scss"],
+	animations: [SlideRight]
+
 })
 export class UploadComponent implements OnInit {
 
 	public files = [];
 	public queue = [];
-	constructor(public modal: ModalComponent, private uploadService: UploadService, private toastService: ToastService) { }
+	constructor(public modal: SidebarComponent, private uploadService: UploadService, private toastService: ToastService) { }
 
 	ngOnInit(): void {
 		this.uploadService.$queue.subscribe((queue) => {

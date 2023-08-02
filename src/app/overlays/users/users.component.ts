@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SlideRight } from 'src/app/animations/slide';
 import { HttpService } from 'src/app/core/services/http.service';
 import { UserFormComponent } from 'src/app/overlays/user-form/user-form.component';
 import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
 import { ModalService } from 'src/app/shared/components/modal/modal.service';
 import { ToastService } from 'src/app/shared/components/toast/toast.service';
+import { SidebarComponent } from 'src/app/standalone/sidebar/sidebar.component';
 import { environment } from 'src/environments/environment';
 
 @Component({
 	selector: 'app-users',
 	templateUrl: './users.component.html',
-	styleUrls: ['./users.component.scss']
+	styleUrls: ['./users.component.scss'],
+	animations: [SlideRight]
+
 })
 export class UsersComponent implements OnInit {
 	public users = {
@@ -21,7 +25,7 @@ export class UsersComponent implements OnInit {
 	public error: string;
 	public roles = [];
 	public loading = true;
-	constructor(private httpService: HttpService, private toastService: ToastService, private router: Router, public modalComponent: ModalComponent, private modalService: ModalService) { }
+	constructor(private httpService: HttpService, private toastService: ToastService, private router: Router, public modal: SidebarComponent, private modalService: ModalService) { }
 
 	ngOnInit(): void {
 		this.getUsers();

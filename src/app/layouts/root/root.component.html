@@ -1,4 +1,4 @@
-<div class="app {{ (playerService.$queueVisible | async) ? 'queue' : '' }}">
+<div class="app ">
 	<div class="app-navigation">
 
 		<div class="logo">Auddly.</div>
@@ -95,7 +95,7 @@
 
 		</nav-->
 
-		<nav appRipple style="margin-left: auto;" (click)="playerService.onToggleQueue()">
+		<nav appRipple (click)="onQueue()">
 			<div class="icon">
 				<i class="ph-queue"></i>
 			</div>
@@ -106,13 +106,16 @@
 
 	</div>
 
+
+	<div class="app-controls ">
+		<app-now-playling></app-now-playling>
+	</div>
+
 	<div class="app-content">
 		<router-outlet></router-outlet>
 	</div>
 
-	<div class="app-queue {{ (playerService.$queueVisible | async) ? 'visible' : ''}}">
-		<app-now-playling></app-now-playling>
-	</div>
+
 </div>
 
 

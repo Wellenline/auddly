@@ -1,0 +1,60 @@
+import { InjectionToken } from '@angular/core';
+
+export interface IStyles { [key: string]: string; }
+export interface IConfig {
+	img?: string;
+	svg?: string;
+	loaderStyles?: IStyles;
+	imgStyles?: IStyles;
+	hostStyles?: IStyles;
+	messageStyles?: IStyles;
+	// TODO AnimationOptions
+	rotate?: {
+		delay?: number;
+		direction?: 'normal' | 'reverse' | 'alternate' | 'alternate-reverse';
+		duration?: number;
+		easing?: string;
+		endDelay?: number;
+		fill?: 'none' | 'forwards' | 'backwards' | 'both' | 'auto';
+		id?: string;
+		iterationStart?: number;
+		iterations?: number;
+	};
+}
+
+export type optionsConfig = IConfig;
+
+export const config: InjectionToken<string> = new InjectionToken('config');
+export const NEW_CONFIG: InjectionToken<string> = new InjectionToken('NEW_CONFIG');
+export const INITIAL_CONFIG: InjectionToken<IConfig> = new InjectionToken('INITIAL_CONFIG');
+
+export const initialConfig: IConfig = {
+	// tslint:disable-next-line:max-line-length
+	img: 'data:image/svg+xml;base64,PHN2ZyBjbGFzcz0ibGRzLXNwaW5uZXIiIHdpZHRoPSIzOXB4IiAgaGVpZ2h0PSIzOXB4IiAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIiBzdHlsZT0iYmFja2dyb3VuZDogbm9uZTsiPjxnIHRyYW5zZm9ybT0icm90YXRlKDAgNTAgNTApIj4gIDxyZWN0IHg9IjQ3LjUiIHk9Ii0zLjUiIHJ4PSIwLjk1MDAwMDAwMDAwMDAwMDEiIHJ5PSItMC4wNyIgd2lkdGg9IjUiIGhlaWdodD0iMjciIGZpbGw9IiNGOTc3NTYiPiAgICA8YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJvcGFjaXR5IiB2YWx1ZXM9IjE7MCIga2V5VGltZXM9IjA7MSIgZHVyPSIxcyIgYmVnaW49Ii0wLjkxNjY2NjY2NjY2NjY2NjZzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSI+PC9hbmltYXRlPiAgPC9yZWN0PjwvZz48ZyB0cmFuc2Zvcm09InJvdGF0ZSgzMCA1MCA1MCkiPiAgPHJlY3QgeD0iNDcuNSIgeT0iLTMuNSIgcng9IjAuOTUwMDAwMDAwMDAwMDAwMSIgcnk9Ii0wLjA3IiB3aWR0aD0iNSIgaGVpZ2h0PSIyNyIgZmlsbD0iI0Y5Nzc1NiI+ICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9Im9wYWNpdHkiIHZhbHVlcz0iMTswIiBrZXlUaW1lcz0iMDsxIiBkdXI9IjFzIiBiZWdpbj0iLTAuODMzMzMzMzMzMzMzMzMzNHMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIj48L2FuaW1hdGU+ICA8L3JlY3Q+PC9nPjxnIHRyYW5zZm9ybT0icm90YXRlKDYwIDUwIDUwKSI+ICA8cmVjdCB4PSI0Ny41IiB5PSItMy41IiByeD0iMC45NTAwMDAwMDAwMDAwMDAxIiByeT0iLTAuMDciIHdpZHRoPSI1IiBoZWlnaHQ9IjI3IiBmaWxsPSIjRjk3NzU2Ij4gICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ib3BhY2l0eSIgdmFsdWVzPSIxOzAiIGtleVRpbWVzPSIwOzEiIGR1cj0iMXMiIGJlZ2luPSItMC43NXMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIj48L2FuaW1hdGU+ICA8L3JlY3Q+PC9nPjxnIHRyYW5zZm9ybT0icm90YXRlKDkwIDUwIDUwKSI+ICA8cmVjdCB4PSI0Ny41IiB5PSItMy41IiByeD0iMC45NTAwMDAwMDAwMDAwMDAxIiByeT0iLTAuMDciIHdpZHRoPSI1IiBoZWlnaHQ9IjI3IiBmaWxsPSIjRjk3NzU2Ij4gICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ib3BhY2l0eSIgdmFsdWVzPSIxOzAiIGtleVRpbWVzPSIwOzEiIGR1cj0iMXMiIGJlZ2luPSItMC42NjY2NjY2NjY2NjY2NjY2cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiPjwvYW5pbWF0ZT4gIDwvcmVjdD48L2c+PGcgdHJhbnNmb3JtPSJyb3RhdGUoMTIwIDUwIDUwKSI+ICA8cmVjdCB4PSI0Ny41IiB5PSItMy41IiByeD0iMC45NTAwMDAwMDAwMDAwMDAxIiByeT0iLTAuMDciIHdpZHRoPSI1IiBoZWlnaHQ9IjI3IiBmaWxsPSIjRjk3NzU2Ij4gICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ib3BhY2l0eSIgdmFsdWVzPSIxOzAiIGtleVRpbWVzPSIwOzEiIGR1cj0iMXMiIGJlZ2luPSItMC41ODMzMzMzMzMzMzMzMzM0cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiPjwvYW5pbWF0ZT4gIDwvcmVjdD48L2c+PGcgdHJhbnNmb3JtPSJyb3RhdGUoMTUwIDUwIDUwKSI+ICA8cmVjdCB4PSI0Ny41IiB5PSItMy41IiByeD0iMC45NTAwMDAwMDAwMDAwMDAxIiByeT0iLTAuMDciIHdpZHRoPSI1IiBoZWlnaHQ9IjI3IiBmaWxsPSIjRjk3NzU2Ij4gICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ib3BhY2l0eSIgdmFsdWVzPSIxOzAiIGtleVRpbWVzPSIwOzEiIGR1cj0iMXMiIGJlZ2luPSItMC41cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiPjwvYW5pbWF0ZT4gIDwvcmVjdD48L2c+PGcgdHJhbnNmb3JtPSJyb3RhdGUoMTgwIDUwIDUwKSI+ICA8cmVjdCB4PSI0Ny41IiB5PSItMy41IiByeD0iMC45NTAwMDAwMDAwMDAwMDAxIiByeT0iLTAuMDciIHdpZHRoPSI1IiBoZWlnaHQ9IjI3IiBmaWxsPSIjRjk3NzU2Ij4gICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ib3BhY2l0eSIgdmFsdWVzPSIxOzAiIGtleVRpbWVzPSIwOzEiIGR1cj0iMXMiIGJlZ2luPSItMC40MTY2NjY2NjY2NjY2NjY3cyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiPjwvYW5pbWF0ZT4gIDwvcmVjdD48L2c+PGcgdHJhbnNmb3JtPSJyb3RhdGUoMjEwIDUwIDUwKSI+ICA8cmVjdCB4PSI0Ny41IiB5PSItMy41IiByeD0iMC45NTAwMDAwMDAwMDAwMDAxIiByeT0iLTAuMDciIHdpZHRoPSI1IiBoZWlnaHQ9IjI3IiBmaWxsPSIjRjk3NzU2Ij4gICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ib3BhY2l0eSIgdmFsdWVzPSIxOzAiIGtleVRpbWVzPSIwOzEiIGR1cj0iMXMiIGJlZ2luPSItMC4zMzMzMzMzMzMzMzMzMzMzcyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiPjwvYW5pbWF0ZT4gIDwvcmVjdD48L2c+PGcgdHJhbnNmb3JtPSJyb3RhdGUoMjQwIDUwIDUwKSI+ICA8cmVjdCB4PSI0Ny41IiB5PSItMy41IiByeD0iMC45NTAwMDAwMDAwMDAwMDAxIiByeT0iLTAuMDciIHdpZHRoPSI1IiBoZWlnaHQ9IjI3IiBmaWxsPSIjRjk3NzU2Ij4gICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ib3BhY2l0eSIgdmFsdWVzPSIxOzAiIGtleVRpbWVzPSIwOzEiIGR1cj0iMXMiIGJlZ2luPSItMC4yNXMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIj48L2FuaW1hdGU+ICA8L3JlY3Q+PC9nPjxnIHRyYW5zZm9ybT0icm90YXRlKDI3MCA1MCA1MCkiPiAgPHJlY3QgeD0iNDcuNSIgeT0iLTMuNSIgcng9IjAuOTUwMDAwMDAwMDAwMDAwMSIgcnk9Ii0wLjA3IiB3aWR0aD0iNSIgaGVpZ2h0PSIyNyIgZmlsbD0iI0Y5Nzc1NiI+ICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9Im9wYWNpdHkiIHZhbHVlcz0iMTswIiBrZXlUaW1lcz0iMDsxIiBkdXI9IjFzIiBiZWdpbj0iLTAuMTY2NjY2NjY2NjY2NjY2NjZzIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSI+PC9hbmltYXRlPiAgPC9yZWN0PjwvZz48ZyB0cmFuc2Zvcm09InJvdGF0ZSgzMDAgNTAgNTApIj4gIDxyZWN0IHg9IjQ3LjUiIHk9Ii0zLjUiIHJ4PSIwLjk1MDAwMDAwMDAwMDAwMDEiIHJ5PSItMC4wNyIgd2lkdGg9IjUiIGhlaWdodD0iMjciIGZpbGw9IiNGOTc3NTYiPiAgICA8YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJvcGFjaXR5IiB2YWx1ZXM9IjE7MCIga2V5VGltZXM9IjA7MSIgZHVyPSIxcyIgYmVnaW49Ii0wLjA4MzMzMzMzMzMzMzMzMzMzcyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiPjwvYW5pbWF0ZT4gIDwvcmVjdD48L2c+PGcgdHJhbnNmb3JtPSJyb3RhdGUoMzMwIDUwIDUwKSI+ICA8cmVjdCB4PSI0Ny41IiB5PSItMy41IiByeD0iMC45NTAwMDAwMDAwMDAwMDAxIiByeT0iLTAuMDciIHdpZHRoPSI1IiBoZWlnaHQ9IjI3IiBmaWxsPSIjRjk3NzU2Ij4gICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0ib3BhY2l0eSIgdmFsdWVzPSIxOzAiIGtleVRpbWVzPSIwOzEiIGR1cj0iMXMiIGJlZ2luPSIwcyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiPjwvYW5pbWF0ZT4gIDwvcmVjdD48L2c+PC9zdmc+',
+	svg: `	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 50 50" style='enable-background: new 0 0 50 50;' xmlSpace="preserve">
+	<path fill="var(--accent-color)" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z" transform="rotate(360 -4.05439e-8 -4.05439e-8)">
+		<animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform>
+	</path>
+</svg>`,
+	loaderStyles: {
+		'position': 'absolute',
+		'left': '0',
+		'right': '0',
+		'top': '0',
+		'bottom': '0',
+		'background': 'var(--background-color)',
+		'z-index': '50',
+		'display': 'flex',
+		'justify-content': 'center',
+		'align-items': 'center',
+	},
+	imgStyles: {
+		'width': '30px',
+	},
+	hostStyles: {
+		'position': 'relative'
+	},
+	rotate: {
+		iterations: Infinity
+	},
+};

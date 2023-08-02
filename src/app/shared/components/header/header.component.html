@@ -1,4 +1,5 @@
-<div class="header {{ sticky ? '' : 'not-sticky'}} {{ collapse ? 'collapse' : '' }}">
+<div
+	class="header {{ sticky ? '' : 'not-sticky'}} {{ collapse ? 'collapse' : '' }} {{ transparent ? 'transparent' : '' }}">
 	<div *ngIf="back" class="back">
 		<ng-content select="[header-back]"></ng-content>
 	</div>

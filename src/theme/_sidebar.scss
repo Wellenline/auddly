@@ -1,0 +1,44 @@
+.sidebar {
+    background-color: var(--background-color-4);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 15px;
+    box-shadow: 0 3px 3px 0 rgb(0 0 0 / 5%), 0 5px 15px 0 rgb(0 0 0 / 5%);
+    height: calc(100vh - 30px);
+    //    max-width: calc(400px);
+    border: 1px solid var(--border-color);
+    width: 650px;
+
+    // height: 350px;
+    overflow: hidden;
+    margin: 15px;
+
+
+    @media all and (max-width: 1000px) {
+        margin: 0px;
+        max-width: 100vw;
+        max-height: var(--app-height);
+        height: var(--app-height);
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0px;
+        box-shadow: none;
+        border: none;
+
+    }
+
+    &-content {
+
+        flex-grow: 1;
+        overflow: auto;
+        padding: 1rem;
+
+
+        &.no-padding {
+            padding: 0;
+        }
+    }
+
+}

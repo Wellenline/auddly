@@ -40,22 +40,11 @@
             }
 
             button {
-                background-color: #000000;
-                color: #fff;
-                display: inline-block;
-                padding: 5px 15px;
-                margin-top: 15px;
-                border-radius: 50px;
-                font-size: 14px;
-                box-shadow: 0 2px 4px #0000000f;
-                letter-spacing: 1.5px;
-                text-transform: uppercase;
-                border: 2px solid beige;
-
-                &+button {
-                    margin-left: 1rem;
-                }
+                margin-top: 1rem;
             }
+
+
+
         }
     }
 

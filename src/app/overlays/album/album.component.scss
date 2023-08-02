@@ -1,9 +1,11 @@
 .album {
     &-header {
         display: flex;
-        flex-direction: row;
-        gap: 2rem;
+        flex-direction: column;
+        gap: 1rem;
         align-items: center;
+        justify-content: center;
+        text-align: center;
 
         @media all and (max-width: 1000px) {
             flex-direction: column;
@@ -16,16 +18,23 @@
 
         .image {
             img {
-                width: 250px;
+                /*width: 250px;
                 height: 250px;
+                min-width: 250px;
                 object-fit: cover;
                 border-radius: 15px;
-                box-shadow: 0 2px 4px rgb(0 0 0 / 6%);
+                box-shadow: 0 2px 4px rgb(0 0 0 / 6%);*/
+                min-width: 250px;
+                aspect-ratio: 1;
+                object-fit: cover;
+                border-radius: 3px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
             }
         }
 
         .details {
             flex-grow: 1;
+            padding: 0 1rem;
 
             h1 {
                 margin: 0;
@@ -40,18 +49,10 @@
             }
 
             button {
-                background-color: #000000;
-                color: #fff;
-                display: inline-block;
-                padding: 5px 15px;
-                margin-top: 15px;
-                border-radius: 50px;
-                font-size: 14px;
-                box-shadow: 0 2px 4px #0000000f;
-                letter-spacing: 1.5px;
-                text-transform: uppercase;
-                border: 2px solid beige;
+                margin-top: 1rem;
             }
+
+
         }
     }
 
@@ -61,10 +62,11 @@
 
     &-albums {
         padding-bottom: 20px;
+
         display: flex;
         flex-direction: row;
         overflow: auto;
-        gap: 1rem;
+        gap: 1.5rem;
         scroll-snap-type: x mandatory;
         scroll-padding: 0 24px;
 
@@ -104,6 +106,7 @@
                 .title {
                     color: var(--foreground-color);
                     font-size: 14px;
+                    white-space: break-spaces;
                 }
 
                 .subtitle {

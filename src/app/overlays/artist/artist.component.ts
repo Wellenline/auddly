@@ -6,11 +6,17 @@ import { ModalService } from "src/app/shared/components/modal/modal.service";
 import { ToastService } from "src/app/shared/components/toast/toast.service";
 import { AlbumComponent } from "../album/album.component";
 import { SearchComponent } from "../search/search.component";
+import { forkJoin } from "rxjs";
+import { SlideRight } from "src/app/animations/slide";
+import { SidebarComponent } from "src/app/standalone/sidebar/sidebar.component";
+import { SidebarService } from "src/app/standalone/sidebar/sidebar.service";
 
 @Component({
 	selector: "app-artist",
 	templateUrl: "./artist.component.html",
-	styleUrls: ["./artist.component.scss"]
+	styleUrls: ["./artist.component.scss"],
+	animations: [SlideRight]
+
 })
 export class ArtistComponent implements OnInit {
 	public artist: any = {};
@@ -23,60 +29,42 @@ export class ArtistComponent implements OnInit {
 		artists: [],
 		playlists: [],
 	};
-	constructor(public modal: ModalComponent,
+	constructor(public modal: SidebarComponent,
 		private toastService: ToastService,
 		private playerService: PlayerService,
 		private musicService: MusicService,
-		private modalService: ModalService) { }
+		private modalService: SidebarService) { }
 
 	ngOnInit(): void {
 		this.getData(this.modal.params.id);
 	}
 
 	public getData(id: string) {
-		this.getArtist(id);
-		this.getAlbums(id);
-		this.getPopular(id);
-	}
-
-	public getArtist(id: string) {
 		this.loading = true;
-		this.musicService.getArtist(id).subscribe((response: any) => {
-			this.artist = response;
-			this.getSearchResults(this.artist.name);
-		}, (err) => {
-			console.log(err);
+		forkJoin([
+			this.musicService.getArtist(id),
+			this.musicService.getAlbums({
+				artist: id,
+			}),
+			this.musicService.getTracks({
+				popular: true,
+				artist: id,
+				limit: 10,
+			})
+		]).subscribe((data: unknown) => {
+			this.artist = data[0];
+			if (this.artist.name) {
+				this.getSearchResults(this.artist.name);
+			}
+
+			this.albums = data[1].data;
+			this.tracks = data[2].data;
+
 		}).add(() => {
 			this.loading = false;
 		});
-	}
 
-	public getAlbums(id: string) {
-		this.loading = true;
-		this.musicService.getAlbums({
-			artist: id,
-		}).subscribe((response: any) => {
-			this.albums = response.data;
-		}, (err) => {
-			console.log(err);
-		}).add(() => {
-			this.loading = false;
-		});
-	}
 
-	public getPopular(id: string) {
-		this.loading = true;
-		this.musicService.getTracks({
-			popular: true,
-			artist: id,
-			limit: 10,
-		}).subscribe((response: any) => {
-			this.tracks = response.data;
-		}, (err) => {
-			console.log(err);
-		}).add(() => {
-			this.loading = false;
-		});
 	}
 
 	public onPlayTracks() {

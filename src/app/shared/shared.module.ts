@@ -24,6 +24,8 @@ import { LayoutModule } from "@angular/cdk/layout";
 import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { SidebarTriggerForDirective } from "./directives/sidebar-trigger-for.directive";
 import { AvatarComponent } from "./components/avatar/avatar.component";
+import { LoaderDirective } from "./directives/loader/loader.directive";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 
 
@@ -61,7 +63,8 @@ import { AvatarComponent } from "./components/avatar/avatar.component";
 		FormsModule,
 		ReactiveFormsModule,
 		LazyLoadImageModule,
-
+		LoaderDirective,
+		BrowserAnimationsModule
 	],
 	exports: [
 		HttpClientModule,
@@ -88,6 +91,7 @@ import { AvatarComponent } from "./components/avatar/avatar.component";
 		SidebarComponent,
 		SidebarTriggerForDirective,
 		AvatarComponent,
+		LoaderDirective,
 
 	],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA]

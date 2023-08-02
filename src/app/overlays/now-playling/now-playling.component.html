@@ -1,163 +1,55 @@
-<div class="playing">
-
-	<app-header>
-		<div header-back>
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-				stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-				class="ai ai-ArrowLeft">
-				<path d="M11 5l-7 7 7 7" />
-				<path d="M4 12h16" />
-			</svg>
-		</div>
-		<div header-title>
-			Queue
-		</div>
-
-		<div header-actions class="actions">
-
-			<div (click)="playerService.clear()" appRipple class="action">
-
-				<i class="ph-trash-simple"></i>
-			</div>
-
-			<div (click)="playerService.onToggleQueue()" appRipple class="action">
-
-				<i class="ph-x"></i>
-			</div>
-
-		</div>
-	</app-header>
-	<div class="playing-queue">
-
-		<cdk-virtual-scroll-viewport #scroller itemSize="50" class="queue">
-			<app-track-item id="{{track._id}}" [track]="track" *cdkVirtualFor="let track of tracks">
-			</app-track-item>
-		</cdk-virtual-scroll-viewport>
-
-	</div>
-
-	<div class="playing-details">
+<div class="player card">
+	<div class="player-track">
 		<div class="image">
 			<img (swipe)="onSwipe($event)" [src]="track?.album?.picture || '/assets/app-icon-text.png'" />
 		</div>
-		<div class="details">
 
-			<div>
-				<h1>{{ track.name }}</h1>
-				<p>{{ track.artist }}</p>
-			</div>
-			<button appRipple (click)="onLike()" class="small {{ track.liked ? 'active' : '' }}"><i
-					class="ph-heart"></i>
-
-			</button>
-		</div>
-
-		<div class="progress">
-			<div class="time">
-				{{ currentTime | formatSeconds }}
-			</div>
-
-			<div class="slider">
-				<app-slider [seekable]="!(buffering && playing)" [options]="{vertical: false, autoSize: false}"
-					[buffer]="buffer" [value]="progress" (valueChange)="onProgress($event)">
-				</app-slider>
-
-
-				<app-loading [absolute]="true" [loading]="buffering && playing"></app-loading>
-			</div>
-
-			<div class="time">
-				{{ (track.duration || 0) | formatSeconds }}
-			</div>
-		</div>
-
-		<div class="controls">
-			<button appRipple (click)="playerService.onShuffle()"
-				class="small {{ playerService.shuffle ? 'active' : '' }}">
-				<i class="ph-shuffle-simple"></i>
-
-			</button>
-			<button appRipple [disabled]="playerService.isFirst" (click)="playerService.onPrev()">
-				<i class="ph-skip-back"></i>
-			</button>
-			<button appRipple class="playback" (click)="playerService.onPlayback()">
-				<i class="ph-{{playing ? 'pause' : 'play' }}"></i>
-			</button>
-			<button appRipple [disabled]="playerService.isLast" (click)="playerService.onNext()">
-				<i class="ph-skip-forward"></i>
-			</button>
-			<button appRipple (click)="playerService.onRepeat()"
-				class="small {{ playerService.repeat ? 'active' : '' }}"><i class="ph-repeat"></i>
-
-			</button>
-
+		<div class="track">
+			<h1>{{ track.name }}</h1>
+			<p>{{ track.artist }}</p>
 		</div>
 	</div>
+
+
+
+	<div class="player-controls">
+		<button appRipple (click)="playerService.onShuffle()"
+			class="small {{ playerService.shuffle ? 'primary' : '' }}">
+			<i class="ph-shuffle-simple"></i>
+
+		</button>
+		<button appRipple [disabled]="playerService.isFirst" (click)="playerService.onPrev()">
+			<i class="ph-skip-back"></i>
+		</button>
+		<button appRipple class="playback" (click)="playerService.onPlayback()">
+			<i class="ph-{{playing ? 'pause' : 'play' }}"></i>
+		</button>
+		<button appRipple [disabled]="playerService.isLast" (click)="playerService.onNext()">
+			<i class="ph-skip-forward"></i>
+		</button>
+		<button appRipple (click)="playerService.onRepeat()"
+			class="small {{ playerService.repeat ? 'primary' : '' }}"><i class="ph-repeat"></i>
+
+		</button>
+
+	</div>
+	<div class="player-progress">
+		<div class="time">
+			{{ currentTime | formatSeconds }}
+		</div>
+
+		<div class="slider">
+			<app-slider [seekable]="!(buffering && playing)" [options]="{vertical: false, autoSize: false}"
+				[buffer]="buffer" [value]="progress" (valueChange)="onProgress($event)">
+			</app-slider>
+
+
+			<app-loading [absolute]="true" [loading]="buffering && playing"></app-loading>
+		</div>
+
+		<div class="time">
+			{{ (track.duration || 0) | formatSeconds }}
+		</div>
+	</div>
+
 </div>
-
-
-<!--div class="player">
-	<div class="player-details">
-
-
-		<div class="image">
-			<img (swipe)="onSwipe($event)" [src]="track?.album?.picture || '/assets/app-icon-text.png'" />
-		</div>
-		<div class="details">
-			<div>
-				<h1>{{ track.name }}</h1>
-				<p>{{ track.artist }}</p>
-			</div>
-			<button appRipple (click)="onLike()" class="small {{ track.liked ? 'active' : '' }}"><i
-					class="ph-heart"></i>
-
-			</button>
-		</div>
-
-		<div class="progress">
-			<div class="time">
-				{{ currentTime | formatSeconds }}
-			</div>
-
-			<div class="slider">
-				<app-slider [seekable]="!(buffering && playing)" [options]="{vertical: false, autoSize: false}"
-					[buffer]="buffer" [value]="progress" (valueChange)="onProgress($event)">
-				</app-slider>
-
-
-				<app-loading [loading]="buffering && playing"></app-loading>
-			</div>
-
-			<div class="time">
-				{{ (track.duration || 0) | formatSeconds }}
-			</div>
-		</div>
-
-		<div class="controls">
-			<button appRipple (click)="playerService.onShuffle()"
-				class="small {{ playerService.shuffle ? 'active' : '' }}">
-				<i class="ph-shuffle-simple"></i>
-
-			</button>
-			<button appRipple [disabled]="playerService.isFirst" (click)="playerService.onPrev()">
-				<i class="ph-skip-back"></i>
-			</button>
-			<button appRipple class="playback" (click)="playerService.onPlayback()">
-				<i class="ph-{{playing ? 'pause' : 'play' }}"></i>
-			</button>
-			<button appRipple [disabled]="playerService.isLast" (click)="playerService.onNext()">
-				<i class="ph-skip-forward"></i>
-			</button>
-			<button appRipple (click)="playerService.onRepeat()"
-				class="small {{ playerService.repeat ? 'active' : '' }}"><i class="ph-repeat"></i>
-
-			</button>
-
-		</div>
-	</div>
-	<div class="queue">
-			<app-track-item [options]="{picture: true, actions: false} " [track]="track" *ngFor="let track of tracks">
-			</app-track-item>
-
-		</div>
-</div-->

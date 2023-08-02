@@ -5,11 +5,17 @@ import { ModalComponent } from "src/app/shared/components/modal/modal.component"
 import { ModalService } from "src/app/shared/components/modal/modal.service";
 import { ToastService } from "src/app/shared/components/toast/toast.service";
 import { ArtistComponent } from "../artist/artist.component";
+import { forkJoin } from "rxjs";
+import { SidebarComponent } from "src/app/standalone/sidebar/sidebar.component";
+import { SlideRight } from "src/app/animations/slide";
+import { SidebarService } from "src/app/standalone/sidebar/sidebar.service";
 
 @Component({
 	selector: "app-album",
 	templateUrl: "./album.component.html",
-	styleUrls: ["./album.component.scss"]
+	styleUrls: ["./album.component.scss"],
+	animations: [SlideRight]
+
 })
 export class AlbumComponent implements OnInit {
 	public album: any = {};
@@ -17,28 +23,16 @@ export class AlbumComponent implements OnInit {
 	public loading = true;
 	public albums = [];
 
-	constructor(public modal: ModalComponent,
+	constructor(public modal: SidebarComponent,
 		private playerService: PlayerService,
 		private toastService: ToastService,
 		private musicService: MusicService,
-		private modalService: ModalService) { }
+		private modalService: SidebarService) { }
 
 	ngOnInit(): void {
 		this.getAlbum(this.modal.params.id);
 	}
 
-	public getTracks(id: string) {
-		this.tracks = [];
-		this.musicService.getTracks({
-			album: id,
-			skip: 0,
-			limit: 1000,
-		}).subscribe((response: { data: ITrack[] }) => {
-			this.tracks = response.data;
-		}, (err) => {
-			console.log("Failed to load tracks", err);
-		});
-	}
 
 	public onPlayAlbum() {
 		if (!this.playerService.$playing.getValue()) {
@@ -70,27 +64,30 @@ export class AlbumComponent implements OnInit {
 		this.albums = [];
 		this.musicService.getAlbum(id).subscribe((response: any) => {
 			this.album = response;
-			this.getTracks(id);
 
-			this.getAlbums(this.album.artist._id);
+			forkJoin([
+				this.musicService.getTracks({
+					album: id,
+					skip: 0,
+					limit: 1000,
+				}),
+				this.musicService.getAlbums({
+					artist: this.album.artist._id
+				})
+			]).subscribe((responses: any) => {
+				this.tracks = responses[0].data;
+				this.albums = responses[1].data.filter((album) => album._id !== this.album._id);
+			}, (err) => {
+				console.log(err);
+			}).add(() => {
+				this.loading = false;
+			});
+
 
 		}, (err) => {
 			console.log("Failed to load album", err);
-		}).add(() => {
-			this.loading = false;
-		});
+			this.modal.onClose();
+		})
 	}
 
-	public getAlbums(id: string) {
-		this.loading = true;
-		this.musicService.getAlbums({
-			artist: id
-		}).subscribe((response: any) => {
-			this.albums = response.data.filter((album) => album._id !== this.album._id);
-		}, (err) => {
-			console.log(err);
-		}).add(() => {
-			this.loading = false;
-		});
-	}
 }

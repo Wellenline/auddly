@@ -26,7 +26,7 @@ export class TracksComponent implements OnInit {
 	public genres = [];
 	public playlists = [];
 
-	public loading = false;
+	public loading = true;
 	public genre: { name?: string, _id?: number } = {};
 	public playlist: { name?: string, _id?: number } = {};
 	hostHeight$: Observable<number>;
@@ -118,7 +118,7 @@ export class TracksComponent implements OnInit {
 	}
 
 	public getTracks(reset?: boolean) {
-		// this.loading = true;
+		this.loading = true;
 
 		if (reset) {
 			this.tracks = [];
@@ -140,7 +140,7 @@ export class TracksComponent implements OnInit {
 				if (this.pagination.total) {
 					this.pagination.total = res.total;
 				}
-				// this.loading = false;
+				this.loading = false;
 
 			}));
 

@@ -5,6 +5,7 @@ import { map } from "rxjs/operators";
 import { MusicService } from "src/app/core/services/music.service";
 import { ModalService } from "src/app/shared/components/modal/modal.service";
 import { AlbumComponent } from "../../overlays/album/album.component";
+import { SidebarService } from "src/app/standalone/sidebar/sidebar.service";
 
 @Component({
 	selector: "app-albums",
@@ -21,7 +22,8 @@ export class AlbumsComponent implements OnInit {
 	public grid = true;
 	public sort = "-created_at";
 	public scrollCallback;
-	constructor(private musicService: MusicService, private router: Router, private route: ActivatedRoute, private modalService: ModalService) { }
+	public loading = true;
+	constructor(private musicService: MusicService, private router: Router, private route: ActivatedRoute, private modalService: SidebarService) { }
 
 	ngOnInit(): void {
 		this.getAlbums().subscribe();
@@ -52,6 +54,7 @@ export class AlbumsComponent implements OnInit {
 	}
 
 	public getAlbums() {
+		this.loading = true;
 		return this.musicService.getAlbums({
 			skip: this.pagination.skip,
 			limit: this.pagination.limit,
@@ -63,6 +66,8 @@ export class AlbumsComponent implements OnInit {
 				if (this.pagination.total) {
 					this.pagination.total = res.total;
 				}
+
+				this.loading = false;
 			}));
 
 		// });
