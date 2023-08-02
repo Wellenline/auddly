@@ -10,6 +10,7 @@ export interface ITrack {
 	playing?: boolean;
 	plays?: number;
 	artist?: any;
+	artists?: any[];
 	album?: any;
 	lossless?: boolean;
 	path?: string;
@@ -211,7 +212,7 @@ export class PlayerService {
 
 	}
 
-	public setupAudioPlayer(track: ITrack, autoPlay: boolean = true) {
+	public async setupAudioPlayer(track: ITrack, autoPlay: boolean = true) {
 		this.audio.src = `${track.source}`;
 		this.audio.crossOrigin = "anonymous";
 		// this.audio.load();
@@ -222,25 +223,45 @@ export class PlayerService {
 
 		this.title.setTitle(`${track.name} - ${track.artist}`);
 
-		//if ("mediaSession" in navigator) {
-		(navigator as any).mediaSession.setPositionState(null);
-		(navigator as any).mediaSession.metadata = new MediaMetadata({
+
+		navigator.mediaSession.setPositionState(null);
+		navigator.mediaSession.metadata = new MediaMetadata({
 			title: track.name,
-			artist: track.artist,
+			artist: track.artists.map((a) => a.name).join(", "),
 			album: track.album.name,
-			artwork: [
-				/*{ src: track.album.picture, sizes: "96x96", type: "image/png" },
-				{ src: track.album.picture, sizes: "128x128", type: "image/png" },
-				{ src: track.album.picture, sizes: "192x192", type: "image/png" },
-				{ src: track.album.picture, sizes: "256x256", type: "image/png" },
-				{ src: track.album.picture, sizes: "384x384", type: "image/png" },*/
-				{ src: track.album.picture, type: "image/png" },
-			],
+			artwork: await this.resizeImageFromUrlToBase64(track.album.picture),
 		});
 
 
 		//}
 
+	}
+
+	async resizeImageFromUrlToBase64(url) {
+		const sizes = [96, 128, 192, 256, 384, 512];
+		const base64List = [];
+
+		for (const size of sizes) {
+			const img = new Image();
+			img.crossOrigin = "anonymous";
+			img.src = url;
+			await img.decode();
+
+			const canvas = document.createElement('canvas');
+			canvas.width = size;
+			canvas.height = size;
+
+			const ctx = canvas.getContext('2d');
+			ctx.drawImage(img, 0, 0, size, size);
+
+			const base64 = canvas.toDataURL();
+			base64List.push({
+				src: base64,
+				sizes: `${size}x${size}`,
+			});
+		}
+
+		return base64List;
 	}
 
 	/**
