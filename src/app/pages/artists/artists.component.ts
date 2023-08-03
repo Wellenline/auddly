@@ -4,6 +4,7 @@ import { map } from "rxjs/operators";
 import { MusicService } from "src/app/core/services/music.service";
 import { ModalService } from "src/app/shared/components/modal/modal.service";
 import { ArtistComponent } from "../../overlays/artist/artist.component";
+import { SidebarService } from "src/app/standalone/sidebar/sidebar.service";
 
 @Component({
 	selector: "app-artists",
@@ -19,7 +20,7 @@ export class ArtistsComponent implements OnInit {
 	};
 	public scrollCallback;
 	public grid = true;
-	constructor(private musicService: MusicService, private router: Router, private route: ActivatedRoute, private modalService: ModalService) { }
+	constructor(private musicService: MusicService, private router: Router, private route: ActivatedRoute, private modalService: SidebarService) { }
 
 	ngOnInit(): void {
 		this.getAlbums().subscribe();

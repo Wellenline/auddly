@@ -7,6 +7,7 @@
 		<div class="track">
 			<h1>{{ track.name }}</h1>
 			<p>{{ track.artist }}</p>
+
 		</div>
 	</div>
 
@@ -31,6 +32,13 @@
 			class="small {{ playerService.repeat ? 'primary' : '' }}"><i class="ph-repeat"></i>
 
 		</button>
+
+		<button appRipple (click)="onLike()" class="small {{  track.liked ? 'active' : '' }}">
+			<i class="ph-heart"></i>
+		</button>
+
+
+
 
 	</div>
 	<div class="player-progress">

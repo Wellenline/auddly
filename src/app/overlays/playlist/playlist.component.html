@@ -14,42 +14,46 @@
 		</div>
 
 	</app-header>
+	<div class="sidebar-content no-padding">
 
-	<div appLoader [loading]="loading" class="container">
-		<div class="album">
-			<div class="album-header">
-				<div class="image">
-					<img [src]="playlist.picture || '/assets/app-icon-text.png'" />
+		<div appLoader [loading]="loading" class="container">
+			<div class="album">
+				<div class="album-header">
+					<div class="image">
+						<img [src]="playlist.picture || '/assets/app-icon-text.png'" />
+					</div>
+
+					<div class="details">
+						<h1>{{ playlist.name }}</h1>
+						<p (click)="onProfile(playlist?.created_by?._id)">
+							by {{ playlist?.created_by?.first_name }} {{ playlist?.created_by?.last_name }}
+						</p>
+
+						<button appRipple (click)="onPlay()">
+							Play {{ playlist?.tracks?.length }} songs
+						</button>
+
+						<button appRipple (click)="onEdit(playlist)">
+							Edit Playlist
+						</button>
+
+						<button appRipple (click)="onDelete()">
+							Delete Playlist
+						</button>
+					</div>
 				</div>
 
-				<div class="details">
-					<h1>{{ playlist.name }}</h1>
-					<p (click)="onProfile(playlist?.created_by?._id)">
-						by {{ playlist?.created_by?.first_name }} {{ playlist?.created_by?.last_name }}
-					</p>
-
-					<button appRipple (click)="onPlay()">
-						Play {{ playlist?.tracks?.length }} songs
-					</button>
-
-					<button appRipple (click)="onEdit(playlist)">
-						Edit Playlist
-					</button>
-
-					<button appRipple (click)="onDelete()">
-						Delete Playlist
-					</button>
+				<div class="album-tracks">
+					<app-track-item [options]="{actions: true, picture: true, playlist: playlist._id }"
+						(onRemoveFromPlaylist)="onRemove(track)" [track]="track" *ngFor="let track of playlist?.tracks">
+					</app-track-item>
 				</div>
 			</div>
 
-			<div class="album-tracks">
-				<app-track-item [options]="{actions: true, picture: true, playlist: playlist._id }"
-					(onRemoveFromPlaylist)="onRemove(track)" [track]="track" *ngFor="let track of playlist?.tracks">
-				</app-track-item>
-			</div>
+
+
 		</div>
 
-
-
 	</div>
+
 </div>

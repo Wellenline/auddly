@@ -20,7 +20,7 @@ export class RootComponent implements OnInit {
 
 	@HostListener("document:keydown.meta.k")
 	public onSearch() {
-		this.modalService.show({
+		this.s.show({
 			component: SearchComponent,
 		});
 	}

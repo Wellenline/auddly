@@ -96,7 +96,7 @@ export class SidebarService {
 		overlayRef.attach(portal);
 
 		overlayRef.backdropClick().subscribe(() => {
-			// pdestroy();
+			destroy();
 		});
 
 		overlayRef.keydownEvents().subscribe((event: KeyboardEvent) => {
