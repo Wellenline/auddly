@@ -49,7 +49,8 @@ button {
 
     &.danger {
         border-color: #f19292;
-        color: #ff5252;
+        color: white;
+        background-color: #ff5252;
 
         &:hover {
             background-color: #ff5252;
@@ -63,6 +64,8 @@ button {
         background-color: var(--accent-color);
 
         &:hover {
+            background-color: var(--accent-color);
+
             // background-color: #ff5252;
             color: white;
         }

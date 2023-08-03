@@ -65,6 +65,11 @@
     &-controls {
         grid-row-start: 3;
 
+        display: none;
+
+        @media all and (max-width: 1000px) {
+            display: flex;
+        }
 
     }
 
@@ -86,8 +91,8 @@
         margin: 0 auto;
         position: sticky;
         top: 0px;
-        border-bottom: 1px solid var(--border-color);
-        grid-row-start: 1;
+        border-top: 1px solid var(--border-color);
+        grid-row-start: 3;
 
         @media all and (max-width: 1000px) {
             position: fixed;
@@ -159,7 +164,23 @@
 
             }
 
+            &:hover,
             &.active {
+
+                &:before {
+                    content: "";
+                    display: block;
+                    width: 7px;
+                    height: 7px;
+                    position: absolute;
+                    background-color: #b1b1b1;
+                    bottom: 7px;
+                    left: 50%;
+                    transform: translateX(-50%) rotate(45deg);
+                    border-radius: 3px;
+
+                }
+
                 opacity: 1;
 
                 .icon {
@@ -236,26 +257,8 @@
         overflow: auto;
         position: relative;
         grid-row-start: 2;
-        margin: 0 auto;
-        max-width: 80vw;
-        min-width: 80vw;
-        width: 80vw;
-
-        &.queue {
-            transform: translateX(-400px);
-            //width: calc(100% - 800px);
-            padding-left: 400px;
 
 
-            @media all and (max-width: 1000px) {
-                transform: translateX(0);
-
-                width: 100%;
-                padding-left: 0;
-
-            }
-
-        }
 
         @media all and (max-width: 1000px) {
             width: 100%;

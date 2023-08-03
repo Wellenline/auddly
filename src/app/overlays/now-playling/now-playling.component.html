@@ -1,5 +1,5 @@
-<div class="player card">
-	<div class="player-track">
+<div class="player {{ mini ? 'mini' :   'card'}}">
+	<div (click)="onArtist()" appRipple class="player-track">
 		<div class="image">
 			<img (swipe)="onSwipe($event)" [src]="track?.album?.picture || '/assets/app-icon-text.png'" />
 		</div>
@@ -14,26 +14,29 @@
 
 
 	<div class="player-controls">
-		<button appRipple (click)="playerService.onShuffle()"
-			class="small {{ playerService.shuffle ? 'primary' : '' }}">
+		<button data-tooltip="Shuffle" appRipple (click)="playerService.onShuffle()"
+			class="button transparent {{ playerService.shuffle ? 'primary' : '' }}">
 			<i class="ph-shuffle-simple"></i>
 
 		</button>
-		<button appRipple [disabled]="playerService.isFirst" (click)="playerService.onPrev()">
+		<button data-tooltip="Prev track" class="button transparent" appRipple [disabled]="playerService.isFirst"
+			(click)="playerService.onPrev()">
 			<i class="ph-skip-back"></i>
 		</button>
-		<button appRipple class="playback" (click)="playerService.onPlayback()">
+		<button data-tooltip="Playback" class="button transparent" appRipple (click)="playerService.onPlayback()">
 			<i class="ph-{{playing ? 'pause' : 'play' }}"></i>
 		</button>
-		<button appRipple [disabled]="playerService.isLast" (click)="playerService.onNext()">
+		<button data-tooltip="Next track" class="button transparent" appRipple [disabled]="playerService.isLast"
+			(click)="playerService.onNext()">
 			<i class="ph-skip-forward"></i>
 		</button>
-		<button appRipple (click)="playerService.onRepeat()"
-			class="small {{ playerService.repeat ? 'primary' : '' }}"><i class="ph-repeat"></i>
+		<button data-tooltip="Repeat" appRipple (click)="playerService.onRepeat()"
+			class="button transparent {{ playerService.repeat ? 'primary' : '' }}"><i class="ph-repeat"></i>
 
 		</button>
 
-		<button appRipple (click)="onLike()" class="small {{  track.liked ? 'active' : '' }}">
+		<button data-tooltip="Like" appRipple (click)="onLike()"
+			class="button transparent {{  track.liked ? 'danger' : '' }}">
 			<i class="ph-heart"></i>
 		</button>
 

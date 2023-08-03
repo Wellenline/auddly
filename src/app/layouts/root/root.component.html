@@ -1,9 +1,9 @@
 <div class="app ">
 	<div class="app-navigation">
 
-		<div class="logo">Auddly.</div>
+		<div class="logo">Auddly</div>
 
-		<nav appRipple routerLink="/dashboard" [routerLinkActive]="['active']">
+		<nav data-tooltip="Dashboard" appRipple routerLink="/dashboard" [routerLinkActive]="['active']">
 			<div class="icon">
 				<i class="ph-house-simple"></i>
 
@@ -14,7 +14,7 @@
 			</div>
 		</nav>
 
-		<nav appRipple routerLink="/albums" [routerLinkActive]="['active']">
+		<nav data-tooltip="Albums" appRipple routerLink="/albums" [routerLinkActive]="['active']">
 			<div class="icon">
 				<i class="ph-disc"></i>
 
@@ -34,7 +34,7 @@
 			</div>
 		</nav-->
 
-		<nav appRipple routerLink="/tracks" [routerLinkActive]="['active']">
+		<nav data-tooltip="Tracks" appRipple routerLink="/tracks" [routerLinkActive]="['active']">
 			<div class="icon">
 				<i class="ph-music-notes-simple"></i>
 
@@ -44,7 +44,7 @@
 			</div>
 		</nav>
 
-		<nav appRipple routerLink="/playlists" [routerLinkActive]="['active']">
+		<nav data-tooltip="Playlists" appRipple routerLink="/playlists" [routerLinkActive]="['active']">
 			<div class="icon">
 				<i class="ph-heart"></i>
 
@@ -95,7 +95,12 @@
 
 		</nav-->
 
-		<nav style="margin-left: auto;" appRipple (click)="onQueue()">
+		<div style="margin-left: auto;">
+			<app-now-playling [mini]="true"></app-now-playling>
+
+		</div>
+
+		<nav data-tooltip="Show Queue" appRipple (click)="onQueue()">
 			<div class="icon">
 				<i class="ph-queue"></i>
 			</div>

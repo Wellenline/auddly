@@ -2,7 +2,7 @@
     /// height: calc(var(--app-height) - 60px);
     // overflow: auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1rem;
     // min-height: var(--app-height);
     padding: 1rem;

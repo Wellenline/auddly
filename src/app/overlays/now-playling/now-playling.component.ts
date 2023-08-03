@@ -1,11 +1,14 @@
 import { CdkVirtualScrollViewport } from "@angular/cdk/scrolling";
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, Input, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 import { ITrack, PlayerService } from "src/app/core/services/player.service";
 import { SlideRight } from "src/app/shared/animations/slide";
 import { ModalService } from "src/app/shared/components/modal/modal.service";
+import { SidebarService } from "src/app/standalone/sidebar/sidebar.service";
+import { ArtistComponent } from "../artist/artist.component";
+import { ToastService } from "src/app/standalone/toast/toast.service";
 
 @Component({
 	selector: "app-now-playling",
@@ -15,6 +18,7 @@ import { ModalService } from "src/app/shared/components/modal/modal.service";
 
 })
 export class NowPlaylingComponent implements OnInit {
+	@Input() public mini = false;
 	public tracks: ITrack[] = [];
 	public track: ITrack = {};
 	public progress = 0;
@@ -23,6 +27,7 @@ export class NowPlaylingComponent implements OnInit {
 	public lyrics = false;
 	public currentTime = 0;
 	public buffering = false;
+
 	public buffer = 0;
 	public duration = 0;
 	public loading = false;
@@ -35,7 +40,9 @@ export class NowPlaylingComponent implements OnInit {
 	private destroy = new Subject();
 	constructor(public playerService: PlayerService,
 		private router: Router,
+		private sidebarService: SidebarService,
 		private modalService: ModalService,
+		private toast: ToastService,
 		// private modal: ModalPageComponent,
 	) { }
 
@@ -86,6 +93,17 @@ export class NowPlaylingComponent implements OnInit {
 
 	}
 
+	public onArtist() {
+		if (this.track.artist) {
+			this.sidebarService.show({
+				component: ArtistComponent,
+				params: {
+					id: this.track.artists[0]._id
+				}
+			})
+		}
+	}
+
 	public onSlideChange(e) {
 		if (e.activeIndex !== this.playerService.index) {
 			this.playerService.onPlay(this.tracks[e.activeIndex]);
@@ -111,9 +129,9 @@ export class NowPlaylingComponent implements OnInit {
 	public onLike() {
 		this.playerService.onLike(this.track._id).subscribe(() => {
 			this.track.liked = !this.track.liked;
-			/*this.interfaceService.notify(`${this.track.name} ${this.track.liked ? "added to favourites" : "removed from favourites"}`, {
-				timeout: 3000,
-			});*/
+			this.toast.show({
+				message: `${this.track.name} ${this.track.liked ? "added to favourites" : "removed from favourites"}`
+			});
 		});
 	}
 

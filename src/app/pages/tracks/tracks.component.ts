@@ -34,7 +34,7 @@ export class TracksComponent implements OnInit {
 		maxHeight: "80vh"
 	};
 	public filter: { limit?: string, liked?: boolean, genre?: string, sort?: string } = { sort: "-created_at", limit: "50", genre: "" };
-	public limits = [10, 20, 30, 50, 100, 150, 200, 250, 300, 500, 1000];
+	public limits = [10, 20, 30, 50, 100, 150, 200, 250, 300, 500, 1000, 2000, 5000, 10000];
 	public scrollCallback: any;
 
 	constructor(private httpService: HttpService,

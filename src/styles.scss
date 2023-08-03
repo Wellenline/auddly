@@ -439,11 +439,10 @@ span.ripple {
     border-radius: 5px;
 
     color: #ffffff;
-    font-size: 12px;
     content: attr(data-tooltip);
 
     margin-bottom: 10px;
-    top: calc(100% + 5px);
+    bottom: calc(100% + 5px);
     left: 0;
     padding: 7px 12px;
     position: absolute;
