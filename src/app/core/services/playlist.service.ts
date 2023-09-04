@@ -20,6 +20,10 @@ export class PlaylistService {
 		return this.http.get(`/playlists`);
 	}
 
+	public getSuggestions() {
+		return this.http.get(`/playlists/suggest`);
+	}
+
 	public getPlaylist(id: string) {
 		return this.http.get(`/playlists/${id}`);
 	}

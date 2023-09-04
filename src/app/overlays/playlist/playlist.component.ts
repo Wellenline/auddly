@@ -44,7 +44,19 @@ export class PlaylistComponent implements OnInit {
 
 	ngOnInit(): void {
 		console.log(this.modal.params);
-		this.getPlaylist(this.modal.params.id);
+
+		if (this.modal.params.id) {
+			this.getPlaylist(this.modal.params.id);
+
+		} else {
+			this.loading = false;
+			this.playlist.tracks = this.modal.params.tracks;
+			console.log(this.playlist.tracks, this.modal.params.tracks)
+			if (this.playlist.tracks.length > 0 && !this.playlist.picture) {
+				this.playlist.picture = this.playlist.tracks[0].album.picture;
+			}
+		}
+
 	}
 	public getPlaylist(id: string) {
 		this.tracks = [];

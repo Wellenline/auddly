@@ -17,18 +17,27 @@ export class PlaylistsComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.getPlaylists();
+
 	}
 	public getPlaylists() {
 		this.playlistService.getPlaylists().subscribe((response: { data: [] }) => {
 			this.playlists = response.data;
+			this.getSuggestions();
 		});
 	}
-	public onPlaylist(id: string) {
+
+	public getSuggestions() {
+		this.playlistService.getSuggestions().subscribe((response: []) => {
+			this.playlists.push(...response);
+		});
+	}
+	public onPlaylist(id: string, tracks) {
 		this.modalService.show({
 			component: PlaylistComponent,
 			class: "fullscreen",
 			params: {
 				id,
+				tracks
 			}
 
 		});
