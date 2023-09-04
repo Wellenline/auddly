@@ -50,7 +50,7 @@
 							<img class="lazyload" [lazyLoad]="album.picture || '/assets/app-icon-text.png'" />
 							<div class="column-details">
 								<div class="title">{{ album.name }}</div>
-								<div class="subtitle">{{ album.artist.name }}</div>
+								<div class="subtitle">{{ album.artist?.name }}</div>
 							</div>
 						</div>
 					</ng-container>
