@@ -10,17 +10,20 @@
 				<path d="M4 12h16" />
 			</svg>
 		</div>
-		<div header-title>
 
-			<input #searchInput (keyup)="onSearch($event)" [(ngModel)]="search" autocomplete="off" class="input"
-				type="text" placeholder="Search Music" />
-		</div>
 
 	</app-header>
 
 	<div appLoader [loading]="loading" class="sidebar-content no-padding">
 
 		<div class="results">
+
+			<div class="search-input">
+
+
+				<input #searchInput (keyup)="onSearch($event)" [(ngModel)]="search" autocomplete="off" class="input"
+					type="text" placeholder="Search Music" />
+			</div>
 
 			<ng-container *ngIf="result.artists.length > 0">
 

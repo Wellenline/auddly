@@ -40,7 +40,26 @@ html[data-theme="light"] {
 }
 
 html[data-theme="dark"] {
-    --accent-color: #1e87f0; //#2f49d1;
+    --accent-color: #32c7c2;
+    --white: #000000;
+    --black: #ffffff;
+    --background-color: #000000;
+    --background-color-2: #000000;
+    --background-color-3: #141414;
+    --background-color-4: #000000;
+    --background-color-5: #000000;
+    --background-color-6: #000000;
+    --background-color-7: #000000;
+    --background-color-8: #000000;
+    --border-color: #26292c;
+    --highlight-color: #1de696;
+    --input-color: #fff;
+    --text-color: #f7f7f9;
+    --ripple-color: rgba(255, 255, 255, .7);
+    --hover-primary: #2e2e2e;
+    --box-shadow-card: var(--border-color);
+
+    /*--accent-color: #1e87f0; //#2f49d1;
 
     // --accent-color: #8bc34a;
     --white: #000000;
@@ -61,7 +80,7 @@ html[data-theme="dark"] {
     --ripple-color: rgba(255, 255, 255, 0.7);
     --hover-primary: #2e2e2e;
     --box-shadow-card: var(--border-color);
-
+*/
     ::-webkit-calendar-picker-indicator {
         filter: invert(1);
     }

@@ -14,28 +14,49 @@
 
 
 	<div class="player-controls">
-		<button data-tooltip="Shuffle" appRipple (click)="playerService.onShuffle()"
+		<app-dropdown [width]="'auto'" [ignoreStyle]="true" #dropdown>
+			<div class="custom-lyrics">
+				<h3>Lyrics</h3>
+				<div class="lyrics">{{ track?.lyrics?.text }}</div>
+			</div>
+		</app-dropdown>
+
+		<button *ngIf="track?.lyrics?.text" class="button transparent " [dropdownPosition]='{
+			originX: "end",
+		originY: "bottom",
+		overlayX: "center",
+		overlayY: "top",
+		offsetY: -80,
+		offsetX:0
+		}' [dropdownTriggerFor]="dropdown" appTooltip="Lyrics">
+			<i class="ph ph-article"></i>
+
+
+
+
+		</button>
+		<button appTooltip="Shuffle" appRipple (click)="playerService.onShuffle()"
 			class="button transparent {{ playerService.shuffle ? 'primary' : '' }}">
 			<i class="ph-shuffle-simple"></i>
 
 		</button>
-		<button data-tooltip="Prev track" class="button transparent" appRipple [disabled]="playerService.isFirst"
+		<button appTooltip="Prev track" class="button transparent" appRipple [disabled]="playerService.isFirst"
 			(click)="playerService.onPrev()">
 			<i class="ph-skip-back"></i>
 		</button>
-		<button data-tooltip="Playback" class="button transparent" appRipple (click)="playerService.onPlayback()">
+		<button appTooltip="Playback" class="button transparent" appRipple (click)="playerService.onPlayback()">
 			<i class="ph-{{playing ? 'pause' : 'play' }}"></i>
 		</button>
-		<button data-tooltip="Next track" class="button transparent" appRipple [disabled]="playerService.isLast"
+		<button appTooltip="Next track" class="button transparent" appRipple [disabled]="playerService.isLast"
 			(click)="playerService.onNext()">
 			<i class="ph-skip-forward"></i>
 		</button>
-		<button data-tooltip="Repeat" appRipple (click)="playerService.onRepeat()"
+		<button appTooltip="Repeat" appRipple (click)="playerService.onRepeat()"
 			class="button transparent {{ playerService.repeat ? 'primary' : '' }}"><i class="ph-repeat"></i>
 
 		</button>
 
-		<button data-tooltip="Like" appRipple (click)="onLike()"
+		<button appTooltip="Like" appRipple (click)="onLike()"
 			class="button transparent {{  track.liked ? 'danger' : '' }}">
 			<i class="ph-heart"></i>
 		</button>

@@ -1,24 +1,23 @@
 button {
 
-    transition-duration: .15s;
+    transition-duration: 0.15s;
     transition-property: background-color, border-color, color, fill, stroke;
-    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     font: inherit;
     line-height: 1;
-    background-color: var(--background-color-3);
-    border: 0px solid var(--black);
+    background-color: transparent;
+    border: 2px solid var(--black);
+    border-radius: 50px;
     color: var(--black);
     padding: 0.5em 1em;
-    border-radius: 6px;
+    /* border-radius: 6px; */
     font-weight: 500;
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
     gap: 0.5rem;
     min-height: 44px;
-    // font-size: .85rem;
     box-shadow: rgba(17, 17, 18, 0.04) 0 2px 4px, rgba(19, 20, 20, 0.06) 0 1px 1px;
-
     white-space: nowrap;
 
     &:hover {

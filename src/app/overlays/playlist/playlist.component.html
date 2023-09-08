@@ -25,7 +25,7 @@
 
 					<div class="details">
 						<h1>{{ playlist.name }}</h1>
-						<p (click)="onProfile(playlist?.created_by?._id)">
+						<p *ngIf="playlist._id" (click)="onProfile(playlist?.created_by?._id)">
 							by {{ playlist?.created_by?.first_name }} {{ playlist?.created_by?.last_name }}
 						</p>
 
@@ -33,11 +33,11 @@
 							Play {{ playlist?.tracks?.length }} songs
 						</button>
 
-						<button appRipple (click)="onEdit(playlist)">
+						<button *ngIf="playlist._id" appRipple (click)="onEdit(playlist)">
 							Edit Playlist
 						</button>
 
-						<button appRipple (click)="onDelete()">
+						<button *ngIf="playlist._id" appRipple (click)="onDelete()">
 							Delete Playlist
 						</button>
 					</div>

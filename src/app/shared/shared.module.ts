@@ -26,6 +26,7 @@ import { SidebarTriggerForDirective } from "./directives/sidebar-trigger-for.dir
 import { AvatarComponent } from "./components/avatar/avatar.component";
 import { LoaderDirective } from "./directives/loader/loader.directive";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { TooltipDirective } from "../standalone/tooltip/tooltip.directive";
 
 
 
@@ -63,6 +64,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 		FormsModule,
 		ReactiveFormsModule,
 		LazyLoadImageModule,
+		TooltipDirective,
 		LoaderDirective,
 		BrowserAnimationsModule
 	],
@@ -78,6 +80,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 		DropdownComponent,
 		DropdownTriggerForDirective,
 		LoadingComponent,
+		TooltipDirective,
 		ThemeToggleComponent,
 		HeaderComponent,
 		ModalComponent,

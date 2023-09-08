@@ -11,6 +11,15 @@
 	</div>
 </app-header>
 
+<div class="generated-playlists">
+	<div class="playlist" *ngFor="let playlist of generatedPlaylists" appRipple
+		(click)="onPlaylist(playlist._id, playlist.tracks)">
+		<div class="playlist-name">
+			{{ playlist.name }}
+			<div><small>({{ playlist.tracks.length || 0}} Tracks)</small></div>
+		</div>
+	</div>
+</div>
 <div class="playlists">
 	<div class="playlist" *ngFor="let playlist of playlists">
 		<div appRipple (click)="onPlaylist(playlist._id, playlist.tracks)" class="playlist-name">

@@ -95,8 +95,8 @@ export class DashboardComponent implements OnInit {
 			labels: this.data.tracks.map((track) => track.track.name),
 			datasets: [{
 				data: this.data.tracks.map((track) => track.playcount),
-				backgroundColor: "#1e87f0",
-				borderColor: "#1e87f0",
+				backgroundColor: "#32c7c2",
+				borderColor: "#32c7c2",
 				// borderRadius: 20,
 			}]
 		};
@@ -114,8 +114,8 @@ export class DashboardComponent implements OnInit {
 			labels: this.data.albums.map((album) => album.album.name),
 			datasets: [{
 				data: this.data.albums.map((album) => album.playcount),
-				backgroundColor: "#1e87f0",
-				borderColor: "#1e87f0",
+				backgroundColor: "#32c7c2",
+				borderColor: "#32c7c2",
 				// borderRadius: 20,
 			}]
 		};
@@ -134,8 +134,8 @@ export class DashboardComponent implements OnInit {
 			labels,
 			datasets: [{
 				label: "Streams",
-				backgroundColor: "#1e87f0",
-				borderColor: "#1e87f0",
+				backgroundColor: "#32c7c2",
+				borderColor: "#32c7c2",
 				// borderRadius: 20,
 				data: this.data.plays.values,
 			}]

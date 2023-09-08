@@ -13,6 +13,7 @@ import { SidebarService } from 'src/app/standalone/sidebar/sidebar.service';
 export class PlaylistsComponent implements OnInit {
 
 	public playlists = [];
+	public generatedPlaylists = [];
 	constructor(public playlistService: PlaylistService, private m: ModalService, private modalService: SidebarService) { }
 
 	ngOnInit(): void {
@@ -28,7 +29,7 @@ export class PlaylistsComponent implements OnInit {
 
 	public getSuggestions() {
 		this.playlistService.getSuggestions().subscribe((response: []) => {
-			this.playlists.push(...response);
+			this.generatedPlaylists = response;
 		});
 	}
 	public onPlaylist(id: string, tracks) {

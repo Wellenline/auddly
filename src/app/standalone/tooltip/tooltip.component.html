@@ -1,0 +1,9 @@
+<div class="cc-tooltip" *ngIf="asString as string;" @slideInOut>
+	{{ asString }}
+</div>
+
+
+<div class="cc-tooltip" *ngIf="asTemplate as template" @slideInOut>
+
+	<ng-template [ngTemplateOutlet]="template"></ng-template>
+</div>
